@@ -40,6 +40,9 @@ namespace AgilityDogs.Services
         private Queue<CommentaryTask> commentaryQueue = new Queue<CommentaryTask>();
         private bool isProcessingQueue = false;
         private float lastCommentaryTime;
+        private DogAgentController dog;
+        private Queue<string> recentCommentary = new Queue<string>();
+        private const int MaxRecentCommentary = 5;
         
         private class CommentaryTask
         {
@@ -77,6 +80,11 @@ namespace AgilityDogs.Services
                 }
             }
             
+            // Find dog in scene
+            dog = FindObjectOfType<DogAgentController>();
+            if (dog == null)
+                Debug.LogWarning("DogAgentController not found for breed callouts.");
+
             // Subscribe to game events
             SubscribeToEvents();
             
