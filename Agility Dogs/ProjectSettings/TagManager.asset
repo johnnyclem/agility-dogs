@@ -3,37 +3,48 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Handler
+  - Dog
+  - Obstacle
+  - CommitZone
+  - ContactZone
+  - JumpObstacle
+  - TunnelObstacle
+  - WeaveObstacle
+  - ContactObstacle
+  - PauseTableObstacle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  -
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Handler
+  - Dog
+  - Obstacle
+  - ObstacleTrigger
+  - Ground
+  - Crowd
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
+  -
   - 
   - 
   - 
