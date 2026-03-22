@@ -121,5 +121,20 @@ namespace AgilityDogs.Services
         {
             return Get("EASTWORLD_SERVER_URL", "http://localhost:8000");
         }
+
+        public static string GetEastworldGameUuid()
+        {
+            return Get("EASTWORLD_GAME_UUID", "agility-dogs-game");
+        }
+
+        public static string GetEastworldMainAnnouncerAgentUuid()
+        {
+            return Get("EASTWORLD_MAIN_ANNOUNCER_AGENT_UUID", "main-announcer-agent");
+        }
+
+        public static string GetEastworldColorCommentatorAgentUuid()
+        {
+            return Get("EASTWORLD_COLOR_COMMENTATOR_AGENT_UUID", "color-commentator-agent");
+        }
     }
 }

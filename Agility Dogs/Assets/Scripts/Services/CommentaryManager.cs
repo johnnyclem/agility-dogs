@@ -21,6 +21,10 @@ namespace AgilityDogs.Services
         [SerializeField] private string mainAnnouncerAgentUuid = "main-announcer-agent";
         [SerializeField] private string colorCommentatorAgentUuid = "color-commentator-agent";
         
+        [Header("Eastworld Agent Info")]
+        [SerializeField] private string mainAnnouncerName = "Barkley Stevens";
+        [SerializeField] private string colorCommentatorName = "Dana Woofington";
+        
         [Header("References")]
         [SerializeField] private ElevenLabsService elevenLabsService;
         [SerializeField] private EastworldClient eastworldClient;
@@ -116,8 +120,8 @@ namespace AgilityDogs.Services
                 Debug.Log($"Eastworld session started: {sessionUuid}");
                 
                 // Start chats with both announcers
-                StartCoroutine(eastworldClient.StartChat(sessionUuid, mainAnnouncerAgentUuid, "Main Announcer", null, error => Debug.LogError(error)));
-                StartCoroutine(eastworldClient.StartChat(sessionUuid, colorCommentatorAgentUuid, "Color Commentator", null, error => Debug.LogError(error)));
+                StartCoroutine(eastworldClient.StartChat(sessionUuid, mainAnnouncerAgentUuid, mainAnnouncerName, null, error => Debug.LogError(error)));
+                StartCoroutine(eastworldClient.StartChat(sessionUuid, colorCommentatorAgentUuid, colorCommentatorName, null, error => Debug.LogError(error)));
             }, error =>
             {
                 Debug.LogError($"Failed to start Eastworld session: {error}");
