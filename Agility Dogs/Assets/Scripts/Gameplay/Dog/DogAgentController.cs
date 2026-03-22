@@ -35,6 +35,29 @@ namespace AgilityDogs.Gameplay.Dog
         [SerializeField] private float commandResponseDelay = 0.15f;
         [SerializeField] private float recoveryTime = 1.5f;
 
+        [Header("Commitment Logic")]
+        [SerializeField] private float earlyCommitDistance = 3f;
+        [SerializeField] private float lateCommitDistance = 1.5f;
+        [SerializeField] private float commitmentBuildupRate = 2f;
+        [SerializeField] private float commitmentDecayRate = 1f;
+        [SerializeField] private float timingWindowBonus = 0.3f;
+
+        [Header("Obstacle Reading")]
+        [SerializeField] private float obstacleReadDistance = 15f;
+        [SerializeField] private float obstacleReadAngle = 60f;
+        [SerializeField] private float nextObstacleLookahead = 2f;
+
+        [Header("Command Timing")]
+        [SerializeField] private float earlyCommandWindow = 0.5f;
+        [SerializeField] private float optimalCommandWindow = 0.2f;
+        [SerializeField] private float lateCommandWindow = 0.3f;
+
+        [Header("Recovery Logic")]
+        [SerializeField] private float missedCommandRecoveryTime = 2f;
+        [SerializeField] private float wrongObstacleRecoveryTime = 3f;
+        [SerializeField] private float stuckDetectionTime = 1.5f;
+        [SerializeField] private float stuckDistanceThreshold = 0.5f;
+
         private NavMeshAgent navAgent;
         private Animator animator;
         private DogState currentState = DogState.Idle;
@@ -50,6 +73,28 @@ namespace AgilityDogs.Gameplay.Dog
         private float baseAngularSpeed;
         private float baseDeceleration;
         private HandlerController handlerController;
+
+        // Commitment state
+        private float currentCommitment;
+        private bool isCommitting;
+        private float commitmentPointDistance;
+
+        // Obstacle reading state
+        private ObstacleBase[] nearbyObstacles;
+        private ObstacleBase nextExpectedObstacle;
+        private float lastObstacleReadTime;
+
+        // Command timing state
+        private float lastCommandTime;
+        private CommandTimingRating lastCommandTiming;
+        private int consecutiveBadTimingCount;
+
+        // Recovery state
+        private bool isInRecovery;
+        private float recoveryStartTime;
+        private RecoveryReason recoveryReason;
+        private Vector3 lastStuckPosition;
+        private float stuckCheckTimer;
 
         public DogState CurrentState => currentState;
         public BreedData Breed => breedData;
@@ -81,6 +126,94 @@ namespace AgilityDogs.Gameplay.Dog
             {
                 handlerController = handlerTransform.GetComponent<HandlerController>();
             }
+
+            // Subscribe to handler events
+            Events.GameEvents.OnHandlerPathInfluence += OnHandlerPathInfluence;
+            Events.GameEvents.OnContextualCommand += OnContextualCommandReceived;
+        }
+
+        private void OnDestroy()
+        {
+            Events.GameEvents.OnHandlerPathInfluence -= OnHandlerPathInfluence;
+            Events.GameEvents.OnContextualCommand -= OnContextualCommandReceived;
+        }
+
+        private void OnHandlerPathInfluence(float influence)
+        {
+            // React to handler path influence for better line adjustments
+            if (Mathf.Abs(influence) > 0.3f && targetObstacle != null)
+            {
+                // Adjust commitment based on handler influence
+                float adjustment = influence * breedData.handlingTolerance * 0.5f;
+                commitmentPointDistance += adjustment;
+                commitmentPointDistance = Mathf.Clamp(commitmentPointDistance, lateCommitDistance, earlyCommitDistance);
+            }
+        }
+
+        private void OnContextualCommandReceived(HandlerCommand command, Vector3 handlerForward, float handlerSpeed)
+        {
+            // Evaluate command timing
+            CommandTimingRating timing = EvaluateCommandTiming(command, handlerForward, handlerSpeed);
+            
+            // Adjust dog response based on timing
+            if (timing == CommandTimingRating.Optimal)
+            {
+                // Faster response, tighter turns
+                navAgent.acceleration = baseAcceleration * 1.2f;
+                navAgent.angularSpeed = baseAngularSpeed * 1.1f;
+            }
+            else if (timing == CommandTimingRating.Poor)
+            {
+                // Slower response, wider turns
+                navAgent.acceleration = baseAcceleration * 0.8f;
+                navAgent.angularSpeed = baseAngularSpeed * 0.9f;
+                consecutiveBadTimingCount++;
+            }
+            else
+            {
+                consecutiveBadTimingCount = 0;
+            }
+            
+            lastCommandTiming = timing;
+            lastCommandTime = Time.time;
+            
+            // Trigger recovery if too many bad timing commands
+            if (consecutiveBadTimingCount >= 3)
+            {
+                StartRecovery(RecoveryReason.MissedCommand);
+                consecutiveBadTimingCount = 0;
+            }
+        }
+
+        private CommandTimingRating EvaluateCommandTiming(HandlerCommand command, Vector3 handlerForward, float handlerSpeed)
+        {
+            // Evaluate based on multiple factors:
+            // 1. Distance to next obstacle
+            // 2. Dog's current state
+            // 3. Handler speed and facing
+            
+            float timeToNextObstacle = float.MaxValue;
+            if (targetObstacle != null)
+            {
+                float distance = Vector3.Distance(transform.position, targetObstacle.GetCommitPoint());
+                timeToNextObstacle = distance / Mathf.Max(Speed, 0.1f);
+            }
+            
+            // Check if command timing is optimal
+            if (timeToNextObstacle < optimalCommandWindow)
+            {
+                return CommandTimingRating.Optimal;
+            }
+            else if (timeToNextObstacle < earlyCommandWindow)
+            {
+                return CommandTimingRating.Good;
+            }
+            else if (timeToNextObstacle > lateCommandWindow + optimalCommandWindow)
+            {
+                return CommandTimingRating.Poor; // Too early
+            }
+            
+            return CommandTimingRating.Good;
         }
 
         private void Update()
@@ -93,6 +226,9 @@ namespace AgilityDogs.Gameplay.Dog
 
             UpdateMomentum();
             UpdateHandlerInfluence();
+            UpdateCommitment();
+            UpdateObstacleReading();
+            UpdateStuckDetection();
             UpdateStateMachine();
             UpdateAnimator();
         }
@@ -170,6 +306,269 @@ namespace AgilityDogs.Gameplay.Dog
             {
                 navAgent.speed *= 0.8f;
             }
+            
+            // Apply handler path influence when targeting an obstacle
+            if (targetObstacle != null && handlerController != null)
+            {
+                float pathInfluence = handlerController.GetPathInfluence(transform.position, targetObstacle.GetCommitPoint());
+                
+                // Adjust destination based on handler's body position
+                Vector3 baseTarget = targetObstacle.GetCommitPoint();
+                Vector3 adjustedTarget = Vector3.Lerp(
+                    baseTarget, 
+                    baseTarget + handlerController.LeanDirection * 2f, 
+                    Mathf.Abs(pathInfluence) * breedData.handlingTolerance
+                );
+                
+                // Apply the adjusted target if it's reasonable
+                if (Vector3.Distance(transform.position, adjustedTarget) < Vector3.Distance(transform.position, baseTarget) * 1.5f)
+                {
+                    NavigateTo(adjustedTarget);
+                }
+                
+                // Broadcast path influence for UI feedback
+                Events.GameEvents.RaiseHandlerPathInfluence(pathInfluence);
+            }
+        }
+
+        private void UpdateCommitment()
+        {
+            if (targetObstacle == null)
+            {
+                currentCommitment = 0f;
+                isCommitting = false;
+                return;
+            }
+
+            float distanceToObstacle = Vector3.Distance(transform.position, targetObstacle.GetCommitPoint());
+            
+            // Calculate optimal commitment point based on speed and momentum
+            float optimalCommitDistance = Mathf.Lerp(lateCommitDistance, earlyCommitDistance, 
+                Mathf.Clamp01(Speed / (breedData != null ? breedData.maxSpeed : 6f)));
+            
+            // Adjust for momentum - more momentum needs earlier commitment
+            if (breedData != null)
+            {
+                optimalCommitDistance *= (1f + currentMomentum * breedData.momentumFactor);
+            }
+            
+            commitmentPointDistance = optimalCommitDistance;
+            
+            // Build up commitment as we approach the optimal point
+            if (distanceToObstacle <= optimalCommitDistance * 1.5f)
+            {
+                float commitmentRate = commitmentBuildupRate;
+                
+                // Timing window bonus for good command timing
+                if (lastCommandTiming == CommandTimingRating.Optimal)
+                {
+                    commitmentRate *= (1f + timingWindowBonus);
+                }
+                
+                currentCommitment += Time.deltaTime * commitmentRate;
+                
+                // Check if we've reached commitment threshold
+                if (currentCommitment >= 1f && !isCommitting)
+                {
+                    isCommitting = true;
+                    TransitionState(DogState.CommittingToObstacle);
+                }
+            }
+            else
+            {
+                // Decay commitment if too far
+                currentCommitment -= Time.deltaTime * commitmentDecayRate;
+                currentCommitment = Mathf.Max(0f, currentCommitment);
+            }
+            
+            // Reset commitment after passing obstacle
+            if (distanceToObstacle < 1f && isCommitting)
+            {
+                currentCommitment = 0f;
+                isCommitting = false;
+            }
+        }
+
+        private void UpdateObstacleReading()
+        {
+            // Periodically read nearby obstacles
+            if (Time.time - lastObstacleReadTime > 0.5f)
+            {
+                lastObstacleReadTime = Time.time;
+                ReadNearbyObstacles();
+            }
+            
+            // Update next expected obstacle based on course flow
+            if (targetObstacle != null && nextExpectedObstacle == null)
+            {
+                FindNextExpectedObstacle();
+            }
+        }
+
+        private void ReadNearbyObstacles()
+        {
+            var obstacles = FindObjectsOfType<ObstacleBase>();
+            nearbyObstacles = new ObstacleBase[obstacles.Length];
+            
+            int index = 0;
+            foreach (var obs in obstacles)
+            {
+                float distance = Vector3.Distance(transform.position, obs.transform.position);
+                
+                // Filter by distance
+                if (distance <= obstacleReadDistance)
+                {
+                    // Filter by angle (only obstacles we're generally facing)
+                    Vector3 toObstacle = (obs.transform.position - transform.position).normalized;
+                    float angle = Vector3.Angle(transform.forward, toObstacle);
+                    
+                    if (angle <= obstacleReadAngle)
+                    {
+                        nearbyObstacles[index] = obs;
+                        index++;
+                    }
+                }
+            }
+            
+            // Resize array to actual count
+            System.Array.Resize(ref nearbyObstacles, index);
+        }
+
+        private void FindNextExpectedObstacle()
+        {
+            if (targetObstacle == null || nearbyObstacles == null) return;
+            
+            // Find the obstacle that logically comes after current target
+            // This is simplified - in production would use course sequence data
+            float bestScore = float.MaxValue;
+            ObstacleBase bestCandidate = null;
+            
+            foreach (var obs in nearbyObstacles)
+            {
+                if (obs == targetObstacle || obs == currentObstacle) continue;
+                
+                // Score based on:
+                // 1. Distance from current target
+                // 2. Direction of travel
+                // 3. Logical course progression
+                
+                float distFromTarget = Vector3.Distance(targetObstacle.transform.position, obs.transform.position);
+                Vector3 travelDir = (targetObstacle.GetExitPoint() - targetObstacle.GetEntryPoint()).normalized;
+                Vector3 toCandidate = (obs.transform.position - targetObstacle.transform.position).normalized;
+                float directionScore = Vector3.Dot(travelDir, toCandidate);
+                
+                // Combined score - prefer obstacles in direction of travel
+                float score = distFromTarget / Mathf.Max(0.1f, directionScore + 1f);
+                
+                if (score < bestScore && directionScore > 0.2f)
+                {
+                    bestScore = score;
+                    bestCandidate = obs;
+                }
+            }
+            
+            nextExpectedObstacle = bestCandidate;
+        }
+
+        private void UpdateStuckDetection()
+        {
+            if (currentState == DogState.Idle || currentState == DogState.WaitingAtTable)
+            {
+                stuckCheckTimer = 0f;
+                return;
+            }
+            
+            stuckCheckTimer += Time.deltaTime;
+            
+            // Check position periodically
+            if (stuckCheckTimer >= stuckDetectionTime)
+            {
+                stuckCheckTimer = 0f;
+                
+                float distanceMoved = Vector3.Distance(transform.position, lastStuckPosition);
+                
+                if (distanceMoved < stuckDistanceThreshold && navAgent.hasPath && Speed > 0.1f)
+                {
+                    // We're trying to move but not making progress - stuck!
+                    StartRecovery(RecoveryReason.Stuck);
+                }
+                
+                lastStuckPosition = transform.position;
+            }
+        }
+
+        private void StartRecovery(RecoveryReason reason)
+        {
+            if (isInRecovery) return;
+            
+            isInRecovery = true;
+            recoveryReason = reason;
+            recoveryStartTime = Time.time;
+            
+            float recoveryDuration = missedCommandRecoveryTime;
+            
+            switch (reason)
+            {
+                case RecoveryReason.Stuck:
+                    recoveryDuration = 1f;
+                    // Try to navigate to a nearby clear spot
+                    Vector3 recoveryPos = FindRecoveryPosition();
+                    NavigateTo(recoveryPos);
+                    break;
+                    
+                case RecoveryReason.WrongObstacle:
+                    recoveryDuration = wrongObstacleRecoveryTime;
+                    targetObstacle = null;
+                    break;
+                    
+                case RecoveryReason.MissedCommand:
+                    recoveryDuration = missedCommandRecoveryTime;
+                    break;
+                    
+                case RecoveryReason.HandlerTooFar:
+                    recoveryDuration = 2f;
+                    break;
+            }
+            
+            recoveryTime = recoveryDuration;
+            TransitionState(DogState.Recovering);
+            
+            // Fire recovery event
+            Events.GameEvents.RaiseDogRecovery(reason);
+        }
+
+        private Vector3 FindRecoveryPosition()
+        {
+            // Find a nearby position that's clear of obstacles
+            Vector3[] directions = { Vector3.forward, Vector3.back, Vector3.left, Vector3.right, 
+                                     (Vector3.forward + Vector3.left).normalized, 
+                                     (Vector3.forward + Vector3.right).normalized };
+            
+            foreach (var dir in directions)
+            {
+                Vector3 checkPos = transform.position + dir * 3f;
+                
+                // Simple check - could be more sophisticated
+                Collider[] hitColliders = Physics.OverlapSphere(checkPos, 1f);
+                bool isClear = true;
+                
+                foreach (var col in hitColliders)
+                {
+                    if (col.GetComponent<ObstacleBase>() != null)
+                    {
+                        isClear = false;
+                        break;
+                    }
+                }
+                
+                if (isClear)
+                {
+                    return checkPos;
+                }
+            }
+            
+            // Fallback - return to handler
+            return handlerTransform != null ? handlerTransform.position : transform.position;
         }
 
         private void UpdateStateMachine()
@@ -394,10 +793,62 @@ namespace AgilityDogs.Gameplay.Dog
         private void UpdateRecovering()
         {
             stateTimer += Time.deltaTime;
-            if (stateTimer >= recoveryTime)
+            
+            // Different recovery behaviors based on reason
+            switch (recoveryReason)
             {
-                TransitionState(DogState.Heeling);
+                case RecoveryReason.Stuck:
+                    // Wait for navigation to complete
+                    if (stateTimer >= recoveryTime || !navAgent.hasPath || navAgent.remainingDistance < 1f)
+                    {
+                        FinishRecovery();
+                    }
+                    break;
+                    
+                case RecoveryReason.HandlerTooFar:
+                    // Try to get back to handler
+                    if (handlerTransform != null)
+                    {
+                        NavigateTo(handlerTransform.position);
+                        float dist = Vector3.Distance(transform.position, handlerTransform.position);
+                        if (dist < heelDistance * 2f || stateTimer >= recoveryTime)
+                        {
+                            FinishRecovery();
+                        }
+                    }
+                    else
+                    {
+                        FinishRecovery();
+                    }
+                    break;
+                    
+                case RecoveryReason.WrongObstacle:
+                    // Stop, reorient, and wait for new command
+                    if (navAgent.hasPath) navAgent.ResetPath();
+                    if (stateTimer >= recoveryTime)
+                    {
+                        FinishRecovery();
+                    }
+                    break;
+                    
+                default:
+                    // Generic recovery - just wait
+                    if (stateTimer >= recoveryTime)
+                    {
+                        FinishRecovery();
+                    }
+                    break;
             }
+        }
+
+        private void FinishRecovery()
+        {
+            isInRecovery = false;
+            recoveryReason = RecoveryReason.None;
+            currentCommitment = 0f;
+            isCommitting = false;
+            consecutiveBadTimingCount = 0;
+            TransitionState(DogState.Heeling);
         }
 
         private void ProcessCommand()
@@ -492,14 +943,55 @@ namespace AgilityDogs.Gameplay.Dog
             obstacle = null;
             float nearestDist = float.MaxValue;
 
-            foreach (var obs in FindObjectsOfType<ObstacleBase>())
+            // First check nearby obstacles we've already read
+            if (nearbyObstacles != null)
             {
-                if (obs.ObstacleType != type) continue;
-                float dist = Vector3.Distance(transform.position, obs.transform.position);
-                if (dist < nearestDist)
+                foreach (var obs in nearbyObstacles)
                 {
-                    nearestDist = dist;
-                    obstacle = obs;
+                    if (obs == null || obs.ObstacleType != type) continue;
+                    
+                    float dist = Vector3.Distance(transform.position, obs.transform.position);
+                    
+                    // Prefer obstacles in the direction of travel or towards handler
+                    Vector3 toObs = (obs.transform.position - transform.position).normalized;
+                    float dirScore = 1f;
+                    
+                    if (Speed > 0.5f)
+                    {
+                        // Prefer obstacles in direction of movement
+                        float moveDot = Vector3.Dot(FlatVelocity.normalized, toObs);
+                        dirScore = Mathf.Lerp(0.5f, 1.5f, (moveDot + 1f) / 2f);
+                    }
+                    
+                    // Consider handler's position for better line choice
+                    if (handlerTransform != null)
+                    {
+                        float handlerDot = Vector3.Dot((handlerTransform.position - transform.position).normalized, toObs);
+                        dirScore *= Mathf.Lerp(0.7f, 1.3f, (handlerDot + 1f) / 2f);
+                    }
+                    
+                    float weightedDist = dist / dirScore;
+                    
+                    if (weightedDist < nearestDist)
+                    {
+                        nearestDist = weightedDist;
+                        obstacle = obs;
+                    }
+                }
+            }
+            
+            // Fallback to full search if nothing found nearby
+            if (obstacle == null)
+            {
+                foreach (var obs in FindObjectsOfType<ObstacleBase>())
+                {
+                    if (obs.ObstacleType != type) continue;
+                    float dist = Vector3.Distance(transform.position, obs.transform.position);
+                    if (dist < nearestDist)
+                    {
+                        nearestDist = dist;
+                        obstacle = obs;
+                    }
                 }
             }
 

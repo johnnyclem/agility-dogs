@@ -8,6 +8,8 @@ namespace AgilityDogs.Events
     {
         public static event Action<GameState, GameState> OnGameStateChanged;
         public static event Action<HandlerCommand> OnCommandIssued;
+        public static event Action<GestureType, Vector3> OnHandlerGesture;
+        public static event Action<HandlerCommand, Vector3, float> OnContextualCommand;
         public static event Action<FaultType, string> OnFaultCommitted;
         public static event Action<ObstacleType, bool> OnObstacleCompleted;
         public static event Action<ObstacleBase, bool> OnObstacleCompletedWithReference;
@@ -16,6 +18,9 @@ namespace AgilityDogs.Events
         public static event Action<RunResult, float, int> OnRunCompleted;
         public static event Action OnCountdownTick;
         public static event Action OnCourseLoaded;
+        public static event Action<Vector3> OnHandlerLeanChanged;
+        public static event Action<float> OnHandlerPathInfluence;
+        public static event Action<Core.RecoveryReason> OnDogRecovery;
 
         public static void RaiseGameStateChanged(GameState from, GameState to)
             => OnGameStateChanged?.Invoke(from, to);
@@ -46,5 +51,20 @@ namespace AgilityDogs.Events
 
         public static void RaiseCourseLoaded()
             => OnCourseLoaded?.Invoke();
+
+        public static void RaiseHandlerGesture(GestureType gesture, Vector3 direction)
+            => OnHandlerGesture?.Invoke(gesture, direction);
+
+        public static void RaiseContextualCommand(HandlerCommand command, Vector3 forward, float speed)
+            => OnContextualCommand?.Invoke(command, forward, speed);
+
+        public static void RaiseHandlerLeanChanged(Vector3 leanDirection)
+            => OnHandlerLeanChanged?.Invoke(leanDirection);
+
+        public static void RaiseHandlerPathInfluence(float influence)
+            => OnHandlerPathInfluence?.Invoke(influence);
+
+        public static void RaiseDogRecovery(Core.RecoveryReason reason)
+            => OnDogRecovery?.Invoke(reason);
     }
 }

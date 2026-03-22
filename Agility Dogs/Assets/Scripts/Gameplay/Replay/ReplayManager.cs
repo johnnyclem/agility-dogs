@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using AgilityDogs.Core;
@@ -25,6 +26,22 @@ namespace AgilityDogs.Gameplay.Replay
         [SerializeField] private float playbackSpeed = 1f;
         [SerializeField] private bool loopPlayback = false;
         
+        [Header("Slow Motion")]
+        [SerializeField] private float faultSlowMoSpeed = 0.2f;
+        [SerializeField] private float faultSlowMoDuration = 1.5f;
+        [SerializeField] private float splitSlowMoSpeed = 0.3f;
+        [SerializeField] private float splitSlowMoDuration = 0.8f;
+        [SerializeField] private AnimationCurve slowMoBlendCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
+        
+        [Header("Highlight Selection")]
+        [SerializeField] private float highlightLeadTime = 2f;
+        [SerializeField] private float highlightTrailTime = 1f;
+        [SerializeField] private int maxHighlights = 5;
+        
+        [Header("Post-Run Review")]
+        [SerializeField] private bool enableReviewMode = true;
+        [SerializeField] private float scrubSpeed = 0.5f;
+        
         [Header("Output")]
         [SerializeField] private ReplayData currentReplayData;
         
@@ -38,6 +55,22 @@ namespace AgilityDogs.Gameplay.Replay
         
         private List<ReplayFrame> recordedFrames = new List<ReplayFrame>();
         private List<ReplayEvent> recordedEvents = new List<ReplayEvent>();
+        
+        // Slow motion state
+        private bool isSlowMoActive;
+        private float slowMoTimer;
+        private float slowMoTargetSpeed;
+        private float slowMoDuration;
+        private float normalPlaybackSpeed;
+        
+        // Highlight state
+        private List<ReplayHighlight> highlights = new List<ReplayHighlight>();
+        private int currentHighlightIndex;
+        
+        // Review state
+        private bool isReviewMode;
+        private float reviewScrubSpeed;
+        private bool isPaused;
         
         private void Start()
         {
@@ -69,9 +102,15 @@ namespace AgilityDogs.Gameplay.Replay
                 UpdateRecording();
             }
             
-            if (isPlaying)
+            if (isPlaying && !isPaused)
             {
                 UpdatePlayback();
+                UpdateSlowMotion();
+            }
+            
+            if (isReviewMode && isPlaying)
+            {
+                UpdateReviewMode();
             }
         }
         
@@ -205,6 +244,42 @@ namespace AgilityDogs.Gameplay.Replay
         private void RecordFaultCommitted(FaultType fault, string obstacleName)
         {
             RecordEvent(ReplayEventType.FaultCommitted, $"{fault.ToString()}|{obstacleName}");
+            
+            // Trigger slow motion on fault
+            if (isPlaying)
+            {
+                TriggerSlowMotion(faultSlowMoSpeed, faultSlowMoDuration);
+            }
+        }
+        
+        private void RecordSplitTime(float time)
+        {
+            RecordEvent(ReplayEventType.SplitTimeRecorded, time.ToString());
+            
+            // Trigger brief slow motion on personal best splits
+            if (isPlaying && IsPersonalBestSplit(time))
+            {
+                TriggerSlowMotion(splitSlowMoSpeed, splitSlowMoDuration);
+            }
+        }
+        
+        private bool IsPersonalBestSplit(float splitTime)
+        {
+            // Check if this is a personal best split
+            // This is simplified - would compare against stored personal bests
+            if (currentReplayData != null && currentReplayData.events.Count > 0)
+            {
+                var previousSplits = currentReplayData.events
+                    .Where(e => e.eventType == ReplayEventType.SplitTimeRecorded)
+                    .Select(e => float.Parse(e.data))
+                    .ToList();
+                    
+                if (previousSplits.Count == 0 || splitTime < previousSplits.Min())
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         
         private void RecordObstacleCompleted(ObstacleType type, bool clean)
@@ -360,6 +435,289 @@ namespace AgilityDogs.Gameplay.Replay
         {
             // For now, just log events. In the future, we could trigger visual effects or UI.
             Debug.Log($"[Replay] {replayEvent.timestamp:F2}s: {replayEvent.eventType} {replayEvent.data}");
+            
+            // Trigger highlights for important events
+            switch (replayEvent.eventType)
+            {
+                case ReplayEventType.FaultCommitted:
+                case ReplayEventType.ObstacleCompleted:
+                case ReplayEventType.SplitTimeRecorded:
+                    AddHighlight(replayEvent.timestamp, replayEvent.eventType);
+                    break;
+            }
+        }
+        
+        #endregion
+        
+        #region Slow Motion
+        
+        public void TriggerSlowMotion(float speed, float duration)
+        {
+            if (isSlowMoActive) return;
+            
+            isSlowMoActive = true;
+            slowMoTimer = 0f;
+            slowMoTargetSpeed = speed;
+            slowMoDuration = duration;
+            normalPlaybackSpeed = playbackSpeed;
+        }
+        
+        private void UpdateSlowMotion()
+        {
+            if (!isSlowMoActive) return;
+            
+            slowMoTimer += Time.deltaTime;
+            
+            if (slowMoTimer >= slowMoDuration)
+            {
+                // End slow motion
+                isSlowMoActive = false;
+                playbackSpeed = normalPlaybackSpeed;
+                return;
+            }
+            
+            // Calculate blend using curve
+            float progress = slowMoTimer / slowMoDuration;
+            float blend = slowMoBlendCurve.Evaluate(progress);
+            
+            // Blend from slow-mo speed back to normal speed
+            playbackSpeed = Mathf.Lerp(slowMoTargetSpeed, normalPlaybackSpeed, blend);
+        }
+        
+        #endregion
+        
+        #region Highlight Selection
+        
+        private void AddHighlight(float timestamp, ReplayEventType eventType)
+        {
+            // Check if we already have a highlight near this timestamp
+            float minHighlightSpacing = 0.5f;
+            foreach (var existing in highlights)
+            {
+                if (Mathf.Abs(existing.timestamp - timestamp) < minHighlightSpacing)
+                {
+                    return; // Too close to existing highlight
+                }
+            }
+            
+            ReplayHighlight highlight = new ReplayHighlight
+            {
+                timestamp = timestamp,
+                eventType = eventType,
+                startTime = Mathf.Max(0f, timestamp - highlightLeadTime),
+                endTime = timestamp + highlightTrailTime
+            };
+            
+            highlights.Add(highlight);
+            
+            // Limit number of highlights
+            if (highlights.Count > maxHighlights)
+            {
+                // Remove oldest highlight
+                highlights.RemoveAt(0);
+            }
+            
+            Debug.Log($"Added highlight at {timestamp:F2}s for {eventType}");
+        }
+        
+        public List<ReplayHighlight> GetHighlights()
+        {
+            return highlights;
+        }
+        
+        public void PlayHighlight(int index)
+        {
+            if (index < 0 || index >= highlights.Count) return;
+            
+            ReplayHighlight highlight = highlights[index];
+            currentHighlightIndex = index;
+            
+            // Seek to highlight start time
+            SeekToTime(highlight.startTime);
+            
+            Debug.Log($"Playing highlight {index + 1}/{highlights.Count} starting at {highlight.startTime:F2}s");
+        }
+        
+        public void PlayNextHighlight()
+        {
+            if (highlights.Count == 0) return;
+            
+            currentHighlightIndex = (currentHighlightIndex + 1) % highlights.Count;
+            PlayHighlight(currentHighlightIndex);
+        }
+        
+        public void PlayPreviousHighlight()
+        {
+            if (highlights.Count == 0) return;
+            
+            currentHighlightIndex = (currentHighlightIndex - 1 + highlights.Count) % highlights.Count;
+            PlayHighlight(currentHighlightIndex);
+        }
+        
+        public void GenerateHighlights()
+        {
+            if (currentReplayData == null) return;
+            
+            highlights.Clear();
+            
+            // Generate highlights from recorded events
+            foreach (var replayEvent in currentReplayData.events)
+            {
+                switch (replayEvent.eventType)
+                {
+                    case ReplayEventType.FaultCommitted:
+                    case ReplayEventType.ObstacleCompleted:
+                    case ReplayEventType.SplitTimeRecorded:
+                        AddHighlight(replayEvent.timestamp, replayEvent.eventType);
+                        break;
+                }
+            }
+            
+            Debug.Log($"Generated {highlights.Count} highlights");
+        }
+        
+        #endregion
+        
+        #region Post-Run Review
+        
+        public void EnterReviewMode()
+        {
+            if (currentReplayData == null || currentReplayData.frames.Count == 0)
+            {
+                Debug.LogError("No replay data available for review");
+                return;
+            }
+            
+            isReviewMode = true;
+            isPaused = true;
+            reviewScrubSpeed = scrubSpeed;
+            
+            // Generate highlights
+            GenerateHighlights();
+            
+            Debug.Log("Entered review mode. Use scrub controls to navigate.");
+        }
+        
+        public void ExitReviewMode()
+        {
+            isReviewMode = false;
+            isPaused = false;
+        }
+        
+        private void UpdateReviewMode()
+        {
+            if (!isReviewMode || isPaused) return;
+            
+            // Auto-play highlights if configured
+            if (currentHighlightIndex < highlights.Count)
+            {
+                ReplayHighlight highlight = highlights[currentHighlightIndex];
+                
+                // Check if we've passed the end of the current highlight
+                if (playbackTime >= highlight.endTime)
+                {
+                    PlayNextHighlight();
+                }
+            }
+        }
+        
+        public void TogglePause()
+        {
+            isPaused = !isPaused;
+            Debug.Log(isPaused ? "Paused" : "Resumed");
+        }
+        
+        public void ScrubForward()
+        {
+            if (!isReviewMode) return;
+            
+            float newTime = playbackTime + reviewScrubSpeed;
+            SeekToTime(newTime);
+        }
+        
+        public void ScrubBackward()
+        {
+            if (!isReviewMode) return;
+            
+            float newTime = playbackTime - reviewScrubSpeed;
+            SeekToTime(Mathf.Max(0f, newTime));
+        }
+        
+        public void SeekToTime(float time)
+        {
+            if (currentReplayData == null) return;
+            
+            playbackTime = Mathf.Clamp(time, 0f, currentReplayData.GetDuration());
+            
+            // Reset frame and event indices
+            currentFrameIndex = 0;
+            currentEventIndex = 0;
+            
+            // Find correct frame index
+            while (currentFrameIndex < currentReplayData.frames.Count - 1 &&
+                   currentReplayData.frames[currentFrameIndex + 1].timestamp <= playbackTime)
+            {
+                currentFrameIndex++;
+            }
+            
+            // Find correct event index
+            while (currentEventIndex < currentReplayData.events.Count &&
+                   currentReplayData.events[currentEventIndex].timestamp <= playbackTime)
+            {
+                currentEventIndex++;
+            }
+            
+            // Update positions immediately
+            UpdatePlaybackPosition();
+        }
+        
+        private void UpdatePlaybackPosition()
+        {
+            if (currentReplayData == null || currentFrameIndex >= currentReplayData.frames.Count - 1) return;
+            
+            ReplayFrame currentFrame = currentReplayData.frames[currentFrameIndex];
+            ReplayFrame nextFrame = currentReplayData.frames[currentFrameIndex + 1];
+            
+            float t = (playbackTime - currentFrame.timestamp) / (nextFrame.timestamp - currentFrame.timestamp);
+            t = Mathf.Clamp01(t);
+            
+            if (dogTransform != null)
+            {
+                dogTransform.position = Vector3.Lerp(currentFrame.dogPosition, nextFrame.dogPosition, t);
+                dogTransform.rotation = Quaternion.Slerp(currentFrame.dogRotation, nextFrame.dogRotation, t);
+            }
+            
+            if (handlerTransform != null)
+            {
+                handlerTransform.position = Vector3.Lerp(currentFrame.handlerPosition, nextFrame.handlerPosition, t);
+                handlerTransform.rotation = Quaternion.Slerp(currentFrame.handlerRotation, nextFrame.handlerRotation, t);
+            }
+        }
+        
+        public float GetPlaybackProgress()
+        {
+            if (currentReplayData == null || currentReplayData.GetDuration() <= 0f) return 0f;
+            return playbackTime / currentReplayData.GetDuration();
+        }
+        
+        public float GetPlaybackTime()
+        {
+            return playbackTime;
+        }
+        
+        public float GetDuration()
+        {
+            return currentReplayData != null ? currentReplayData.GetDuration() : 0f;
+        }
+        
+        public bool IsInReviewMode()
+        {
+            return isReviewMode;
+        }
+        
+        public bool IsPaused()
+        {
+            return isPaused;
         }
         
         #endregion

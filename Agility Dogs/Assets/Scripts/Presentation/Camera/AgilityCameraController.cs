@@ -20,6 +20,22 @@ namespace AgilityDogs.Presentation.Camera
         [SerializeField] private float overviewDistance = 15f;
         [SerializeField] private float overviewHeight = 10f;
 
+        [Header("Dog POV")]
+        [SerializeField] private float dogPOVHeight = 0.4f;
+        [SerializeField] private float dogPOVShakeAmount = 0.02f;
+        [SerializeField] private float dogPOVSpeedMultiplier = 1.5f;
+
+        [Header("Replay Cameras")]
+        [SerializeField] private Transform[] replayCameraPositions;
+        [SerializeField] private float replayCameraBlendTime = 0.5f;
+        [SerializeField] private float autoReplaySwitchTime = 3f;
+
+        [Header("Freeze Frame")]
+        [SerializeField] private float freezeFrameDuration = 0.5f;
+        [SerializeField] private float freezeFrameSlowMotionScale = 0.1f;
+        [SerializeField] private float freezeFrameZoomFactor = 0.7f;
+        [SerializeField] private AnimationCurve freezeFrameEase = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+
         [Header("Smoothing")]
         [SerializeField] private float positionSmoothTime = 0.2f;
         [SerializeField] private float rotationSmoothTime = 0.15f;
@@ -38,6 +54,20 @@ namespace AgilityDogs.Presentation.Camera
         private float cutawayTimer;
         private int cutawayAngleIndex;
 
+        // Replay camera state
+        private int currentReplayCameraIndex;
+        private float replayCameraTimer;
+        private bool autoSwitchReplayCameras = true;
+        private UnityEngine.Camera[] replayCameras;
+
+        // Freeze frame state
+        private bool isFreezeFrameActive;
+        private float freezeFrameTimer;
+        private float originalTimeScale;
+        private Vector3 freezeFrameTargetPosition;
+        private Quaternion freezeFrameTargetRotation;
+        private float freezeFrameFOV;
+
         public enum CameraMode
         {
             Follow,
@@ -46,7 +76,8 @@ namespace AgilityDogs.Presentation.Camera
             DogPOV,
             Cinematic,
             Free,
-            Cutaway
+            Cutaway,
+            Replay
         }
 
         public CameraMode CurrentMode => currentMode;
@@ -55,22 +86,37 @@ namespace AgilityDogs.Presentation.Camera
         {
             GameEvents.OnObstacleCompleted += HandleObstacleCompleted;
             GameEvents.OnFaultCommitted += HandleFaultCommitted;
+            GameEvents.OnSplitTimeRecorded += HandleSplitTimeRecorded;
         }
 
         private void OnDisable()
         {
             GameEvents.OnObstacleCompleted -= HandleObstacleCompleted;
             GameEvents.OnFaultCommitted -= HandleFaultCommitted;
+            GameEvents.OnSplitTimeRecorded -= HandleSplitTimeRecorded;
         }
 
         private void HandleObstacleCompleted(ObstacleType type, bool clean)
         {
+            if (clean)
+            {
+                // Trigger freeze frame on clean obstacle completion
+                TriggerFreezeFrame(0.3f, target.position);
+            }
             TriggerCutaway(2f);
         }
 
         private void HandleFaultCommitted(FaultType fault, string obstacleName)
         {
+            // Longer freeze frame on faults for dramatic effect
+            TriggerFreezeFrame(0.5f, target.position);
             TriggerCutaway(3f);
+        }
+
+        private void HandleSplitTimeRecorded(float time)
+        {
+            // Quick freeze frame on split times
+            TriggerFreezeFrame(0.2f, target.position);
         }
 
         public void TriggerCutaway(float duration)
@@ -86,6 +132,13 @@ namespace AgilityDogs.Presentation.Camera
         private void LateUpdate()
         {
             if (target == null) return;
+            
+            // Always update freeze frame if active
+            if (isFreezeFrameActive)
+            {
+                UpdateFreezeFrame();
+                return;
+            }
 
             switch (currentMode)
             {
@@ -108,6 +161,9 @@ namespace AgilityDogs.Presentation.Camera
                     break;
                 case CameraMode.Cutaway:
                     UpdateCutawayCamera();
+                    break;
+                case CameraMode.Replay:
+                    UpdateReplayCamera(Time.deltaTime);
                     break;
             }
         }
@@ -177,8 +233,39 @@ namespace AgilityDogs.Presentation.Camera
         private void UpdateDogPOV()
         {
             if (target == null) return;
-            transform.position = target.position + Vector3.up * 0.5f;
-            transform.rotation = Quaternion.LookRotation(target.forward);
+            
+            // Position camera at dog's eye level with slight offset
+            Vector3 dogPos = target.position;
+            Vector3 dogForward = target.forward;
+            
+            // Calculate eye level based on dog size (simplified)
+            float eyeHeight = dogPOVHeight;
+            
+            // Add slight offset to simulate dog's head position
+            Vector3 headOffset = Vector3.up * eyeHeight + dogForward * 0.2f;
+            
+            // Add subtle shake based on speed
+            float speed = target.GetComponent<AgilityDogs.Gameplay.Dog.DogAgentController>()?.Speed ?? 0f;
+            if (speed > 1f)
+            {
+                float shake = Mathf.Sin(Time.time * 20f) * dogPOVShakeAmount * speed;
+                headOffset += Vector3.right * shake;
+                headOffset += Vector3.up * Mathf.Abs(shake) * 0.5f;
+            }
+            
+            // Smooth camera movement
+            Vector3 desiredPosition = dogPos + headOffset;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 10f);
+            
+            // Look ahead based on speed and movement direction
+            float lookAheadDistance = 2f + speed * dogPOVSpeedMultiplier;
+            Vector3 lookTarget = dogPos + dogForward * lookAheadDistance + Vector3.up * 0.3f;
+            
+            // Add some randomness to make it feel more natural
+            lookTarget += Vector3.right * Mathf.Sin(Time.time * 3f) * 0.1f;
+            
+            Quaternion desiredRotation = Quaternion.LookRotation(lookTarget - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * 8f);
         }
 
         private void UpdateCinematicCamera()
@@ -267,6 +354,188 @@ namespace AgilityDogs.Presentation.Camera
             transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref smoothVelocity, positionSmoothTime);
             Quaternion desiredRotation = Quaternion.LookRotation(targetPos - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, lookSpeed * Time.deltaTime);
+        }
+
+        /// <summary>
+        /// Triggers a freeze-frame highlight moment
+        /// </summary>
+        public void TriggerFreezeFrame(float duration, Vector3 focusPoint)
+        {
+            if (isFreezeFrameActive) return;
+            
+            isFreezeFrameActive = true;
+            freezeFrameTimer = 0f;
+            freezeFrameDuration = duration;
+            freezeFrameTargetPosition = focusPoint;
+            
+            // Store original time scale
+            originalTimeScale = Time.timeScale;
+            
+            // Calculate camera position for freeze frame
+            freezeFrameTargetRotation = Quaternion.LookRotation(focusPoint - transform.position);
+            freezeFrameFOV = UnityEngine.Camera.main != null ? UnityEngine.Camera.main.fieldOfView : 60f;
+        }
+
+        private void UpdateFreezeFrame()
+        {
+            if (!isFreezeFrameActive) return;
+            
+            freezeFrameTimer += Time.unscaledDeltaTime;
+            float progress = freezeFrameTimer / freezeFrameDuration;
+            
+            if (progress >= 1f)
+            {
+                // End freeze frame
+                isFreezeFrameActive = false;
+                Time.timeScale = originalTimeScale;
+                Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                
+                // Restore FOV
+                if (UnityEngine.Camera.main != null)
+                {
+                    UnityEngine.Camera.main.fieldOfView = freezeFrameFOV;
+                }
+                return;
+            }
+            
+            // Apply slow motion effect
+            float timeScaleCurve = freezeFrameEase.Evaluate(progress);
+            Time.timeScale = Mathf.Lerp(freezeFrameSlowMotionScale, originalTimeScale, timeScaleCurve);
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            
+            // Zoom effect
+            if (UnityEngine.Camera.main != null)
+            {
+                float zoomedFOV = freezeFrameFOV * freezeFrameZoomFactor;
+                UnityEngine.Camera.main.fieldOfView = Mathf.Lerp(zoomedFOV, freezeFrameFOV, timeScaleCurve);
+            }
+            
+            // Smooth camera rotation toward focus point
+            Quaternion targetRot = Quaternion.LookRotation(freezeFrameTargetPosition - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.unscaledDeltaTime * 5f);
+        }
+
+        /// <summary>
+        /// Sets up the replay camera network
+        /// </summary>
+        public void SetupReplayCameras(Transform[] cameraPositions)
+        {
+            replayCameraPositions = cameraPositions;
+            
+            if (cameraPositions != null && cameraPositions.Length > 0)
+            {
+                // Initialize replay cameras array
+                replayCameras = new UnityEngine.Camera[cameraPositions.Length];
+            }
+        }
+
+        /// <summary>
+        /// Switches to a specific replay camera
+        /// </summary>
+        public void SetReplayCamera(int index)
+        {
+            if (replayCameraPositions == null || index < 0 || index >= replayCameraPositions.Length)
+                return;
+            
+            currentReplayCameraIndex = index;
+            replayCameraTimer = 0f;
+            
+            Transform camPos = replayCameraPositions[index];
+            if (camPos != null)
+            {
+                transform.position = camPos.position;
+                transform.rotation = camPos.rotation;
+            }
+        }
+
+        /// <summary>
+        /// Cycles through replay cameras
+        /// </summary>
+        public void CycleReplayCamera()
+        {
+            if (replayCameraPositions == null || replayCameraPositions.Length == 0) return;
+            
+            currentReplayCameraIndex = (currentReplayCameraIndex + 1) % replayCameraPositions.Length;
+            SetReplayCamera(currentReplayCameraIndex);
+        }
+
+        /// <summary>
+        /// Updates replay camera auto-switching
+        /// </summary>
+        private void UpdateReplayCamera(float deltaTime)
+        {
+            if (!autoSwitchReplayCameras || replayCameraPositions == null) return;
+            
+            replayCameraTimer += deltaTime;
+            
+            if (replayCameraTimer >= autoReplaySwitchTime)
+            {
+                CycleReplayCamera();
+            }
+        }
+
+        /// <summary>
+        /// Gets the best camera angle for a given moment
+        /// </summary>
+        public int GetBestCameraAngle(Vector3 focusPoint, Vector3 velocity)
+        {
+            if (replayCameraPositions == null || replayCameraPositions.Length == 0) return -1;
+            
+            int bestIndex = 0;
+            float bestScore = float.MinValue;
+            
+            for (int i = 0; i < replayCameraPositions.Length; i++)
+            {
+                Transform cam = replayCameraPositions[i];
+                if (cam == null) continue;
+                
+                // Score based on:
+                // 1. Visibility of focus point
+                // 2. Angle relative to velocity
+                // 3. Distance (prefer closer for action, farther for overview)
+                
+                Vector3 camToFocus = focusPoint - cam.position;
+                float distance = camToFocus.magnitude;
+                
+                // Check if focus point is in camera's view
+                Vector3 camForward = cam.forward;
+                float dotProduct = Vector3.Dot(camForward, camToFocus.normalized);
+                
+                if (dotProduct < 0.3f) continue; // Not visible
+                
+                // Score calculation
+                float score = dotProduct * 10f;
+                
+                // Bonus for being perpendicular to velocity (side-on action shot)
+                if (velocity.magnitude > 0.5f)
+                {
+                    float velocityAngle = Vector3.Angle(camForward, velocity.normalized);
+                    if (velocityAngle > 70f && velocityAngle < 110f)
+                    {
+                        score += 5f; // Side-on bonus
+                    }
+                }
+                
+                // Penalize very close or very far cameras
+                if (distance < 5f) score -= 2f;
+                if (distance > 20f) score -= 1f;
+                
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestIndex = i;
+                }
+            }
+            
+            return bestIndex;
+        }
+
+        /// <summary>
+        /// Enables or disables automatic replay camera switching
+        /// </summary>
+        public void SetAutoReplayCameraSwitch(bool enabled)
+        {
+            autoSwitchReplayCameras = enabled;
         }
 
         public void SetTarget(Transform newTarget)

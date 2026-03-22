@@ -38,6 +38,16 @@ namespace AgilityDogs.Gameplay.Replay
         GameStateChanged
     }
 
+    [Serializable]
+    public class ReplayHighlight
+    {
+        public float timestamp;
+        public float startTime;
+        public float endTime;
+        public ReplayEventType eventType;
+        public string description;
+    }
+
     [CreateAssetMenu(fileName = "NewReplayData", menuName = "Agility Dogs/Replay Data")]
     public class ReplayData : ScriptableObject
     {

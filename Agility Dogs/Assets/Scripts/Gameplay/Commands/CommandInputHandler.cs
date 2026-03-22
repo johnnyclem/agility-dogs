@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AgilityDogs.Core;
+using AgilityDogs.Gameplay.Handler;
 
 namespace AgilityDogs.Gameplay.Commands
 {
@@ -9,6 +10,11 @@ namespace AgilityDogs.Gameplay.Commands
         [Header("References")]
         [SerializeField] private CommandBuffer commandBuffer;
         [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private HandlerController handlerController;
+
+        [Header("Contextual Command Settings")]
+        [SerializeField] private float velocityContextThreshold = 0.5f;
+        [SerializeField] private float facingContextAngle = 60f;
 
         private InputAction commandAction;
 
@@ -16,6 +22,9 @@ namespace AgilityDogs.Gameplay.Commands
         {
             if (commandBuffer == null)
                 commandBuffer = GetComponentInParent<CommandBuffer>();
+                
+            if (handlerController == null)
+                handlerController = FindObjectOfType<HandlerController>();
         }
 
         private void OnEnable()
@@ -69,12 +78,61 @@ namespace AgilityDogs.Gameplay.Commands
 
         public void IssueCommand(HandlerCommand command)
         {
-            commandBuffer?.IssueCommand(command);
+            if (handlerController != null)
+            {
+                handlerController.IssueContextualCommand(command);
+            }
+            else
+            {
+                commandBuffer?.IssueCommand(command);
+            }
         }
 
         private void IssueContextualCommand(HandlerCommand command)
         {
-            commandBuffer?.IssueCommand(command);
+            if (handlerController != null)
+            {
+                // Use handler's contextual command system
+                handlerController.IssueContextualCommand(command);
+            }
+            else
+            {
+                // Fallback to direct command
+                commandBuffer?.IssueCommand(command);
+            }
+            
+            // Also raise the standard event for backward compatibility
+            Events.GameEvents.RaiseCommandIssued(command);
+        }
+
+        /// <summary>
+        /// Gets the contextual command based on handler state
+        /// </summary>
+        public HandlerCommand GetContextualCommand(HandlerCommand baseCommand)
+        {
+            if (handlerController == null) return baseCommand;
+            
+            HandlerCommand contextual = baseCommand;
+            
+            // Modify command based on handler velocity
+            if (handlerController.CurrentSpeed > velocityContextThreshold)
+            {
+                // Handler is moving fast - commands are more urgent
+                // Could modify timing windows or add emphasis
+            }
+            
+            // Modify command based on facing direction
+            Vector3 facing = handlerController.GetContextualFacing();
+            
+            // For directional commands, check if handler is facing the intended direction
+            if (baseCommand == HandlerCommand.ComeBye || baseCommand == HandlerCommand.Away ||
+                baseCommand == HandlerCommand.Left || baseCommand == HandlerCommand.Right)
+            {
+                // If handler is leaning/looking away from command direction, reverse it
+                // This enables intuitive "point with your body" control
+            }
+            
+            return contextual;
         }
     }
 }

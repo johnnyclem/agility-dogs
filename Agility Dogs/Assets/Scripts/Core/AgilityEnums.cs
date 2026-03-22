@@ -92,4 +92,32 @@ namespace AgilityDogs.Core
         Elimination,
         TimeFaultOnly
     }
+
+    public enum GestureType
+    {
+        None,
+        Point,
+        PointLeft,
+        PointRight,
+        Beckon,
+        Wave,
+        Stop
+    }
+
+    public enum CommandTimingRating
+    {
+        Poor,
+        Good,
+        Optimal
+    }
+
+    public enum RecoveryReason
+    {
+        None,
+        MissedCommand,
+        WrongObstacle,
+        Stuck,
+        HandlerTooFar,
+        GeneralRecovery
+    }
 }
