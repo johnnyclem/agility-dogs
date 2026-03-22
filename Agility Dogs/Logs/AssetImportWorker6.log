@@ -1,0 +1,1763 @@
+Unity Editor version:    6000.4.0f1 (8cf496087c8f)
+Branch:                  6000.4/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 26.2 (Build 25C56)
+Darwin version:          25.2.0
+Architecture:            arm64
+Running under Rosetta:   NO
+Available memory:        65536 MB
+Date:                    2026-03-22T18:02:25Z
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-johnnyclem" at "2026-03-22T18:02:25.191448Z"
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker6
+-projectPath
+/Users/johnnyclem/Desktop/Repos/agility-dogs/Agility Dogs
+-logFile
+Logs/AssetImportWorker6.log
+-srvPort
+49662
+-force-metal
+-job-worker-count
+7
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name AssetImport
+Successfully changed project path to: /Users/johnnyclem/Desktop/Repos/agility-dogs/Agility Dogs
+/Users/johnnyclem/Desktop/Repos/agility-dogs/Agility Dogs
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [8779672640]  Target information:
+
+Player connection [8779672640]  * "[IP] 192.168.50.65 [Port] 0 [Flags] 2 [Guid] 709432443 [EditorId] 709432443 [Version] 1048832 [Id] OSXEditor(0,jcmbp.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" 
+
+Player connection [8779672640] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [8779672640] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 7
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.4.0f1 (8cf496087c8f)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/johnnyclem/Desktop/Repos/agility-dogs/Agility Dogs/Assets
+Forcing GfxDevice: Metal
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+ preferred device: Apple M3 Max (high power)
+Metal devices available: 1
+0: Apple M3 Max (high power)
+Using device Apple M3 Max (high power)
+Initializing Metal device caps: Apple M3 Max
+Mac GPU Family: 2
+Apple GPU Family: 9
+MSL Version: 3.0
+Has Float MSAA: 1
+Has Float Filtering: 1
+ReadWrite Texture Tier: 2
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/Scripting/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/Scripting/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/Scripting/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56498
+CodeReloadManager initialized
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/6000.4.0f1/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.000310 seconds.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-johnnyclem"
+[Licensing::IpcConnector] LicenseClient-johnnyclem channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-johnnyclem-6000.4.0" at "2026-03-22T18:02:25.672353Z"
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.234 seconds
+Domain Reload Profiling: 469ms
+	BeginReloadAssembly (44ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (127ms)
+		LoadAssemblies (43ms)
+		AnalyzeDomain (122ms)
+			TypeCache.Refresh (121ms)
+				TypeCache.ScanAssembly (112ms)
+	FinalizeReload (234ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (24ms)
+			BeforeProcessingInitializeOnLoad (51ms)
+			ProcessInitializeOnLoadAttributes (65ms)
+			ProcessInitializeOnLoadMethodAttributes (46ms)
+[CoreBusinessMetrics] Unexpected thread when updating session info.
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              3bef20f17fa046c199524994d2013adb
+  Correlation Id:          6f52ebb575cd487eaf251edb69a2ae01
+  External correlation Id: 4392890682646664033
+  Machine Id:              MFJQTklG57kKH8yWmtqC2i7QiDk=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-johnnyclem-6000.4.0" (connect: 0.00s, validation: 0.00s, handshake: 0.46s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-johnnyclem-6000.4.0-notifications" at "2026-03-22T18:02:26.13301Z"
+[Licensing::Module] Licensing Background thread has ended after 0.94s
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 44917-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-Editor.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Animation.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Animation.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Aseprite.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Aseprite.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Common.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Common.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Psdimporter.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Psdimporter.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.SpriteShape.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.SpriteShape.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.440 seconds
+Domain Reload Profiling: 854ms
+	BeginReloadAssembly (72ms)
+		DisableScriptedObjects (3ms)
+		CreateAndSetChildDomain (13ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (279ms)
+		LoadAssemblies (152ms)
+		AnalyzeDomain (157ms)
+			TypeCache.Refresh (114ms)
+				TypeCache.ScanAssembly (104ms)
+			BuildScriptInfoCaches (36ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (440ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (86ms)
+			ProcessInitializeOnLoadAttributes (188ms)
+			ProcessInitializeOnLoadMethodAttributes (72ms)
+WARNING: Shader Unsupported: 'Universal Render Pipeline/VR/SpatialMapping/Wireframe' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Launching external process: /Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Helpers/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.03 seconds
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7016 unused Assets / (5.2 MB). Loaded Objects now: 7846.
+Memory consumption went from 168.8 MB to 163.6 MB.
+Total: 6.230625 ms (FindLiveObjects: 0.333958 ms CreateObjectMapping: 0.140833 ms MarkObjects: 4.547750 ms  DeleteObjects: 1.207417 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 378133.297101 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/Prefabs/Shepherd_c2.prefab
+  importAddress: Guid(935815a13248eec4b8ff3af743f436aa) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/Prefabs/Shepherd_c2.prefab using Guid(935815a13248eec4b8ff3af743f436aa) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b4939504f8d6a399c7ba1389474ec662') in 0.042708666 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=72bf81c3dcea7c362b73c167f0a590c0 DependenciesID=699f84465a52c247b9819626fe99fcfe StaticDependenciesID=be430ad1adf8c7ee182c75124446c595 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Materials/FrenchBulldog_color_2.mat
+  importAddress: Guid(ef577f58a9c73a844a4fb5959c0c9bd4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Materials/FrenchBulldog_color_2.mat using Guid(ef577f58a9c73a844a4fb5959c0c9bd4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0554589b353b02ec65960daf9429d52d') in 0.021272958 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6aa76cf5e36365a26e4cea8f6809a9f8 DependenciesID=8b58aa6a9288a8a24095290cca5ca8bf StaticDependenciesID=9b7e6d398575aceb0ac4d578ed6dad0e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/Prefabs/Pug_NoAlpha_c1.prefab
+  importAddress: Guid(f879e7dbb670d274d81b16c0b27d5ee8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/Prefabs/Pug_NoAlpha_c1.prefab using Guid(f879e7dbb670d274d81b16c0b27d5ee8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7b935d57dba30d109d658582430b00dd') in 0.00351025 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be2bf1a78cd7aabd08c410312445321f DependenciesID=cdbb8d2b0b021383bcbb58386414673d StaticDependenciesID=636c7f027beb1b182d55bba8aa5a3289 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/DemoScene
+  importAddress: Guid(379f90cb55eb16145ae64e7e14e966de) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/DemoScene using Guid(379f90cb55eb16145ae64e7e14e966de) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bab2673d73bd8170d1b7d22b7bc97604') in 0.001539042 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6d2021ff7d851f8f34891f26e6d5dad3 DependenciesID=ae7524e48793f9173787f0b8e6d35b42 StaticDependenciesID=b1db10511e2f58278cc95d3387a38c98 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/Scenes
+  importAddress: Guid(e7730790dca11eb42b88b2449e1152e2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/Scenes using Guid(e7730790dca11eb42b88b2449e1152e2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '57a81b2608d4f8f1ef34e6969557bff0') in 0.001389667 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=088e87b5eddbf9928aa9a42dbc4c6087 DependenciesID=212f762565b4422812d8335366402efe StaticDependenciesID=c9f12ce5c21a5a83468c8e9b1d819b87 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/Rottweiler/Dog/Prefabs/Rottweiler_LowPoly_c3.prefab
+  importAddress: Guid(65d79cfc736f0d44599a0514a3db5a73) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Rottweiler/Dog/Prefabs/Rottweiler_LowPoly_c3.prefab using Guid(65d79cfc736f0d44599a0514a3db5a73) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4bce96b53b50d43c7dc372c2e46a86a1') in 0.003488833 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=196194cf7147bdfda1fcd73d49ec3de5 DependenciesID=5bda0fa6b7fefc00afbe9d2802fb39ce StaticDependenciesID=c4b35b2b235625978dabda97b8a1a5a4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 120
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/Textures
+  importAddress: Guid(1403963fc06e92d4d8c80b4df310a7e7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/Textures using Guid(1403963fc06e92d4d8c80b4df310a7e7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'efcc1d99dc28c1298c563efd0fc7f97e') in 0.001503208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2013b55af6f8d642b59ffa397a82f070 DependenciesID=6144734253a0cd1d38996d3c5de45c76 StaticDependenciesID=fc8e7bb061cb52134573c71310958789 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000053 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/Textures/Labrador_Albedo3_M.tif
+  importAddress: Guid(91c155cfec261ee4497b4662455abb14) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/Textures/Labrador_Albedo3_M.tif using Guid(91c155cfec261ee4497b4662455abb14) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ad8cf31bca51f159ee10d1d335c84775') in 0.024225292 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e9388855006c2d08bd40deb7a747f66a DependenciesID=ff0153e66c11c1434b3ea6307417129a StaticDependenciesID=80026aaa138ce8f0ee0cf0b65fd88f3e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Red_Deer/Dogs/ToyTerrier/Dog/FBX/ToyTerrier_LOD.fbx
+  importAddress: Guid(cbd652a2710b69049b886393127da640) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ToyTerrier/Dog/FBX/ToyTerrier_LOD.fbx using Guid(cbd652a2710b69049b886393127da640) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8be10659daa9d30becd914d6c188af43') in 0.013936834 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=35d6df6dcc51db4227e44ffc6b96275d DependenciesID=61e1b17451e30c5162ade938f56944cd StaticDependenciesID=41f13e3da2aea00e6637d5a9e9253e0a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 138
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/Textures/Shepherd_Albedo3.tif
+  importAddress: Guid(13405aaed6402084ebb23a671ac74eb6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/Textures/Shepherd_Albedo3.tif using Guid(13405aaed6402084ebb23a671ac74eb6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '971af73f761590fc7f58192423efca6b') in 0.006639417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e64ab4513f822a9f55e64c97e906820c DependenciesID=4f7fcf576dab3dc69eb4b5bed8897039 StaticDependenciesID=51c863f557a59af93c2186cee338748b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/Pitbull/Dog/Textures/Pitbull_Normal.tif
+  importAddress: Guid(6f88775a37dc38c459dbacac1ef484b7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pitbull/Dog/Textures/Pitbull_Normal.tif using Guid(6f88775a37dc38c459dbacac1ef484b7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8b37412cfaf79dd8e56c45f73794024f') in 0.007004166 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=412ce0dd10f79d170e1b3caa5d5f95b2 DependenciesID=0a983be4b5348da07627a1c4c583149e StaticDependenciesID=1604a8e678ae567d8d5403ab69189fad 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/Animator Controllers/PugOverrideController.overrideController
+  importAddress: Guid(96beb9ec4a8afac458dfd013ed3b6c7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/Animator Controllers/PugOverrideController.overrideController using Guid(96beb9ec4a8afac458dfd013ed3b6c7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '783d15e2d0d2cf64f660c05ed4403ca9') in 0.060706166 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ba2784443df96a29800ac7cb2ef0f242 DependenciesID=9e1cfa67080616bde4ed81f137da2d7e StaticDependenciesID=4f8d451db7e1103fbbb17111d7351a85 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 62
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Doberman/Dog/Textures/Doberman_Metallic.tif
+  importAddress: Guid(4b9138bb015ddb44f8701a7789d9c3dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Doberman/Dog/Textures/Doberman_Metallic.tif using Guid(4b9138bb015ddb44f8701a7789d9c3dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5313de849583713f7ec635303b8ae46e') in 0.007523417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4309aa638aa38c0ef4eb9ebf423305f7 DependenciesID=0bc66a20fa6b9bff724f3b9214115881 StaticDependenciesID=f782f2a1c5f62cbe36704adad2cef804 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/Animator Controllers/GermanShepherdOverrideController.overrideController
+  importAddress: Guid(151411bbb09d0514ca13a9fea4c9e877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/Animator Controllers/GermanShepherdOverrideController.overrideController using Guid(151411bbb09d0514ca13a9fea4c9e877) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'e5eddca46bcbacdcb16acc05f861f27f') in 0.050816709 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=68ce7c48a8f7099636c6344577d6959e DependenciesID=4bb83caaa8c3b04b06233ec4b52a23e3 StaticDependenciesID=812df1c6c3454c64540e373719c6b86d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 62
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/Animator Controllers/ChihuahuaOverrideController.overrideController
+  importAddress: Guid(3d9bf18076fb5e44f93ce24bb1f5d932) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/Animator Controllers/ChihuahuaOverrideController.overrideController using Guid(3d9bf18076fb5e44f93ce24bb1f5d932) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '109880c992ffd7db76d9974f79466c1a') in 0.025286917 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bf7fc16d4c99f3060b90cc2f4e8ab33f DependenciesID=cfd193b44aeada6f436082f02b2db2b4 StaticDependenciesID=9722b2dc6ac5480c99c2439b3d1198b5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 51
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer
+  importAddress: Guid(725e4cede115075458b2fed45745a499) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer using Guid(725e4cede115075458b2fed45745a499) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7df0dd580e071a00e54f8b889d74b6f4') in 0.001503167 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cd633581f8d2200fa4290f4e7312ae72 DependenciesID=896032c19f509eaa39adef1720221bd6 StaticDependenciesID=395f71c808bc1ee5846aeb448d353c91 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/Models/chihuahua.fbx
+  importAddress: Guid(4f4179b83c6f2364299c06b052ef897b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/Models/chihuahua.fbx using Guid(4f4179b83c6f2364299c06b052ef897b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '83455e492b50403100ac1010d6d161bb') in 0.052406084 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9f7e54652b29380591e2b880c865e4d2 DependenciesID=a45090e49b0b2872cabbd3f293cc94ec StaticDependenciesID=5929f3ae60042b4a8c939803fa559298 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 440
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/Doberman/Dog/Prefabs/Doberman_anim_IP.prefab
+  importAddress: Guid(56a59508bd34980489490ef8f4037309) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Doberman/Dog/Prefabs/Doberman_anim_IP.prefab using Guid(56a59508bd34980489490ef8f4037309) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c295766fa26d73d81286b719e87ca381') in 0.003604542 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=227faa6ce9e3f1946e301a37091801df DependenciesID=f314b220e586e34d45c2ce5fd6669e11 StaticDependenciesID=6bca57f022994d7dc01331c289abcfc5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 120
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/Rottweiler/Dog
+  importAddress: Guid(c6c2b2f435abf2a4db01abe71cc097ef) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Rottweiler/Dog using Guid(c6c2b2f435abf2a4db01abe71cc097ef) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '117ec5e02dcc198a7d6cffc88bb73318') in 0.001482375 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7754ffdcb767177036dfcd0d1d53564b DependenciesID=d356d5a42264456d66c87be6ca6f3ab6 StaticDependenciesID=4ee86a528400cf30bcef8fd028f8c460 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/Border_Collie/Dog/Textures
+  importAddress: Guid(7af2defcf03b4a746b3b1dfe820dd942) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Border_Collie/Dog/Textures using Guid(7af2defcf03b4a746b3b1dfe820dd942) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '945f88eccfcef133d0e850a2771eab28') in 0.001468375 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e956c9b6ba08d150107b09c64c371737 DependenciesID=498e5dbc38f89d20efc8e216ee9f331b StaticDependenciesID=9a3ede7a17d106c0f40fe49875210df3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/Textures/Corgi_Albedo2.tif
+  importAddress: Guid(4415099b659fbb147b986d048c157d16) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/Textures/Corgi_Albedo2.tif using Guid(4415099b659fbb147b986d048c157d16) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '99fb65e7884de5e137a9ea307fd8c973') in 0.0066905 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e3b2a66f93982e7d8f5066c527f1290e DependenciesID=e21e020011af982c40edb53c439d2600 StaticDependenciesID=9d1f4a3f60e131f44575c67711c5ccb4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/Prefabs
+  importAddress: Guid(243fe3fb41ac6f7429f9c5e5d67883b4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/Prefabs using Guid(243fe3fb41ac6f7429f9c5e5d67883b4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '53e2a30f8347c4ad6601fedfdc13b0a4') in 0.001440042 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fb22115f4071ec472f9ce0cc5e90369f DependenciesID=55a379a797c218bd70b7942af2398797 StaticDependenciesID=f168a3e54fd6fa02980914752df97b65 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Red_Deer/Dogs/Border_Collie/Dog/Textures/BorderCollie_Normal.tif
+  importAddress: Guid(c0dfa4d9db709fe42974bb08a9f9d9e3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Border_Collie/Dog/Textures/BorderCollie_Normal.tif using Guid(c0dfa4d9db709fe42974bb08a9f9d9e3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4c1376fbfce8cde5cc6c0411c0f80ed4') in 0.006693208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a94447e7fa3cb9bb2aabe0fc92b246b5 DependenciesID=94e267dd860f7b631c0c9280f47bb79d StaticDependenciesID=bcf91e4e5dbafd271a761196c48e568b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/FBX
+  importAddress: Guid(b3aeb2c8b657ccf47a75e381d21c9516) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/FBX using Guid(b3aeb2c8b657ccf47a75e381d21c9516) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1e9ea1d6a6528e661e3cac66d931d121') in 0.001254791 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9727453224311d6c5d21ecf7199780da DependenciesID=4cc2b54482a092c2a7adf043ff0cc476 StaticDependenciesID=2e733f824d46eba235f14b57948a2459 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Dog/Materials/Spitz_color_2.mat
+  importAddress: Guid(9dcfd30fce453be4b9962a8f8eaabede) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Dog/Materials/Spitz_color_2.mat using Guid(9dcfd30fce453be4b9962a8f8eaabede) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '86f02ae2be90eb23c80967f29f9c1857') in 0.016934875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0a60afeb3001574dd6e8cc2c7408b7e4 DependenciesID=9b72b5195058a52d56e09131f934c599 StaticDependenciesID=bfcd7cf48cd941a54f2cad75fe5e85c6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Scenes
+  importAddress: Guid(51d9b3a64ef7b9e41baebefdbd3f7cc0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Scenes using Guid(51d9b3a64ef7b9e41baebefdbd3f7cc0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '76a526bf6f39c02251e940b629b4a66c') in 0.001506917 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0399a2b781edcaaa180a10413e48c7cd DependenciesID=b6335573fb413ed7242198c2e6b7b84b StaticDependenciesID=cdf00df098da1dd2ee691578c9c3dd22 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs/FrenchBulldog_c3.prefab
+  importAddress: Guid(87c19625fe667eb4393a02d9dd52693b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs/FrenchBulldog_c3.prefab using Guid(87c19625fe667eb4393a02d9dd52693b) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ad41498e79b200c6bbd4e911af6c9f4d') in 0.004435584 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ae36448f6cc5a81f6d138df87ad51a11 DependenciesID=f340c1e4df186b921a26ec0ee4dd99fd StaticDependenciesID=3cbb8be3762ad54758630fd65f6d2ae7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 120
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_anim_IP.prefab
+  importAddress: Guid(508261bbe1634674d9e5c67c744166a8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_anim_IP.prefab using Guid(508261bbe1634674d9e5c67c744166a8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a9142cf47c802afbe82af73fa484426f') in 0.003168541 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4f157abc370d52604427f7499a31810d DependenciesID=ac3504abe6f3ca1347fc808d960b1045 StaticDependenciesID=fc4e078ccd7ad9e8207c773f18ab4699 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_LowPoly_c1.prefab
+  importAddress: Guid(fa0028eee95b280498e88936569523a6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_LowPoly_c1.prefab using Guid(fa0028eee95b280498e88936569523a6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '73e9a3a2ee3fc4adc7bc050e9985c2c2') in 0.003285875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=49b546d65aedcc4bec0993969cf90dba DependenciesID=559fb250653e819ac3f1c066fd8e7c39 StaticDependenciesID=151fe12c322d91b76f5d7720a081b80d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Red_Deer/Dogs/Border_Collie/Dog/Prefabs/BorderCollie_LowPoly_c3.prefab
+  importAddress: Guid(a67c0534453c9ad46a52b5419a260bd8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Border_Collie/Dog/Prefabs/BorderCollie_LowPoly_c3.prefab using Guid(a67c0534453c9ad46a52b5419a260bd8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6cbde567451fcafeabf4f050aa43f438') in 0.006469417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c64fa55477f5dd56f712b36144e961c1 DependenciesID=8d0e56b2a58e5516e3ba0cc10d8d55c9 StaticDependenciesID=113c318dffcd0122a3f799a69cc4101e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog
+  importAddress: Guid(5cd7cf86c0b602543a05bc7bb51bc196) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog using Guid(5cd7cf86c0b602543a05bc7bb51bc196) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5362cc6c09200167656f3fdbf7e9632f') in 0.001264792 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ae491ca2a0d81d1500e9f7c1c988db72 DependenciesID=2cd01370fcf106670d8a4754fb512fd5 StaticDependenciesID=229c9378cd87f8e3ca13ef2f03292fef 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo2.tif
+  importAddress: Guid(c67118899317eae4d8e15b9f14b74308) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo2.tif using Guid(c67118899317eae4d8e15b9f14b74308) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4d38ad771059ed8370e09936978ca100') in 0.008429375 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8d52fd01c73be550df020c40e72c88aa DependenciesID=2240db524b8cbc819a93974515adafae StaticDependenciesID=be907606ab926bbb54e2e5621515a14c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/Materials/Boxer_mobile_1.mat
+  importAddress: Guid(cb4548b12f8518b469d76b15d1e6b267) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/Materials/Boxer_mobile_1.mat using Guid(cb4548b12f8518b469d76b15d1e6b267) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4f1b83203f3d0bdc2b890ee973cc6881') in 0.00516125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ca62e905968e0861943dbf1a9ee01e5c DependenciesID=bb7655b0615f446966194a36c8c42470 StaticDependenciesID=73fe3c80de71266fb50518c1c03b3199 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs/FrenchBulldog_NoAlpha_c1.prefab
+  importAddress: Guid(71cd01224cc3da140a9e32c4465ed8a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs/FrenchBulldog_NoAlpha_c1.prefab using Guid(71cd01224cc3da140a9e32c4465ed8a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a38a0a18c16651d90ba2b6f784c75db9') in 0.003542208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6ae8a4694ea4d1873532d1706008a822 DependenciesID=bbbfd8437130cc730c89defaecbfcbfe StaticDependenciesID=89269ddae6c85785524e9c589acef917 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 120
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs/Labrador_LowPoly_c1.prefab
+  importAddress: Guid(bb157f08f265d7048a25a8521abac62c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs/Labrador_LowPoly_c1.prefab using Guid(bb157f08f265d7048a25a8521abac62c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9096d0616cee14066a77a5d45d526fbe') in 0.003480875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d0fd4741b69956466b137e019d2a7163 DependenciesID=c1586e033e3237622537da4564cdecae StaticDependenciesID=8a06f976c427c589410d064ad35c1560 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Readme.txt
+  importAddress: Guid(16857a051b9d5504e949a1a0c93dc1d0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Readme.txt using Guid(16857a051b9d5504e949a1a0c93dc1d0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c71e7c4438382ac924709d4c39a4dab5') in 0.001396709 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c50190a5abefcba4f212b9315b6e1444 DependenciesID=e03b59588fc2bfb21a4c90099a163598 StaticDependenciesID=f12f04a4236f2679f676e866ba25da61 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/Prefabs/Pug_LOD_c3.prefab
+  importAddress: Guid(154c12a65fd3ea744889828d6ddff48c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/Prefabs/Pug_LOD_c3.prefab using Guid(154c12a65fd3ea744889828d6ddff48c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '16eb80290885b421b24f94c49c5d3efe') in 0.0039275 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4ced7cb97bc3f28454deafa4ad9f3dd5 DependenciesID=de29ea61e43207083230ca024fd2894e StaticDependenciesID=4835e2cd3202646464aa1db951c4f8b8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 139
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Dog/Materials/Spitz_mobile_1.mat
+  importAddress: Guid(debd8a2054427da4cb0c7500eba872cd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Dog/Materials/Spitz_mobile_1.mat using Guid(debd8a2054427da4cb0c7500eba872cd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6aa13d59f53b9526267deaa37a8385ec') in 0.003734792 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d692add1138969e4970db58289f2fd42 DependenciesID=423053f92fe0a78217e4179587eb5bcd StaticDependenciesID=79ef928f353291c4cc9ec5316d741378 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/BullTerrier/Dog/Prefabs/BullTerrier_c3.prefab
+  importAddress: Guid(0a350b6c4ab28a6479aeb7671a959fa1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/BullTerrier/Dog/Prefabs/BullTerrier_c3.prefab using Guid(0a350b6c4ab28a6479aeb7671a959fa1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd059d715c2d59ab94c9a6c80a279974f') in 0.004915667 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3cf6488a86fc26be1ca77172cb1516c8 DependenciesID=0444ba06b9b3d1e284c7347aa92e19f7 StaticDependenciesID=d417f491c9b8fa5e97e0323bd2acca54 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Bowl_1_food_2.prefab
+  importAddress: Guid(d414c8e92a5d9324bbefc5e9639f0089) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Bowl_1_food_2.prefab using Guid(d414c8e92a5d9324bbefc5e9639f0089) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '71a4ccc781d8ee031a49ebd3d05c5a57') in 0.014139667 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=52f2e69d8d0f896c3eb9107274d16a9c DependenciesID=201c789fcfd94f9d76c1ae390c2a71ac StaticDependenciesID=ff6e0ebca5028cf006c56521e6f0b346 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 14
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Bowl_1_water.prefab
+  importAddress: Guid(d8dbd8df34c280449a041ecc77d4dd74) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Bowl_1_water.prefab using Guid(d8dbd8df34c280449a041ecc77d4dd74) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c7aa4d890669475278b94b4ede7252a3') in 0.00342 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c8031fd58472f536a8d0c8d2c1d12683 DependenciesID=7d623cb2238c45d43b2953d0f68687e6 StaticDependenciesID=88d0a7bee29c44e3c2cfbb93ad0221c7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 14
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/Prefabs/Dog_Boxer_NoAlpha_c1.prefab
+  importAddress: Guid(c77b977977309a340ba97c6a19841082) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/Prefabs/Dog_Boxer_NoAlpha_c1.prefab using Guid(c77b977977309a340ba97c6a19841082) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b13938625462fa60c94cdf3c369454d0') in 0.003174791 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d2e6562b7dd9407c0d35c721deb0332d DependenciesID=32a0f4fc80fac87db31f86213985965f StaticDependenciesID=56185933e02a19b320576aa64802b47c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Dog_mat_4.prefab
+  importAddress: Guid(174cc582f46a0de4eb63672bbe1ab4d8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Dog_mat_4.prefab using Guid(174cc582f46a0de4eb63672bbe1ab4d8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fbcc08f679ffa441e15cac95ac820454') in 0.003491625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3c87e41c9342b26ea65ec9fb1b2eef5c DependenciesID=aaa46f899caadbbb2fb802a48e53f833 StaticDependenciesID=5ba1dd0627a1b75a1b9257e9e1e4c3b5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/FBX/Retriever_LOD.fbx
+  importAddress: Guid(8a0103d12c0de594cb9c32b275aa45f8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Dog/FBX/Retriever_LOD.fbx using Guid(8a0103d12c0de594cb9c32b275aa45f8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9afe3c10c89c835db995011834ad74ff') in 0.005727709 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5a11c5e1b4492a4679bd6af16da788a0 DependenciesID=d16ef0011c360f38220ed6fee372110c StaticDependenciesID=288ca354d7d2e07b9a4dcdbc5198c0f9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 138
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/DemoScene/SampleScene.unity
+  importAddress: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/DemoScene/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '19612159ce7a9675f4cf4c18d5856f03') in 0.00035975 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=13084614189807a3e4352c2e50be9910 DependenciesID=faed2887b78e57d6275276ffaf09c002 StaticDependenciesID=ea65336f5f72b7ed51604cecd44760c1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Normal.tif
+  importAddress: Guid(50e498171072bb1478a5ee0385726ad4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Normal.tif using Guid(50e498171072bb1478a5ee0385726ad4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c1f32a2ae07131d11d5e96f710103c29') in 0.007331458 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=66601dc6ecb40caab5ee391904af78a9 DependenciesID=5cc3583655e9fccc352b5676daacbd73 StaticDependenciesID=8cf7e90b9331bbcbd10e0828c444e2fc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Bridge.prefab
+  importAddress: Guid(a886a317587c91048aed87f453a2c74f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Bridge.prefab using Guid(a886a317587c91048aed87f453a2c74f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1208a7afce8b585a44447dec01a8b3fd') in 0.003444458 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0a56e4fa6c629b58120f957786c2b92a DependenciesID=d461f67d0e75454f66228d501d97501a StaticDependenciesID=ca1c0e5d8b854da2095f9428133e09a1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/FBX/FrenchBulldog_LowPoly.fbx
+  importAddress: Guid(5dcebbe8fbccc8a4d9f35cb86a20d64d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/FBX/FrenchBulldog_LowPoly.fbx using Guid(5dcebbe8fbccc8a4d9f35cb86a20d64d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '397eb11168cf674e9d2b493e86d77973') in 0.004557875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=efb9c5a32d3111ca67c94feeea7428db DependenciesID=cf3686cf8e986678d54dec55c58af436 StaticDependenciesID=201ac8bee59bf7d95bc147c09536f366 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 119
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Dog/FBX/Anim
+  importAddress: Guid(bcf42b66f38881c4aa7dbca6aa893834) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Dog/FBX/Anim using Guid(bcf42b66f38881c4aa7dbca6aa893834) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e26c7ceff63321c8c8e92bffd0d62089') in 0.001539625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=87f1f3ef4ef86808a84473a6291d873a DependenciesID=d86253a392f527c1e656acacd6af323c StaticDependenciesID=f6fd64c06e0076c39549a7738ca4a1b7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/Border_Collie/Dog
+  importAddress: Guid(49479fbbe413ed54ab71573f9c004b1a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Border_Collie/Dog using Guid(49479fbbe413ed54ab71573f9c004b1a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9710f4c2a7ffb4287449b1fa1b9a85da') in 0.001241583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7a5c0a35b3c9c90d72c1d66b30615be8 DependenciesID=ce697925331052be673e6736c63db4f3 StaticDependenciesID=2591004d5cc531b146ffb5cc1dc5c9ce 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Prefabs/Retriever_c3.prefab
+  importAddress: Guid(99fdf6086bd58a541b2381fbb2d44c8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Prefabs/Retriever_c3.prefab using Guid(99fdf6086bd58a541b2381fbb2d44c8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b8e5f5c6c2f6e9683e9a96778a12bf80') in 0.003039291 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8473ecce4c31109152816a78afdfd330 DependenciesID=72279a8a04cdcb6f257e4ba3001625a8 StaticDependenciesID=ed35be10de9e93eaaef3fb1b25ee4b41 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Materials/Dog_Mat_color.mat
+  importAddress: Guid(f0ac315a320171945bdf3934f5d19bd4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Materials/Dog_Mat_color.mat using Guid(f0ac315a320171945bdf3934f5d19bd4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '83b86eb17e70fa16f995fbef7666fd4c') in 0.012704417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4842e47e6cf7e1d732004fb60330d7c2 DependenciesID=305c55ae820e3352a9881b329088f465 StaticDependenciesID=5172d3988df90ba2ba0d8a4a67c88f2a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/Beagle/Dog/Prefabs/Beagle_NoAlpha_c3.prefab
+  importAddress: Guid(795effb56d994354fabeab6c8a3f81af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Beagle/Dog/Prefabs/Beagle_NoAlpha_c3.prefab using Guid(795effb56d994354fabeab6c8a3f81af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '846138638fde882c78944a17b3fab75f') in 0.002986417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ea30b553f081a2b2c72a36bfcb58676d DependenciesID=ba38fec60372855d61b0d864f6e3c9a3 StaticDependenciesID=892c6924b48f24ee28980223d4a30320 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Bublisher/3D Stylized Animated Dogs Kit/Models/pug.fbx
+  importAddress: Guid(e8d75256c6592c64491e3db0c861b0fc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Bublisher/3D Stylized Animated Dogs Kit/Models/pug.fbx using Guid(e8d75256c6592c64491e3db0c861b0fc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fd411fc73a1029f7397f1fa9d28a2d9b') in 0.044207125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c754f8d0ba95d2f8b85ece9f90f70cb7 DependenciesID=975b00885f5ad6883581c9e01287866a StaticDependenciesID=ba5afa21f3883c8ca4766999a3b51747 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 440
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.283945 seconds.
+  path: Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/FBX/JRTerrier_NoAlpha.fbx
+  importAddress: Guid(5975568571002574bafb6c2bb4cc270d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/FBX/JRTerrier_NoAlpha.fbx using Guid(5975568571002574bafb6c2bb4cc270d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4b966d38f8753c3c91bc3c5d2adfc312') in 0.004347208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5b83269b12db624567b294d087775d07 DependenciesID=09f8ad4b07aaacf8635b0e706c2c0728 StaticDependenciesID=596dde9c283a9d8614c70c503d6eebce 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/FBX/Anim/Labrador_anim_IP.fbx
+  importAddress: Guid(d37346294f5c89e48942a611129d72dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/FBX/Anim/Labrador_anim_IP.fbx using Guid(d37346294f5c89e48942a611129d72dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '74cc2f857d50f2a763770f4001208e5c') in 0.183178333 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=dcc1bd95d50a9c8565180800c564859a DependenciesID=7c598e83e244d35cac0d777e97f780f2 StaticDependenciesID=4f806afa5c90143a4f5823fa7ecbdefc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 238
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs
+  importAddress: Guid(d3dc72feb9357ab4cbe742e8f77646d9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs using Guid(d3dc72feb9357ab4cbe742e8f77646d9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ae458cad086b9a1920b246e03b310c2c') in 0.001380833 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d59523cbefd634a19b29a628cd182bf0 DependenciesID=6cfb12d9f418a324f465cb5c3de73ce9 StaticDependenciesID=3c117c009490ed0e4c5e2642be96db14 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_LowPoly_c2.prefab
+  importAddress: Guid(f36cbdd97708832468d98b41c196027c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_LowPoly_c2.prefab using Guid(f36cbdd97708832468d98b41c196027c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '19bb2ef3980b6ce9b5905fe3f691eae9') in 0.003229458 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4011407790b4dfcc5175af634149ab88 DependenciesID=78f3b02ddb7ae2794d66fdd819578d07 StaticDependenciesID=22a675d630b0e1e6af3a4b46b0842d09 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog
+  importAddress: Guid(86a95c6e1608ed441a416cf21c935c14) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog using Guid(86a95c6e1608ed441a416cf21c935c14) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e50d3ad69785066cb956712b0dbfd6c7') in 0.001425959 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=35f77b3d5b4c13e32379b53d473ee404 DependenciesID=c64df80acc6c1a408db934cdc6749a84 StaticDependenciesID=32b4ef69a7f23ebbd6eb153b11e3518e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo2_M.tif
+  importAddress: Guid(2483f1276ffee0244add27ad4cbc4e97) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo2_M.tif using Guid(2483f1276ffee0244add27ad4cbc4e97) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5e756e69a1bef52ad0f8ae51deb95d6c') in 0.00418225 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=99e492f40677ed774e1a8eb9343f71a6 DependenciesID=aff13c5c6788c46e0d928f2510069bd9 StaticDependenciesID=3652f9f85c5a5abcb97472f2cf570b58 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Albedo3_M.tif
+  importAddress: Guid(0892a19c14fe7024ebef18b674a3df3a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Albedo3_M.tif using Guid(0892a19c14fe7024ebef18b674a3df3a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a2a5770ec7255430a28891c52efcb2fd') in 0.004884834 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4775d1907b8da60b4979c6b60635190b DependenciesID=c6407c1a4e4860c8b0aa76884dd923b4 StaticDependenciesID=059022d1248161e8fac1c1396b80afad 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000055 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/FBX/Anim/Pug_anim_IP.fbx
+  importAddress: Guid(bef1534cc809a214080b5c546ee58256) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/FBX/Anim/Pug_anim_IP.fbx using Guid(bef1534cc809a214080b5c546ee58256) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'edb05f8ef2e9631602d439a7cd37711d') in 0.167716375 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b81756eeea4abed2100331e0b78199fa DependenciesID=703faf0923c64ede0f40e493918a32ec StaticDependenciesID=1430947d54aad82029586d108f0d5070 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 238
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/FBX/JRTerrier_LowPoly.fbx
+  importAddress: Guid(3fb88ab68f0ba5c47bc4ee76b5ab4bf1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/FBX/JRTerrier_LowPoly.fbx using Guid(3fb88ab68f0ba5c47bc4ee76b5ab4bf1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '82d9c44d9c1eff6880be231df17ad76a') in 0.004099583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=61e32ecffc502bc704cd06c27f1e2486 DependenciesID=146d5dffb40c7fe939bd9ab202d4dbb8 StaticDependenciesID=17af43b622b78ebe15354d78ba5aba43 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/Materials/Pug_color_2.mat
+  importAddress: Guid(e1f6257ae1cf62846affa93e776d8e85) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/Materials/Pug_color_2.mat using Guid(e1f6257ae1cf62846affa93e776d8e85) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '18a3852befc56df1601f2b3252995c69') in 0.013917291 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fc7ba432a0f02de9b60d73093124243c DependenciesID=6a69bad1b77c8ed0ca86bf4d0ea488bf StaticDependenciesID=d03f7de306392c8fa5ab6c2766748e9b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/Materials/Corgi_color_2.mat
+  importAddress: Guid(2126bede9e6770246817ce7075f7e0ac) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/Materials/Corgi_color_2.mat using Guid(2126bede9e6770246817ce7075f7e0ac) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1ff7a93f1b08b6be97d82e18c7e48416') in 0.012874916 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=880d245c080fb2d31e92981ad9ac2fdf DependenciesID=b9fa6c5d9751ec6e1e0b489f2078decc StaticDependenciesID=50004d71b774ee518551711ed96bb68c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Textures/Dog_mat_Metallic.tif
+  importAddress: Guid(8fbb33855f37eec49b47b50a34619502) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Textures/Dog_mat_Metallic.tif using Guid(8fbb33855f37eec49b47b50a34619502) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '01a892629499f8c4ca3b6c7585d17614') in 0.00661375 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=04f1da3357422a4ccb93c8f9c74a3851 DependenciesID=969d7c9e66534f4847bb442548838d8b StaticDependenciesID=8090a85fba5883c57aa0f6c35411b5c5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Red_Deer/Dogs/JackRussellTerrier
+  importAddress: Guid(616c18b73628498458e53644ddd76fca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/JackRussellTerrier using Guid(616c18b73628498458e53644ddd76fca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a63968be893901befe234dc8ded3f410') in 0.001567208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=01f183f1a9097fb75a45e0542b2de904 DependenciesID=47476e4ad89525cee9185efb63a4be20 StaticDependenciesID=7a840004a498a34d96b9d15ccdc235bd 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/Doberman/Dog/Materials/Doberman_mobile_2.mat
+  importAddress: Guid(6d43d8b941e23c847ac5bbd97fb4e994) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Doberman/Dog/Materials/Doberman_mobile_2.mat using Guid(6d43d8b941e23c847ac5bbd97fb4e994) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6e39421555a55d33930352be9d8465d0') in 0.002705209 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b1dfafbaccb7fedca9735f01b2ec7aef DependenciesID=c0c8bca8a05e85444d0e2bedfa0ad410 StaticDependenciesID=c47bd4aea6721c2a67e2d20771761d82 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs/FrenchBulldog_c1.prefab
+  importAddress: Guid(994ed7f829226db49b9fa0cca835c693) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs/FrenchBulldog_c1.prefab using Guid(994ed7f829226db49b9fa0cca835c693) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1008a1ea5d08d3f701174cdae664420c') in 0.003241291 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=08a910904fe1c1007a319eb5a1f6c74d DependenciesID=1d1ec55ace7ca5cd968e55b17afdb60a StaticDependenciesID=1d1d7cf10191421f96ab1ae84cc729e6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 120
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo3.tif
+  importAddress: Guid(6252aab514f14614aa282421b1903437) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo3.tif using Guid(6252aab514f14614aa282421b1903437) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a12f1ae36c480af1b002e522bbe709a4') in 0.009245291 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f0fc9666492ecdac60fc524712389343 DependenciesID=95c0f99b877e710e209d8284a73fae78 StaticDependenciesID=12236ce4012c964cfe0a6e1ab117f6e9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog
+  importAddress: Guid(6d8916ba831778542b7097dae291b84f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog using Guid(6d8916ba831778542b7097dae291b84f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5b467ce792c9e04cc3dcbba331f09405') in 0.001384334 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3e77034d5a9bec6530e40cc6abdf6145 DependenciesID=095eda212f6553c067cd0ce1d3199641 StaticDependenciesID=04dd916829317484102217fd67a1c786 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs/Labrador_LOD_c2.prefab
+  importAddress: Guid(55fb4c1b4900b5b409b95dc17ef32ce6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs/Labrador_LOD_c2.prefab using Guid(55fb4c1b4900b5b409b95dc17ef32ce6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'af2abcbd4127ac4f618532936a64008e') in 0.004264708 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6192ec3230fc01d7619f5c8c6d95646e DependenciesID=70e37d09df076e0fd338d7aba95a83ab StaticDependenciesID=a1939bfe93f69102f34600b02a9e394b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 139
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/Scenes/Pug_Scene_Demo.unity
+  importAddress: Guid(1c4a6a42a036f794d883da8fe421ca84) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/Scenes/Pug_Scene_Demo.unity using Guid(1c4a6a42a036f794d883da8fe421ca84) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e744ec923a8e74a46096e04bcc7107e9') in 0.001796 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e3950de26fcd073324d882be27d34310 DependenciesID=8b6b260a319a551f47d0a86d0c85c443 StaticDependenciesID=4d9373dc3dfb065059377dc320561419 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Metallic.tif
+  importAddress: Guid(2dfbac648fb70104b98b4c2e9c15cdbf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Metallic.tif using Guid(2dfbac648fb70104b98b4c2e9c15cdbf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4db6e683e426184c42abcbdb9cd512dd') in 0.007582125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fdf31e3c11fcca0fca3be22039b3d86c DependenciesID=f77ac132ebadd819b288278d9e23e1a5 StaticDependenciesID=3b5da6a3539e6c7d440e31fcfbcb0c60 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Materials/ShibaInu_color_1.mat
+  importAddress: Guid(1d4bee7a5a81b394a92a45c6639241b2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Materials/ShibaInu_color_1.mat using Guid(1d4bee7a5a81b394a92a45c6639241b2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b53c00578a1fe07f672adb7584c98ead') in 0.015092542 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b1e4c1477a0810cac83ccd46eccb34c6 DependenciesID=58cc0b51825806a8b5637363e026f8f7 StaticDependenciesID=9d0e0ce6dad4b8ee886173de324d98ac 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_anim_RM.prefab
+  importAddress: Guid(764550e8e55f2fb4e9319632208aff93) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_anim_RM.prefab using Guid(764550e8e55f2fb4e9319632208aff93) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9e20c32b766c868cb6596bfb5ff4246c') in 0.003705417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fd1aa4891c7cc7679ba23aafe0b403e8 DependenciesID=229fdf64897c1dcf4042d2c20002ee3a StaticDependenciesID=f8840391cc22b30c5f1617b9bc2e497d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Dog/Scenes
+  importAddress: Guid(c6f211c1bbac6d348a6d56db00d991a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Dog/Scenes using Guid(c6f211c1bbac6d348a6d56db00d991a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5a78b4c52c4495c51057fa8c4646f0ee') in 0.001631625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c1497cf264cd3b41398ce35828ff376a DependenciesID=c6b274a0bc17297dc99932df8fc0c3f2 StaticDependenciesID=730c19d75b6e0905e9923d92688f57cf 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/Textures/Shepherd_Metallic.tif
+  importAddress: Guid(b628753c6936d2e4d98612e731a598ba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/Textures/Shepherd_Metallic.tif using Guid(b628753c6936d2e4d98612e731a598ba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '483b332a8e4a6171cc5eb05629dc2c5d') in 0.006563667 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7486f7906693c3dd843fbbe726d53255 DependenciesID=e94c42fa78ec670f29afbdb75d6f0138 StaticDependenciesID=f7c2e3ae426caee5c072e3bfbbf1aa93 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Materials/FrenchBulldog_mobile_1.mat
+  importAddress: Guid(3d22db34f5947654780d714405e24247) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Materials/FrenchBulldog_mobile_1.mat using Guid(3d22db34f5947654780d714405e24247) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '514479fa4ff3802a93ebf9c889d31b41') in 0.002647583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ecae387984790565c22a0a9b140b6ddf DependenciesID=2ff324ac9ab8a8e8c454b29cbd8e6788 StaticDependenciesID=b5060494ee09954ca2969be3311ec1cb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Thread 0x1729cb000 may have been prematurely finalized
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-Editor.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Animation.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Animation.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Aseprite.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Aseprite.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Common.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Common.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Psdimporter.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Psdimporter.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.SpriteShape.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.SpriteShape.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.402 seconds
+Domain Reload Profiling: 810ms
+	BeginReloadAssembly (95ms)
+		DisableScriptedObjects (6ms)
+		CreateAndSetChildDomain (23ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (256ms)
+		LoadAssemblies (164ms)
+		AnalyzeDomain (118ms)
+			TypeCache.Refresh (7ms)
+			BuildScriptInfoCaches (104ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (402ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (84ms)
+			ProcessInitializeOnLoadAttributes (167ms)
+			ProcessInitializeOnLoadMethodAttributes (49ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+WARNING: Shader Unsupported: 'Universal Render Pipeline/VR/SpatialMapping/Wireframe' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7015 unused Assets / (4.9 MB). Loaded Objects now: 7855.
+Memory consumption went from 185.1 MB to 180.2 MB.
+Total: 6.456125 ms (FindLiveObjects: 0.358875 ms CreateObjectMapping: 0.181375 ms MarkObjects: 4.604417 ms  DeleteObjects: 1.311041 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 23.698979 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Readme.txt
+  importAddress: Guid(c244532bb2de38943b9d3756e8174135) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Readme.txt using Guid(c244532bb2de38943b9d3756e8174135) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '46c58995efced9940e8690d94b672d6b') in 0.022888791 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ac07903e5052ac19ac269785468346a2 DependenciesID=1c1eb756beac144928922ce7b8afcfa5 StaticDependenciesID=c969398f98cbef7bc36a4883888e9078 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/Prefabs/JRTerrier_c1.prefab
+  importAddress: Guid(dc4a84811f2c02c419e856f4a80783dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/Prefabs/JRTerrier_c1.prefab using Guid(dc4a84811f2c02c419e856f4a80783dc) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '24126c90997ad02a130614e0b7b67b47') in 0.024592666 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cd56dee9dfe74c249f29ad8f88b2f4ab DependenciesID=eed27735c0e79d9d04de6133fabcddf9 StaticDependenciesID=9964352314804b84021a16872753cd3f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/FBX
+  importAddress: Guid(a39b4eb509c29764380aff4e93b936f6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/FBX using Guid(a39b4eb509c29764380aff4e93b936f6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fc945a05edd941df415dbf188c320162') in 0.001528 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cb5a8e03467f6e902ee208e5f822ff10 DependenciesID=7656561b522f61ee4abb216ddd1c861c StaticDependenciesID=3ac8827631b75a936c6d15ac7c2058b4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/Rottweiler/Dog/FBX/Anim
+  importAddress: Guid(5279982908cca70448c83877cecaa8b1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Rottweiler/Dog/FBX/Anim using Guid(5279982908cca70448c83877cecaa8b1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '34c896d15a7a73fa9d0840d0c9a3a268') in 0.001636833 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0c1307bbf8d93d44bfd37ef94a03b963 DependenciesID=4f34665dda5346f4428d7376721ceb0f StaticDependenciesID=99b6ccd870e45326182916dcf6f76915 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/BullTerrier/Dog/FBX
+  importAddress: Guid(8fc3f978ef4ada147b757fd791fc3ce1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/BullTerrier/Dog/FBX using Guid(8fc3f978ef4ada147b757fd791fc3ce1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'febf0675f5a75b943b3d579edddafdc0') in 0.001400875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=19fdac677cb346cf5ee1ecc0ccf00f46 DependenciesID=c11ddefab21a90248e430fa6c5d6ff7f StaticDependenciesID=9f4983fcfed1b6467fb18404ccbc3bae 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_NoAlpha_c3.prefab
+  importAddress: Guid(a8a21dc764e5c364d8d053980998db96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_NoAlpha_c3.prefab using Guid(a8a21dc764e5c364d8d053980998db96) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'aaac1692980aa73a63498b850f8f4c12') in 0.00378475 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=65eb7b6380bb711e804fb74a09ac646a DependenciesID=06a2973c323792a919bdf51d9f5bdd3a StaticDependenciesID=d1454ff784e62fe87cd349a975d8b979 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Pitbull/Dog/Materials
+  importAddress: Guid(fcdbc474940948249b300d332fa12421) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pitbull/Dog/Materials using Guid(fcdbc474940948249b300d332fa12421) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '85664157ee99d1b368dc43b747c27ee4') in 0.001276208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c97c123a082b2e07c11821187a89f2e2 DependenciesID=d455c1f2fcc725cfbcb034807df36fcf StaticDependenciesID=a6a61a55714fbed1709b839f386a882c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/Textures
+  importAddress: Guid(d2b95c26ef071594789e1d0551ce50a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/Textures using Guid(d2b95c26ef071594789e1d0551ce50a1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e469e2b19ef09ab7a9969c7e5d3717dc') in 0.001401709 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a4d8e2c3ada36ab012ce441f5dfede95 DependenciesID=946e5e66df672ddf36cdaec1759285e1 StaticDependenciesID=26bc8214908362c19f78efa1b9c3c499 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Scenes
+  importAddress: Guid(b73c2175e2961b54e83a12d54dcd61be) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Scenes using Guid(b73c2175e2961b54e83a12d54dcd61be) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd2fa7dfd4be08aa07b148f0a08bb9f17') in 0.001340417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=13e97cb5932fe3a16ff588892a8ef6ec DependenciesID=edf0795b85f86d9a27db4a5a15fecd9e StaticDependenciesID=4484798c44d5bfcb4054482a4a27130a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/Textures/Labrador_Albedo2.tif
+  importAddress: Guid(a5865d8202ac0424384c1eaf01bec73a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/Textures/Labrador_Albedo2.tif using Guid(a5865d8202ac0424384c1eaf01bec73a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e743395b080e438f8aee3dba6e86f360') in 0.025032583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=df44f5272714b99014faff29e14ed635 DependenciesID=dcc106e40037d0f8535168f0322f8aaf StaticDependenciesID=5f5410be9e0440e3300dbfc6fa342414 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/FBX/Labrador_LowPoly.fbx
+  importAddress: Guid(76b638c591c64b14dabfe1c38c1fb4ba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/FBX/Labrador_LowPoly.fbx using Guid(76b638c591c64b14dabfe1c38c1fb4ba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '92174b36033739c03bfa2192ea323fc1') in 0.0102405 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=de8993a11fe1e92d5a82656938e0725a DependenciesID=71502410ceb003b1b8d2d0ea90230ded StaticDependenciesID=ac1d5a490349ec6ba53241a5c7dbb97b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/FBX/Dog_Mat.fbx
+  importAddress: Guid(d02e1ad0cb749c948ac46f8d1bc62d8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/FBX/Dog_Mat.fbx using Guid(d02e1ad0cb749c948ac46f8d1bc62d8f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6f21255aa1785f768e2f001eadf4207f') in 0.007595084 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8f313483e8803a029332b58c5bcb093d DependenciesID=53cc8ea7fb446d0557ff67b5949f9867 StaticDependenciesID=60009786975427729749b19e5318d6ae 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 24
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/FBX/Shepherd_LOD.fbx
+  importAddress: Guid(b6d8b97bebf527448aacb169aa485cb8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/FBX/Shepherd_LOD.fbx using Guid(b6d8b97bebf527448aacb169aa485cb8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd4f484cd2269a0f4f10f179916709225') in 0.006490208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b58a60f742b46958f2f653989d355287 DependenciesID=640c5f7306f0bb249a84e9ff8328ac44 StaticDependenciesID=4c9aa2357fcd68e8aa964cf228251ce1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 138
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Materials/GoldenRetriever_color_2.mat
+  importAddress: Guid(bbd691eaab6588848b4fdfa314a9949f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Materials/GoldenRetriever_color_2.mat using Guid(bbd691eaab6588848b4fdfa314a9949f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1f3362aaac329eb820bf25a96563d35f') in 0.022545333 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=822f7f48710bc4de4327622bf199a08c DependenciesID=b5f5c9b82317d580d19f0ac93d4d592e StaticDependenciesID=37fcae77cd084c91f8aab80042a0d35b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/Textures
+  importAddress: Guid(fe34d6e6086d1ca4887e06a680c37dba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/Textures using Guid(fe34d6e6086d1ca4887e06a680c37dba) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'eb1b52bfb1e7f7290fb0053fcab62a2f') in 0.00240325 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c9520bebc94d686ed8fb492d5b0b7d31 DependenciesID=ac784679575d9f159e43081ef6532726 StaticDependenciesID=914627837e7a68ec21d2e631a1a3b6f2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/Prefabs/JRTerrier_LOD_c3.prefab
+  importAddress: Guid(577b7da8227b525498c626e3dbcbb62f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/Prefabs/JRTerrier_LOD_c3.prefab using Guid(577b7da8227b525498c626e3dbcbb62f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '80cc50d633b046363a8f4e6902263cbe') in 0.003823125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9258da45543a169d35c6443cc5de833d DependenciesID=9f2c7db508ca824c7401f72c9811269d StaticDependenciesID=f434b0ca365610c5461fa0cb8cced54b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 139
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000085 seconds.
+  path: Assets/Red_Deer/Dogs/Doberman/Dog/Textures/Doberman_Albedo2.tif
+  importAddress: Guid(1a6f696fc4e9b8d448c41dcb08245235) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Doberman/Dog/Textures/Doberman_Albedo2.tif using Guid(1a6f696fc4e9b8d448c41dcb08245235) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4d3d87038815580ac393852281e79ec0') in 0.006768542 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a57fa062d0a4e1494e19c9fb69df1a2b DependenciesID=0a7b4a017b30cead2f60025ee31183d2 StaticDependenciesID=cc63cd13c5f9945b2d3499d7a2b343d9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Materials/ShibaInu_mobile_3.mat
+  importAddress: Guid(e19d4345eec67a242a1b413c6b01a577) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Materials/ShibaInu_mobile_3.mat using Guid(e19d4345eec67a242a1b413c6b01a577) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '321bd41cf2a309338e8023c4e3f08293') in 0.003280625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=77311130d8ef838faefa611c86e7cee3 DependenciesID=2276f26ec25e7fb0d77c10ac1803ce65 StaticDependenciesID=09c83d532650cc12c69d93da6d052e4c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/FBX/Dog_Boxer_LowPoly.fbx
+  importAddress: Guid(537ee3238737a57489849b6ad014ee8e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/FBX/Dog_Boxer_LowPoly.fbx using Guid(537ee3238737a57489849b6ad014ee8e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1de73406f952cf02906cf2bdab6c18a1') in 0.004426167 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5f08113ffc2147e5d462b91d7f5f8729 DependenciesID=a8248698b3bd251395ad013ac885d724 StaticDependenciesID=f47460ce4daf77d1cf79081538ba9d84 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000050 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/Prefabs/Corgi_c1.prefab
+  importAddress: Guid(1039512ad94f0cb4f9e3103daf3518ff) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/Prefabs/Corgi_c1.prefab using Guid(1039512ad94f0cb4f9e3103daf3518ff) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '521fbc994e62192ed5e654920c4447dc') in 0.00288 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3a3ac2ba4dc28d80541a9ea630488034 DependenciesID=0ac0fbf0febb01bd095ea77c607bf146 StaticDependenciesID=57395cdef2451d31dc87d22b40c50625 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/FBX
+  importAddress: Guid(b8f50b44b0052c44cb268ce0e6b423b8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/FBX using Guid(b8f50b44b0052c44cb268ce0e6b423b8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ebccd90c628a3b01cc810d9ecbba52cb') in 0.001364167 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9ab3229895595fecb40d50a2c3a3cc72 DependenciesID=c32bed38325b7218304a29b0fd188700 StaticDependenciesID=afdace9d92bce0dbad14d2456f9e024e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object
+  importAddress: Guid(4d3507f848266004b9a6b86ae3aa01ca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object using Guid(4d3507f848266004b9a6b86ae3aa01ca) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a8d04c16369d05421895a6c60e154aee') in 0.001481417 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7b02b5135c219663dc0356cb49c6422a DependenciesID=da1610d0c8cccb92be37ebdb9db22d80 StaticDependenciesID=2320edcde60e36c710480847cf69bde4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/FBX
+  importAddress: Guid(a72f30f5e9393974a8c5ed009af0a2b4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/FBX using Guid(a72f30f5e9393974a8c5ed009af0a2b4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f762351bd486292cfe2c4030778dea68') in 0.001581 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4e5840a5c3b35224ef289d44056f67fd DependenciesID=431e6ec4de5b462e0cf77fd1b419d7da StaticDependenciesID=df48fc58c54a353731eaa5b5dbf2e246 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Red_Deer/Dogs/ToyTerrier/Dog/Prefabs/ToyTerrier_NoAlpha_c2.prefab
+  importAddress: Guid(75202bf051de07d4884892b69ba1ccf5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ToyTerrier/Dog/Prefabs/ToyTerrier_NoAlpha_c2.prefab using Guid(75202bf051de07d4884892b69ba1ccf5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0e61d2762aafdaf8157c001675ab0a85') in 0.003545625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=539a1b784923bb407b759e927365f8ea DependenciesID=49623e25328b8586a507bad7a4fbd003 StaticDependenciesID=0d4bd45c41e98cbd385080c3ed769ffc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/Prefabs/Shepherd_NoAlpha_c1.prefab
+  importAddress: Guid(889e4e315b213424a9402d21387b0db5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/Prefabs/Shepherd_NoAlpha_c1.prefab using Guid(889e4e315b213424a9402d21387b0db5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '59f4e512f0f1e17f1afd0f4a0b4b4f8f') in 0.003733333 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=874782eb7cdd750147a84b0f49dc59a5 DependenciesID=f90743cc6b332565fe56041cba231740 StaticDependenciesID=000226cb129c879333d943fe3df092af 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/FBX/Shepherd_AContr_Demo.controller
+  importAddress: Guid(c6bdc6f8cdeeccd41be4b09cf54127da) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/FBX/Shepherd_AContr_Demo.controller using Guid(c6bdc6f8cdeeccd41be4b09cf54127da) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '84ed1bfb7b807fa7cd61ed403b6c3bf5') in 0.1021885 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=16da794986fa682242baabc24d3ecb72 DependenciesID=d7b57b86c818645f22c2ce8c14ee042f StaticDependenciesID=169096c191e195d0a2250d64328c49cb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 228
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Red_Deer/Dogs/Husky/Dog/Materials/Husky_mobile_3.mat
+  importAddress: Guid(2c49a96e8cbad0845bfcf2810ab88863) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Husky/Dog/Materials/Husky_mobile_3.mat using Guid(2c49a96e8cbad0845bfcf2810ab88863) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2f3c36721ddf7f154cb0fc782750895b') in 0.004101292 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be08dd4b390166e7b09102db97d92ae4 DependenciesID=bf0dd2e0cfe31dfa18fbf4ddc36162ac StaticDependenciesID=f8049908b9741aae0ab8edc4ade191a1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs/Labrador_c2.prefab
+  importAddress: Guid(f5852f2adc58cff478d93b218a9c67a0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador/Dog/Prefabs/Labrador_c2.prefab using Guid(f5852f2adc58cff478d93b218a9c67a0) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'ba47d9ab82a67a192e8e40cbf083fd4e') in 0.00391675 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8717b1e51dd445922ed06efa30be5815 DependenciesID=684ea7a5f629c7acec21313791bf50d2 StaticDependenciesID=550dc7e7af4c71175572b2ade7c3471a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/BullTerrier/Dog/Prefabs/BullTerrier_LOD_c3.prefab
+  importAddress: Guid(cbf6cb95a2a964c4e9b9f82ffba98a2e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/BullTerrier/Dog/Prefabs/BullTerrier_LOD_c3.prefab using Guid(cbf6cb95a2a964c4e9b9f82ffba98a2e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'be27ec2051850bb0962f81d9fd77c7de') in 0.004096916 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5b4cf0cbca2c41fb09ad47041ec2f81c DependenciesID=16d1935de7f185bb4c1b40edec00a8e7 StaticDependenciesID=82862aa7b1e56df8f7594eecb89b1ba8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 139
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/Materials/Shepherd_mobile_3.mat
+  importAddress: Guid(e2df1aa606254f1469913e13d575e62e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/Materials/Shepherd_mobile_3.mat using Guid(e2df1aa606254f1469913e13d575e62e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '20cd6a7d04d22d2b40014f4f7eb68e80') in 0.003826625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=30121da306d2341fbdf02ea8305da73b DependenciesID=42c77c6cac911a2c162cd607c4c6e0c8 StaticDependenciesID=474cab78cdd5b2a725854f24baef4eda 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/Husky/Dog/Prefabs
+  importAddress: Guid(51d7417a134f1d24983e7089c55f822c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Husky/Dog/Prefabs using Guid(51d7417a134f1d24983e7089c55f822c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f1437cd79231ce5cf313e6e16d388eb8') in 0.001368125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b8e44dfb9b2a6a1f40f888c0fe3287eb DependenciesID=efed1eb743ae3708ee2c5e98985eccae StaticDependenciesID=c9cdee440682969a66595f8f3e9a47aa 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Textures/FrenchBulldog_Metallic.tif
+  importAddress: Guid(883acacc1c09b574cbd29667172ec3ee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Textures/FrenchBulldog_Metallic.tif using Guid(883acacc1c09b574cbd29667172ec3ee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '439d9685559cc0cdaed632e413b24b54') in 0.006465583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=948df6f51bc61c2e113620cc41e49656 DependenciesID=6ec1e643b70c8902846cb220d7fd780c StaticDependenciesID=68c66b1704bc9d7cc09f36ad0de335f2 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/FBX/Anim/Dog_Boxer_anim_IP.fbx
+  importAddress: Guid(69aac36578d8e304eaf913f414973bce) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/FBX/Anim/Dog_Boxer_anim_IP.fbx using Guid(69aac36578d8e304eaf913f414973bce) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c490c2837b1ac46d7bf991566040b19c') in 0.16806875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a6dd2b9a160a9c9da84ef8fd305465cc DependenciesID=c53e151ccad1511f5deda51eaa04d0d6 StaticDependenciesID=04b518cf1d4c463543b8dee8ee563138 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 237
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/Beagle
+  importAddress: Guid(e838f9f51a7a10046afd29f2f8c31b89) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Beagle using Guid(e838f9f51a7a10046afd29f2f8c31b89) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5f4351cfad01fcea252dddf50befefe5') in 0.00139725 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d5c8cdbba3bb78cbf07d200d145c7a6d DependenciesID=7d79d6cc7f1d695172702072126bba54 StaticDependenciesID=b3573fc64d60b4c3f3c54741481e58f5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_LOD_c3.prefab
+  importAddress: Guid(5f5e8a2020952d342932ab545ed38213) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_LOD_c3.prefab using Guid(5f5e8a2020952d342932ab545ed38213) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9db60d8e523d0a947e3d0de9fa97bbd7') in 0.003648333 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ff8ca154188c2070df7bc487f8020a4d DependenciesID=bda55c7c41712eea04d00d24ad3a8ead StaticDependenciesID=2225844b9d5634134529763220f5a59c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 139
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Textures/Doghouse_Albedo.tif
+  importAddress: Guid(8d97db58076c26949b47af3db6905a34) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Textures/Doghouse_Albedo.tif using Guid(8d97db58076c26949b47af3db6905a34) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'b14b51e3cfcbe55fe2708832c3c75c66') in 0.006344375 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3be5f88b72bc47398f2af0d33c38a62c DependenciesID=82bb3a42adc374f0d648fa662106f4b3 StaticDependenciesID=b2598d4129e57cfc9e5fe0639fef75ff 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/BullTerrier/Dog/Prefabs/BullTerrier_LowPoly_c3.prefab
+  importAddress: Guid(c4f307ac6dfd19d448c39c8106882afb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/BullTerrier/Dog/Prefabs/BullTerrier_LowPoly_c3.prefab using Guid(c4f307ac6dfd19d448c39c8106882afb) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '638ccb72f8e982646a0d46086970a624') in 0.003971042 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a59eab2c9218f4231e063cab156196e0 DependenciesID=b3eefd6dd3b4f7c31e7013022ea39cee StaticDependenciesID=a869dcf7c71442b26523d026834892c8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/Materials/Pug_color_3.mat
+  importAddress: Guid(73ab1e592b92e294f9c1747b79753d38) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/Materials/Pug_color_3.mat using Guid(73ab1e592b92e294f9c1747b79753d38) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7d256758193bfc023caf23a4093cdab2') in 0.013277042 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e3dfb05b170cdf388f6b70eeecfd8808 DependenciesID=6d997482bea2e0ab07b96d6586b0fed9 StaticDependenciesID=780e175bd6a9d941a3f4fec14aba1c16 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Red_Deer/Dogs/Beagle/Dog/Textures/Beagle_Normal.tif
+  importAddress: Guid(8da78ad9c5b132e4694ccef66aa3c4e6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Beagle/Dog/Textures/Beagle_Normal.tif using Guid(8da78ad9c5b132e4694ccef66aa3c4e6) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '79e31408a8ce098a437412224a85e9bd') in 0.006251458 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cd541a071757783d9bef389ec9afb701 DependenciesID=5e050e1deac82a930c97cd04872b6360 StaticDependenciesID=89dac0cb132fa4a62a3340dac94cebfe 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/BullTerrier/Dog/Textures/BullTerrier_Albedo3_M.tif
+  importAddress: Guid(d96d39e2bfdcdda4b9ef28a9d929f27a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/BullTerrier/Dog/Textures/BullTerrier_Albedo3_M.tif using Guid(d96d39e2bfdcdda4b9ef28a9d929f27a) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5f83e004116d11f2a7a8c02132f59dfc') in 0.0037395 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=83dd83fb601fa73c4c08e89459159896 DependenciesID=3731515a01a9ee2ff75285223c686c18 StaticDependenciesID=4287d68e1f9e52374bdd06ddc842566c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/Pug/Dog/FBX/Pug_NoAlpha.fbx
+  importAddress: Guid(db0ce843d6c1700479f8cba0cc1b30db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pug/Dog/FBX/Pug_NoAlpha.fbx using Guid(db0ce843d6c1700479f8cba0cc1b30db) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7d19fab6e889cb132e7dbc30f1cfbf5c') in 0.003980875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f1df6cc7ad6beb69eceaf5750fb497ee DependenciesID=ef3408aca4d1554d7e27a1f737b11f4c StaticDependenciesID=8d9fa389fb2400ec79fa1d21bbf2778b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Albedo2.tif
+  importAddress: Guid(b9cd6a63aadd13148870bffbd4332021) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Textures/ShibaInu_Albedo2.tif using Guid(b9cd6a63aadd13148870bffbd4332021) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'fc2850090aa9b33a05db0e7a9a08c971') in 0.0078175 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4d4cafda2d48668727ceb98aea19924c DependenciesID=12af871320ffa0a18c1e0d003e37cfca StaticDependenciesID=73e55e05223367254482b18dd118e6fc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Prefabs/ShibaInu_c3.prefab
+  importAddress: Guid(d05b7d17e0f136f48b885ca11705c15c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Prefabs/ShibaInu_c3.prefab using Guid(d05b7d17e0f136f48b885ca11705c15c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8e43e9bbaa0c342f8287304815dbdfbe') in 0.003489208 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=271fc2ac9a2ca48d292b369940143930 DependenciesID=ae3ea7482131889e3c2e10c89f3e069f StaticDependenciesID=7424b8c3462e46ee7d9032e9021eab2b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Red_Deer/Dogs/Husky/Dog/Textures/Husky_Albedo2_M.tif
+  importAddress: Guid(1ff305f56c9d53241a277c8cd453dde4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Husky/Dog/Textures/Husky_Albedo2_M.tif using Guid(1ff305f56c9d53241a277c8cd453dde4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0e73e971111fa8880600953a5c9e7ca5') in 0.003125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f9965d623ef28f09fa4b40c6bf614efe DependenciesID=1bd20a5f09177a2d53ac06ec601a3374 StaticDependenciesID=18b967124d57e9e526345b64e251a2cc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_NoAlpha_c1.prefab
+  importAddress: Guid(5ad434ee37c0a3a4f930db091e234243) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dalmatian/Dog/Prefabs/Dalmatian_NoAlpha_c1.prefab using Guid(5ad434ee37c0a3a4f930db091e234243) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '432219e5fba1632a945f9383c8556f85') in 0.003139291 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3b704c623216738c40c435a489d33be2 DependenciesID=fe8493680ff928782de9e2b51560eb6e StaticDependenciesID=6adf55110af60ec14087ed6766da2827 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/FBX/Dog_Boxer_NoAlpha.fbx
+  importAddress: Guid(2c87c8fd27f0cf441b010a42a5f003a4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/FBX/Dog_Boxer_NoAlpha.fbx using Guid(2c87c8fd27f0cf441b010a42a5f003a4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '04832f180b27427c3ef3795cee2c391f') in 0.0046655 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aab238d2225e1b92b49a2dbcd1e0071e DependenciesID=37a611e00efecd6e5bcb66b3a554b801 StaticDependenciesID=d60654a03cb5a37b8e1afc3ff3870346 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/Prefabs/JRTerrier_NoAlpha_c1.prefab
+  importAddress: Guid(9ad542190f3b64741aae99a4567a2577) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/JackRussellTerrier/Dog/Prefabs/JRTerrier_NoAlpha_c1.prefab using Guid(9ad542190f3b64741aae99a4567a2577) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'bb6776374586ef3635e927c97ceb3ee4') in 0.003263083 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=205ae6713f1f37b0069ba3d331f4b44c DependenciesID=c3e46154f14b9fdce172c9242771d354 StaticDependenciesID=57cc328981e844b0b95ade31669a3c3a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Textures/FrenchBulldog_Albedo3_M.tif
+  importAddress: Guid(c7a6977be08367f49b6893ef81f63e79) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Textures/FrenchBulldog_Albedo3_M.tif using Guid(c7a6977be08367f49b6893ef81f63e79) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '684f6e8866e47c704e77656cc8c79591') in 0.003813625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2bd37cd4df286b619eb3fa502cce48fa DependenciesID=acf8386d3ea740a76259602bb68f3911 StaticDependenciesID=40ae6b8a18efeefdc51f3d2cd2ea3c76 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/Rottweiler/Dog/Prefabs/Rottweiler_NoAlpha_c2.prefab
+  importAddress: Guid(34e65eec7e7b7304cb95b225aaeb72c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Rottweiler/Dog/Prefabs/Rottweiler_NoAlpha_c2.prefab using Guid(34e65eec7e7b7304cb95b225aaeb72c3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '7a7e468e3baa6576f3e9c8cb71c85ebc') in 0.002981167 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fe3840e5c8f79c29664987244db52ecb DependenciesID=5561b779d846233c7cc94a3a254e2521 StaticDependenciesID=c94d9f280e617c448f6c42c65175b0ae 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 120
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Red_Deer/Dogs/ShibaInu/Dog/Prefabs/ShibaInu_anim_IP.prefab
+  importAddress: Guid(7a1bae1aece12a248bc9a58e2bffec99) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ShibaInu/Dog/Prefabs/ShibaInu_anim_IP.prefab using Guid(7a1bae1aece12a248bc9a58e2bffec99) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '28f3306bdf163add781e74e8abba3925') in 0.0027685 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d8c92ba1022b2ad8cedd5468fc9f64fc DependenciesID=6608136199fcfa9948ff2e193155e9a4 StaticDependenciesID=f7d83e3282deb87d331f1c0073471852 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Red_Deer/Dogs/Labrador
+  importAddress: Guid(708d14f68b82bf943b9fdbb518d978af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Labrador using Guid(708d14f68b82bf943b9fdbb518d978af) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd7d1a6ea2ea14a9138c632ce13fd04a2') in 0.001100209 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e5d7da19ca801feeed37b9db3611576e DependenciesID=40e947da8d5b4bc59f6efa214b8ae515 StaticDependenciesID=a6f2a2df7bd767dac87eb239299cbca3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Textures/Dog_bed_Albedo_2.tif
+  importAddress: Guid(ae9ba1d5016d3f84184614321feede98) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Textures/Dog_bed_Albedo_2.tif using Guid(ae9ba1d5016d3f84184614321feede98) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9d7c3eb6696bf21476c970c061a93b6b') in 0.006835292 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2b66301d0ed52087a98963afbc5fd21e DependenciesID=a037afbae2fb7be59fa7519b32febbe9 StaticDependenciesID=c00a376da92130f6941405ea93b46b25 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/Red_Deer/Dogs/Doberman/Dog/Prefabs/Doberman_LOD_c3.prefab
+  importAddress: Guid(7512ac3a7ef28304aab9634f0a0c8fb9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Doberman/Dog/Prefabs/Doberman_LOD_c3.prefab using Guid(7512ac3a7ef28304aab9634f0a0c8fb9) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9843f71394c0a1780ed1154f0ac83653') in 0.003482083 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6bd1ccdae3a21042c3fca781f04daa2b DependenciesID=65793fd52be418343ce5d85527ff6301 StaticDependenciesID=6919c78a3f0c60f22211394bc9b0ca6f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 133
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Readme.txt
+  importAddress: Guid(b13b2015b027e5846a804590a54db285) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Readme.txt using Guid(b13b2015b027e5846a804590a54db285) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'cb8e1c84f03d5d00b11f03d8275c5b8a') in 0.001356542 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=80a24fc1c01b0a77c87ce716c1e72d07 DependenciesID=ce8a98437c842a5a47b5cc7cedd4c1a8 StaticDependenciesID=d200cb5e03a00b9f49efcc9fc2469cbd 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Materials/GoldenRetriever_color_3.mat
+  importAddress: Guid(b1f6e5ab57db3d24bba6c24fe415f66c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Materials/GoldenRetriever_color_3.mat using Guid(b1f6e5ab57db3d24bba6c24fe415f66c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'abe13f164d5e0c720497dc080d2d62a2') in 0.014076334 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=99613bcbca2889497ee4bb8bd4e0b786 DependenciesID=62d0c369edf8e9021380cfb6f817f8a1 StaticDependenciesID=7c5f7c8c61d57e5f10b8129d90f7addc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/Red_Deer
+  importAddress: Guid(729118a5c13754a82bdfd0ef6f289952) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer using Guid(729118a5c13754a82bdfd0ef6f289952) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e21cf543625158aba63d0243a26a29f3') in 0.001242916 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=586d43d653eb3af5cf6630b5b7f86c81 DependenciesID=0a7872ba36c1f81b0cb2430ffb0c80b3 StaticDependenciesID=0f8ea4968f6de08e63a2e16ad4dae48a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Big_ball_3.prefab
+  importAddress: Guid(95c7008e3ff21d2499a5c9e04f3dc18c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Prefabs/Big_ball_3.prefab using Guid(95c7008e3ff21d2499a5c9e04f3dc18c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '05f1b1ab3c03333539b0d4d7dcbaa58a') in 0.0129745 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d60d2b9879f86b17ce8ea20a917eb193 DependenciesID=757c83d6687aa774aed0a4cb147283b9 StaticDependenciesID=98a4b6c998f0bb3da93f32f30b7546fc 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 9
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/FBX/Anim
+  importAddress: Guid(b3aac8c10890411408a2c6c81fc30592) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Dog/FBX/Anim using Guid(b3aac8c10890411408a2c6c81fc30592) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5444bd8151d40403730245fef922c4ea') in 0.001408083 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=48bc15354b328dae5e5dd19f5c45bebc DependenciesID=115b8165a0f7f7affb240bd1fafc3be1 StaticDependenciesID=9a0e4e0963757af17c6d1d237f3f070c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Dog/FBX/Spitz_NoAlpha.fbx
+  importAddress: Guid(9b1c121150f1da84aa868bc70d4880a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Dog/FBX/Spitz_NoAlpha.fbx using Guid(9b1c121150f1da84aa868bc70d4880a3) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '784ba70ad12639f4011225fdc61dd278') in 0.003962583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c0bca767d17d0bef3f9af10039283a7b DependenciesID=4fc6db37592517aa21fb6131d02bd27d StaticDependenciesID=7b0a23cf826c60dcc08d93f988aa165a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Red_Deer/Dogs/ToyTerrier/Dog/Prefabs/ToyTerrier_LowPoly_c1.prefab
+  importAddress: Guid(2626710d2aabf3448afc46289d5b3008) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ToyTerrier/Dog/Prefabs/ToyTerrier_LowPoly_c1.prefab using Guid(2626710d2aabf3448afc46289d5b3008) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '2ab8f5822f9e5460315c5c77568e043f') in 0.003088625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=12b9dd0d22e46673e7ae9b45afcdb7fe DependenciesID=2e550ef5ddaac7ec45e5bd759e7245bb StaticDependenciesID=a1bd8f4de9140ccd9223309fd8f1f756 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Red_Deer/Dogs/Husky/Dog/Textures/Husky_Albedo2.tif
+  importAddress: Guid(c0e851377f268024dacb3af0e4f918dd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Husky/Dog/Textures/Husky_Albedo2.tif using Guid(c0e851377f268024dacb3af0e4f918dd) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '1147f521012c1279d7393955f176cef8') in 0.006819084 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=87370d7acc88b04355efef25880d036d DependenciesID=847549449fc24ae70208627faea5cb6b StaticDependenciesID=0357ae01a96c577e64710ad7a4e61eca 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Red_Deer/Dogs/Husky/Dog/Prefabs/Husky_anim_IP.prefab
+  importAddress: Guid(af909c542f093a5479724e7ef6b495c7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Husky/Dog/Prefabs/Husky_anim_IP.prefab using Guid(af909c542f093a5479724e7ef6b495c7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a30f6ab19a7e5f2719b6e3c219ddbbba') in 0.004875583 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=68914259b4f59f5350217642629f4ba9 DependenciesID=b74b2854c17b18b9f37f07fd222494de StaticDependenciesID=d2def3bd5d76727f4122ff466e9d4361 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/FBX
+  importAddress: Guid(ab64c2b9b71f633498c1478c796913b5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/FBX using Guid(ab64c2b9b71f633498c1478c796913b5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3f19807776e639145dcf58e8c76c915e') in 0.001327 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3372f418a56ae8b4b0ddc1702cb45cd5 DependenciesID=8a3606239758a9ba5d94e36ab90061a7 StaticDependenciesID=e8d73cd8b6e20adc78ddd592f012457b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Dog/Prefabs/Spitz_LOD_c2.prefab
+  importAddress: Guid(345240fa31a6a034aaada043ed9610e1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Dog/Prefabs/Spitz_LOD_c2.prefab using Guid(345240fa31a6a034aaada043ed9610e1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd9c6e127caeaa0987707a53922e2d5ba') in 0.0034565 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c398f8b9275b0433657772ee8f6e449a DependenciesID=429db4d9f654c9d4f281e478ae0deddb StaticDependenciesID=3cd2b4a9ffde0f6eb388849b6422e2fa 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 139
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/Red_Deer/Dogs/Dalmatian/Dog/FBX/Anim/Dalmatian_anim_RM.fbx
+  importAddress: Guid(b910da372d3fa1943b89f5eca038b107) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dalmatian/Dog/FBX/Anim/Dalmatian_anim_RM.fbx using Guid(b910da372d3fa1943b89f5eca038b107) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '34b8b00380adc8c238921917523b55bb') in 0.222858584 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=97b641d17e4b0590bbeb10425fa2f99f DependenciesID=d4e02b0535fe64ca520de479040ee744 StaticDependenciesID=7323a6af49e0add61e963a9352c0238b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 238
+
+========================================================================
+Received Prepare
+WARNING: Shader Unsupported: 'Universal Render Pipeline/VR/SpatialMapping/Wireframe' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7002 unused Assets / (5.0 MB). Loaded Objects now: 7853.
+Memory consumption went from 187.5 MB to 182.5 MB.
+Total: 6.879250 ms (FindLiveObjects: 0.347000 ms CreateObjectMapping: 0.173709 ms MarkObjects: 5.226791 ms  DeleteObjects: 1.131250 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.819791 seconds.
+  path: Assets/Red_Deer/Dogs/Shepherd/Dog/Prefabs/Shepherd_anim_RM.prefab
+  importAddress: Guid(97bc086dae2d01e41bef603e4a8aeee8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Shepherd/Dog/Prefabs/Shepherd_anim_RM.prefab using Guid(97bc086dae2d01e41bef603e4a8aeee8) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '98acd1af57ca5afce6f0401fa6cde31d') in 0.0045735 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aadc668f9f379324f7b236071df4eb99 DependenciesID=c8057f4fd6ef6d9bde1d5e3008d58821 StaticDependenciesID=21aa89f2c57578fe591113a6945d54ab 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000051 seconds.
+  path: Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_c2.prefab
+  importAddress: Guid(d46abe737396655419e6444f23a0fd69) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Pitbull/Dog/Prefabs/Pitbull_c2.prefab using Guid(d46abe737396655419e6444f23a0fd69) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5acb4f1e72d7e502349ef5224f6cf29a') in 0.003405792 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4057808ff2e39adcecfc6ae9c65b86b5 DependenciesID=57df260ed5c7953d2f0f70b76b986eac StaticDependenciesID=f1adf5b696d80d3393bd35ebc2a70592 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000114 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/Prefabs/Dog_Boxer_c3.prefab
+  importAddress: Guid(fe5920232ad983f458310807747affed) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/Prefabs/Dog_Boxer_c3.prefab using Guid(fe5920232ad983f458310807747affed) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '4ccd93f674810ec2d21ad4ebc8e806d2') in 0.006128 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9b2c30463d493c53b9287ba15cef78d1 DependenciesID=b4e353fa40b38b42c1b18f80738faede StaticDependenciesID=70b86f2e014cd2591ac37530a028ce72 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/FBX/Corgi.fbx
+  importAddress: Guid(d21104890315843419bf49ef411303d5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/FBX/Corgi.fbx using Guid(d21104890315843419bf49ef411303d5) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5ce593aa1d40e1e5b1004fa570f12763') in 0.004888333 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0c81641e07e0650fee20f3a657b49b12 DependenciesID=200c03447d0008383769736f9dcbf911 StaticDependenciesID=71cc40a33200bf564fc8b6e4c0feda45 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs
+  importAddress: Guid(90c8d210b70a3854cae0a40931a4e16c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/FrenchBulldog/Dog/Prefabs using Guid(90c8d210b70a3854cae0a40931a4e16c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '844706d1ee467e2c517827e42869d7ba') in 0.001146959 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fb3f436ce13b574370b54e24a2de38e1 DependenciesID=01146a9a2d93e0521802a21b72705ed2 StaticDependenciesID=0e4b26c2b254aa48418c426047a3be2a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/Red_Deer/Dogs/Doberman/Dog/FBX/Anim
+  importAddress: Guid(89bbfa008cc00024a86a390e0d908162) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Doberman/Dog/FBX/Anim using Guid(89bbfa008cc00024a86a390e0d908162) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '0befd6be974ad76c5db8f62a138cdb4f') in 0.001370125 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b4396de1f71ccdfab31140fe18af2a60 DependenciesID=217f3470a08f46f473e956b29f4770b3 StaticDependenciesID=732bf1cc3b3349abd3b4c1172e48db67 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001321 seconds.
+  path: Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo1_M.tif
+  importAddress: Guid(cc16cefa4c4fecf4190a0e57cf39353f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Boxer/Dog/Textures/Boxer_Albedo1_M.tif using Guid(cc16cefa4c4fecf4190a0e57cf39353f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '72a1cbc20c4c0f667f7792f68fd8dbbf') in 0.0050805 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d98e4fcf862f4889a41121b9a0dedd57 DependenciesID=82b373042f3ae602d8aba9b863cce896 StaticDependenciesID=cc020726913b39c5e55f8c4b4487aeeb 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Red_Deer/Dogs/ToyTerrier/Dog/FBX/ToyTerrier_LowPoly.fbx
+  importAddress: Guid(7b65792d58b6c80468df65c9a75dbe1d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/ToyTerrier/Dog/FBX/ToyTerrier_LowPoly.fbx using Guid(7b65792d58b6c80468df65c9a75dbe1d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '54de2386901f1ca6fd6b1814d9555bf9') in 0.004949542 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d79778ab127690a4f40473247b77c7ff DependenciesID=a7119de3cfeb8876d0fe255880ad4e60 StaticDependenciesID=55ac480e57b99257585431c79e17a286 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 125
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003853 seconds.
+  path: Assets/Red_Deer/Dogs/Dog_Object/Materials
+  importAddress: Guid(728b0acdcbd23dd459a7202332b55df1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Dog_Object/Materials using Guid(728b0acdcbd23dd459a7202332b55df1) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '8c4618e481cb99db99c948d976abbe51') in 0.001325459 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=704f69fa8d4efa35291c82a27ec672df DependenciesID=b7c9c1f391f4220704ba8a5501d1b85f StaticDependenciesID=b5479dc08aec7de158d45a4cf01165c9 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/Red_Deer/Dogs/Spitz/Dog
+  importAddress: Guid(251bbf3aa63207846bfb7f61355e7e4f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Spitz/Dog using Guid(251bbf3aa63207846bfb7f61355e7e4f) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '08e795d1da5914af0b4c6e5fc663c1f5') in 0.001366625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f85b82a01112533890745e18a018beae DependenciesID=64dd8931182715c41c3c1d8ed67374ae StaticDependenciesID=3d60fa264bc99cc6fe89971a4b90f219 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/Prefabs/Corgi_c3.prefab
+  importAddress: Guid(72e64e9c4a1ac054e963c792c4c2471e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/Prefabs/Corgi_c3.prefab using Guid(72e64e9c4a1ac054e963c792c4c2471e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '10d14061de5ad3ad4f1ab769f24742aa') in 0.002960083 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8e1de0a704c0fb8ff675d51fc5107811 DependenciesID=a71fd28053ab62fa85ad2241a14681a9 StaticDependenciesID=c7e9194d7af8fd7ba88035032da9fd51 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 126
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.012579 seconds.
+  path: Assets/Red_Deer/Dogs/Corgi/Dog/Materials/Corgi_mobile_2.mat
+  importAddress: Guid(a2751992159285245b2f37bff51e0eae) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Red_Deer/Dogs/Corgi/Dog/Materials/Corgi_mobile_2.mat using Guid(a2751992159285245b2f37bff51e0eae) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f1d0c8bcb351ee69e7f152af4f07c95e') in 0.002730875 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=820b1364f6e7233394e69f7bd81d854e DependenciesID=4b29f9c0fe9514975f35410d108853e3 StaticDependenciesID=7af3db6c04cbb3e385a160b4c3bf691a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Thread 0x16d21b000 may have been prematurely finalized
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-Editor.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp.dll at Library/ScriptAssemblies/Assembly-CSharp.dll not valid. Loading of assembly skipped.
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Animation.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Animation.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Aseprite.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Aseprite.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Common.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Common.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Psdimporter.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Psdimporter.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.SpriteShape.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.SpriteShape.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.404 seconds
+Domain Reload Profiling: 810ms
+	BeginReloadAssembly (94ms)
+		DisableScriptedObjects (6ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (23ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (255ms)
+		LoadAssemblies (164ms)
+		AnalyzeDomain (118ms)
+			TypeCache.Refresh (7ms)
+			BuildScriptInfoCaches (104ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (404ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (84ms)
+			ProcessInitializeOnLoadAttributes (169ms)
+			ProcessInitializeOnLoadMethodAttributes (47ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+WARNING: Shader Unsupported: 'Universal Render Pipeline/VR/SpatialMapping/Wireframe' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7012 unused Assets / (5.0 MB). Loaded Objects now: 7856.
+Memory consumption went from 194.6 MB to 189.6 MB.
+Total: 6.378000 ms (FindLiveObjects: 0.377084 ms CreateObjectMapping: 0.201375 ms MarkObjects: 4.527166 ms  DeleteObjects: 1.272209 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 30.172426 seconds.
+  path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Materials/GoldenRetriever_color_3.mat
+  importAddress: Guid(b1f6e5ab57db3d24bba6c24fe415f66c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Materials/GoldenRetriever_color_3.mat using Guid(b1f6e5ab57db3d24bba6c24fe415f66c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '999e60df166a696734469ca741d22311') in 0.222170625 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=610ffccbe11df6a9fb2dea23f615103c DependenciesID=5a780a3c44bb4a34c2102d93284e9f3d StaticDependenciesID=05c969fac1f814c5a25b4c9ad08e0de5 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 4
+
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+[Licensing::Client] Successfully resolved entitlement details
+Thread 0x16d21b000 may have been prematurely finalized
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-Editor.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp.dll at Library/ScriptAssemblies/Assembly-CSharp.dll not valid. Loading of assembly skipped.
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Animation.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Animation.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Aseprite.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Aseprite.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Common.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Common.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Psdimporter.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Psdimporter.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Sprite.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Sprite.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.SpriteShape.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.SpriteShape.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.2D.Tilemap.Package.EditorTests.dll at Library/ScriptAssemblies/Unity.2D.Tilemap.Package.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.413 seconds
+Domain Reload Profiling: 826ms
+	BeginReloadAssembly (105ms)
+		DisableScriptedObjects (13ms)
+		CreateAndSetChildDomain (30ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (24ms)
+	LoadAllAssembliesAndSetupDomain (248ms)
+		LoadAssemblies (155ms)
+		AnalyzeDomain (117ms)
+			TypeCache.Refresh (5ms)
+			BuildScriptInfoCaches (105ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (413ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (85ms)
+			ProcessInitializeOnLoadAttributes (174ms)
+			ProcessInitializeOnLoadMethodAttributes (52ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+WARNING: Shader Unsupported: 'Universal Render Pipeline/VR/SpatialMapping/Wireframe' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Unloading 26 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7012 unused Assets / (4.5 MB). Loaded Objects now: 7920.
+Memory consumption went from 205.0 MB to 200.6 MB.
+Total: 6.586291 ms (FindLiveObjects: 0.372708 ms CreateObjectMapping: 0.150666 ms MarkObjects: 4.773625 ms  DeleteObjects: 1.288709 ms)
+
+Prepare: number of updated asset objects reloaded= 0
