@@ -87,6 +87,7 @@ namespace AgilityDogs.Editor
             GameObject gameManager = CreateGameManager();
             GameObject sceneBootstrap = CreateSceneBootstrap();
             GameObject replayManager = CreateReplayManager();
+            GameObject commentarySystem = CreateCommentarySystem();
             
             // Create event system (if needed)
             CreateEventSystem();
@@ -104,6 +105,8 @@ namespace AgilityDogs.Editor
             Debug.Log("2. Assign BreedData asset to DogAgentController");
             Debug.Log("3. Assign obstacle references in CourseRunner");
             Debug.Log("4. Set up input actions in InputSystem_Actions");
+            Debug.Log("5. Configure .env file with ElevenLabs API key and voice IDs");
+            Debug.Log("6. Set up Eastworld agents via Agent Studio and assign UUIDs in CommentaryManager");
             
             // Select the scene
             Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(scenePath);
@@ -319,6 +322,32 @@ namespace AgilityDogs.Editor
             // The ReplayManager will find them via FindObjectOfType
             
             return replayManagerObj;
+        }
+
+        private static GameObject CreateCommentarySystem()
+        {
+            GameObject commentaryObj = new GameObject("CommentarySystem");
+            
+            // Add required services
+            ElevenLabsService elevenLabs = commentaryObj.AddComponent<ElevenLabsService>();
+            EastworldClient eastworld = commentaryObj.AddComponent<EastworldClient>();
+            CommentaryManager commentaryManager = commentaryObj.AddComponent<CommentaryManager>();
+            
+            // Add AudioSources for two announcers
+            AudioSource mainAnnouncerSource = commentaryObj.AddComponent<AudioSource>();
+            AudioSource colorCommentatorSource = commentaryObj.AddComponent<AudioSource>();
+            
+            // Configure AudioSources
+            mainAnnouncerSource.playOnAwake = false;
+            colorCommentatorSource.playOnAwake = false;
+            mainAnnouncerSource.spatialBlend = 0f; // 2D
+            colorCommentatorSource.spatialBlend = 0f;
+            
+            // Assign references via reflection (since they are private SerializeField)
+            // We'll rely on FindObjectOfType in Awake for now
+            // The CommentaryManager will find the ElevenLabsService and EastworldClient on the same GameObject
+            
+            return commentaryObj;
         }
 
         private static void CreateEventSystem()
