@@ -1,4 +1,6 @@
 using UnityEngine;
+using AgilityDogs.Core;
+using AgilityDogs.Events;
 
 namespace AgilityDogs.Presentation.Camera
 {
@@ -27,6 +29,14 @@ namespace AgilityDogs.Presentation.Camera
         private float currentDistance;
         private float currentHeight;
         private bool isFollowing = true;
+        private Transform[] cinematicWaypoints;
+        private float cinematicDuration;
+        private float cinematicProgress;
+        private bool cinematicLoop = false;
+        private CameraMode previousMode;
+        private float cutawayDuration = 2f;
+        private float cutawayTimer;
+        private int cutawayAngleIndex;
 
         public enum CameraMode
         {
@@ -35,10 +45,43 @@ namespace AgilityDogs.Presentation.Camera
             SideOn,
             DogPOV,
             Cinematic,
-            Free
+            Free,
+            Cutaway
         }
 
         public CameraMode CurrentMode => currentMode;
+
+        private void OnEnable()
+        {
+            GameEvents.OnObstacleCompleted += HandleObstacleCompleted;
+            GameEvents.OnFaultCommitted += HandleFaultCommitted;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.OnObstacleCompleted -= HandleObstacleCompleted;
+            GameEvents.OnFaultCommitted -= HandleFaultCommitted;
+        }
+
+        private void HandleObstacleCompleted(ObstacleType type, bool clean)
+        {
+            TriggerCutaway(2f);
+        }
+
+        private void HandleFaultCommitted(FaultType fault, string obstacleName)
+        {
+            TriggerCutaway(3f);
+        }
+
+        public void TriggerCutaway(float duration)
+        {
+            if (currentMode == CameraMode.Cutaway) return; // already in cutaway
+            previousMode = currentMode;
+            cutawayDuration = duration;
+            cutawayTimer = 0f;
+            cutawayAngleIndex = Random.Range(0, 4); // assume 4 predefined angles
+            currentMode = CameraMode.Cutaway;
+        }
 
         private void LateUpdate()
         {
@@ -59,8 +102,12 @@ namespace AgilityDogs.Presentation.Camera
                     UpdateDogPOV();
                     break;
                 case CameraMode.Cinematic:
+                    UpdateCinematicCamera();
                     break;
                 case CameraMode.Free:
+                    break;
+                case CameraMode.Cutaway:
+                    UpdateCutawayCamera();
                     break;
             }
         }
@@ -134,6 +181,94 @@ namespace AgilityDogs.Presentation.Camera
             transform.rotation = Quaternion.LookRotation(target.forward);
         }
 
+        private void UpdateCinematicCamera()
+        {
+            if (cinematicWaypoints == null || cinematicWaypoints.Length < 2)
+            {
+                // Not enough waypoints, fallback to follow camera
+                UpdateFollowCamera();
+                return;
+            }
+
+            if (cinematicDuration <= 0f)
+            {
+                cinematicDuration = 5f; // default duration
+            }
+
+            cinematicProgress += Time.deltaTime / cinematicDuration;
+            if (cinematicProgress >= 1f)
+            {
+                if (cinematicLoop)
+                {
+                    cinematicProgress = 0f;
+                }
+                else
+                {
+                    // Cinematic finished, return to follow camera
+                    currentMode = CameraMode.Follow;
+                    return;
+                }
+            }
+
+            // Find current segment
+            int totalSegments = cinematicWaypoints.Length - 1;
+            float segmentProgress = cinematicProgress * totalSegments;
+            int segmentIndex = Mathf.FloorToInt(segmentProgress);
+            if (segmentIndex >= totalSegments) segmentIndex = totalSegments - 1;
+            float segmentT = segmentProgress - segmentIndex;
+
+            Vector3 start = cinematicWaypoints[segmentIndex].position;
+            Vector3 end = cinematicWaypoints[segmentIndex + 1].position;
+            Vector3 position = Vector3.Lerp(start, end, segmentT);
+
+            // Use smooth damping for smoother movement
+            transform.position = Vector3.SmoothDamp(transform.position, position, ref smoothVelocity, positionSmoothTime);
+
+            // Look at target or next waypoint
+            Vector3 lookTarget = target != null ? target.position : end;
+            Quaternion desiredRotation = Quaternion.LookRotation(lookTarget - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, lookSpeed * Time.deltaTime);
+        }
+
+        private void UpdateCutawayCamera()
+        {
+            cutawayTimer += Time.unscaledDeltaTime; // use unscaled time if timeScale is 0
+            if (cutawayTimer >= cutawayDuration)
+            {
+                // Cutaway finished, return to previous mode
+                currentMode = previousMode;
+                return;
+            }
+
+            if (target == null) return;
+
+            Vector3 targetPos = target.position + targetOffset;
+            Vector3 desiredPosition = Vector3.zero;
+
+            switch (cutawayAngleIndex)
+            {
+                case 0: // side left
+                    desiredPosition = targetPos - target.right * followDistance + Vector3.up * followHeight;
+                    break;
+                case 1: // side right
+                    desiredPosition = targetPos + target.right * followDistance + Vector3.up * followHeight;
+                    break;
+                case 2: // front low
+                    desiredPosition = targetPos - target.forward * followDistance * 0.5f + Vector3.up * followHeight * 0.3f;
+                    break;
+                case 3: // rear high
+                    desiredPosition = targetPos + target.forward * followDistance * 0.8f + Vector3.up * followHeight * 1.5f;
+                    break;
+                default:
+                    desiredPosition = targetPos - target.forward * followDistance + Vector3.up * followHeight;
+                    break;
+            }
+
+            transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref smoothVelocity, positionSmoothTime);
+            Quaternion desiredRotation = Quaternion.LookRotation(targetPos - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, lookSpeed * Time.deltaTime);
+        }
+
         public void SetTarget(Transform newTarget)
         {
             target = newTarget;
@@ -157,8 +292,17 @@ namespace AgilityDogs.Presentation.Camera
             currentMode = (CameraMode)nextMode;
         }
 
-        public void SetCinematicPath(Transform[] waypoints, float duration)
+        public void SetCinematicPath(Transform[] waypoints, float duration, bool loop = false)
         {
+            if (waypoints == null || waypoints.Length < 2)
+            {
+                Debug.LogError("Cinematic path requires at least two waypoints");
+                return;
+            }
+            cinematicWaypoints = waypoints;
+            cinematicDuration = duration;
+            cinematicProgress = 0f;
+            cinematicLoop = loop;
             currentMode = CameraMode.Cinematic;
         }
     }
