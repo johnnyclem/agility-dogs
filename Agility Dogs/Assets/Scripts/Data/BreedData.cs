@@ -64,6 +64,7 @@ namespace AgilityDogs.Data
         [Header("Visual")]
         public RuntimeAnimatorController animatorController;
         public GameObject prefab;
+        public Sprite portrait;
 
         [Header("Personality")]
         [TextArea(2, 4)]

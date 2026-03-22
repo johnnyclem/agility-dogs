@@ -21,6 +21,7 @@ namespace AgilityDogs.Events
         public static event Action<Vector3> OnHandlerLeanChanged;
         public static event Action<float> OnHandlerPathInfluence;
         public static event Action<Core.RecoveryReason> OnDogRecovery;
+        public static event Action<string, float> OnPersonalBestRecorded;
 
         public static void RaiseGameStateChanged(GameState from, GameState to)
             => OnGameStateChanged?.Invoke(from, to);
@@ -66,5 +67,8 @@ namespace AgilityDogs.Events
 
         public static void RaiseDogRecovery(Core.RecoveryReason reason)
             => OnDogRecovery?.Invoke(reason);
+
+        public static void RaisePersonalBestRecorded(string splitName, float time)
+            => OnPersonalBestRecorded?.Invoke(splitName, time);
     }
 }
