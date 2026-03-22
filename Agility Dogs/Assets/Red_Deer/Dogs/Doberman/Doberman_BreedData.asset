@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Doberman_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Doberman
+  displayName: Doberman Pinscher
+  modelScale: 1.2
+  maxSpeed: 10.5
+  acceleration: 10
+  deceleration: 9
+  turnRate: 380
+  turningRadius: 0.55
+  responsiveness: 0.85
+  momentumFactor: 0.6
+  handlingTolerance: 0.75
+  weaveSpeed: 1
+  contactSpeed: 0.95
+  jumpPower: 1.15
+  animatorController: {fileID: 9100000, guid: 3ab570371d333114fb2a8e966dcd1406, type: 2}
+  prefab: {fileID: 8668571720231685338, guid: 49bb9b2333c32664eb91cec96073a7b4, type: 3}
+  description: Dobermans are athletic and intelligent, with good speed and turning
+    ability for agility.
+  defaultDivision: 4

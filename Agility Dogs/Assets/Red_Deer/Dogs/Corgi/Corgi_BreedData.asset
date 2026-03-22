@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Corgi_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Corgi
+  displayName: Pembroke Welsh Corgi
+  modelScale: 0.8
+  maxSpeed: 8
+  acceleration: 7
+  deceleration: 8
+  turnRate: 320
+  turningRadius: 0.55
+  responsiveness: 0.8
+  momentumFactor: 0.65
+  handlingTolerance: 0.75
+  weaveSpeed: 0.9
+  contactSpeed: 0.9
+  jumpPower: 0.75
+  animatorController: {fileID: 9100000, guid: a2893303e04e1774081bde6244c5e6e4, type: 2}
+  prefab: {fileID: 6736239397122889163, guid: d61f388d3e2436844bed1109affa5239, type: 3}
+  description: Corgis are surprisingly agile for their body type. They're known for
+    their determination and strong work ethic.
+  defaultDivision: 0

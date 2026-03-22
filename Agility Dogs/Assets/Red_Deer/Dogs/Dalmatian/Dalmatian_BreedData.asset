@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Dalmatian_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Dalmatian
+  displayName: Dalmatian
+  modelScale: 1.15
+  maxSpeed: 10
+  acceleration: 9
+  deceleration: 8
+  turnRate: 350
+  turningRadius: 0.6
+  responsiveness: 0.75
+  momentumFactor: 0.6
+  handlingTolerance: 0.7
+  weaveSpeed: 1
+  contactSpeed: 0.95
+  jumpPower: 1.05
+  animatorController: {fileID: 9100000, guid: 4450909f70bb7ca458b6d0c1391e6f7f, type: 2}
+  prefab: {fileID: 7629223995365978617, guid: b604c472db500b743bc9c7f9b629f3af, type: 3}
+  description: Athletic and energetic, Dalmatians have the stamina for multiple runs
+    and excel in longer courses.
+  defaultDivision: 4

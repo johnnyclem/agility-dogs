@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: ShibaInu_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: ShibaInu
+  displayName: Shiba Inu
+  modelScale: 0.85
+  maxSpeed: 8.5
+  acceleration: 8
+  deceleration: 8
+  turnRate: 350
+  turningRadius: 0.55
+  responsiveness: 0.7
+  momentumFactor: 0.65
+  handlingTolerance: 0.6
+  weaveSpeed: 0.9
+  contactSpeed: 0.85
+  jumpPower: 0.9
+  animatorController: {fileID: 9100000, guid: 982e96d0c517241468b5fd0f1fea06e1, type: 2}
+  prefab: {fileID: 2843221387227636988, guid: 15e4a66f20bc8d9448cf1206aa4a206f, type: 3}
+  description: Shiba Inus are agile but independent-minded, requiring patient training
+    for agility success.
+  defaultDivision: 1

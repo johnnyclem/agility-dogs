@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: ToyTerrier_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: ToyTerrier
+  displayName: Toy Manchester Terrier
+  modelScale: 0.6
+  maxSpeed: 7.5
+  acceleration: 8
+  deceleration: 8
+  turnRate: 450
+  turningRadius: 0.35
+  responsiveness: 0.85
+  momentumFactor: 0.4
+  handlingTolerance: 0.7
+  weaveSpeed: 0.95
+  contactSpeed: 0.8
+  jumpPower: 0.85
+  animatorController: {fileID: 9100000, guid: cdd20700e9cb0af4abc98e90c2e317de, type: 2}
+  prefab: {fileID: 8626819080595224219, guid: ecd1ec491097c4b4db89276c8d12548f, type: 3}
+  description: Toy Terriers are quick and agile, excelling in technical courses despite
+    their small size.
+  defaultDivision: 0

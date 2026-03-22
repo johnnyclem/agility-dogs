@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Rottweiler_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Rottweiler
+  displayName: Rottweiler
+  modelScale: 1.25
+  maxSpeed: 9
+  acceleration: 8
+  deceleration: 8
+  turnRate: 280
+  turningRadius: 0.75
+  responsiveness: 0.8
+  momentumFactor: 0.8
+  handlingTolerance: 0.7
+  weaveSpeed: 0.85
+  contactSpeed: 0.9
+  jumpPower: 1.15
+  animatorController: {fileID: 9100000, guid: f15e8e6198a672f43a56ee105caa060f, type: 2}
+  prefab: {fileID: 5866544421428683571, guid: 70a63b3e94ff4244e87ad0f88d27cdcb, type: 3}
+  description: Rottweilers are powerful but their size and weight make technical
+    agility courses challenging.
+  defaultDivision: 4

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Husky_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Husky
+  displayName: Siberian Husky
+  modelScale: 1.1
+  maxSpeed: 10
+  acceleration: 9
+  deceleration: 8
+  turnRate: 320
+  turningRadius: 0.65
+  responsiveness: 0.65
+  momentumFactor: 0.7
+  handlingTolerance: 0.6
+  weaveSpeed: 0.85
+  contactSpeed: 0.9
+  jumpPower: 1
+  animatorController: {fileID: 0}
+  prefab: {fileID: 3353451772901387482, guid: cbeaf38076d422a40966221eb91904e5, type: 3}
+  description: Huskies are athletic but independent. They can be challenging to handle
+    but excel in straight-line speed.
+  defaultDivision: 4

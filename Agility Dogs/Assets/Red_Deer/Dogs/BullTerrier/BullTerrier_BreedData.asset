@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: BullTerrier_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: BullTerrier
+  displayName: Bull Terrier
+  modelScale: 1.1
+  maxSpeed: 8
+  acceleration: 7
+  deceleration: 7
+  turnRate: 280
+  turningRadius: 0.7
+  responsiveness: 0.7
+  momentumFactor: 0.75
+  handlingTolerance: 0.65
+  weaveSpeed: 0.8
+  contactSpeed: 0.8
+  jumpPower: 1
+  animatorController: {fileID: 9100000, guid: 159cab41d06e1e54facd505f92267cd4, type: 2}
+  prefab: {fileID: 7342819114115342589, guid: 8f10380a339c9db4f9592cf1df84ecff, type: 3}
+  description: Bull Terriers are strong and determined, requiring consistent training
+    for agility success.
+  defaultDivision: 4

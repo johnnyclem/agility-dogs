@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Shepherd_BreedData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Shepherd
+  displayName: Australian Shepherd
+  modelScale: 1.05
+  maxSpeed: 10.5
+  acceleration: 10
+  deceleration: 9
+  turnRate: 400
+  turningRadius: 0.45
+  responsiveness: 0.85
+  momentumFactor: 0.5
+  handlingTolerance: 0.8
+  weaveSpeed: 1.2
+  contactSpeed: 1.05
+  jumpPower: 1.15
+  animatorController: {fileID: 9100000, guid: c6bdc6f8cdeeccd41be4b09cf54127da, type: 2}
+  prefab: {fileID: 8383756369552428744, guid: 09418ef83792f1e4d8dcbaa57e656465, type: 3}
+  description: Athletic and versatile, Australian Shepherds are natural athletes
+    with strong herding instincts that translate well to agility.
+  defaultDivision: 4
