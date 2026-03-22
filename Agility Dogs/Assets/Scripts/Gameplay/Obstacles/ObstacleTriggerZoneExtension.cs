@@ -7,7 +7,7 @@ namespace AgilityDogs.Gameplay.Obstacles
     {
         public static void SetTargetObstacle(this ObstacleBase obstacle, ObstacleBase target)
         {
-            var dog = FindObjectOfType<DogAgentController>();
+            var dog = Object.FindObjectOfType<DogAgentController>();
             if (dog != null)
             {
                 dog.SetTargetObstacle(target);

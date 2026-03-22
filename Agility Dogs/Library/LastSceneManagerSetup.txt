@@ -1,5 +1,1 @@
-sceneSetups:
-- path: Assets/Red_Deer/Dogs/GoldenRetriever/Dog/Scenes/Retriever_Scene_Overview.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
+sceneSetups: []

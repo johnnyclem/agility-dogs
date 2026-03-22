@@ -13,6 +13,7 @@ using AgilityDogs.Gameplay.Replay;
 
 namespace AgilityDogs.Editor
 {
+#if UNITY_AI_NAVIGATION
     public class TestSceneGenerator : EditorWindow
     {
         [MenuItem("Agility Dogs/Generate Test Scene")]
@@ -400,4 +401,5 @@ namespace AgilityDogs.Editor
             Debug.Log($"Total {surfaces.Length} NavMeshSurface(s) baked.");
         }
     }
+#endif
 }

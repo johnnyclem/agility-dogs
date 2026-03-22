@@ -1,4 +1,5 @@
 using UnityEngine;
+using AgilityDogs.Core;
 
 namespace AgilityDogs.Data
 {

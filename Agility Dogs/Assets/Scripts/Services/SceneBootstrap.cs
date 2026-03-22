@@ -1,4 +1,5 @@
 using UnityEngine;
+using AgilityDogs.Gameplay;
 using AgilityDogs.Gameplay.Handler;
 using AgilityDogs.Gameplay.Dog;
 using AgilityDogs.Gameplay.Commands;

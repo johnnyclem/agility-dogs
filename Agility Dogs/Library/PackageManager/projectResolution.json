@@ -149,6 +149,16 @@
       "source": "builtin",
       "testable": false
     },
+    "com.unity.ai.navigation@2.0.4": {
+      "name": "com.unity.ai.navigation",
+      "displayName": "AI Navigation",
+      "resolvedPath": "/Users/johnnyclem/Desktop/Repos/agility-dogs/Agility Dogs/Library/PackageCache/com.unity.ai.navigation@3f89ad87253d",
+      "fingerprint": "3f89ad87253dcaae2d0bb583bd5ef4c4f2c17764",
+      "editorCompatibility": "2023.2.0a18",
+      "version": "2.0.4",
+      "source": "registry",
+      "testable": false
+    },
     "com.unity.test-framework@1.6.0": {
       "name": "com.unity.test-framework",
       "displayName": "Test Framework",

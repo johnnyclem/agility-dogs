@@ -60,7 +60,7 @@ namespace AgilityDogs.Services
                 agent_uuid = agentUuid,
                 text = correspondent // The agent's name?
             };
-            yield return PostRequest(url, request, response => onSuccess?.Invoke(), onError);
+            yield return PostRequest(url, request, (Action<string>)(response => onSuccess?.Invoke()), onError);
         }
         
         // Chat with an agent (agent responds with text)
