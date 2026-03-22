@@ -30,6 +30,7 @@ namespace AgilityDogs.Gameplay.Obstacles
         protected bool dogHasEntered;
         protected bool dogHasHitContactStart;
         protected bool dogHasHitContactEnd;
+        protected bool dogInCommitZone;
         protected int obstaclesCompleted;
 
         public ObstacleType ObstacleType => obstacleType;
@@ -92,6 +93,21 @@ namespace AgilityDogs.Gameplay.Obstacles
                 dogHasHitContactEnd = true;
         }
 
+        public virtual void OnDogEnteredCommitZone(DogAgentController dog)
+        {
+            dogInCommitZone = true;
+        }
+
+        public virtual void OnDogExitedCommitZone(DogAgentController dog)
+        {
+            if (!dogHasEntered)
+            {
+                // Dog left commit zone without taking the obstacle => Refusal
+                GameEvents.RaiseFaultCommitted(FaultType.Refusal, obstacleType.ToString());
+            }
+            dogInCommitZone = false;
+        }
+
         public virtual bool CheckForFault(DogAgentController dog)
         {
             return false;
@@ -119,6 +135,7 @@ namespace AgilityDogs.Gameplay.Obstacles
             dogHasEntered = false;
             dogHasHitContactStart = false;
             dogHasHitContactEnd = false;
+            dogInCommitZone = false;
             SetVisualsActive(false);
         }
 

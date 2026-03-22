@@ -44,6 +44,12 @@ namespace AgilityDogs.Gameplay.Dog
         private float commandResponseTimer;
         private Vector3 lastHandlerPosition;
         private float stateTimer;
+        private float currentMomentum;
+        private Vector3 lastVelocity;
+        private float baseAcceleration;
+        private float baseAngularSpeed;
+        private float baseDeceleration;
+        private HandlerController handlerController;
 
         public DogState CurrentState => currentState;
         public BreedData Breed => breedData;
@@ -66,7 +72,14 @@ namespace AgilityDogs.Gameplay.Dog
             {
                 var handler = FindObjectOfType<HandlerController>();
                 if (handler != null)
+                {
                     handlerTransform = handler.transform;
+                    handlerController = handler;
+                }
+            }
+            else if (handlerController == null)
+            {
+                handlerController = handlerTransform.GetComponent<HandlerController>();
             }
         }
 
@@ -78,6 +91,8 @@ namespace AgilityDogs.Gameplay.Dog
                 return;
             }
 
+            UpdateMomentum();
+            UpdateHandlerInfluence();
             UpdateStateMachine();
             UpdateAnimator();
         }
@@ -87,12 +102,73 @@ namespace AgilityDogs.Gameplay.Dog
             if (navAgent == null || breedData == null) return;
 
             navAgent.speed = breedData.maxSpeed;
-            navAgent.acceleration = breedData.acceleration;
-            navAgent.angularSpeed = breedData.turnRate;
+            baseAcceleration = breedData.acceleration;
+            baseDeceleration = breedData.deceleration;
+            baseAngularSpeed = breedData.turnRate / Mathf.Max(0.1f, breedData.turningRadius);
+            
+            // Apply momentum factor to reduce acceleration and angular speed
+            float momentumFactor = Mathf.Clamp01(breedData.momentumFactor);
+            navAgent.acceleration = baseAcceleration * (1f - momentumFactor * 0.5f);
+            navAgent.angularSpeed = baseAngularSpeed * (1f - momentumFactor * 0.3f);
 
             if (breedData.animatorController != null && animator != null)
             {
                 animator.runtimeAnimatorController = breedData.animatorController;
+            }
+        }
+
+        private void UpdateMomentum()
+        {
+            if (navAgent == null || breedData == null) return;
+            
+            Vector3 velocity = navAgent.velocity;
+            float currentSpeed = velocity.magnitude;
+            float maxSpeed = breedData.maxSpeed;
+            
+            // Compute momentum as a factor of current speed relative to max speed
+            // Higher momentumFactor means more momentum (harder to change direction)
+            float targetMomentum = currentSpeed / Mathf.Max(0.1f, maxSpeed);
+            float momentumInfluence = breedData.momentumFactor;
+            currentMomentum = Mathf.Lerp(currentMomentum, targetMomentum, Time.deltaTime * (1f - momentumInfluence));
+            
+            // Adjust acceleration based on momentum (more momentum = slower acceleration)
+            float effectiveAcceleration = baseAcceleration * (1f - currentMomentum * momentumInfluence);
+            navAgent.acceleration = effectiveAcceleration;
+            
+            // Adjust angular speed based on momentum (more momentum = slower turning)
+            float effectiveAngularSpeed = baseAngularSpeed * (1f - currentMomentum * momentumInfluence * 0.5f);
+            navAgent.angularSpeed = effectiveAngularSpeed;
+            
+            // Store last velocity for next frame
+            lastVelocity = velocity;
+        }
+
+        private void UpdateHandlerInfluence()
+        {
+            if (handlerController == null || navAgent == null || breedData == null || handlerTransform == null) return;
+            
+            float handlerSpeed = handlerController.CurrentSpeed;
+            float maxSpeed = breedData.maxSpeed;
+            
+            // If handler is moving faster than dog's current speed, increase dog's speed up to max
+            float currentDogSpeed = navAgent.velocity.magnitude;
+            if (handlerSpeed > currentDogSpeed)
+            {
+                float targetSpeed = Mathf.Lerp(currentDogSpeed, Mathf.Min(handlerSpeed, maxSpeed), Time.deltaTime * 2f);
+                navAgent.speed = Mathf.Lerp(navAgent.speed, targetSpeed, Time.deltaTime * 3f);
+            }
+            else
+            {
+                // Gradually return to maxSpeed (or based on momentum)
+                navAgent.speed = Mathf.Lerp(navAgent.speed, maxSpeed, Time.deltaTime);
+            }
+            
+            // Apply handling tolerance: if dog is too far from handler, reduce speed slightly
+            float distanceToHandler = Vector3.Distance(transform.position, handlerTransform.position);
+            float tolerance = breedData.handlingTolerance * 5f; // arbitrary scaling
+            if (distanceToHandler > tolerance)
+            {
+                navAgent.speed *= 0.8f;
             }
         }
 

@@ -320,4 +320,125 @@ namespace AgilityDogs.Gameplay.Obstacles
             }
         }
     }
+
+    public class TireJumpObstacle : ObstacleBase
+    {
+        [Header("Tire Jump")]
+        [SerializeField] private Transform tireVisual;
+        [SerializeField] private float tireRestHeight = 1.2f;
+        [SerializeField] private float knockThreshold = 0.3f;
+
+        private bool tireKnocked;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            obstacleType = ObstacleType.TireJump;
+        }
+
+        public override void OnDogEntered(DogAgentController dog)
+        {
+            base.OnDogEntered(dog);
+            tireKnocked = false;
+        }
+
+        public override void OnDogExited(DogAgentController dog)
+        {
+            if (!tireKnocked)
+            {
+                base.OnDogExited(dog);
+            }
+            else
+            {
+                GameEvents.RaiseFaultCommitted(FaultType.KnockedBar, "Tire Jump");
+            }
+        }
+
+        public void RegisterTireKnock()
+        {
+            tireKnocked = true;
+            if (tireVisual != null)
+            {
+                tireVisual.localPosition = new Vector3(0, -0.5f, 0);
+            }
+        }
+
+        public override void ResetObstacle()
+        {
+            base.ResetObstacle();
+            tireKnocked = false;
+            if (tireVisual != null)
+            {
+                tireVisual.localPosition = new Vector3(0, tireRestHeight, 0);
+            }
+        }
+    }
+
+    public class BroadJumpObstacle : ObstacleBase
+    {
+        [Header("Broad Jump")]
+        [SerializeField] private Transform[] hurdles; // Array of hurdle transforms
+        [SerializeField] private float hurdleHeight = 0.2f;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            obstacleType = ObstacleType.BroadJump;
+        }
+
+        public override void OnDogExited(DogAgentController dog)
+        {
+            // Check if dog cleared all hurdles (simplified)
+            // For now, just count as completed
+            base.OnDogExited(dog);
+        }
+    }
+
+    public class WallJumpObstacle : ObstacleBase
+    {
+        [Header("Wall Jump")]
+        [SerializeField] private Transform wallVisual;
+        [SerializeField] private float wallHeight = 1.5f;
+        [SerializeField] private float topBarHeight = 1.8f;
+        [SerializeField] private float knockThreshold = 0.3f;
+
+        private bool topBarKnocked;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            obstacleType = ObstacleType.WallJump;
+        }
+
+        public override void OnDogEntered(DogAgentController dog)
+        {
+            base.OnDogEntered(dog);
+            topBarKnocked = false;
+        }
+
+        public override void OnDogExited(DogAgentController dog)
+        {
+            if (!topBarKnocked)
+            {
+                base.OnDogExited(dog);
+            }
+            else
+            {
+                GameEvents.RaiseFaultCommitted(FaultType.KnockedBar, "Wall Jump");
+            }
+        }
+
+        public void RegisterTopBarKnock()
+        {
+            topBarKnocked = true;
+            // Optionally lower the top bar visual
+        }
+
+        public override void ResetObstacle()
+        {
+            base.ResetObstacle();
+            topBarKnocked = false;
+            // Reset top bar visual
+        }
+    }
 }

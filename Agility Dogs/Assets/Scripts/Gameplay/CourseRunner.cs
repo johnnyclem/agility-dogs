@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using AgilityDogs.Core;
 using AgilityDogs.Data;
@@ -44,6 +45,30 @@ namespace AgilityDogs.Gameplay
 
         public void LoadCourse(CourseDefinition course)
         {
+            // Validate course obstacle types
+            if (course != null && course.obstacleSequence != null)
+            {
+                foreach (ObstacleData obstacleData in course.obstacleSequence)
+                {
+                    if (obstacleData != null)
+                    {
+                        bool validForCourse = false;
+                        foreach (CourseType validType in obstacleData.validCourseTypes)
+                        {
+                            if (validType == course.courseType)
+                            {
+                                validForCourse = true;
+                                break;
+                            }
+                        }
+                        if (!validForCourse)
+                        {
+                            Debug.LogWarning($"Obstacle {obstacleData.obstacleName} (type {obstacleData.obstacleType}) is not valid for course type {course.courseType}");
+                        }
+                    }
+                }
+            }
+
             currentCourse = course;
             scoringService.SetCourse(course);
             currentObstacleOrder = 0;

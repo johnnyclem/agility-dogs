@@ -13,6 +13,8 @@ namespace AgilityDogs.Gameplay.Obstacles
         [SerializeField] private bool isContactZoneEnd;
         [SerializeField] private bool isCommitZone;
 
+        private DogAgentController dogInCommitZone;
+
         private void Awake()
         {
             if (parentObstacle == null)
@@ -29,6 +31,8 @@ namespace AgilityDogs.Gameplay.Obstacles
             if (isCommitZone)
             {
                 dog.SetTargetObstacle(parentObstacle);
+                dogInCommitZone = dog;
+                parentObstacle.OnDogEnteredCommitZone(dog);
             }
 
             if (isContactZoneStart || isContactZoneEnd)
@@ -42,6 +46,12 @@ namespace AgilityDogs.Gameplay.Obstacles
             var dog = other.GetComponentInParent<DogAgentController>();
             if (dog == null) return;
             if (parentObstacle == null) return;
+
+            if (isCommitZone && dog == dogInCommitZone)
+            {
+                parentObstacle.OnDogExitedCommitZone(dog);
+                dogInCommitZone = null;
+            }
 
             if (isExitPoint)
             {
