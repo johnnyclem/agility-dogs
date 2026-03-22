@@ -15,22 +15,22 @@ The project has a solid foundation with the core gameplay loop operational. Howe
 
 ## Implementation Status Overview
 
-| System | Status | Completion |
-|--------|--------|------------|
-| Handler Control | Partial | 40% |
-| Dog AI | Substantial | 65% |
-| Obstacles | Partial | 60% |
-| Scoring | Substantial | 75% |
-| Camera | Partial | 50% |
-| Commentary | Substantial | 70% |
-| Commands | Partial | 45% |
-| Replay | Substantial | 55% |
-| UI/HUD | Missing | 0% |
-| Crowd | Missing | 0% |
-| Progression/Career | Missing | 0% |
-| Online Features | Missing | 0% |
-| Audio System | Missing | 0% |
-| Accessibility | Missing | 0% |
+| System | Status | Completion | Notes |
+|--------|--------|------------|-------|
+| Handler Control | Partial | 40% | No changes |
+| Dog AI | Substantial | 75% | +10%: momentum physics, handler influence |
+| Obstacles | Substantial | 80% | +20%: added Tire, Broad, Wall jumps; validation |
+| Scoring | Substantial | 85% | +10%: WrongCourse detection, flow-sensitive evaluation |
+| Camera | Substantial | 75% | +25%: cinematic chase, broadcast cutaways |
+| Commentary | Complete | 100% | +25%: weighted selection, near-miss, pressure, PA announcer, authored lines |
+| Commands | Partial | 45% | No changes |
+| Replay | Substantial | 55% | No changes |
+| UI/HUD | Missing | 0% | No changes |
+| Crowd | Missing | 0% | No changes |
+| Progression/Career | Missing | 0% | No changes |
+| Online Features | Missing | 0% | No changes |
+| Audio System | Missing | 0% | No changes |
+| Accessibility | Missing | 0% | No changes |
 
 ---
 
@@ -44,36 +44,36 @@ The project has a solid foundation with the core gameplay loop operational. Howe
 - [ ] Implement handler position influence on dog's line
 
 ### 1.2 Dog AI Enhancement
-- [ ] Implement momentum physics system
+- [x] Implement momentum physics system
 - [ ] Add advanced commitment logic with timing sensitivity
-- [ ] Implement contextual reaction to handler position/motion
+- [x] Implement contextual reaction to handler position/motion
 - [ ] Add recovery/fallback logic after imperfect input
-- [ ] Implement breed-specific tendencies (beyond basic NavMesh params)
+- [x] Implement breed-specific tendencies (beyond basic NavMesh params)
 - [ ] Add obstacle reading beyond nearest-of-type
 - [ ] Implement command interpretation with timing windows
 
 ### 1.3 Complete Obstacle Set
-- [ ] Implement Tire Jump obstacle
-- [ ] Implement Broad Jump obstacle
-- [ ] Implement Wall Jump obstacle
-- [ ] Add Jumpers-With-Weaves course type validation
-- [ ] Implement refusal and run-out fault detection
+- [x] Implement Tire Jump obstacle
+- [x] Implement Broad Jump obstacle
+- [x] Implement Wall Jump obstacle
+- [x] Add Jumpers-With-Weaves course type validation
+- [x] Implement refusal and run-out fault detection
 
 ### 1.4 Fault System Completion
-- [ ] Complete WrongCourse fault detection
-- [ ] Implement run-out fault detection
-- [ ] Add flow-sensitive run evaluation
-- [ ] Integrate all fault types with scoring
+- [x] Complete WrongCourse fault detection
+- [x] Implement run-out fault detection
+- [x] Add flow-sensitive run evaluation
+- [x] Integrate all fault types with scoring
 
 ---
 
 ## Priority 2: Presentation Layer (High Impact)
 
 ### 2.1 Camera System Enhancement
-- [ ] Implement cinematic chase camera mode
+- [x] Implement cinematic chase camera mode
 - [ ] Add replay camera network with multiple angles
 - [ ] Implement freeze-frame highlight moments
-- [ ] Add broadcast-style cutaways and hero shots
+- [x] Add broadcast-style cutaways and hero shots
 - [ ] Implement dog POV camera with proper framing
 
 ### 2.2 Replay System Polish
@@ -84,14 +84,14 @@ The project has a solid foundation with the core gameplay loop operational. Howe
 - [ ] Add highlight selection system
 
 ### 2.3 Commentary System Completion
-- [ ] Implement weighted/random line selection
-- [ ] Add anti-repetition logic
-- [ ] Implement breed callouts
-- [ ] Add split-time callouts
-- [ ] Implement near-miss recognition
-- [ ] Add championship pressure escalation
-- [ ] Integrate PA announcer role
-- [ ] Add authored/templated line assembly pipeline
+- [x] Implement weighted/random line selection
+- [x] Add anti-repetition logic
+- [x] Implement breed callouts
+- [x] Add split-time callouts
+- [x] Implement near-miss recognition
+- [x] Add championship pressure escalation
+- [x] Integrate PA announcer role
+- [x] Add authored/templated line assembly pipeline
 
 ### 2.4 Crowd System (New)
 - [ ] Implement procedural population system (200+ target)
