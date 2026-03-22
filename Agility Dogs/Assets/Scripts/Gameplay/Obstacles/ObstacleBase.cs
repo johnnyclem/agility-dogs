@@ -10,6 +10,7 @@ namespace AgilityDogs.Gameplay.Obstacles
     {
         [Header("Configuration")]
         [SerializeField] protected ObstacleData obstacleData;
+        public ObstacleData ObstacleData => obstacleData;
         [SerializeField] protected ObstacleType obstacleType;
         [SerializeField] protected bool isActive = true;
 

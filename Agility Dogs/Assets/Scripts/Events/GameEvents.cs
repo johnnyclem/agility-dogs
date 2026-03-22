@@ -1,5 +1,6 @@
 using System;
 using AgilityDogs.Core;
+using AgilityDogs.Gameplay.Obstacles;
 
 namespace AgilityDogs.Events
 {
@@ -9,6 +10,7 @@ namespace AgilityDogs.Events
         public static event Action<HandlerCommand> OnCommandIssued;
         public static event Action<FaultType, string> OnFaultCommitted;
         public static event Action<ObstacleType, bool> OnObstacleCompleted;
+        public static event Action<ObstacleBase, bool> OnObstacleCompletedWithReference;
         public static event Action<float> OnSplitTimeRecorded;
         public static event Action OnRunStarted;
         public static event Action<RunResult, float, int> OnRunCompleted;
@@ -26,6 +28,9 @@ namespace AgilityDogs.Events
 
         public static void RaiseObstacleCompleted(ObstacleType type, bool clean)
             => OnObstacleCompleted?.Invoke(type, clean);
+
+        public static void RaiseObstacleCompletedWithReference(ObstacleBase obstacle, bool clean)
+            => OnObstacleCompletedWithReference?.Invoke(obstacle, clean);
 
         public static void RaiseSplitTime(float time)
             => OnSplitTimeRecorded?.Invoke(time);

@@ -352,6 +352,7 @@ namespace AgilityDogs.Gameplay.Dog
             if (currentObstacle != null)
             {
                 GameEvents.RaiseObstacleCompleted(currentObstacle.ObstacleType, true);
+                GameEvents.RaiseObstacleCompletedWithReference(currentObstacle, true);
             }
 
             currentObstacle = null;

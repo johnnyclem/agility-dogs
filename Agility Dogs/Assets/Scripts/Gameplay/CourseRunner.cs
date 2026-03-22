@@ -28,6 +28,7 @@ namespace AgilityDogs.Gameplay
 
         private ObstacleBase[] courseObstacles;
         private int currentObstacleOrder = 0;
+        private ObstacleBase expectedObstacle;
         private bool isRunActive;
 
         public bool IsRunActive => isRunActive;
@@ -36,11 +37,13 @@ namespace AgilityDogs.Gameplay
         private void OnEnable()
         {
             GameEvents.OnRunCompleted += HandleRunCompleted;
+            GameEvents.OnObstacleCompletedWithReference += HandleObstacleCompletedWithReference;
         }
 
         private void OnDisable()
         {
             GameEvents.OnRunCompleted -= HandleRunCompleted;
+            GameEvents.OnObstacleCompletedWithReference -= HandleObstacleCompletedWithReference;
         }
 
         public void LoadCourse(CourseDefinition course)
@@ -104,6 +107,7 @@ namespace AgilityDogs.Gameplay
             handler.SetEnabled(true);
             GameManager.Instance.BeginRun();
             currentObstacleOrder = 0;
+            expectedObstacle = null;
 
             if (courseObstacles != null)
             {
@@ -133,6 +137,23 @@ namespace AgilityDogs.Gameplay
             handler.SetEnabled(false);
         }
 
+        private void HandleObstacleCompletedWithReference(ObstacleBase obstacle, bool clean)
+        {
+            if (!isRunActive || obstacle == null) return;
+            
+            // Check if obstacle matches expected obstacle
+            if (expectedObstacle != null && obstacle != expectedObstacle)
+            {
+                // Wrong course: dog took a different obstacle
+                GameEvents.RaiseFaultCommitted(FaultType.WrongCourse, obstacle.ObstacleType.ToString());
+            }
+            
+            // Advance to next obstacle (if the completed obstacle was the expected one)
+            // Note: expectedObstacle should be cleared after check
+            expectedObstacle = null;
+            AdvanceToNextObstacle();
+        }
+
         public void AdvanceToNextObstacle()
         {
             if (courseObstacles == null || currentObstacleOrder >= courseObstacles.Length)
@@ -145,6 +166,7 @@ namespace AgilityDogs.Gameplay
             if (nextObstacle != null)
             {
                 dog.SetTargetObstacle(nextObstacle);
+                expectedObstacle = nextObstacle;
             }
             currentObstacleOrder++;
         }
@@ -196,10 +218,22 @@ namespace AgilityDogs.Gameplay
             if (courseObstacles == null || currentCourse == null || currentCourse.obstacleSequence == null)
                 return;
 
+            // Create a mapping from ObstacleData to its index in the course sequence
+            Dictionary<ObstacleData, int> sequenceIndices = new Dictionary<ObstacleData, int>();
+            for (int i = 0; i < currentCourse.obstacleSequence.Length; i++)
+            {
+                ObstacleData data = currentCourse.obstacleSequence[i];
+                if (data != null && !sequenceIndices.ContainsKey(data))
+                {
+                    sequenceIndices[data] = i;
+                }
+            }
+
+            // Sort obstacles based on their obstacleData's index in the sequence
             System.Array.Sort(courseObstacles, (a, b) =>
             {
-                int indexA = System.Array.IndexOf(courseObstacles, a);
-                int indexB = System.Array.IndexOf(courseObstacles, b);
+                int indexA = (a.ObstacleData != null && sequenceIndices.TryGetValue(a.ObstacleData, out int idxA)) ? idxA : int.MaxValue;
+                int indexB = (b.ObstacleData != null && sequenceIndices.TryGetValue(b.ObstacleData, out int idxB)) ? idxB : int.MaxValue;
                 return indexA.CompareTo(indexB);
             });
         }
