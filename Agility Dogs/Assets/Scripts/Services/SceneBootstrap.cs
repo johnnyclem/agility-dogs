@@ -68,12 +68,6 @@ namespace AgilityDogs.Services
             {
                 scoringService.SetDog(dog);
             }
-
-            var commandBuffers = FindObjectsOfType<CommandBuffer>();
-            foreach (var cb in commandBuffers)
-            {
-                cb.GetComponentInParent<HandlerController>();
-            }
         }
 
         public HandlerController GetHandler() => handler;

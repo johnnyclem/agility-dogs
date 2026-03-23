@@ -59,5 +59,34 @@ namespace AgilityDogs.Services
         {
             SetState(GameState.MainMenu);
         }
+
+        // Methods called by MenuManager
+        public void StartGame()
+        {
+            // Transition to gameplay scene or start countdown
+            StartCountdown();
+        }
+
+        public void StartReplay()
+        {
+            SetState(GameState.Replay);
+        }
+
+        public void RestartGame()
+        {
+            // Reset to gameplay state and begin run again
+            BeginRun();
+        }
+
+        public void ResumeGame()
+        {
+            // Resume from pause to gameplay
+            SetState(GameState.Gameplay);
+        }
+
+        public void QuitToMenu()
+        {
+            ReturnToMenu();
+        }
     }
 }
