@@ -75,7 +75,6 @@ namespace AgilityDogs.Core
         CourseLoad,
         Countdown,
         Gameplay,
-        Pause,
         Pause
     }
 

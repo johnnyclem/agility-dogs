@@ -1220,11 +1220,4 @@ namespace AgilityDogs.UI
 
         #endregion
     }
-
-    public enum GameMode
-    {
-        Training,
-        Exhibition,
-        Career
-    }
 }
