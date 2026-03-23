@@ -149,6 +149,12 @@ namespace AgilityDogs.Services
                 currentLevel++;
                 OnLevelUp?.Invoke(currentLevel);
                 CheckLevelBasedAchievements();
+
+                // Notify skill tree service of level up
+                if (SkillTreeService.Instance != null)
+                {
+                    SkillTreeService.Instance.AddSkillPointsFromLevelUp(currentLevel);
+                }
             }
 
             OnXPChanged?.Invoke(currentXP, XPToNextLevel);

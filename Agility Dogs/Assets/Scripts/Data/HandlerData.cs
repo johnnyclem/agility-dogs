@@ -32,9 +32,5 @@ namespace AgilityDogs.Data
         [Header("Visual")]
         public GameObject prefab;
         public Sprite portrait;
-
-        [Header("Unlock")]
-        public bool isUnlockedByDefault = true;
-        public int unlockCost = 0;
     }
 }
