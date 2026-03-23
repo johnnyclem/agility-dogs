@@ -959,7 +959,8 @@ namespace AgilityDogs.Gameplay.Dog
                     if (Speed > 0.5f)
                     {
                         // Prefer obstacles in direction of movement
-                        float moveDot = Vector3.Dot(FlatVelocity.normalized, toObs);
+                        Vector3 flatVel = new Vector3(navAgent.velocity.x, 0f, navAgent.velocity.z);
+                        float moveDot = Vector3.Dot(flatVel.normalized, toObs);
                         dirScore = Mathf.Lerp(0.5f, 1.5f, (moveDot + 1f) / 2f);
                     }
                     

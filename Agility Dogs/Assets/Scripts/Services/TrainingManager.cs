@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using AgilityDogs.Core;
 using AgilityDogs.Data;
+using AgilityDogs.Events;
 
 namespace AgilityDogs.Services
 {

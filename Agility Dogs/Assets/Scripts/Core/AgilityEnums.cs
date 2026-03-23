@@ -75,18 +75,8 @@ namespace AgilityDogs.Core
         CourseLoad,
         Countdown,
         Gameplay,
-        RunComplete,
-        Results,
-        Replay,
-        Career,
-        // Career-specific states
-        BreedingScreen,
-        PuppySelection,
-        TrainingCamp,
-        ShowEntry,
-        ShowResults,
-        CareerHub,
-        Westminster
+        Pause,
+        Pause
     }
 
     public enum GameMode

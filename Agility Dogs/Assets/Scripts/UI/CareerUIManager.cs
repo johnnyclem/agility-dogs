@@ -413,13 +413,11 @@ namespace AgilityDogs.UI
             // Apply custom name if entered
             if (puppyNameInput != null && !string.IsNullOrEmpty(puppyNameInput.text))
             {
-                var breedingService = DogBreedingService.Instance;
-                breedingService?.SetPuppyName(selectedPuppyForBreeding, puppyNameInput.text);
+                DogBreedingService.Instance?.SetPuppyName(selectedPuppyForBreeding, puppyNameInput.text);
             }
 
             // Select the puppy
-            var breedingService = DogBreedingService.Instance;
-            breedingService?.SelectPuppy(selectedPuppyForBreeding);
+            DogBreedingService.Instance?.SelectPuppy(selectedPuppyForBreeding);
 
             // Advance to training
             var gameModeManager = GameModeManager.Instance;

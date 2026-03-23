@@ -424,7 +424,7 @@ namespace AgilityDogs.UI
                 // Random shake that decreases over time
                 float shakeX = UnityEngine.Random.Range(-1f, 1f) * amount * (1f - t);
                 float shakeY = UnityEngine.Random.Range(-1f, 1f) * amount * (1f - t);
-                rectTransform.anchoredPosition = originalPosition + new Vector2(shakeX, shakeY);
+                rectTransform.anchoredPosition = originalPosition + new Vector3(shakeX, shakeY, 0f);
                 
                 yield return null;
             }

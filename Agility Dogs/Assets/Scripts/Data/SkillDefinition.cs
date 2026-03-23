@@ -32,6 +32,7 @@ namespace AgilityDogs.Data
 
     public enum SkillCategory
     {
+        General,
         Speed,
         Agility,
         Command,

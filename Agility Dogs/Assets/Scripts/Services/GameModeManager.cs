@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using AgilityDogs.Core;
-using AgilityDogs.Data;
+using AgilityDogs.Core
+using AgilityDogs.Data
 using AgilityDogs.Events;
+using AgilityDogs.UI;
+using AgilityDogs.Gameplay;
 
 namespace AgilityDogs.Services
 {

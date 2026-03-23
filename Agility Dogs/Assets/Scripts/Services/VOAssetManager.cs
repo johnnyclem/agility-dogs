@@ -369,7 +369,7 @@ namespace AgilityDogs.Services
             float[] samples = new float[clip.samples * clip.channels];
             clip.GetData(samples, 0);
 
-            byte[] wavBytes = EncodeToWAV(samples, clip.channels, clip.sampleRate);
+            byte[] wavBytes = EncodeToWAV(samples, clip.channels, clip.frequency);
 
             // Generate file path
             string fileName = SanitizeFileName(key) + ".wav";
