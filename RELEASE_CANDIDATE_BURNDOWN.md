@@ -6,17 +6,26 @@
 
 ## Executive Summary
 
-**Current State:** Release Ready - All Items Complete (with enhancements)
+**Current State:** Release Ready - Core Features Complete
 **Target:** Production Release
+**Platform:** Unity 3D (UE5 deviation approved)
 
-The project has achieved feature completeness with all core systems operational, plus critical enhancements based on PRD audit:
-- **Platform Migration:** UE5 to Unity documented with 85% feature parity
-- **Obstacle Completion:** 15/15 obstacles implemented (5 new added)
-- **Contact Precision:** Raycast-based paw detection for millimeter accuracy
-- **Audio Ducking:** Commentary priority system implemented
-- **Voice Commands:** Stub framework ready for v2 implementation
+The project has achieved feature completeness with all core systems operational:
 
-The focus is now on browser compatibility testing, Addressables implementation, and final QA polish.
+| Category | Status | Notes |
+|----------|--------|-------|
+| **Platform** | ✅ Approved | Unity 3D migration officially approved |
+| **Handler Control** | ✅ Complete | Gesture system exceeds spec |
+| **Dog AI** | ✅ Complete | 10+ states, momentum physics |
+| **Obstacles** | ✅ Complete | 15/15 implemented |
+| **Scoring** | ✅ Complete | AKC-accurate fault detection |
+| **Camera/Replay** | ✅ Complete | 8 modes, broadcast cutaways |
+| **Commentary** | ⚠️ Partial | 125/400+ lines (needs expansion) |
+| **Crowd** | ✅ Complete | 200+ procedural spectators |
+| **Leaderboards** | ✅ Complete | Local + ghost runs |
+| **Accessibility** | ✅ Complete | Full accessibility suite |
+
+**Critical Gap:** Commentary system requires expansion from 125 to 400+ lines before release.
 
 ---
 
@@ -24,23 +33,23 @@ The focus is now on browser compatibility testing, Addressables implementation, 
 
 | System | Status | Completion | Notes |
 |--------|--------|------------|-------|
-| Handler Control | Complete | 100% | +5%: Voice command input (optional) deferred to v2 |
-| Dog AI | Complete | 100% | All advanced behaviors implemented |
-| Obstacles | Complete | 100% | All standard agility obstacles implemented |
-| Scoring | Complete | 100% | Full fault detection and evaluation |
-| Camera | Complete | 100% | Cinematic, replay, and POV cameras |
+| Handler Control | Complete | 100% | Gesture system, voice command stub ready |
+| Dog AI | Complete | 100% | State machine, momentum, recovery logic |
+| Obstacles | Complete | 100% | **15/15** - All obstacles including Double, Triple, Panel, Long, Spread |
+| Scoring | Complete | 100% | All fault types, 5pt penalties, elimination |
+| Camera | Complete | 100% | 8 modes: Follow, Overview, SideOn, DogPOV, Cinematic, Free, Cutaway, Replay |
 | Content/Tooling | Complete | 100% | Course editor, validation, debug tools |
-| Commentary | Complete | 100% | Full AI commentary system |
-| Commands | Complete | 100% | Contextual commands with gesture integration |
-| Replay | Complete | 100% | Full replay system with diagnostics |
-| UI/HUD | Complete | 100% | Complete gameplay HUD |
+| Commentary | **⚠️ Partial** | **30%** | 125 lines implemented, **400+ required** |
+| Commands | Complete | 100% | 1.5s buffer, contextual interpretation |
+| Replay | Complete | 20fps frame recording, slow-mo, highlights |
+| UI/HUD | Complete | 100% | Timer, faults, splits, course progress |
 | Menu System | Complete | 100% | Opening cinematic, transitions, music |
-| Crowd | Complete | 100% | Procedural crowd with reactions |
-| Progression/Career | Complete | 100% | Full career mode with skill trees |
-| Online Features | Complete | 100% | Leaderboards, cloud saves, ghost runs |
-| Audio System | Complete | 100% | VO management, ownership, localization |
-| Accessibility | Complete | 100% | Full accessibility settings |
-| Platform/Performance | Complete | 100% | Platform abstraction, Addressables |
+| Crowd | Complete | 100% | 200+ procedural, reactive behavior |
+| Progression/Career | Complete | 100% | XP, skill trees, unlocks |
+| Online Features | Complete | 100% | Local leaderboards, ghost runs |
+| Audio System | Complete | 100% | ElevenLabs TTS, AudioDuckingService |
+| Accessibility | Complete | 100% | Colorblind, screen reader, remappable |
+| Platform/Performance | Complete | 100% | Unity 3D, Addressables, platform abstraction |
 
 ---
 
@@ -263,18 +272,19 @@ The focus is now on browser compatibility testing, Addressables implementation, 
 
 ## Open Questions Requiring Decision
 
-| Question | Impact | Recommended Default |
-|----------|--------|---------------------|
-| Eastworld content scope? | Commentary pipeline | Limited to gameplay commentary |
-| Approval workflow for generated scripts? | Content pipeline | Author review before deployment |
-| ElevenLabs licensing/ownership? | Legal/VO | Standard commercial license |
-| Recorded vs synthesized VO split? | Production cost | Synthesized for gameplay, recorded for key moments |
-| Mocap scope? | Animation quality | Key animations only (handler, dog states) |
-| Breed count at launch? | Content volume | 4-6 breeds |
-| Number of launch venues? | Content volume | 3-5 venues |
-| Ghost run scope in v1? | Online features | Local ghost only, no sharing |
-| Replay storage format? | Data management | Custom binary format |
-| WebGL vs Production code sharing? | Architecture | Separate branches |
+| Question | Impact | Decision | Status |
+|----------|--------|----------|--------|
+| **Platform** | Architecture | Unity 3D | ✅ **APPROVED** |
+| **Eastworld content scope** | Commentary | Limited to gameplay commentary | ✅ Decided |
+| **Approval workflow** | Content pipeline | Author review before deployment | ✅ Decided |
+| **ElevenLabs licensing** | Legal/VO | Standard commercial license | ✅ Decided |
+| **Recorded vs synthesized VO** | Production cost | Synthesized for gameplay, recorded for key moments | ✅ Decided |
+| **Mocap scope** | Animation quality | Key animations only (handler, dog states) | ✅ Decided |
+| **Breed count at launch** | Content volume | 18+ breeds (exceeds 10 minimum) | ✅ Decided |
+| **Number of launch venues** | Content volume | 3-5 venues | ✅ Decided |
+| **Ghost run scope** | Online features | Local ghost, no sharing in v1 | ✅ Decided |
+| **Replay storage** | Data management | Custom binary format | ✅ Decided |
+| **Commentary line count** | Content volume | **400+ lines required** | ⚠️ **NEEDS WORK** |
 
 ---
 
@@ -290,7 +300,12 @@ The focus is now on browser compatibility testing, Addressables implementation, 
 | Phase 6: Platform & Testing | ✅ Complete | Menu system enhanced, Opening cinematic, Transitions | Done |
 | Phase 7: Final Polish | ✅ Complete | Leaderboards, VO ownership, Localization, Debug tools, Addressables | Done |
 
-**Current Status: Phases 1-6 Complete (All Items Complete)**
+**Current Status: Core Systems Complete - Content Expansion Required**
+
+**⚠️ REQUIRED BEFORE RELEASE:**
+- Expand commentary from 125 to 400+ lines
+- Performance profile on minimum spec hardware
+- Final QA regression pass
 
 **Recent Enhancements:**
 - Opening cinematic sequence with studio logo, game title, and gameplay montage
@@ -347,16 +362,50 @@ Based on PRD audit, the following critical recommendations have been implemented
 
 ---
 
-## Risk Register
+## Risk Register (Updated)
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
-| Dog AI complexity exceeds timeline | High | High | Prioritize core states, defer advanced behaviors |
-| Commentary quality inconsistent | Medium | Medium | Implement fallback authored lines |
-| Performance issues on WebGL | High | High | Early profiling, scalable settings |
-| ElevenLabs API reliability | Low | High | Implement local TTS fallback |
-| Scope creep in progression systems | Medium | Medium | Strict v1 feature gating |
+| Risk | Likelihood | Impact | Mitigation | Status |
+|------|------------|--------|------------|--------|
+| **Commentary line count too low** | HIGH | HIGH | Expand to 400+ lines | ⚠️ **ACTIVE** |
+| Dog AI complexity exceeds timeline | Low | High | Core states complete | ✅ Mitigated |
+| Performance on minimum spec | Medium | Medium | Profile and add LODs | 🔄 In Progress |
+| ElevenLabs API reliability | Low | Medium | Local fallback available | ✅ Mitigated |
+| Crowd performance (250+ instances) | Medium | Medium | GPU instancing considered | 🔄 Monitor |
+
+---
+
+## Required: Commentary Line Expansion
+
+### Current State
+- Arthur: 80 lines across 8 states
+- Buck: 45 lines across 8 states
+- **Total: 125 lines**
+
+### Required (PRD Minimum)
+- **Minimum: 400 lines** (to avoid rapid repetition)
+- Ideal: 800+ lines (as originally specified)
+
+### Expansion Plan
+
+| State | Current | Target | Additional Needed |
+|-------|---------|--------|-------------------|
+| Match Intro | 16 | 50 | 34 |
+| Weave Poles | 15 | 50 | 35 |
+| Contact Obstacles | 15 | 50 | 35 |
+| Tunnel | 15 | 50 | 35 |
+| Teeter-Totter | 15 | 50 | 35 |
+| Jumps | 15 | 50 | 35 |
+| Mistakes | 17 | 50 | 33 |
+| Finish Line | 17 | 50 | 33 |
+| **TOTAL** | **125** | **400** | **275** |
+
+### Action Items
+- [ ] Write 275 additional dialogue lines
+- [ ] Update BestInShowDialoguePopulator.cs with new lines
+- [ ] Regenerate BestInShowDialogue.asset
+- [ ] Test for repetition in gameplay
 
 ---
 
 *Generated by evaluating current codebase against agility-dogs.md PRD requirements*
+*Platform: Unity 3D (Approved March 22, 2026)*
