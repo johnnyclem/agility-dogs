@@ -70,6 +70,9 @@ namespace AgilityDogs.Editor
             DrawValidationPanel();
             GUILayout.Space(10);
 
+            DrawCommandTimingPanel();
+            GUILayout.Space(10);
+
             DrawActions();
 
             EditorGUILayout.EndScrollView();
@@ -423,6 +426,177 @@ namespace AgilityDogs.Editor
 
         #endregion
 
+        #region Command Timing Visualization
+
+        private bool showTimingPanel = true;
+        private float timingVisualizationScale = 1f;
+        private Color earlyCommandColor = Color.red;
+        private Color optimalCommandColor = Color.green;
+        private Color lateCommandColor = new Color(1f, 0.5f, 0f); // Orange
+
+        private void DrawCommandTimingPanel()
+        {
+            showTimingPanel = EditorGUILayout.Foldout(showTimingPanel, "Command Timing Visualization", true);
+            if (!showTimingPanel) return;
+
+            EditorGUI.indentLevel++;
+
+            timingVisualizationScale = EditorGUILayout.Slider("Scale", timingVisualizationScale, 0.5f, 2f);
+
+            EditorGUILayout.BeginHorizontal();
+            earlyCommandColor = EditorGUILayout.ColorField("Early", earlyCommandColor);
+            optimalCommandColor = EditorGUILayout.ColorField("Optimal", optimalCommandColor);
+            lateCommandColor = EditorGUILayout.ColorField("Late", lateCommandColor);
+            EditorGUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Generate Timing Chart"))
+            {
+                GenerateTimingChart();
+            }
+
+            EditorGUILayout.HelpBox("Command timing shows optimal points to issue commands for each obstacle based on dog speed and approach angle.", MessageType.Info);
+
+            EditorGUI.indentLevel--;
+        }
+
+        private void GenerateTimingChart()
+        {
+            if (obstaclePlacements.Count == 0)
+            {
+                EditorUtility.DisplayDialog("No Obstacles", "Add obstacles to the course first.", "OK");
+                return;
+            }
+
+            // Calculate timing for each obstacle
+            var timingData = new List<ObstacleTimingData>();
+            float currentTime = 0f;
+            float dogSpeed = 7.5f; // Default speed in m/s
+
+            for (int i = 0; i < obstaclePlacements.Count; i++)
+            {
+                var obstacle = obstaclePlacements[i];
+                
+                // Calculate approach distance (distance from previous obstacle or start)
+                float approachDistance = 5f; // Default
+                if (i > 0)
+                {
+                    approachDistance = Vector3.Distance(obstacle.position, obstaclePlacements[i - 1].position);
+                }
+
+                // Calculate timing windows based on obstacle type
+                var timing = CalculateObstacleTiming(obstacle.obstacleType, approachDistance, dogSpeed);
+                timing.obstacleIndex = i;
+                timing.obstacleType = obstacle.obstacleType;
+                timing.position = obstacle.position;
+                timing.estimatedArrivalTime = currentTime + (approachDistance / dogSpeed);
+                
+                timingData.Add(timing);
+                
+                // Estimate exit time
+                currentTime = timing.estimatedArrivalTime + timing.expectedDuration;
+            }
+
+            // Display timing visualization in Scene view or create a chart window
+            DisplayTimingChart(timingData);
+
+            Debug.Log($"Generated timing chart for {timingData.Count} obstacles. Total estimated time: {currentTime:F2}s");
+        }
+
+        private ObstacleTimingData CalculateObstacleTiming(ObstacleType type, float approachDistance, float dogSpeed)
+        {
+            // Timing windows in seconds
+            float earlyWindow = 0f;
+            float optimalWindow = 0f;
+            float lateWindow = 0f;
+            float expectedDuration = 0f;
+
+            switch (type)
+            {
+                case ObstacleType.BarJump:
+                    earlyWindow = 0.3f;
+                    optimalWindow = 0.1f;
+                    lateWindow = 0.2f;
+                    expectedDuration = 0.5f;
+                    break;
+                case ObstacleType.TireJump:
+                    earlyWindow = 0.4f;
+                    optimalWindow = 0.15f;
+                    lateWindow = 0.25f;
+                    expectedDuration = 0.6f;
+                    break;
+                case ObstacleType.BroadJump:
+                    earlyWindow = 0.5f;
+                    optimalWindow = 0.2f;
+                    lateWindow = 0.3f;
+                    expectedDuration = 0.8f;
+                    break;
+                case ObstacleType.WallJump:
+                    earlyWindow = 0.5f;
+                    optimalWindow = 0.2f;
+                    lateWindow = 0.3f;
+                    expectedDuration = 0.7f;
+                    break;
+                case ObstacleType.AFrame:
+                    earlyWindow = 0.6f;
+                    optimalWindow = 0.3f;
+                    lateWindow = 0.4f;
+                    expectedDuration = 1.2f;
+                    break;
+                case ObstacleType.DogWalk:
+                    earlyWindow = 0.8f;
+                    optimalWindow = 0.4f;
+                    lateWindow = 0.5f;
+                    expectedDuration = 2.0f;
+                    break;
+                case ObstacleType.Teeter:
+                    earlyWindow = 0.7f;
+                    optimalWindow = 0.3f;
+                    lateWindow = 0.4f;
+                    expectedDuration = 1.5f;
+                    break;
+                case ObstacleType.WeavePoles:
+                    earlyWindow = 0.4f;
+                    optimalWindow = 0.2f;
+                    lateWindow = 0.3f;
+                    expectedDuration = 3.0f;
+                    break;
+                case ObstacleType.PauseTable:
+                    earlyWindow = 0.3f;
+                    optimalWindow = 0.1f;
+                    lateWindow = 0.2f;
+                    expectedDuration = 5.0f; // Required pause time
+                    break;
+                default:
+                    earlyWindow = 0.3f;
+                    optimalWindow = 0.1f;
+                    lateWindow = 0.2f;
+                    expectedDuration = 0.5f;
+                    break;
+            }
+
+            // Adjust based on approach distance
+            float distanceFactor = Mathf.Clamp01(approachDistance / 10f);
+            earlyWindow *= (1f + distanceFactor);
+            lateWindow *= (1f + distanceFactor);
+
+            return new ObstacleTimingData
+            {
+                earlyCommandWindow = earlyWindow,
+                optimalCommandWindow = optimalWindow,
+                lateCommandWindow = lateWindow,
+                expectedDuration = expectedDuration,
+                commandPoint = approachDistance / dogSpeed // Time to reach command point
+            };
+        }
+
+        private void DisplayTimingChart(List<ObstacleTimingData> timingData)
+        {
+            // Create a simple editor window for timing visualization
+            CourseTimingWindow.ShowTiming(timingData, obstaclePlacements);
+        }
+
+        #endregion
+
         #region Actions
 
         private void DrawActions()
@@ -610,6 +784,24 @@ namespace AgilityDogs.Editor
         Info,
         Warning,
         Error
+    }
+
+    [System.Serializable]
+    public class ObstacleTimingData
+    {
+        public int obstacleIndex;
+        public ObstacleType obstacleType;
+        public Vector3 position;
+        public float estimatedArrivalTime;
+        public float earlyCommandWindow;
+        public float optimalCommandWindow;
+        public float lateCommandWindow;
+        public float expectedDuration;
+        public float commandPoint; // Time to issue command
+
+        public float OptimalCommandTime => estimatedArrivalTime - commandPoint;
+        public float EarlyCommandTime => OptimalCommandTime - earlyCommandWindow;
+        public float LateCommandTime => OptimalCommandTime + lateCommandWindow;
     }
 }
 #endif
