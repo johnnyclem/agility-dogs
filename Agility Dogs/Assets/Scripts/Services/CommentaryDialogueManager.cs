@@ -120,9 +120,6 @@ namespace AgilityDogs.Services
             // Obstacle events
             GameEvents.OnObstacleCompleted += HandleObstacleCompleted;
             GameEvents.OnFaultCommitted += HandleFaultCommitted;
-            
-            // Custom commentary triggers
-            CommentaryManager.OnCommentaryTrigger += HandleCommentaryTrigger;
         }
         
         private void UnsubscribeFromEvents()
@@ -132,8 +129,6 @@ namespace AgilityDogs.Services
             GameEvents.OnRunCompleted -= HandleRunCompleted;
             GameEvents.OnObstacleCompleted -= HandleObstacleCompleted;
             GameEvents.OnFaultCommitted -= HandleFaultCommitted;
-            
-            CommentaryManager.OnCommentaryTrigger -= HandleCommentaryTrigger;
         }
         
         /// <summary>
@@ -532,12 +527,6 @@ namespace AgilityDogs.Services
         private void HandleFaultCommitted(FaultType fault, string obstacleName)
         {
             TriggerState(CommentaryState.Mistakes);
-        }
-        
-        private void HandleCommentaryTrigger(string category, string text)
-        {
-            // Handle custom commentary triggers from other systems
-            // Could map categories to states here
         }
         
         #endregion
