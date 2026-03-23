@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,10 @@ namespace AgilityDogs.UI
 {
     public class MenuManager : MonoBehaviour
     {
+        [Header("Opening Sequence")]
+        [SerializeField] private OpeningSequence openingSequence;
+        [SerializeField] private bool waitForOpeningSequence = true;
+
         [Header("Menu Panels")]
         [SerializeField] private GameObject mainMenuPanel;
         [SerializeField] private GameObject modeSelectPanel;
@@ -17,6 +22,11 @@ namespace AgilityDogs.UI
         [SerializeField] private GameObject settingsPanel;
         [SerializeField] private GameObject resultsPanel;
         [SerializeField] private GameObject pausePanel;
+
+        [Header("Transitions")]
+        [SerializeField] private CanvasGroup menuCanvasGroup;
+        [SerializeField] private float transitionDuration = 0.3f;
+        [SerializeField] private AnimationCurve transitionCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
         [Header("Main Menu")]
         [SerializeField] private Button startGameButton;
@@ -99,17 +109,37 @@ namespace AgilityDogs.UI
         {
             gameManager = FindObjectOfType<GameManager>();
 
+            // Find opening sequence if not assigned
+            if (openingSequence == null)
+            {
+                openingSequence = FindObjectOfType<OpeningSequence>();
+            }
+
             SetupButtons();
             SetupSliders();
             SetupToggles();
-
-            ShowMainMenu();
-            HideAllPanels();
 
             // Set version text
             if (versionText != null)
             {
                 versionText.text = $"v{Application.version}";
+            }
+
+            // Check if we should wait for opening sequence
+            if (waitForOpeningSequence && openingSequence != null)
+            {
+                // Hide all panels until opening sequence completes
+                HideAllPanels();
+                if (menuCanvasGroup != null)
+                {
+                    menuCanvasGroup.alpha = 0f;
+                }
+            }
+            else
+            {
+                // Show main menu immediately
+                ShowMainMenu();
+                HideAllPanels();
             }
 
             // Subscribe to events
@@ -121,38 +151,212 @@ namespace AgilityDogs.UI
             GameEvents.OnGameStateChanged -= HandleGameStateChanged;
         }
 
+        #region Opening Sequence Integration
+
+        /// <summary>
+        /// Called by OpeningSequence when the opening cinematic completes.
+        /// </summary>
+        public void OnOpeningSequenceComplete()
+        {
+            Debug.Log("[MenuManager] Opening sequence completed, showing main menu");
+
+            // Show main menu with transition
+            StartCoroutine(ShowMainMenuWithTransition());
+        }
+
+        private IEnumerator ShowMainMenuWithTransition()
+        {
+            // Use TransitionManager if available
+            if (TransitionManager.Instance != null && menuCanvasGroup != null)
+            {
+                menuCanvasGroup.gameObject.SetActive(true);
+                TransitionManager.Instance.Fade(menuCanvasGroup, 1f, transitionDuration, () =>
+                {
+                    ShowMainMenu();
+                    TransitionManager.Instance.PlayTransitionSound();
+                });
+            }
+            else
+            {
+                // Fallback to manual fade
+                if (menuCanvasGroup != null)
+                {
+                    menuCanvasGroup.gameObject.SetActive(true);
+                    yield return StartCoroutine(FadeCanvasGroup(menuCanvasGroup, 0f, 1f, transitionDuration));
+                }
+                ShowMainMenu();
+            }
+
+            yield break;
+        }
+
+        #endregion
+
         private void SetupButtons()
         {
             // Main Menu
-            if (startGameButton != null) startGameButton.onClick.AddListener(ShowModeSelect);
-            if (settingsButton != null) settingsButton.onClick.AddListener(ShowSettings);
-            if (quitButton != null) quitButton.onClick.AddListener(QuitGame);
+            if (startGameButton != null)
+            {
+                startGameButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowModeSelect();
+                });
+            }
+            if (settingsButton != null)
+            {
+                settingsButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowSettings();
+                });
+            }
+            if (quitButton != null)
+            {
+                quitButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    QuitGame();
+                });
+            }
 
             // Mode Select
-            if (trainingModeButton != null) trainingModeButton.onClick.AddListener(() => SelectMode(GameMode.Training));
-            if (exhibitionModeButton != null) exhibitionModeButton.onClick.AddListener(() => SelectMode(GameMode.Exhibition));
-            if (careerModeButton != null) careerModeButton.onClick.AddListener(() => SelectMode(GameMode.Career));
+            if (trainingModeButton != null)
+            {
+                trainingModeButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    SelectMode(GameMode.Training);
+                });
+            }
+            if (exhibitionModeButton != null)
+            {
+                exhibitionModeButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    SelectMode(GameMode.Exhibition);
+                });
+            }
+            if (careerModeButton != null)
+            {
+                careerModeButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    SelectMode(GameMode.Career);
+                });
+            }
 
             // Team Select
-            if (startRunButton != null) startRunButton.onClick.AddListener(StartSelectedRun);
-            if (backToModeSelectButton != null) backToModeSelectButton.onClick.AddListener(ShowModeSelect);
+            if (startRunButton != null)
+            {
+                startRunButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    StartSelectedRun();
+                });
+            }
+            if (backToModeSelectButton != null)
+            {
+                backToModeSelectButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowModeSelect();
+                });
+            }
 
             // Settings
-            if (resetSettingsButton != null) resetSettingsButton.onClick.AddListener(ResetSettings);
-            if (applySettingsButton != null) applySettingsButton.onClick.AddListener(ApplySettings);
-            if (closeSettingsButton != null) closeSettingsButton.onClick.AddListener(CloseSettings);
+            if (resetSettingsButton != null)
+            {
+                resetSettingsButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ResetSettings();
+                });
+            }
+            if (applySettingsButton != null)
+            {
+                applySettingsButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ApplySettings();
+                });
+            }
+            if (closeSettingsButton != null)
+            {
+                closeSettingsButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    CloseSettings();
+                });
+            }
 
             // Results
-            if (replayButton != null) replayButton.onClick.AddListener(StartReplay);
-            if (retryButton != null) retryButton.onClick.AddListener(RetryCourse);
-            if (nextCourseButton != null) nextCourseButton.onClick.AddListener(NextCourse);
-            if (returnToMenuButton != null) returnToMenuButton.onClick.AddListener(ShowMainMenu);
+            if (replayButton != null)
+            {
+                replayButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    StartReplay();
+                });
+            }
+            if (retryButton != null)
+            {
+                retryButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    RetryCourse();
+                });
+            }
+            if (nextCourseButton != null)
+            {
+                nextCourseButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    NextCourse();
+                });
+            }
+            if (returnToMenuButton != null)
+            {
+                returnToMenuButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowMainMenu();
+                });
+            }
 
             // Pause
-            if (resumeButton != null) resumeButton.onClick.AddListener(ResumeGame);
-            if (restartButton != null) restartButton.onClick.AddListener(RestartGame);
-            if (pauseSettingsButton != null) pauseSettingsButton.onClick.AddListener(ShowSettings);
-            if (quitToMenuButton != null) quitToMenuButton.onClick.AddListener(QuitToMenu);
+            if (resumeButton != null)
+            {
+                resumeButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ResumeGame();
+                });
+            }
+            if (restartButton != null)
+            {
+                restartButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    RestartGame();
+                });
+            }
+            if (pauseSettingsButton != null)
+            {
+                pauseSettingsButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowSettings();
+                });
+            }
+            if (quitToMenuButton != null)
+            {
+                quitToMenuButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    QuitToMenu();
+                });
+            }
         }
 
         private void SetupSliders()
@@ -722,6 +926,32 @@ namespace AgilityDogs.UI
                 case 2: return number + "nd";
                 case 3: return number + "rd";
                 default: return number + "th";
+            }
+        }
+
+        private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha, float duration)
+        {
+            if (canvasGroup == null) yield break;
+
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / duration);
+                float curveValue = transitionCurve.Evaluate(t);
+                canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, curveValue);
+                yield return null;
+            }
+
+            canvasGroup.alpha = endAlpha;
+        }
+
+        private void PlayButtonClickSound()
+        {
+            if (TransitionManager.Instance != null)
+            {
+                TransitionManager.Instance.PlayClickSound();
             }
         }
 
