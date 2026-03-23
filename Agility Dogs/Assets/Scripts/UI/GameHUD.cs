@@ -5,6 +5,7 @@ using TMPro;
 using AgilityDogs.Core;
 using AgilityDogs.Events;
 using AgilityDogs.Services;
+using AgilityDogs.Gameplay.Scoring;
 
 namespace AgilityDogs.UI
 {
