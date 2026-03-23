@@ -41,7 +41,12 @@ namespace AgilityDogs.Core
         AFrame,
         DogWalk,
         Teeter,
-        PauseTable
+        PauseTable,
+        DoubleJump,
+        TripleJump,
+        PanelJump,
+        LongJump,
+        SpreadJump
     }
 
     public enum FaultType

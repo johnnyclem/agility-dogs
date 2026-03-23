@@ -574,7 +574,15 @@ namespace AgilityDogs.Services
         
         private void ProcessQueue()
         {
-            if (isProcessingQueue || commentaryQueue.Count == 0) return;
+            if (isProcessingQueue || commentaryQueue.Count == 0) 
+            {
+                // Stop ducking if queue is empty and commentary is not playing
+                if (AudioDuckingService.Instance != null && commentaryQueue.Count == 0)
+                {
+                    AudioDuckingService.Instance.StopDucking();
+                }
+                return;
+            }
             
             isProcessingQueue = true;
             CommentaryTask task = commentaryQueue.Dequeue();
@@ -661,10 +669,23 @@ namespace AgilityDogs.Services
                 AudioSource source = GetAnnouncerSource(task.announcerType);
                 elevenLabsService.PlayAudioClip(audioClip, source);
                 lastCommentaryTime = Time.time;
+                
+                // Trigger audio ducking when commentary plays
+                if (AudioDuckingService.Instance != null)
+                {
+                    AudioDuckingService.Instance.StartDucking();
+                }
             }
             
             // Process next in queue after a short delay
             yield return new WaitForSeconds(0.5f);
+            
+            // Stop ducking after commentary finishes
+            if (AudioDuckingService.Instance != null && !isProcessingQueue)
+            {
+                AudioDuckingService.Instance.StopDucking();
+            }
+            
             isProcessingQueue = false;
             ProcessQueue();
         }

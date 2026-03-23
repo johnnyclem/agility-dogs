@@ -22,6 +22,8 @@ namespace AgilityDogs.Events
         public static event Action<float> OnHandlerPathInfluence;
         public static event Action<Core.RecoveryReason> OnDogRecovery;
         public static event Action<string, float> OnPersonalBestRecorded;
+        public static event Action<HandlerCommand, float, string> OnVoiceCommandDetected;
+        public static event Action<string, float> OnVoiceCommandMisunderstood;
 
         public static void RaiseGameStateChanged(GameState from, GameState to)
             => OnGameStateChanged?.Invoke(from, to);
@@ -70,5 +72,11 @@ namespace AgilityDogs.Events
 
         public static void RaisePersonalBestRecorded(string splitName, float time)
             => OnPersonalBestRecorded?.Invoke(splitName, time);
+
+        public static void RaiseVoiceCommandDetected(HandlerCommand command, float confidence, string recognizedText)
+            => OnVoiceCommandDetected?.Invoke(command, confidence, recognizedText);
+
+        public static void RaiseVoiceCommandMisunderstood(string recognizedText, float confidence)
+            => OnVoiceCommandMisunderstood?.Invoke(recognizedText, confidence);
     }
 }
