@@ -99,6 +99,8 @@ namespace AgilityDogs.Gameplay.Dog
         public DogState CurrentState => currentState;
         public BreedData Breed => breedData;
         public float Speed => navAgent != null ? navAgent.velocity.magnitude : 0f;
+        public float CurrentSpeed => Speed;
+        public ObstacleBase TargetObstacle => targetObstacle;
 
         private void Awake()
         {

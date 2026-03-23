@@ -705,6 +705,8 @@ namespace AgilityDogs.Gameplay.Replay
             return currentReplayData != null ? currentReplayData.GetDuration() : 0f;
         }
         
+        public ReplayData CurrentReplayData => currentReplayData;
+        
         public bool IsInReviewMode()
         {
             return isReviewMode;

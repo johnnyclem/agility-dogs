@@ -6,27 +6,20 @@ using AgilityDogs.Core;
 
 namespace AgilityDogs.Editor
 {
-    /// <summary>
-    /// Debug visualization tools for AI, paths, and game state.
-    /// Provides runtime visualization of dog AI state, planned paths, and obstacle interactions.
-    /// </summary>
     public class DebugVisualizerWindow : EditorWindow
     {
-        // Visualization toggles
         private bool showDogAIState = true;
         private bool showDogPath = true;
         private bool showObstacleZones = true;
         private bool showCommandHistory = true;
         private bool showHandlerInfluence = true;
 
-        // Display settings
         private float visualizationHeight = 0.5f;
         private Color pathColor = Color.green;
         private Color plannedPathColor = Color.cyan;
         private Color errorPathColor = Color.red;
         private float pathWidth = 0.2f;
 
-        // History
         private List<DebugPathPoint> pathHistory = new List<DebugPathPoint>();
         private int maxHistoryPoints = 1000;
 
@@ -41,7 +34,6 @@ namespace AgilityDogs.Editor
             EditorGUILayout.LabelField("AI Debug Visualizer", EditorStyles.boldLabel);
             EditorGUILayout.Space();
 
-            // Visualization toggles
             EditorGUILayout.LabelField("Display Options", EditorStyles.miniBoldLabel);
             showDogAIState = EditorGUILayout.Toggle("Dog AI State", showDogAIState);
             showDogPath = EditorGUILayout.Toggle("Dog Path", showDogPath);
@@ -51,7 +43,6 @@ namespace AgilityDogs.Editor
 
             EditorGUILayout.Space();
 
-            // Display settings
             EditorGUILayout.LabelField("Settings", EditorStyles.miniBoldLabel);
             visualizationHeight = EditorGUILayout.Slider("Height Offset", visualizationHeight, 0f, 2f);
             pathWidth = EditorGUILayout.Slider("Path Width", pathWidth, 0.05f, 1f);
@@ -63,7 +54,6 @@ namespace AgilityDogs.Editor
 
             EditorGUILayout.Space();
 
-            // Actions
             EditorGUILayout.LabelField("Actions", EditorStyles.miniBoldLabel);
             
             if (GUILayout.Button("Clear Path History"))
@@ -78,7 +68,6 @@ namespace AgilityDogs.Editor
 
             EditorGUILayout.Space();
 
-            // Info panel
             EditorGUILayout.LabelField("Runtime Info", EditorStyles.miniBoldLabel);
             EditorGUILayout.LabelField($"Path Points: {pathHistory.Count}");
             
@@ -105,7 +94,6 @@ namespace AgilityDogs.Editor
             var dog = FindObjectOfType<Gameplay.Dog.DogAgentController>();
             if (dog == null) return;
 
-            // Record path
             if (showDogPath && pathHistory.Count < maxHistoryPoints)
             {
                 pathHistory.Add(new DebugPathPoint
@@ -115,14 +103,12 @@ namespace AgilityDogs.Editor
                     state = dog.CurrentState
                 });
 
-                // Remove old points
                 while (pathHistory.Count > maxHistoryPoints)
                 {
                     pathHistory.RemoveAt(0);
                 }
             }
 
-            // Draw path history
             if (showDogPath && pathHistory.Count > 1)
             {
                 Handles.color = pathColor;
@@ -134,7 +120,6 @@ namespace AgilityDogs.Editor
                     Handles.color = new Color(pathColor.r, pathColor.g, pathColor.b, alpha);
                     Handles.DrawLine(pathHistory[i - 1].position, pathHistory[i].position, pathWidth);
 
-                    // Draw state indicator
                     if (pathHistory[i].state != pathHistory[i - 1].state)
                     {
                         Handles.color = Color.yellow;
@@ -143,31 +128,26 @@ namespace AgilityDogs.Editor
                 }
             }
 
-            // Draw AI state visualization
             if (showDogAIState)
             {
                 DrawAIStateVisualization(dog);
             }
 
-            // Draw obstacle zones
             if (showObstacleZones)
             {
                 DrawObstacleZones();
             }
 
-            // Draw handler influence
             if (showHandlerInfluence)
             {
                 DrawHandlerInfluence(dog);
             }
 
-            // Force repaint for continuous updates
             SceneView.RepaintAll();
         }
 
         private void DrawAIStateVisualization(Gameplay.Dog.DogAgentController dog)
         {
-            // Draw current state as label
             GUIStyle style = new GUIStyle(GUI.skin.label)
             {
                 fontSize = 14,
@@ -181,15 +161,13 @@ namespace AgilityDogs.Editor
                 style
             );
 
-            // Draw perception sphere
             Handles.color = new Color(0, 1, 0, 0.1f);
             Handles.DrawSolidDisc(
                 dog.transform.position,
                 Vector3.up,
-                10f // Perception radius
+                10f
             );
 
-            // Draw committed obstacle if any
             if (dog.TargetObstacle != null)
             {
                 Handles.color = Color.magenta;
@@ -211,7 +189,6 @@ namespace AgilityDogs.Editor
             var obstacles = FindObjectsOfType<Gameplay.Obstacles.ObstacleBase>();
             foreach (var obstacle in obstacles)
             {
-                // Draw entry zone
                 Handles.color = new Color(0, 1, 0, 0.2f);
                 Handles.DrawWireDisc(
                     obstacle.transform.position + obstacle.transform.forward * 2f,
@@ -219,7 +196,6 @@ namespace AgilityDogs.Editor
                     2f
                 );
 
-                // Draw completion zone
                 Handles.color = new Color(1, 1, 0, 0.2f);
                 Handles.DrawWireDisc(
                     obstacle.transform.position + obstacle.transform.forward * -2f,
@@ -227,7 +203,6 @@ namespace AgilityDogs.Editor
                     2f
                 );
 
-                // Label
                 Handles.Label(
                     obstacle.transform.position + Vector3.up * 0.5f,
                     obstacle.ObstacleType.ToString()
@@ -240,7 +215,6 @@ namespace AgilityDogs.Editor
             var handler = FindObjectOfType<Gameplay.Handler.HandlerController>();
             if (handler == null) return;
 
-            // Draw influence radius
             float influenceRadius = 8f;
             Handles.color = new Color(1, 0.5f, 0, 0.2f);
             Handles.DrawWireDisc(
@@ -249,7 +223,6 @@ namespace AgilityDogs.Editor
                 influenceRadius
             );
 
-            // Draw line to dog
             Handles.color = Color.orange;
             Handles.DrawDottedLine(
                 handler.transform.position,
@@ -257,24 +230,20 @@ namespace AgilityDogs.Editor
                 3f
             );
 
-            // Draw handler facing direction
             Handles.color = Color.red;
-            Handles.DrawRay(
-                handler.transform.position,
-                handler.transform.forward * 3f
-            );
+            Vector3 dir = handler.transform.forward * 3f;
+            Handles.DrawLine(handler.transform.position, handler.transform.position + dir, 2f);
         }
 
-        private Color GetStateColor(DogState state)
+        private Color GetStateColor(Core.DogState state)
         {
             return state switch
             {
-                DogState.Idle => Color.gray,
-                DogState.Running => Color.green,
-                DogState.Searching => Color.yellow,
-                DogState.Committed => Color.blue,
-                DogState.Obstacle => Color.cyan,
-                DogState.Recovering => Color.red,
+                Core.DogState.Idle => Color.gray,
+                Core.DogState.Running => Color.green,
+                Core.DogState.Heeling => Color.blue,
+                Core.DogState.CompletingObstacle => Color.cyan,
+                Core.DogState.Recovering => Color.red,
                 _ => Color.white
             };
         }
@@ -304,17 +273,7 @@ namespace AgilityDogs.Editor
     {
         public Vector3 position;
         public float time;
-        public DogState state;
-    }
-
-    public enum DogState
-    {
-        Idle,
-        Running,
-        Searching,
-        Committed,
-        Obstacle,
-        Recovering
+        public Core.DogState state;
     }
 }
 #endif

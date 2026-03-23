@@ -10,6 +10,7 @@ namespace AgilityDogs.Data
         public string obstacleName;
         public ObstacleType obstacleType;
         public CourseType[] validCourseTypes = { CourseType.Standard, CourseType.JumpersWithWeaves };
+        public int sequenceOrder;
 
         [Header("Dimensions")]
         public float length = 3f;

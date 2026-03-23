@@ -292,11 +292,10 @@ namespace AgilityDogs.Editor
                         jumpCount = 0;
                 }
 
-                obstacles.Add(new ObstacleData
-                {
-                    obstacleType = type2,
-                    sequenceOrder = i + 1
-                });
+                var obstacle = ScriptableObject.CreateInstance<ObstacleData>();
+                obstacle.obstacleType = type2;
+                obstacle.sequenceOrder = i + 1;
+                obstacles.Add(obstacle);
             }
 
             return obstacles.ToArray();

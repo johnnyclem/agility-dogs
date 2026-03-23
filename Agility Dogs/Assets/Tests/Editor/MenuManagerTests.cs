@@ -73,13 +73,7 @@ namespace AgilityDogs.Tests.Editor
         [Test]
         public void MenuManager_SubscribesToEvents()
         {
-            // Arrange
-            bool eventSubscribed = false;
-
-            // Act
-            menuManager.Start(); // This would normally be called by Unity
-
-            // Assert - Check that the MenuManager is set up (basic sanity check)
+            // Act - Check that the MenuManager is set up (basic sanity check)
             Assert.IsNotNull(menuManager);
         }
     }

@@ -32,6 +32,7 @@ namespace AgilityDogs.Core
 
     public enum ObstacleType
     {
+        None,
         BarJump,
         TireJump,
         BroadJump,
@@ -64,7 +65,8 @@ namespace AgilityDogs.Core
     public enum CourseType
     {
         Standard,
-        JumpersWithWeaves
+        JumpersWithWeaves,
+        Championship
     }
 
     public enum GameState
@@ -87,6 +89,7 @@ namespace AgilityDogs.Core
         None,
         QuickPlay,
         Training,
+        Exhibition,
         Career
     }
 

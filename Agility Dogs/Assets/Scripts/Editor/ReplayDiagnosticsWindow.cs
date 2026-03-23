@@ -65,7 +65,7 @@ namespace AgilityDogs.Editor
             DrawReplaySelector();
             GUILayout.Space(10);
 
-            if (selectedReplay != null || (replayManager != null && replayManager.currentReplayData != null))
+            if (selectedReplay != null || (replayManager != null && replayManager.CurrentReplayData != null))
             {
                 DrawAnalysis();
             }
@@ -105,17 +105,17 @@ namespace AgilityDogs.Editor
                 
                 EditorGUILayout.LabelField("Current Replay Manager", EditorStyles.miniBoldLabel);
                 
-                if (replayManager.currentReplayData != null)
+                if (replayManager.CurrentReplayData != null)
                 {
                     if (GUILayout.Button("Use Current Replay"))
                     {
-                        selectedReplay = replayManager.currentReplayData;
+                        selectedReplay = replayManager.CurrentReplayData;
                         AnalyzeReplay(selectedReplay);
                     }
                     
-                    EditorGUILayout.LabelField($"Frames: {replayManager.currentReplayData.frames.Count}");
-                    EditorGUILayout.LabelField($"Events: {replayManager.currentReplayData.events.Count}");
-                    EditorGUILayout.LabelField($"Duration: {replayManager.currentReplayData.GetDuration():F2}s");
+                    EditorGUILayout.LabelField($"Frames: {replayManager.CurrentReplayData.frames.Count}");
+                    EditorGUILayout.LabelField($"Events: {replayManager.CurrentReplayData.events.Count}");
+                    EditorGUILayout.LabelField($"Duration: {replayManager.CurrentReplayData.GetDuration():F2}s");
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace AgilityDogs.Editor
 
         private void DrawAnalysis()
         {
-            var replay = selectedReplay ?? replayManager?.currentReplayData;
+            var replay = selectedReplay ?? replayManager?.CurrentReplayData;
             if (replay == null) return;
 
             if (analysis == null)
@@ -277,7 +277,7 @@ namespace AgilityDogs.Editor
 
         private void DrawEventAnalysis()
         {
-            var replay = selectedReplay ?? replayManager?.currentReplayData;
+            var replay = selectedReplay ?? replayManager?.CurrentReplayData;
             if (replay == null || replay.events.Count == 0) return;
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
@@ -498,7 +498,7 @@ namespace AgilityDogs.Editor
 
         private void RefreshAnalysis()
         {
-            var replay = selectedReplay ?? replayManager?.currentReplayData;
+            var replay = selectedReplay ?? replayManager?.CurrentReplayData;
             if (replay != null)
             {
                 AnalyzeReplay(replay);
@@ -525,7 +525,7 @@ namespace AgilityDogs.Editor
 
         private void ExportDiagnosticsReport()
         {
-            var replay = selectedReplay ?? replayManager?.currentReplayData;
+            var replay = selectedReplay ?? replayManager?.CurrentReplayData;
             if (replay == null || analysis == null)
             {
                 EditorUtility.DisplayDialog("No Data", "No replay data to export.", "OK");
