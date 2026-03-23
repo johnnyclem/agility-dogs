@@ -78,7 +78,81 @@ namespace AgilityDogs.Core
         RunComplete,
         Results,
         Replay,
+        Career,
+        // Career-specific states
+        BreedingScreen,
+        PuppySelection,
+        TrainingCamp,
+        ShowEntry,
+        ShowResults,
+        CareerHub,
+        Westminster
+    }
+
+    public enum GameMode
+    {
+        None,
+        QuickPlay,
+        Training,
         Career
+    }
+
+    public enum CareerPhase
+    {
+        Breeding,       // Select/create puppy
+        Training,       // Train puppy basics
+        LocalShows,     // Enter local competitions
+        RegionalShows,  // Regional competitions
+        NationalShows,  // National championships
+        Westminster     // Agility Kings at Westminster
+    }
+
+    public enum ShowTier
+    {
+        Local,          // Local park competitions
+        County,         // County fair shows
+        Regional,       // Regional championships
+        State,          // State championships
+        National,       // National championships
+        Westminster     // Agility Kings at Westminster Dog Show
+    }
+
+    public enum ShowResult
+    {
+        DidNotPlace,
+        HonorableMention,
+        ThirdPlace,
+        SecondPlace,
+        FirstPlace,
+        BestInShow
+    }
+
+    public enum PuppyTrait
+    {
+        Energetic,      // Higher stamina, faster fatigue
+        Calm,           // Lower stamina, slower fatigue
+        Intelligent,    // Faster learning
+        Stubborn,       // Slower learning, harder to train
+        Agile,          // Better turning, obstacle performance
+        Strong,         // Better jump power
+        Sensitive,      // More responsive to commands
+        Distracted,     // Less focused, more likely to lose concentration
+        Confident,      // Less likely to spook
+        Nervous         // More likely to make mistakes under pressure
+    }
+
+    public enum TrainingSkill
+    {
+        BasicObedience,
+        JumpTechnique,
+        WeavePoles,
+        ContactObstacles,
+        TunnelWork,
+        SpeedTraining,
+        FocusTraining,
+        HandlerBonding,
+        CompetitionReady,
+        AdvancedHandling
     }
 
     public enum AgilitySizeDivision

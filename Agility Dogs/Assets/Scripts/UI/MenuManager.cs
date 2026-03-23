@@ -6,6 +6,7 @@ using TMPro;
 using AgilityDogs.Core;
 using AgilityDogs.Data;
 using AgilityDogs.Events;
+using AgilityDogs.Services;
 
 namespace AgilityDogs.UI
 {
@@ -18,6 +19,8 @@ namespace AgilityDogs.UI
         [Header("Menu Panels")]
         [SerializeField] private GameObject mainMenuPanel;
         [SerializeField] private GameObject modeSelectPanel;
+        [SerializeField] private GameObject quickPlayPanel;
+        [SerializeField] private GameObject trainingPanel;
         [SerializeField] private GameObject teamSelectPanel;
         [SerializeField] private GameObject settingsPanel;
         [SerializeField] private GameObject resultsPanel;
@@ -29,12 +32,15 @@ namespace AgilityDogs.UI
         [SerializeField] private AnimationCurve transitionCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
         [Header("Main Menu")]
-        [SerializeField] private Button startGameButton;
+        [SerializeField] private Button startGameButton; // Legacy fallback
+        [SerializeField] private Button quickPlayButton;
+        [SerializeField] private Button trainingButton;
+        [SerializeField] private Button careerButton;
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button quitButton;
         [SerializeField] private TextMeshProUGUI versionText;
 
-        [Header("Mode Select")]
+        [Header("Mode Select (Legacy - Optional)")]
         [SerializeField] private Button trainingModeButton;
         [SerializeField] private Button exhibitionModeButton;
         [SerializeField] private Button careerModeButton;
@@ -43,6 +49,18 @@ namespace AgilityDogs.UI
         [SerializeField] private Sprite trainingSprite;
         [SerializeField] private Sprite exhibitionSprite;
         [SerializeField] private Sprite careerSprite;
+
+        [Header("Quick Play")]
+        [SerializeField] private TextMeshProUGUI quickPlayDescriptionText;
+        [SerializeField] private Button startQuickPlayButton;
+        [SerializeField] private Button backFromQuickPlayButton;
+
+        [Header("Training")]
+        [SerializeField] private TextMeshProUGUI trainingDescriptionText;
+        [SerializeField] private Transform courseListContainer;
+        [SerializeField] private GameObject courseEntryPrefab;
+        [SerializeField] private Button startTrainingButton;
+        [SerializeField] private Button backFromTrainingButton;
 
         [Header("Team Select")]
         [SerializeField] private Transform handlerListContainer;
@@ -97,17 +115,19 @@ namespace AgilityDogs.UI
         [SerializeField] private CourseDefinition[] availableCourses;
 
         // Selection state
-        private GameMode selectedMode = GameMode.Training;
+        private GameMode selectedMode = GameMode.QuickPlay;
         private int selectedHandlerIndex = 0;
         private int selectedDogIndex = 0;
         private int selectedCourseIndex = 0;
 
         // References
         private GameManager gameManager;
+        private GameModeManager gameModeManager;
 
         private void Start()
         {
             gameManager = FindObjectOfType<GameManager>();
+            gameModeManager = FindObjectOfType<GameModeManager>();
 
             // Find opening sequence if not assigned
             if (openingSequence == null)
@@ -194,13 +214,29 @@ namespace AgilityDogs.UI
 
         private void SetupButtons()
         {
-            // Main Menu
-            if (startGameButton != null)
+            // Main Menu - New Three-Mode System
+            if (quickPlayButton != null)
             {
-                startGameButton.onClick.AddListener(() =>
+                quickPlayButton.onClick.AddListener(() =>
                 {
                     PlayButtonClickSound();
-                    ShowModeSelect();
+                    StartQuickPlay();
+                });
+            }
+            if (trainingButton != null)
+            {
+                trainingButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowTrainingMode();
+                });
+            }
+            if (careerButton != null)
+            {
+                careerButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    StartCareerMode();
                 });
             }
             if (settingsButton != null)
@@ -220,7 +256,15 @@ namespace AgilityDogs.UI
                 });
             }
 
-            // Mode Select
+            // Legacy Mode Select (fallback if new buttons not assigned)
+            if (startGameButton != null)
+            {
+                startGameButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowModeSelect();
+                });
+            }
             if (trainingModeButton != null)
             {
                 trainingModeButton.onClick.AddListener(() =>
@@ -234,7 +278,7 @@ namespace AgilityDogs.UI
                 exhibitionModeButton.onClick.AddListener(() =>
                 {
                     PlayButtonClickSound();
-                    SelectMode(GameMode.Exhibition);
+                    SelectMode(GameMode.QuickPlay);
                 });
             }
             if (careerModeButton != null)
@@ -242,7 +286,43 @@ namespace AgilityDogs.UI
                 careerModeButton.onClick.AddListener(() =>
                 {
                     PlayButtonClickSound();
-                    SelectMode(GameMode.Career);
+                    StartCareerMode();
+                });
+            }
+
+            // Quick Play Panel
+            if (startQuickPlayButton != null)
+            {
+                startQuickPlayButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ConfirmQuickPlay();
+                });
+            }
+            if (backFromQuickPlayButton != null)
+            {
+                backFromQuickPlayButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowMainMenu();
+                });
+            }
+
+            // Training Panel
+            if (startTrainingButton != null)
+            {
+                startTrainingButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ConfirmTraining();
+                });
+            }
+            if (backFromTrainingButton != null)
+            {
+                backFromTrainingButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowMainMenu();
                 });
             }
 
@@ -413,6 +493,8 @@ namespace AgilityDogs.UI
         {
             if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
             if (modeSelectPanel != null) modeSelectPanel.SetActive(false);
+            if (quickPlayPanel != null) quickPlayPanel.SetActive(false);
+            if (trainingPanel != null) trainingPanel.SetActive(false);
             if (teamSelectPanel != null) teamSelectPanel.SetActive(false);
             if (settingsPanel != null) settingsPanel.SetActive(false);
             if (resultsPanel != null) resultsPanel.SetActive(false);
@@ -430,6 +512,70 @@ namespace AgilityDogs.UI
             HideAllPanels();
             if (modeSelectPanel != null) modeSelectPanel.SetActive(true);
             UpdateModeDescription(selectedMode);
+        }
+
+        private void ShowQuickPlayPanel()
+        {
+            HideAllPanels();
+            if (quickPlayPanel != null) quickPlayPanel.SetActive(true);
+
+            // Update description
+            if (quickPlayDescriptionText != null)
+            {
+                quickPlayDescriptionText.text = "Jump straight into the action! A random course with default settings.";
+            }
+        }
+
+        private void ShowTrainingPanel()
+        {
+            HideAllPanels();
+            if (trainingPanel != null) trainingPanel.SetActive(true);
+
+            // Update description
+            if (trainingDescriptionText != null)
+            {
+                trainingDescriptionText.text = "Practice courses at your own pace. No pressure, no competition. Perfect for learning!";
+            }
+
+            // Populate course list
+            PopulateCourseList();
+        }
+
+        private void PopulateCourseList()
+        {
+            if (courseListContainer == null || courseEntryPrefab == null || availableCourses == null) return;
+
+            // Clear existing entries
+            foreach (Transform child in courseListContainer)
+            {
+                Destroy(child.gameObject);
+            }
+
+            // Create new entries
+            for (int i = 0; i < availableCourses.Length; i++)
+            {
+                CourseDefinition course = availableCourses[i];
+                GameObject entry = Instantiate(courseEntryPrefab, courseListContainer);
+
+                TextMeshProUGUI nameText = entry.GetComponentInChildren<TextMeshProUGUI>();
+                if (nameText != null)
+                {
+                    nameText.text = course.courseName ?? course.name;
+                }
+
+                Button button = entry.GetComponent<Button>();
+                int index = i;
+                if (button != null)
+                {
+                    button.onClick.AddListener(() => SelectCourse(index));
+                }
+            }
+        }
+
+        private void SelectCourse(int index)
+        {
+            selectedCourseIndex = index;
+            // Could update UI to show selected course
         }
 
         private void ShowTeamSelect()
@@ -527,11 +673,102 @@ namespace AgilityDogs.UI
 
         #region Mode Selection
 
+        /// <summary>
+        /// Start Quick Play mode - jump straight to competition
+        /// </summary>
+        private void StartQuickPlay()
+        {
+            Debug.Log("[MenuManager] Starting Quick Play mode");
+            selectedMode = GameMode.QuickPlay;
+
+            // Use GameModeManager if available
+            if (gameModeManager != null)
+            {
+                gameModeManager.StartQuickPlay();
+            }
+            else if (gameManager != null)
+            {
+                gameManager.StartQuickPlay();
+            }
+        }
+
+        private void ConfirmQuickPlay()
+        {
+            StartQuickPlay();
+        }
+
+        /// <summary>
+        /// Show Training mode selection
+        /// </summary>
+        private void ShowTrainingMode()
+        {
+            Debug.Log("[MenuManager] Showing Training mode selection");
+            selectedMode = GameMode.Training;
+            ShowTrainingPanel();
+        }
+
+        private void ConfirmTraining()
+        {
+            Debug.Log("[MenuManager] Starting Training mode");
+
+            // Get selected course
+            CourseDefinition course = null;
+            if (availableCourses != null && selectedCourseIndex < availableCourses.Length)
+            {
+                course = availableCourses[selectedCourseIndex];
+            }
+
+            // Use GameModeManager if available
+            if (gameModeManager != null)
+            {
+                gameModeManager.StartTraining(course: course);
+            }
+            else if (gameManager != null)
+            {
+                gameManager.StartTraining(course: course);
+            }
+        }
+
+        /// <summary>
+        /// Start Career mode - breeding to Westminster
+        /// </summary>
+        private void StartCareerMode()
+        {
+            Debug.Log("[MenuManager] Starting Career mode");
+            selectedMode = GameMode.Career;
+
+            // Use GameModeManager if available
+            if (gameModeManager != null)
+            {
+                gameModeManager.StartCareer(CareerPhase.Breeding);
+            }
+            else if (gameManager != null)
+            {
+                gameManager.StartCareer(CareerPhase.Breeding);
+            }
+        }
+
+        /// <summary>
+        /// Legacy mode selection for backwards compatibility
+        /// </summary>
         private void SelectMode(GameMode mode)
         {
             selectedMode = mode;
             UpdateModeDescription(mode);
-            ShowTeamSelect();
+
+            // Route based on mode
+            switch (mode)
+            {
+                case GameMode.Training:
+                    ShowTrainingPanel();
+                    break;
+                case GameMode.QuickPlay:
+                    StartQuickPlay();
+                    break;
+                case GameMode.Career:
+                    StartCareerMode();
+                    break;
+            }
         }
 
         private void UpdateModeDescription(GameMode mode)
@@ -544,11 +781,11 @@ namespace AgilityDogs.UI
                 case GameMode.Training:
                     description = "Practice courses at your own pace. No pressure, no competition. Perfect for learning!";
                     break;
-                case GameMode.Exhibition:
-                    description = "Run exhibition courses and compete for the best times. Show off your skills!";
+                case GameMode.QuickPlay:
+                    description = "Jump straight into the action! A random course with default settings.";
                     break;
                 case GameMode.Career:
-                    description = "Build your career as an agility handler. Earn experience, unlock new dogs and venues!";
+                    description = "Build your career as an agility handler. Breed your puppy, train it, compete in local shows, and work your way up to the Westminster Agility Kings!";
                     break;
             }
             modeDescriptionText.text = description;
@@ -561,7 +798,7 @@ namespace AgilityDogs.UI
                     case GameMode.Training:
                         modePreviewImage.sprite = trainingSprite;
                         break;
-                    case GameMode.Exhibition:
+                    case GameMode.QuickPlay:
                         modePreviewImage.sprite = exhibitionSprite;
                         break;
                     case GameMode.Career:
@@ -705,10 +942,36 @@ namespace AgilityDogs.UI
         private void StartSelectedRun()
         {
             // Set up the selected configuration
-            // In a full implementation, this would pass the selection to the GameManager
-            if (gameManager != null)
+            if (gameModeManager != null)
             {
-                // For now, just start the game
+                // Get selected handler and dog
+                HandlerData handler = (availableHandlers != null && selectedHandlerIndex < availableHandlers.Length) 
+                    ? availableHandlers[selectedHandlerIndex] : null;
+                BreedData dog = (availableDogs != null && selectedDogIndex < availableDogs.Length) 
+                    ? availableDogs[selectedDogIndex] : null;
+                CourseDefinition course = (availableCourses != null && selectedCourseIndex < availableCourses.Length) 
+                    ? availableCourses[selectedCourseIndex] : null;
+
+                gameModeManager.SetTeam(handler, dog);
+                if (course != null) gameModeManager.SetCourse(course);
+
+                // Start based on selected mode
+                switch (selectedMode)
+                {
+                    case GameMode.QuickPlay:
+                        gameModeManager.StartQuickPlay();
+                        break;
+                    case GameMode.Training:
+                        gameModeManager.StartTraining(handler, dog, course);
+                        break;
+                    case GameMode.Career:
+                        gameModeManager.StartCareer();
+                        break;
+                }
+            }
+            else if (gameManager != null)
+            {
+                // Fallback to GameManager
                 gameManager.StartGame();
             }
         }

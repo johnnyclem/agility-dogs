@@ -50,6 +50,43 @@ The project has achieved feature completeness with all core systems operational:
 | Audio System | Complete | 100% | ElevenLabs TTS, AudioDuckingService |
 | Accessibility | Complete | 100% | Colorblind, screen reader, remappable |
 | Platform/Performance | Complete | 100% | Unity 3D, Addressables, platform abstraction |
+| **Game Modes** | ✅ **Complete** | **100%** | Quick Play, Training, Career (Breeding → Westminster) |
+
+---
+
+## Game Modes Implementation
+
+### 1. Quick Play Mode ✅
+- **Description:** Jump straight into competition with default settings
+- **Implementation:** `GameModeManager.StartQuickPlay()`
+- **Features:** Random course, default team, full competition rules, quick restart
+- **Files:** GameModeManager.cs, GameManager.cs, MenuManager.cs
+
+### 2. Training Mode ✅
+- **Description:** Practice courses at your own pace, no pressure
+- **Implementation:** `GameModeManager.StartTraining(handler, dog, course)`
+- **Features:** Course selection, no timer pressure (optional), unlimited retries, training aids
+- **Files:** GameModeManager.cs, GameManager.cs, MenuManager.cs
+
+### 3. Career Mode ✅
+- **Description:** Full progression from puppy breeding to Westminster Agility Kings
+- **Implementation:** `GameModeManager.StartCareer(CareerPhase.Breeding)`
+- **Features:** Breeding, training, 6-tier show progression, Westminster championship
+- **Files:** GameModeManager.cs, DogBreedingService.cs, ShowManager.cs, CareerUIManager.cs, GameManager.cs
+
+#### Career Phase Flow
+```
+Breeding → Training → Local Shows → County → Regional → State → National → WESTMINSTER
+```
+
+#### Career Services
+| Service | Purpose | Key Features |
+|---------|---------|--------------|
+| GameModeManager | Mode routing | Quick Play, Training, Career entry points |
+| DogBreedingService | Puppy creation | Trait system, breeding, stat generation |
+| ShowManager | Competition | 6-tier progression, opponent generation |
+| CareerUIManager | UI screens | Breeding, training, show selection UI |
+| CareerProgressionService | Progress | XP, leveling, achievements (existing) |
 
 ---
 
