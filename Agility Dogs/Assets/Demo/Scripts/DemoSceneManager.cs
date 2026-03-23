@@ -13,6 +13,7 @@ using AgilityDogs.Gameplay;
 using AgilityDogs.Gameplay.Dog;
 using AgilityDogs.Gameplay.Handler;
 using AgilityDogs.Gameplay.Obstacles;
+using AgilityDogs.Gameplay.Scoring;
 
 namespace AgilityDogs.Demo
 {
