@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using AgilityDogs.Core;
 using AgilityDogs.Events;
+using AgilityDogs.Services;
 
 namespace AgilityDogs.UI
 {

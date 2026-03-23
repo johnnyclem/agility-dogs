@@ -776,17 +776,6 @@ namespace AgilityDogs.UI
 
         #region Helper Methods
 
-        private void HideAllPanels()
-        {
-            if (careerHubPanel != null) careerHubPanel.SetActive(false);
-            if (breedingPanel != null) breedingPanel.SetActive(false);
-            if (puppySelectionPanel != null) puppySelectionPanel.SetActive(false);
-            if (trainingCampPanel != null) trainingCampPanel.SetActive(false);
-            if (showSelectionPanel != null) showSelectionPanel.SetActive(false);
-            if (showResultsPanel != null) showResultsPanel.SetActive(false);
-            if (westminsterPanel != null) westminsterPanel.SetActive(false);
-        }
-
         private string GetPhaseDisplayName(CareerPhase phase)
         {
             return phase switch

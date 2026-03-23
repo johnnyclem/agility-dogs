@@ -287,11 +287,6 @@ namespace AgilityDogs.Gameplay.Replay
             RecordEvent(ReplayEventType.ObstacleCompleted, $"{type.ToString()}|{clean}");
         }
         
-        private void RecordSplitTime(float time)
-        {
-            RecordEvent(ReplayEventType.SplitTimeRecorded, time.ToString());
-        }
-        
         private void RecordRunStarted()
         {
             RecordEvent(ReplayEventType.RunStarted);
