@@ -542,26 +542,51 @@ namespace AgilityDogs.Services
         public List<TKey> keys = new List<TKey>();
         public List<TValue> values = new List<TValue>();
 
+        private Dictionary<TKey, TValue> cachedDict;
+
         public Dictionary<TKey, TValue> ToDictionary()
         {
-            var dict = new Dictionary<TKey, TValue>();
+            if (cachedDict != null) return cachedDict;
+            
+            cachedDict = new Dictionary<TKey, TValue>();
             for (int i = 0; i < keys.Count; i++)
             {
-                dict[keys[i]] = values[i];
+                if (!cachedDict.ContainsKey(keys[i]))
+                {
+                    cachedDict[keys[i]] = values[i];
+                }
             }
-            return dict;
+            return cachedDict;
         }
 
         public void FromDictionary(Dictionary<TKey, TValue> dict)
         {
             keys.Clear();
             values.Clear();
+            cachedDict = null;
             foreach (var kvp in dict)
             {
                 keys.Add(kvp.Key);
                 values.Add(kvp.Value);
             }
         }
+
+        public ICollection<TValue> Values => ToDictionary().Values;
+
+        public bool ContainsKey(TKey key) => ToDictionary().ContainsKey(key);
+
+        public TValue this[TKey key]
+        {
+            get => ToDictionary()[key];
+            set
+            {
+                var dict = ToDictionary();
+                dict[key] = value;
+                cachedDict = dict;
+            }
+        }
+
+        public bool Remove(TKey key) => ToDictionary().Remove(key);
     }
 
     // Extension class for dictionary access

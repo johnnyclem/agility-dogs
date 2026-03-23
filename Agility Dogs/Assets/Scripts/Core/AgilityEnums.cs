@@ -75,7 +75,11 @@ namespace AgilityDogs.Core
         CourseLoad,
         Countdown,
         Gameplay,
-        Pause
+        Pause,
+        RunComplete,
+        Results,
+        Replay,
+        Career
     }
 
     public enum GameMode

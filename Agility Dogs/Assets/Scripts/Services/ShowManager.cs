@@ -234,15 +234,17 @@ namespace AgilityDogs.Services
             // Calculate player placement based on performance
             int placement = CalculatePlacement(runResult, time, faults);
 
-            // Determine show result
-            ShowResult showResult = placement switch
-            {
-                1 => ShowResult.FirstPlace,
-                2 => ShowResult.SecondPlace,
-                3 => ShowResult.ThirdPlace,
-                <= competitorsPerShow => ShowResult.HonorableMention,
-                _ => ShowResult.DidNotPlace
-            };
+            ShowResult showResult;
+            if (placement == 1)
+                showResult = ShowResult.FirstPlace;
+            else if (placement == 2)
+                showResult = ShowResult.SecondPlace;
+            else if (placement == 3)
+                showResult = ShowResult.ThirdPlace;
+            else if (placement <= competitorsPerShow)
+                showResult = ShowResult.HonorableMention;
+            else
+                showResult = ShowResult.DidNotPlace;
 
             // Special case: Best in Show for exceptional performance
             if (placement == 1 && runResult == RunResult.Qualified && faults == 0)

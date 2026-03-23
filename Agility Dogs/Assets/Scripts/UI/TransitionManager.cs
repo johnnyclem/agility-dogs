@@ -173,6 +173,32 @@ namespace AgilityDogs.UI
             activeTransitions = 0;
         }
 
+        /// <summary>
+        /// Fade the CanvasGroup in (convenience method).
+        /// </summary>
+        public void FadeIn(float duration = -1f, Action onComplete = null)
+        {
+            if (screenWipeImage == null)
+            {
+                onComplete?.Invoke();
+                return;
+            }
+            Fade(screenWipeImage, 0f, duration, onComplete);
+        }
+
+        /// <summary>
+        /// Fade the CanvasGroup out (convenience method).
+        /// </summary>
+        public void FadeOut(float duration = -1f, Action onComplete = null)
+        {
+            if (screenWipeImage == null)
+            {
+                onComplete?.Invoke();
+                return;
+            }
+            Fade(screenWipeImage, screenWipeImage.color.a, 0f, duration, onComplete);
+        }
+
         #endregion
 
         #region Transition Coroutines

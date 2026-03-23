@@ -247,7 +247,7 @@ namespace AgilityDogs.Services
             }
         }
 
-        private void HandleFault(ObstacleType obstacleType, string faultType)
+        private void HandleFault(FaultType faultType, string obstacleName)
         {
             // Could implement drill-specific fault handling here
         }

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using AgilityDogs.Core;
 using AgilityDogs.Events;
 using AgilityDogs.Data;
+using AgilityDogs.Gameplay;
 
 namespace AgilityDogs.Services
 {
