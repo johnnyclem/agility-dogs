@@ -80,6 +80,15 @@ namespace AgilityDogs.UI
         }
 
         /// <summary>
+        /// Fade an Image from one alpha to another.
+        /// </summary>
+        public Coroutine Fade(Image image, float startAlpha, float endAlpha, float duration = -1f, Action onComplete = null)
+        {
+            if (duration < 0) duration = defaultTransitionDuration;
+            return StartCoroutine(FadeImageCoroutine(image, startAlpha, endAlpha, duration, onComplete));
+        }
+
+        /// <summary>
         /// Slide a RectTransform to a target position.
         /// </summary>
         public Coroutine Slide(RectTransform rectTransform, Vector2 targetPosition, float duration = -1f, Action onComplete = null)
@@ -196,7 +205,7 @@ namespace AgilityDogs.UI
                 onComplete?.Invoke();
                 return;
             }
-            Fade(screenWipeImage, screenWipeImage.color.a, 0f, duration, onComplete);
+            Fade(screenWipeImage, screenWipeImage.color.a, duration, onComplete);
         }
 
         #endregion
