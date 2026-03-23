@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.1
   animatorController: {fileID: 9100000, guid: 516f4b5e0a7bdd649a315a102e920371, type: 2}
   prefab: {fileID: 5611427925506065047, guid: eaa301b04e0f15e4eb62ae5ee76ef2e6, type: 3}
+  portrait: {fileID: 0}
   description: Boxers are playful and energetic, with a unique gait that can be advantageous
     on certain obstacles.
   defaultDivision: 4

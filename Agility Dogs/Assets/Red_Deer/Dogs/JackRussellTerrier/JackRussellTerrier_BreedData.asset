@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.3
   animatorController: {fileID: 9100000, guid: 2fbaf22a801617e4bb8ced296886691e, type: 2}
   prefab: {fileID: 6552317917769626294, guid: 99f84681e86f6a343b362a6734b589da, type: 3}
+  portrait: {fileID: 0}
   description: Fearless and energetic, Jack Russells are surprisingly agile for their
     size. They're known for their speed and jumping ability.
   defaultDivision: 1

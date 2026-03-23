@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 0.9
   animatorController: {fileID: 9100000, guid: 982e96d0c517241468b5fd0f1fea06e1, type: 2}
   prefab: {fileID: 2843221387227636988, guid: 15e4a66f20bc8d9448cf1206aa4a206f, type: 3}
+  portrait: {fileID: 0}
   description: Shiba Inus are agile but independent-minded, requiring patient training
     for agility success.
   defaultDivision: 1

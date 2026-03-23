@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 0.6
   animatorController: {fileID: 9100000, guid: b8960b982d1ad4b46bcf654f7d7e85d7, type: 2}
   prefab: {fileID: 4653991155541502614, guid: 9e4f11481eb7c1d4b902a6e9e97961fb, type: 3}
+  portrait: {fileID: 0}
   description: Pugs are playful but their brachycephalic nature severely limits their
     agility performance.
   defaultDivision: 0

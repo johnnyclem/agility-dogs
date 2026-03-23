@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.05
   animatorController: {fileID: 9100000, guid: 4450909f70bb7ca458b6d0c1391e6f7f, type: 2}
   prefab: {fileID: 7629223995365978617, guid: b604c472db500b743bc9c7f9b629f3af, type: 3}
+  portrait: {fileID: 0}
   description: Athletic and energetic, Dalmatians have the stamina for multiple runs
     and excel in longer courses.
   defaultDivision: 4

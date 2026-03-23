@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorClassIdentifier: 
+  breedName: Corgi
+  displayName: Pembroke Welsh Corgi
+  modelScale: 0.7
+  maxSpeed: 6.5
+  acceleration: 7
+  deceleration: 9
+  turnRate: 350
+  turningRadius: 0.35
+  responsiveness: 0.8
+  momentumFactor: 0.4
+  handlingTolerance: 0.8
+  weaveSpeed: 1.1
+  contactSpeed: 1.0
+  jumpPower: 0.9
+  animatorController: {fileID: 0}
+  prefab: {fileID: 0}
+  portrait: {fileID: 0}
+  description: "Small but mighty! Corgis are surprisingly fast and can turn on a dime. Their low center of gravity helps with contacts."
+  defaultDivision: 1

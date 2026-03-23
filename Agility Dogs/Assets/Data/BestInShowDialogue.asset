@@ -1,0 +1,3640 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: BestInShowDialogue
+  m_EditorClassIdentifier: Assembly-CSharp:AgilityDogs.Data:BestInShowDialogue
+  arthurDescription: Deadpan, intensely knowledgeable about dog agility. Uses real
+    terms like 'front crosses,' 'contact zones,' and 'refusals.' Constantly trying
+    to steer the broadcast back to reality.
+  buckDescription: Aggressively ignorant, wildly off-topic, and overly confident.
+    Thinks he knows everything but knows nothing.
+  matchIntroPool:
+    state: 0
+    arthurPool:
+      sourceLines:
+      - text: Welcome to the Grand Final. I'm Arthur Pendelton, and joining me is
+          Buck Hastings.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The Standard Course Time today is set at a blistering 48 seconds.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: We are looking for clean runs today. A single dropped bar could cost
+          them the championship.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handlers have walked the course, and we are ready to begin.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: It's a flowing course, but the trap near the tunnel entry will test
+          their handling.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: You have to admire the pedigree of these competitors.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm expecting some aggressive blind crosses today to shave off time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The judge is in position, the crowd is hushed...
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A lot of energy on the starting line. You can see the dog vibrating
+          with anticipation.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Buck, I implore you, please do not eat your hotdog directly into the
+          microphone.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is it, folks. The culmination of months of training and dedication.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Watch for the front cross at obstacle three. That's where this course
+          will be won or lost.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's focus is remarkable. You can see the intensity in those eyes.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A beautiful starting position. Perfect heel position, maximum readiness.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The course designer has really outdone themselves today. Technical,
+          flowing, unforgiving.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: We've seen some incredible times in qualifying. The bar has been raised.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The bond between handler and dog is evident. Years of partnership on
+          display.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Watch the handler's body language. Every subtle movement communicates
+          to the dog.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This venue has seen some of the greatest runs in agility history.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The atmosphere is electric. You can feel the tension in the arena.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A moment of calm before the storm. Both handler and dog centering themselves.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The judge signals. We are moments away from the start.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Obstacle one is a simple bar jump, but it sets the tone for the entire
+          run.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Notice how the handler positions herself for an optimal start.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's tail is wagging. Eager and ready for the challenge ahead.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is championship caliber agility. Every second counts.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The course map shows seventeen obstacles. A true test of speed and
+          precision.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A veteran team here. You can see the experience in their preparation.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The crowd falls silent. Respect for the competitors about to perform.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Watch for the blind cross at the tunnel. That's the signature move
+          of this handler.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog shakes off, a sign of readiness. Game time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: We've got a treat in store today. Two of the best teams in the world.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The weave poles at position eight will be crucial. Entry angle is tricky.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A moment of connection between handler and dog. Beautiful to witness.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The timer is ready. The judge is in position. Let's go!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This course rewards bravery. You have to commit to your lines.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler adjusts her watch. Precision in every detail.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: An immaculate day for agility. Perfect conditions for a fast run.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's ears are forward. Alert, attentive, ready to explode.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: We're looking at a potential course record here, folks.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    buckPool:
+      sourceLines:
+      - text: Arthur, how much do you think that dog owes in taxes?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm looking at the handler, Arthur. She's got great calves. Think she's
+          single?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I were a dog, Arthur, I'd just bite the judge and go home.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Do you think these dogs know they aren't tiny horses? Or do they think
+          we're giant dogs?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I brought a bag of beef jerky. You think they can smell it from the
+          booth? Watch this.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I've been doing my stretches, Arthur. If a handler goes down, I'm ready
+          to tag in.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog looks at me, Arthur. He knows I have the good treats.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I could totally do this. How hard can it be? You just run and point,
+          right?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: My ex-wife had a Chihuahua that could clear a fence. Angry little thing.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I just realized something. We're just watching dogs run around.
+          This is my dream job.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried agility once with my buddy's Golden Retriever. We both ended
+          up in the hospital.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: These handlers spend more time with their dogs than their spouses.
+          I respect that.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: You know what this sport needs? More fireworks. Every run should end
+          with fireworks.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I once saw a Pomeranian beat a German Shepherd. Never underestimate
+          the little guys.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Is there a beer garden here? Asking for research purposes.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, be honest. Could you pass a basic obedience test? I couldn't.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has better posture than I do. And I'm sitting in a chair.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the dogs think we're weird for watching them run in circles.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: My doctor said I need more exercise. Watching this should count, right?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I bet that dog has a better social media following than both of us
+          combined.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I had a dog like that, I'd just stay home and play video games.
+          Good boy!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is like watching NASCAR but the cars are cute and furry.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, do you think dogs dream about agility? Like, flying over jumps
+          in slow motion?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm getting emotional, Arthur. Look at that bond. That's love right
+          there.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That handler's outfit cost more than my car. And my car has heated
+          seats.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I should get into this sport. I'm already good at running away from
+          responsibility.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: These dogs are athletes, Arthur. Better athletes than half the NFL.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: You know what would make this better? A halftime show. Maybe some dog
+          tricks.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I brought binoculars. Not for the dogs. For the snacks in the concession
+          stand.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I just made sixty dollars betting with the cameraman. Don't
+          tell anyone.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think that dog just winked at me. We have a connection, Arthur.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is way better than golf. And you can pet the players.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if they hire announcers who are also willing to walk the dogs.
+          Asking for me.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 1
+    buckChance: 0.5
+  weavePolesPool:
+    state: 1
+    arthurPool:
+      sourceLines:
+      - text: Beautiful entry into the weaves.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight bobble on pole four, but they recover.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Textbook footwork through the weaves.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Maintains an incredible, rhythmic cadence there.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: You can't teach that kind of lateral flexibility.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Nailed the entry! That's where you make or break your time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler is pushing the pace, staying lateral to the poles.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight hesitation, but they find the gap.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Popped out early! That's going to be a costly fault.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: "Look at the independence on that dog\u2014the handler is already running
+          to the next obstacle."
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Twelve poles, twelve entries. A true test of training and muscle memory.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's shoulders are doing all the work. Incredible upper body strength.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Perfect rhythm. You could set a metronome to that pace.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The entry angle was tight, but the dog adjusted beautifully.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Watch the rear legs. They're driving the dog forward with each weave.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight drift to the left, but they recover without losing momentum.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler is already signaling the next obstacle. Brilliant anticipation.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's the fastest weave time I've seen all tournament.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's focus is laser-sharp. Not a single wasted movement.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A minor bobble on pole eight, but overall a stellar performance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Notice how the dog keeps its head low. Optimal weaving posture.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler maintains eye contact throughout. A beautiful partnership.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Six poles in and still maintaining speed. Impressive conditioning.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog pops out cleanly. No hesitation on the exit.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A textbook example of weave pole technique. Young handlers take note.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The rhythm is mesmerizing. Left, right, left, right. Poetry in motion.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's tail acts as a counterbalance. Nature's design at work.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight deceleration on the final poles, but still within acceptable
+          time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's body position encourages forward drive. Excellent technique.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That entry was razor-thin. The margin for error is almost zero.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's agility through the poles is a testament to months of practice.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Weave poles are the great separator. This dog is clearly elite.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A clean exit sets up perfectly for the next obstacle.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's speed through the weaves is adding valuable seconds to their
+          time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Notice the handler's quiet hands. No unnecessary motion to distract
+          the dog.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A flawless weave performance. Exactly what you want to see at this
+          level.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's body undulates through the poles like water through rocks.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Every pole hit perfectly. That's precision training right there.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's timing is impeccable, supporting without overwhelming.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A masterclass in weave pole execution. Championship caliber.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    buckPool:
+      sourceLines:
+      - text: He's weaving like me leaving the pub on a Tuesday!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried that once after a few margaritas. Broke a lamp.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: You know, if you tape a broom to a dog's tail doing that, you'd never
+          have to sweep.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Why don't they just go in a straight line, Arthur? Seems highly inefficient.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog is vibrating. Have they been giving them espresso?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm getting dizzy watching this. How are they not throwing up?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This looks like me trying to walk straight after Thanksgiving dinner.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I think the dog is doing the limbo. Is that legal?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: My cousin tried weave poles with a garden hose. It did not end well.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is like watching someone parallel park but fast and with paws.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I could weave like that, I'd never need to use a revolving door
+          again.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog's hips don't lie. Shakira would be jealous.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I want to see a human do this. Pay-per-view, Arthur. We'd make millions.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is mesmerizing. I could watch this all day. Do they have weave
+          pole ASMR?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to weave through a crowd like that at the mall. Got tackled
+          by security.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is doing the snake! The dog is doing the snake!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the poles are moving. Is this a magic show or a dog show?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is better than my DDR skills in college. And I was a legend.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I just realized something. This dog has better coordination
+          than I do.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I want to attach a GoPro to that dog. YouTube gold, baby!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is like a slalom but for dogs. Downhill dog racing. Coming to
+          ESPN.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that dog ever gets tired, I'll lend him my back. It's already crooked.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need this dog to teach me how to navigate the singles scene.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's the S-work right there. Smooth, sexy, and slightly confusing.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I bet this dog could thread a needle. With its paws. And eyes closed.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is vibing. The dog is absolutely vibing right now.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to do this with a hula hoop once. I'm still in physical therapy.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, this dog is flexing on us. He knows he's good and he's not
+          sorry.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is hypnotic. I think the dog is casting a spell on the audience.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need that dog's core strength routine. Asking for a friend. The friend
+          is me.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If this dog ever retires, he should be a weave pole coach. Elite.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm seeing double now. The poles, the dog, everything is spinning.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's some Mario Kart drifting right there. Blue shell dodged!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 0.5
+    buckChance: 0.4
+  contactObstaclesPool:
+    state: 2
+    arthurPool:
+      sourceLines:
+      - text: Approaching the A-frame, looking for a strong climb.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Excellent contact on the descent. Two paws in the yellow.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A very safe two-on-two-off position.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Running the dog walk beautifully.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Leapt right over the contact zone! That's a five-point fault.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The judge's hand goes up. Missed the contact.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Incredible acceleration up the ramp.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler decelerates perfectly to ensure the dog hits the yellow
+          zone.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A bit cautious over the apex, bleeding a few tenths of a second.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Absolutely flawless execution on the A-frame.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog drives up the A-frame with tremendous power.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Watch the contact zone. The dog must touch with at least one paw.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A running contact! The dog maintains speed through the yellow zone.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's timing on the release command is impeccable.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: On the dog walk now. A test of balance and confidence.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's body is perfectly aligned on the narrow plank.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Excellent speed on the up ramp, but controlled on the descent.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The judge is watching closely. Every contact zone matters.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight wobble, but the dog maintains its line. Impressive.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's confidence on contact obstacles is a sign of excellent training.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Notice how the dog looks back for the handler at the apex.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A textbook two-on-two-off. Both rear paws on the contact zone.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog clears the dog walk in record time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The contact zone precision here is championship level.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler uses a verbal release to signal the dog's departure.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A beautiful arc over the A-frame apex. Maximum efficiency.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's descent is controlled and deliberate. Smart running.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Contact obstacles separate the elite from the rest.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's paws hit the yellow zone with surgical precision.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight hesitation, but within acceptable time loss.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog walks the plank with the confidence of a tightrope walker.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's position encourages a fast but safe descent.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This dog has mastered the contact zones. Years of practice evident.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The judge signals. Clean contact confirmed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A perfect run through the contact obstacles so far.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's training shines through on these technical obstacles.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Watch the paws. That's where the points are won or lost.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's body position ensures no wasted motion.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Contact obstacles are where champions are made.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A masterclass in contact zone execution.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    buckPool:
+      sourceLines:
+      - text: I climbed an A-frame once. Had to call the fire department to get me
+          down.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If he slips, does he get workers' comp?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That ramp looks like the roof of my first apartment.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, what happens if the dog just decides to take a nap up there?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I bet you could launch a pretty good firework off the top of that thing.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to walk across a balance beam once. I'm still in therapy.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That A-frame looks like something my gym teacher would make me climb.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, do you think the dog gets vertigo up there? I would.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I had to do that, I'd need a harness, a helmet, and a life alert
+          button.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I just realized something. This dog has better balance than I have
+          in my entire life.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That ramp is longer than my last relationship, and way more stable.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the dog charges extra for the contact zone. Premium service!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to do the dog walk at a playground once. The fire department
+          came again.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, that dog is walking like me after leg day at the gym.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that dog slips, does the crowd throw a rope? Safety first!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This looks like an obstacle course from a reality TV show.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need that dog's insurance plan. Contact zone coverage, please.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I once fell off a seesaw at a birthday party. Never recovered emotionally.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog is smoother than a used car salesman on commission.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I'm getting nervous just watching this. My palms are sweaty.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I bet that dog could cross a frozen lake without cracking the ice.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is like watching parkour but with more fur and less pretension.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I had those contact skills, I'd never spill my coffee again.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has better footwork than my dance instructor. And she charges
+          $200 an hour.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I want to see the dog do this with roller skates. Pay-per-view event!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, that dog is living his best life up there. Peak performance.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think I just pulled a muscle watching that. Is that possible?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That contact zone should have a Yelp review. Five stars!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need to hire this dog to walk across my roof and check for leaks.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is the most intense thing I've watched since my last divorce hearing.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 0.5
+    buckChance: 0.4
+  tunnelPool:
+    state: 3
+    arthurPool:
+      sourceLines:
+      - text: Sent into the curved tunnel.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A blind entry into the pipe!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler executes a brilliant front cross while the dog is out of
+          sight.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Lost some traction exiting the tunnel on the turf.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Sucked right into the wrong tunnel! An elimination!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Explodes out of the chute with tremendous speed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Excellent verbal command to pull the dog into the near entrance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: "A slight delay inside the tunnel\u2014perhaps a momentary loss of
+          footing."
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Pops out and immediately acquires the next target.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler needs to hustle to beat the dog to the exit.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The tunnel is fully enclosed. The dog runs on pure instinct and training.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A curved tunnel entry. The dog must commit without seeing the exit.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler positions for a front cross while the dog navigates blind.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Speed through the tunnel is critical. Every tenth counts.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's exit angle will determine the next obstacle approach.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A tunnel-to-tunnel sequence. The dog must differentiate between entries.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The fabric rustles as the dog blasts through. Pure speed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's verbal cue at the entrance was perfectly timed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight hesitation at the exit. The dog reorients to the handler.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Tunnel speed is a sign of confidence. This dog has it in spades.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's body low to the ground inside the tunnel. Optimal form.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A smooth transition from tunnel to the next obstacle.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's position at the exit draws the dog forward.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Tunnels are about trust. The dog trusts the handler's guidance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog accelerates through the tunnel without hesitation.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A brilliant blind cross executed while the dog was out of sight.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The tunnel entry was tight, but the dog committed fully.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Exit speed is impressive. The dog explodes out of the chute.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler barely beats the dog to the exit. Perfect timing.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Tunnel navigation is second nature to this experienced dog.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The curved tunnel tests the dog's ability to maintain momentum.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A clean exit sets up the next obstacle perfectly.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's commitment to the tunnel entry was decisive.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Tunnels add variety and challenge to any agility course.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's exit was perfectly aligned with the handler's position.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A textbook tunnel run. No wasted motion, maximum speed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's body language guided the dog through without verbal cues.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Tunnel performance like this separates good teams from great ones.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's confidence in tunnels is evident. Full speed ahead.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A flawless tunnel execution. Championship caliber.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 2
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    buckPool:
+      sourceLines:
+      - text: If he goes in there and doesn't come out, do they send in another dog
+          to find him?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I got stuck in a sleeping bag like that once. Panic sets in fast, let
+          me tell you.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, do you think there are treats in there? Or maybe a small, terrified
+          rabbit?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Like toothpaste out of a tube! Just squirted right out!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if he thinks he's digging to China. Let me know if he brings
+          back a souvenir.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to crawl through a tunnel at a play place once. Got stuck.
+          Had to call mom.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, what if there's a family of squirrels living in there? Hostile
+          takeover!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog looks like me trying to find the bathroom at a movie theater.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I bet that dog has nightmares about tunnels. Or maybe dreams. Hard
+          to tell.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I went in there, I'd need GPS, a flashlight, and a emotional support
+          animal.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That tunnel looks like a giant sock. Somebody needs to do laundry.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the dog can hear the crowd cheering from inside. That would
+          be cool.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is like a real-life game of whack-a-mole. Pop goes the doggy!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I just realized something. I've been inside tunnels at amusement
+          parks. I'm basically an agility dog.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog came out so fast, I thought he was shot out of a cannon.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need one of these tunnels for my house. Great for hiding from my
+          ex-wife.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog disappears like a magician. Now you see him, now you don't!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I bet the dog is singing in there. Solo performance, no audience.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is like my dating life. In and out, nobody knows what happened.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that dog brings back a stick from China, I'll eat my hat.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I want to crawl in there and just take a nap. It looks cozy.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog runs through tunnels like I run to the fridge at midnight.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog just did a victory lap inside. That was way too long.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The tunnel is basically a giant chew toy. Where does it end? Nobody
+          knows.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm claustrophobic, Arthur. Just watching this is giving me anxiety.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has better tunnel vision than me trying to find a parking
+          spot.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog is doing parkour in there. We just can't see it.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that tunnel had WiFi, the dog would never come out.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the dog leaves little presents inside. Like a trail of
+          breadcrumbs.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: This is better than any roller coaster. No lines, no tickets, just
+          pure chaos.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 0.5
+    buckChance: 0.4
+  teeterTotterPool:
+    state: 4
+    arthurPool:
+      sourceLines:
+      - text: Up onto the teeter...
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Waits for the drop... excellent patience.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A bit of a fly-off! The board didn't hit the ground before the dog
+          left.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's a fault for a fly-off.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Rides the board down smoothly.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Heavy impact on the pivot, but the dog handles it.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler supports the dog well through the descent.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: You can see the dog shifting its weight to control the drop speed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A very controlled, deliberate teeter performance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Bailed off the side! That's a refusal.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The teeter tests the dog's confidence and balance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A perfect ride down. The board touches as the dog exits.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's timing on the pivot point is critical.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight hesitation at the apex. The dog waits for the board to drop.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The teeter's pivot point requires the dog to shift weight dynamically.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Excellent contact zone discipline on the teeter descent.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's rear paws remain on the board until it touches down.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A confident teeter performance. No fear evident.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's calm demeanor helps the dog stay focused.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The teeter's bang on touchdown can startle inexperienced dogs.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A controlled descent. The dog manages the board's momentum.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog rides the teeter like a seasoned pro.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A textbook teeter execution. Nothing to fault here.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's balance on the teeter is remarkable.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A smooth transition from ascent to descent.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's verbal cue at the pivot point was perfectly timed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's weight shift controls the teeter's drop speed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A flawless teeter run. The judges will be pleased.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's confidence on the teeter shows excellent training.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A proper teeter requires patience and precision.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog waits for the board to settle before exiting.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A beautiful teeter performance. Textbook execution.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's rear feet stay planted until the board touches.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A controlled, deliberate teeter run.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's body position encourages forward drive.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Teeter mastery separates the contenders from the pretenders.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's timing at the pivot is impeccable.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A championship-level teeter performance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's balance and timing are in perfect harmony.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A flawless teeter execution. Nothing left to chance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1.5
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    buckPool:
+      sourceLines:
+      - text: You ever play on a seesaw with a fat kid, Arthur? Traumatic.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Boing! Look at him ride that plank. Hang ten, little buddy!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog is heavier than it looks. Or gravity is acting up again.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I put a hat on that dog right now, is it technically a pirate?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: He's waiting for the drop... just like my ex-wife waiting for my alimony
+          check.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I rode a teeter-totter once and the other kid flew off. I'm still processing.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, do you think the dog enjoys this? Or is he just doing it for
+          the treats?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has better core strength than my entire gym membership.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I tried that, I'd need a crash pad, a helmet, and a will signed
+          in triplicate.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The teeter is basically a torture device designed for dogs. Brutal.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog is doing yoga. Downward dog, teeter edition.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that board could talk, it would say 'Please, no more dogs.'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to balance on a beam once. My chiropractor still sends me Christmas
+          cards.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog rides the teeter like a pro surfer. Hang ten, little dude!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the dog gets dizzy doing this. I'm getting dizzy watching.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The teeter is basically a see-saw of destiny. Will he fall? Will he
+          fly?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that dog played drums, he'd have perfect timing on the cymbal crashes.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I want to see a human do this. Pay-per-view, Arthur. We'd be rich.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog's balance is better than my emotional stability.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need to hire that dog to walk on my roof and fix the gutters.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I just realized something. I've been teetering my whole life.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog is riding the teeter like a mechanical bull at a rodeo.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog is trying to communicate in Morse code with the board.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If the teeter had a speaker, it would be playing 'Eye of the Tiger.'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to do a handstand once. My face still hurts thinking about
+          it.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has the balance of a tightrope walker and the courage of a
+          lion.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the teeter is a stress reliever for the dog. Smash, smash,
+          smash!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, that dog is living his best life. Teetering on the edge of
+          greatness.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need one of these in my office. Great for stress relief during meetings.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has better pivot skills than a basketball player.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I had that balance, I'd never trip over my own feet again. A man
+          can dream.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 0.5
+    buckChance: 0.4
+  jumpsPool:
+    state: 5
+    arthurPool:
+      sourceLines:
+      - text: Clears the tire jump effortlessly.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Tight wrap around the jump stanchion.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Dropped the bar! A heartbreaking five faults.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Took it far too wide, wasting precious yardage.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Beautiful extension over the broad jump.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slicing path over the triple spread.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler signals the turn while the dog is still in the air.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Knocked the upright. That's a sloppy approach.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Perfect collection before the jump.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Sailing over the final oxer!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A textbook jump. The dog clears the bar with inches to spare.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's motion encourages a tight turn over the jump.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slight brush on the bar, but it stays up. Lucky.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's arc over the jump is perfectly calculated.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A refusal! The dog bypassed the jump entirely.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Excellent timing on the handler's command. The dog commits early.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The double jump requires precise timing and elevation.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slice turn over the bar. Maximum efficiency.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's jumping technique is a thing of beauty.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A dropped bar. That's five faults added to the score.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The triple spread tests the dog's range and confidence.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A tight wrap around the jump. The dog responds to the handler's cue.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The tire jump requires precision. The dog threads the needle.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A beautiful broad jump. The dog extends fully.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The wall jump is a test of vertical leap.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's takeoff point was perfect. Maximum clearance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A jumping sequence executed flawlessly.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's timing sets up the dog for success.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A clean jump. No wasted motion, no faults.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's form over the jump is textbook.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A slicing path minimizes distance traveled.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The judge's eye is on every jump. Precision matters.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A committed approach. The dog never hesitated.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The jump sequence flows beautifully.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A tight turn sets up the next jump perfectly.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's jumping ability is a sight to behold.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A championship-level jump sequence.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog's athleticism shines over the bars.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A flawless jumping performance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler and dog move as one over the jumps.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    buckPool:
+      sourceLines:
+      - text: I once saw a guy eat a tire like that. Course, it was made of black
+          licorice.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Why don't they just fly over it? Oh, right. Dogs. I forgot.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Look at the legs on that one. Think he could play shortstop for the
+          Mets?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: He knocked it down! Can we get a carpenter out here? This place is
+          falling apart.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I've jumped out of windows higher than that, Arthur. Mostly for romantic
+          reasons.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: "I tried to jump over a fence once. Got stuck at the top. Like a pi\xF1ata."
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, that dog has serious ups. Better than my vertical in high school.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I could jump like that, I'd never wait in line again. Just hop right
+          over!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog's jumping is better than my jump shots. And I played basketball.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the dog thinks the bars are snakes. 'Don't touch the danger
+          sticks!'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to do a broad jump at the beach once. Pulled a hamstring. Worth
+          it.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has the spring-loaded legs of a cartoon character.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I jumped like that, my knees would file a workers' comp claim.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I think the dog is part kangaroo. Look at those hops!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I once tried to jump a tire. Got my foot stuck. Fire department had
+          to come.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog makes jumping look easy. Meanwhile, I struggle with stairs.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I should get a trampoline. Learn to jump like that. My doctor would
+          be thrilled.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog is flying! Can we get him a pilot's license?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to do a flying leap once. Landed in a fountain. 10/10 would
+          do again.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog's vertical leap could win a slam dunk contest.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder if the dog practices jumping at home. Like, over the couch.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that dog played volleyball, he'd never let a ball hit the ground.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog is part gazelle. Look at that grace!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need those jumping lessons. My long jump days are over, but maybe
+          vertical?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, that dog has been hitting the gym. Look at those quads!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to jump over a puddle once. Ended up in the puddle. Classic
+          Buck.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog jumps like he's on a pogo stick. Boing, boing, boing!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If the Olympics had a dog jumping event, this dog would get gold.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog is auditioning for a superhero movie. Captain Canine!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has better jumping form than my karate kid impression.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 0.5
+    buckChance: 0.4
+  mistakesPool:
+    state: 6
+    arthurPool:
+      sourceLines:
+      - text: Oh no, the dog is completely off course.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A refusal at the A-frame. That's a five-point deduction.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler has completely lost the dog's focus.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Spinning in circles. The connection between handler and dog is broken.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Took the wrong obstacle! That is an instant elimination.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Stopping to sniff the turf. A disaster for their time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler is frantically trying to recall.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Crossed behind the dog, drawing them off the line.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A very costly miscommunication there.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That run has completely unraveled.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A run-out! The dog bypassed the obstacle entirely.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is looking at the crowd. Focus is lost.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A knocked bar. The dog clipped it with a hind leg.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler's timing was off. The dog committed too early.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A wrong course fault. The dog took obstacle three instead of four.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is distracted by something off-camera.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A refusal at the weave poles. The dog stopped short.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler is trying to regain control. Time is ticking away.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A fly-off from the teeter. The dog left before the board touched.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is spinning. The handler's cues are unclear.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A missed contact zone. The dog flew right over it.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog stopped to scratch. A charming but costly distraction.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A refusal at the tunnel. The dog wouldn't enter.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler crossed the dog's path. Confusion ensued.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A knocked bar on the triple spread. Devastating.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is looking for treats instead of obstacles.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A run-out at the jump. The dog went around it.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The connection is broken. The handler is rebuilding.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A costly error. The fault count is climbing.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is hesitant. The confidence is gone.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A wrong course fault. The dog is lost.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler is making desperate gestures.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A refusal. The dog simply refused to cooperate.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The run is in shambles. Time to regroup.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A missed contact. The fault is confirmed.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is confused. The handler is frustrated.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A knocked bar. The score is taking a hit.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is distracted. The handler is trying to refocus.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A run-out. The dog bypassed the obstacle.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The run has fallen apart. A tough break.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 2
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+    buckPool:
+      sourceLines:
+      - text: He's sniffing the ground! I think he found oil, Arthur. We're rich!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is looking at me. Stop looking at me! I don't have the jerky
+          anymore!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, what if the dog just speaks Spanish and doesn't understand
+          the lady?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: He's making his own course. I respect that. A true artist doesn't follow
+          lines.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Is there a penalty if the dog just goes over to the crowd and asks
+          for a hot dog?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Well, that was a trainwreck. Should we go down there and help? I have
+          a whistle.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is looking at the handler like she owes him money.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I've seen better focus from a squirrel with ADHD.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog just noped right out of that obstacle. I respect the honesty.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If this were a test, that dog just failed with flying colors.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog is having an existential crisis. 'Why am I running?'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's me every Monday morning. Just completely lost and confused.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I once forgot where I parked. This dog forgot where he's running. Similar
+          energy.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If dogs had Yelp reviews, that run would get one star. Would not recommend.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I think the dog is staging a protest. 'No more obstacles!'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I've seen better direction from a tourist without a map.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog is definitely freelance running. No rules, no boundaries.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If confusion were a sport, that dog would be the champion.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog just did an obstacle course of his own design. Interesting
+          choices.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's the dog version of 'I'm not mad, I'm just disappointed.'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I tried to follow that run and now I need a therapist.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: 'If the dog wrote a memoir, it would be titled ''Lost and Confused:
+          My Journey.'''
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog just realized he's not a cat. Explains a lot.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's me trying to assemble IKEA furniture. Just random parts going
+          everywhere.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If chaos were an art form, that dog would be Picasso.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog just invented a new sport. Chaotic Running. Patent
+          pending.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I think the dog is having a mid-life crisis. 'What am I doing
+          with my life?'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That run was so bad, even the cat judging from the sidelines looked
+          embarrassed.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that dog were a GPS, it would say 'Recalculating' every two seconds.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think the dog just realized the treat isn't at the finish line. Motivation
+          lost.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 0.3
+    buckChance: 0.5
+  finishLinePool:
+    state: 7
+    arthurPool:
+      sourceLines:
+      - text: Over the final jump and across the line!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Stops the clock at a spectacular time.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A completely clean run. A masterclass in agility.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: They will be thrilled with that performance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Unfortunately, those faults will keep them off the podium today.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Let's look at the replay of that front cross.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A valiant effort, but just a fraction off the pace.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The crowd is on their feet!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That is why they are the defending champions.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Thank you for joining us for this magnificent display of canine athleticism.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A new personal best! What a run!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The clock stops. An incredible time!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handler celebrates. They've earned it.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A flawless finish. Nothing left on the table.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog crosses the line, tail wagging. A job well done.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: What a way to end the competition!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A clean run under pressure. Championship material.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The crowd erupts. They witnessed something special.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That time will be hard to beat.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A moment of pure joy. Handler and dog embrace.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: They've done it. A new course record!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A photo finish. The timers confirm the result.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog knows. He's celebrating too.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A textbook finish. Every obstacle executed perfectly.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The handlers shake hands. Respect among competitors.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: What a tournament this has been!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A fitting end to an incredible day of agility.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog takes a bow. A true champion.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: We've witnessed history today.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A run that will be remembered for years to come.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The final standings are in. What a competition!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A clean sweep. Dominant performance.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The crowd shows their appreciation. Well deserved.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A masterclass from start to finish.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That's how you close out a tournament.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A legendary run. We are honored to have witnessed it.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The dog is the star today. And rightly so.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: A beautiful ending to a beautiful competition.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: The team celebrates. They've achieved the impossible.
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Thank you, and goodnight from the agility arena!
+        announcerType: 0
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1.5
+      - 1
+      - 1
+      - 1.5
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1.5
+      - 1.5
+      - 1
+      - 1
+      - 1.5
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1.5
+      - 1
+      - 1
+    buckPool:
+      sourceLines:
+      - text: He did it! Does he get a giant novelty check? Dogs love chewing on
+          cardboard.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm exhausted just watching that. Arthur, carry me to the car.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: You know, at the end of the day, it's just a wolf running over a piece
+          of wood.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I wonder what that dog's going to do to celebrate. Probably drink out
+          of the toilet.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: 'Arthur, tell the truth: Are any of these dogs wearing a wire? It feels
+          rigged.'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm going down to the floor to see if I can adopt the loser. I like
+          an underdog.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Goodnight everyone! Remember to spay and neuter your commentators!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog just won! Do they get a trophy? Please tell me it's shaped
+          like a bone.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm crying, Arthur. Those are happy tears. And maybe a little allergies.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If I had a dog like that, I'd never need a gym membership. Just play
+          fetch!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, that dog just made more money than I made all year. Can I be
+          a dog?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need to go lie down. That was too much excitement for one human.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog is going to have the best dinner tonight. Steak and everything!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I just witnessed perfection. And I don't say that lightly. I once ate
+          a perfect pizza.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, can we get that dog a cape? He's a superhero!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think I'm going to adopt a dog now. This is all your fault, agility.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has more followers than me. And I have a great Instagram.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I want to party with that dog. He knows how to celebrate!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If that dog ever runs for office, he has my vote. Unanimous!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm going to tell everyone I was here. Nobody will believe me, but
+          that's okay.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog deserves a movie deal. 'The Fast and the Furriest.' Coming
+          to theaters!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, I'm going to name my firstborn after that dog. Don't judge
+          me.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I just realized something. That dog is better at life than I am.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: If the Olympics need a new sport, this is it. Agility. Let's make it
+          happen!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I need a commemorative T-shirt. 'I watched [Dog's Name] win the championship.'
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog just inspired me to get off the couch. Maybe tomorrow.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I'm going to have dreams about that run. Good dreams. Happy dreams.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: Arthur, we need to have a watch party for the next tournament. I'll
+          bring the jerky.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: That dog has changed my life. I'm a different person now.
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I want to send that dog a fruit basket. Does that work for dogs?
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      - text: I think I just found my new favorite sport. Move over, bowling!
+        announcerType: 1
+        voiceIdOverride: 
+        tags: []
+        priority: 50
+      weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 2
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    arthurDelay: 0
+    buckDelay: 0.5
+    buckChance: 0.5

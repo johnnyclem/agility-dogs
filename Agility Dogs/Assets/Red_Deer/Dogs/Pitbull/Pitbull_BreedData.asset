@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.2
   animatorController: {fileID: 9100000, guid: 76bfa0345374d284f9116a0eae4afe42, type: 2}
   prefab: {fileID: 896314406913030486, guid: 9aac1015564754046a85a44e4f77b564, type: 3}
+  portrait: {fileID: 0}
   description: Pit Bulls are powerful and athletic, with excellent acceleration and
     jumping ability.
   defaultDivision: 4

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorClassIdentifier: 
+  breedName: Jack Russell Terrier
+  displayName: Jack Russell Terrier
+  modelScale: 0.6
+  maxSpeed: 8
+  acceleration: 9
+  deceleration: 11
+  turnRate: 400
+  turningRadius: 0.3
+  responsiveness: 0.9
+  momentumFactor: 0.35
+  handlingTolerance: 0.65
+  weaveSpeed: 1.3
+  contactSpeed: 1.05
+  jumpPower: 1.15
+  animatorController: {fileID: 0}
+  prefab: {fileID: 0}
+  portrait: {fileID: 0}
+  description: "Pure energy in a small package! Jack Russells are incredibly quick and agile. Their explosive speed makes them weave pole specialists."
+  defaultDivision: 1

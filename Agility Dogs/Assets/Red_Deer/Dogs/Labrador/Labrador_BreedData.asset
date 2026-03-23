@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.05
   animatorController: {fileID: 9100000, guid: 74ce639ec800d514ab6a8dfb87022f14, type: 2}
   prefab: {fileID: 4926201535413177540, guid: 93aebfb2ab143284f9a9673cf0a063da, type: 3}
+  portrait: {fileID: 0}
   description: Labradors are enthusiastic and food-motivated, making them good agility
     candidates despite their larger size.
   defaultDivision: 4

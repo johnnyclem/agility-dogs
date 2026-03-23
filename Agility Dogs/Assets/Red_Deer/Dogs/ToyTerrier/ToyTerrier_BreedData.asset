@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 0.85
   animatorController: {fileID: 9100000, guid: cdd20700e9cb0af4abc98e90c2e317de, type: 2}
   prefab: {fileID: 8626819080595224219, guid: ecd1ec491097c4b4db89276c8d12548f, type: 3}
+  portrait: {fileID: 0}
   description: Toy Terriers are quick and agile, excelling in technical courses despite
     their small size.
   defaultDivision: 0

@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.15
   animatorController: {fileID: 9100000, guid: 3ab570371d333114fb2a8e966dcd1406, type: 2}
   prefab: {fileID: 8668571720231685338, guid: 49bb9b2333c32664eb91cec96073a7b4, type: 3}
+  portrait: {fileID: 0}
   description: Dobermans are athletic and intelligent, with good speed and turning
     ability for agility.
   defaultDivision: 4

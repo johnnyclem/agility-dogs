@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 0.85
   animatorController: {fileID: 9100000, guid: edbcf6723354d254abe7320ac9bc0593, type: 2}
   prefab: {fileID: 908798621604770043, guid: 2812de74dfab59a44ba2b9af3117423d, type: 3}
+  portrait: {fileID: 0}
   description: Spitz breeds are alert and agile, with good turning ability for their
     size.
   defaultDivision: 1

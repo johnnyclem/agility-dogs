@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 0.9
   animatorController: {fileID: 9100000, guid: 6cb5da22a99d9bc47a9a91552462e053, type: 2}
   prefab: {fileID: 4685450842311111199, guid: 11f9731210414ff46977ab89d6bef975, type: 3}
+  portrait: {fileID: 0}
   description: Beagles are determined and can be stubborn, but their enthusiasm makes
     them fun agility partners.
   defaultDivision: 1

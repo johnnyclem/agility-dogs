@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee08c1232f42d4926a64005a15681328, type: 3}
+  m_Name: SkillTree_dog_skill_tree
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.SkillTreeData
+  treeId: dog_skill_tree
+  displayName: Dog Skill Tree
+  description: Unlock your dog's full athletic potential
+  treeType: 1
+  tier1Skills:
+  - {fileID: 11400000, guid: 23fc428ea7b174aa2a530d5ee3881a3d, type: 2}
+  - {fileID: 11400000, guid: 18abbb18efe524aa2a34d6070a8707d6, type: 2}
+  - {fileID: 11400000, guid: 389b12bf563da4d99b70f47aed6f2f6a, type: 2}
+  - {fileID: 11400000, guid: 1dceff486869640828c4761ada58e267, type: 2}
+  - {fileID: 11400000, guid: 2a726c7ae04444afab9f44d9a3d77228, type: 2}
+  - {fileID: 11400000, guid: 8e519b317e51c4c419c0640bb4232522, type: 2}
+  - {fileID: 11400000, guid: 0f510eccb35f244dda8fbb3933aa2450, type: 2}
+  tier2Skills:
+  - {fileID: 11400000, guid: ef0fa7dca43c54be7bff0184e1d92f9a, type: 2}
+  - {fileID: 11400000, guid: b6582333acc654628928e30e84596337, type: 2}
+  - {fileID: 11400000, guid: 826aa14bf725c4b00bbead5cb8496d74, type: 2}
+  - {fileID: 11400000, guid: 263b39056754e4b398736cbfd625877f, type: 2}
+  - {fileID: 11400000, guid: b49b0f6be4f7a43d0954b24810fc623a, type: 2}
+  - {fileID: 11400000, guid: e4919472173154f38bb8556f16ae483d, type: 2}
+  tier3Skills:
+  - {fileID: 11400000, guid: c0f2e2c2692054cc592d3b28b34aac99, type: 2}
+  - {fileID: 11400000, guid: 58e4a4246e65e42cf86825dda0910d9a, type: 2}
+  - {fileID: 11400000, guid: 2ecb1566e9c6e4019a3977566010c505, type: 2}
+  tier4Skills:
+  - {fileID: 11400000, guid: bfb47bfe4e607452582b3e0c3cc8a406, type: 2}
+  - {fileID: 11400000, guid: c67decdb52cc041f09e3330bc0237136, type: 2}
+  treeColor: {r: 0, g: 0, b: 1, a: 1}
+  treeIcon: {fileID: 0}

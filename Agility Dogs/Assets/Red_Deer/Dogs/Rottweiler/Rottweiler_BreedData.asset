@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.15
   animatorController: {fileID: 9100000, guid: f15e8e6198a672f43a56ee105caa060f, type: 2}
   prefab: {fileID: 5866544421428683571, guid: 70a63b3e94ff4244e87ad0f88d27cdcb, type: 3}
+  portrait: {fileID: 0}
   description: Rottweilers are powerful but their size and weight make technical
     agility courses challenging.
   defaultDivision: 4

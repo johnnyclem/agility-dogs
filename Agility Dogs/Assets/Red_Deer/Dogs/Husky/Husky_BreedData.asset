@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1
   animatorController: {fileID: 0}
   prefab: {fileID: 3353451772901387482, guid: cbeaf38076d422a40966221eb91904e5, type: 3}
+  portrait: {fileID: 0}
   description: Huskies are athletic but independent. They can be challenging to handle
     but excel in straight-line speed.
   defaultDivision: 4

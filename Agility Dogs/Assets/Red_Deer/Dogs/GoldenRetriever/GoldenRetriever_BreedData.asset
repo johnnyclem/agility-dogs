@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1
   animatorController: {fileID: 9100000, guid: 631dee26bf3245743a96b1428e7f0d60, type: 2}
   prefab: {fileID: 1919037654708378597, guid: 895b1ebe4e125e045bc05447ed40ba2c, type: 3}
+  portrait: {fileID: 0}
   description: Golden Retrievers are eager to please and have a good temperament
     for agility, though their size can make tight courses challenging.
   defaultDivision: 4

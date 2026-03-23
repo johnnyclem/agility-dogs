@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 0.8
   animatorController: {fileID: 9100000, guid: f213c12fc922f1d45b0911709ee2e76b, type: 2}
   prefab: {fileID: 1107714403249072725, guid: 00ff4ffbe1571be4c8f0466cbf6a5d8f, type: 3}
+  portrait: {fileID: 0}
   description: French Bulldogs are charming but their brachycephalic nature limits
     their endurance and speed in agility.
   defaultDivision: 1

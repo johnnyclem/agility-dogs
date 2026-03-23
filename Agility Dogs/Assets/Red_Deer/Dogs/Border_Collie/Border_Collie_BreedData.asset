@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1.2
   animatorController: {fileID: 9100000, guid: b0e3e3815fecf99469eec53339381fa8, type: 2}
   prefab: {fileID: 316638193774147515, guid: be7a0e1decf91b648b8b9bc5a0307b5a, type: 3}
+  portrait: {fileID: 0}
   description: The premier agility breed. Border Collies are known for their intelligence,
     speed, and precision. They excel in all aspects of agility competition.
   defaultDivision: 4

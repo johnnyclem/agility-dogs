@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 1
   animatorController: {fileID: 9100000, guid: 159cab41d06e1e54facd505f92267cd4, type: 2}
   prefab: {fileID: 7342819114115342589, guid: 8f10380a339c9db4f9592cf1df84ecff, type: 3}
+  portrait: {fileID: 0}
   description: Bull Terriers are strong and determined, requiring consistent training
     for agility success.
   defaultDivision: 4

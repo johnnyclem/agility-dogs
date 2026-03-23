@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorClassIdentifier: 
+  drillId: intro_weave_poles
+  displayName: Weave Pole Introduction
+  description: "Learn the basics of weave pole performance. Your dog will practice entering and completing a set of 6 weave poles."
+  instructions: "Guide your dog to the weave poles and use the HERE command to call them through. Focus on smooth, rhythmic weaving."
+  drillType: 1
+  difficulty: 1
+  isUnlockedByDefault: 1
+  courseOverride: {fileID: 0}
+  obstacleSequence:
+  - 6
+  repetitions: 3
+  targetTime: 15
+  maxFaults: 1
+  minimumCleanRate: 0.7
+  xpReward: 50
+  wingsReward: 25
+  unlockableSkillIds: []
+  thumbnail: {fileID: 0}
+  drillColor: {r: 0.2, g: 0.8, b: 0.4, a: 1}
+  slowMotionEnabled: 0
+  slowMotionSpeed: 0.5
+  showPathPreview: 1
+  autoResetOnFault: 0
+  resetDelay: 1.5

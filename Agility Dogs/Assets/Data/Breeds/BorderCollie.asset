@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorClassIdentifier: 
+  breedName: Border Collie
+  displayName: Border Collie
+  modelScale: 1
+  maxSpeed: 9
+  acceleration: 8
+  deceleration: 10
+  turnRate: 300
+  turningRadius: 0.5
+  responsiveness: 0.85
+  momentumFactor: 0.5
+  handlingTolerance: 0.7
+  weaveSpeed: 1.2
+  contactSpeed: 0.9
+  jumpPower: 1.1
+  animatorController: {fileID: 0}
+  prefab: {fileID: 0}
+  portrait: {fileID: 0}
+  description: "The ultimate agility dog. Border Collies are incredibly fast, responsive, and excel at tight turns. Their high intelligence makes them quick learners."
+  defaultDivision: 4

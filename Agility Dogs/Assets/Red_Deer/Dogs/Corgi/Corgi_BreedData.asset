@@ -28,6 +28,7 @@ MonoBehaviour:
   jumpPower: 0.75
   animatorController: {fileID: 9100000, guid: a2893303e04e1774081bde6244c5e6e4, type: 2}
   prefab: {fileID: 6736239397122889163, guid: d61f388d3e2436844bed1109affa5239, type: 3}
+  portrait: {fileID: 0}
   description: Corgis are surprisingly agile for their body type. They're known for
     their determination and strong work ethic.
   defaultDivision: 0

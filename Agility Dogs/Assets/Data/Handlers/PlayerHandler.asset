@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorClassIdentifier: 
+  handlerName: Player
+  displayName: Alex
+  backstory: "A passionate dog agility enthusiast ready to take on the competition circuit. With dedication and training, Alex aims to reach Westminster."
+  speedStat: 5
+  commandPrecisionStat: 5
+  courseReadingStat: 5
+  pressureHandlingStat: 5
+  handlerSpeed: 5
+  handlerSprintSpeed: 8
+  isUnlockedByDefault: 1
+  unlockCost: 0
+  prefab: {fileID: 0}
+  portrait: {fileID: 0}
