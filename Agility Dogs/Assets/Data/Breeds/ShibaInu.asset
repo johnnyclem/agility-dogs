@@ -24,7 +24,7 @@ MonoBehaviour:
   contactSpeed: 0.85
   jumpPower: 1.05
   animatorController: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 11400000, guid: 7a1bae1aece12a248bc9a58e2bffec99, type: 3}
   portrait: {fileID: 0}
   description: "A spirited competitor with cat-like agility. Shibas are independent thinkers with quick reflexes. Best for experienced handlers."
   defaultDivision: 2

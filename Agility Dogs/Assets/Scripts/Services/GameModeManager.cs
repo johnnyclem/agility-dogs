@@ -21,8 +21,8 @@ namespace AgilityDogs.Services
         [Header("Scene Names")]
         [SerializeField] private string mainMenuScene = "StartMenu";
         [SerializeField] private string gameplayScene = "SampleScene";
-        [SerializeField] private string trainingScene = "SampleScene"; // Same scene, different config
-        [SerializeField] private string careerHubScene = "CareerHub";
+        [SerializeField] private string trainingScene = "TrainingScene";
+        [SerializeField] private string careerHubScene = "CareerScene";
 
         [Header("Quick Play Defaults")]
         [SerializeField] private CourseDefinition quickPlayCourse;
@@ -76,6 +76,48 @@ namespace AgilityDogs.Services
         {
             // Subscribe to game events
             GameEvents.OnRunCompleted += HandleRunCompleted;
+            
+            // Auto-load defaults if not set
+            LoadDefaultData();
+        }
+        
+        private void LoadDefaultData()
+        {
+            // Load breeds if not assigned
+            if (quickPlayDog == null || trainingDog == null)
+            {
+                var breeds = Resources.LoadAll<BreedData>("Data/Breeds");
+                if (breeds.Length > 0)
+                {
+                    if (quickPlayDog == null) quickPlayDog = breeds[0];
+                    if (trainingDog == null) trainingDog = breeds[0];
+                    Debug.Log($"[GameModeManager] Auto-loaded breeds: {breeds.Length}");
+                }
+            }
+            
+            // Load handlers if not assigned
+            if (quickPlayHandler == null || trainingHandler == null)
+            {
+                var handlers = Resources.LoadAll<HandlerData>("Data/Handlers");
+                if (handlers.Length > 0)
+                {
+                    if (quickPlayHandler == null) quickPlayHandler = handlers[0];
+                    if (trainingHandler == null) trainingHandler = handlers[0];
+                    Debug.Log($"[GameModeManager] Auto-loaded handlers: {handlers.Length}");
+                }
+            }
+            
+            // Load courses if not assigned
+            if (quickPlayCourse == null || trainingCourse == null)
+            {
+                var courses = Resources.LoadAll<CourseDefinition>("Data/Courses");
+                if (courses.Length > 0)
+                {
+                    if (quickPlayCourse == null) quickPlayCourse = courses[0];
+                    if (trainingCourse == null) trainingCourse = courses[0];
+                    Debug.Log($"[GameModeManager] Auto-loaded courses: {courses.Length}");
+                }
+            }
         }
 
         private void OnDestroy()
@@ -452,8 +494,21 @@ namespace AgilityDogs.Services
                 yield return new WaitForSeconds(0.5f);
             }
 
+            // Determine which scene to load based on mode
+            string sceneToLoad = gameplayScene; // Default
+            if (isTrainingMode)
+            {
+                sceneToLoad = trainingScene;
+            }
+            else if (isCareerMode)
+            {
+                sceneToLoad = careerHubScene;
+            }
+            
+            Debug.Log($"[GameModeManager] Loading scene: {sceneToLoad}");
+
             // Load gameplay scene
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(gameplayScene);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad);
             while (!asyncLoad.isDone)
             {
                 yield return null;

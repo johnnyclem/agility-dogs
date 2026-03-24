@@ -24,7 +24,7 @@ MonoBehaviour:
   contactSpeed: 1.0
   jumpPower: 0.9
   animatorController: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 11400000, guid: fb1614a65cef7644d8a61c978d13a6cb, type: 3}
   portrait: {fileID: 0}
   description: "Small but mighty! Corgis are surprisingly fast and can turn on a dime. Their low center of gravity helps with contacts."
   defaultDivision: 1

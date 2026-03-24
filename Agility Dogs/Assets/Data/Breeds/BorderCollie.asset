@@ -24,7 +24,7 @@ MonoBehaviour:
   contactSpeed: 0.9
   jumpPower: 1.1
   animatorController: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 11400000, guid: 04156ceb0c584dd4ca7d9a7c52a3d2d4, type: 3}
   portrait: {fileID: 0}
   description: "The ultimate agility dog. Border Collies are incredibly fast, responsive, and excel at tight turns. Their high intelligence makes them quick learners."
   defaultDivision: 4

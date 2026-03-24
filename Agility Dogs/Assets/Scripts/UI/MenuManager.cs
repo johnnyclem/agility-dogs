@@ -543,6 +543,12 @@ namespace AgilityDogs.UI
 
         private void PopulateCourseList()
         {
+            // Load courses if not assigned
+            if (availableCourses == null || availableCourses.Length == 0)
+            {
+                availableCourses = Resources.LoadAll<CourseDefinition>("Data/Courses");
+            }
+            
             if (courseListContainer == null || courseEntryPrefab == null || availableCourses == null) return;
 
             // Clear existing entries
@@ -814,6 +820,17 @@ namespace AgilityDogs.UI
 
         private void PopulateTeamLists()
         {
+            // Load data if not assigned
+            if (availableHandlers == null || availableHandlers.Length == 0)
+            {
+                availableHandlers = Resources.LoadAll<HandlerData>("Data/Handlers");
+            }
+            
+            if (availableDogs == null || availableDogs.Length == 0)
+            {
+                availableDogs = Resources.LoadAll<BreedData>("Data/Breeds");
+            }
+            
             // Populate handlers
             if (handlerListContainer != null && handlerEntryPrefab != null && availableHandlers != null)
             {

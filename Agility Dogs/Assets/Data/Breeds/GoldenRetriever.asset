@@ -24,7 +24,7 @@ MonoBehaviour:
   contactSpeed: 0.95
   jumpPower: 1.0
   animatorController: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 11400000, guid: 2163347dd67f9984a80c2e639e2fce3e, type: 3}
   portrait: {fileID: 0}
   description: "A friendly and reliable competitor. Golden Retrievers have great endurance and steady performance. Perfect for beginners."
   defaultDivision: 4

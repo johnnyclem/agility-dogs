@@ -1061,6 +1061,106 @@ namespace AgilityDogs.Gameplay.Dog
             handlerTransform = handler;
         }
 
+        /// <summary>
+        /// Receive a command directly (push model) - used by HandlerDogLink for immediate command processing
+        /// </summary>
+        public void ReceiveCommand(HandlerCommand command)
+        {
+            if (command == HandlerCommand.None) return;
+            
+            // Get handler info for the command
+            Vector3 handlerForward = handlerTransform != null ? handlerTransform.forward : transform.forward;
+            Vector3 handlerPosition = handlerTransform != null ? handlerTransform.position : transform.position;
+            
+            // Process the command directly
+            ProcessDirectCommand(command, handlerForward, handlerPosition);
+        }
+        
+        private void ProcessDirectCommand(HandlerCommand command, Vector3 handlerForward, Vector3 handlerPosition)
+        {
+            // Create a synthetic command entry
+            CommandBuffer.CommandEntry entry = new CommandBuffer.CommandEntry
+            {
+                command = command,
+                timestamp = Time.time,
+                handlerPosition = handlerPosition,
+                handlerForward = handlerForward
+            };
+            
+            // Process based on current state and command
+            switch (currentState)
+            {
+                case DogState.Idle:
+                case DogState.Heeling:
+                case DogState.Running:
+                case DogState.SeekingObstacle:
+                    ProcessCommandForState(entry);
+                    break;
+                    
+                case DogState.Recovering:
+                    // Allow certain commands even during recovery
+                    if (command == HandlerCommand.Here || command == HandlerCommand.Go)
+                    {
+                        FinishRecovery();
+                        ProcessCommandForState(entry);
+                    }
+                    break;
+            }
+        }
+        
+        private void ProcessCommandForState(CommandBuffer.CommandEntry entry)
+        {
+            switch (entry.command)
+            {
+                case HandlerCommand.Go:
+                    TransitionState(DogState.Running);
+                    break;
+
+                case HandlerCommand.Jump:
+                    if (FindNearestObstacle(ObstacleType.BarJump, out targetObstacle))
+                    {
+                        TransitionState(DogState.SeekingObstacle);
+                    }
+                    break;
+
+                case HandlerCommand.Tunnel:
+                    if (FindNearestObstacle(ObstacleType.Tunnel, out targetObstacle))
+                    {
+                        TransitionState(DogState.SeekingObstacle);
+                    }
+                    break;
+
+                case HandlerCommand.Weave:
+                    if (FindNearestObstacle(ObstacleType.WeavePoles, out targetObstacle))
+                    {
+                        TransitionState(DogState.Weaving);
+                    }
+                    break;
+
+                case HandlerCommand.Table:
+                    if (FindNearestObstacle(ObstacleType.PauseTable, out targetObstacle))
+                    {
+                        TransitionState(DogState.SeekingObstacle);
+                    }
+                    break;
+
+                case HandlerCommand.ComeBye:
+                case HandlerCommand.Away:
+                case HandlerCommand.Left:
+                case HandlerCommand.Right:
+                    HandleDirectionCommand(entry.command, entry.handlerForward);
+                    break;
+
+                case HandlerCommand.Here:
+                    TransitionState(DogState.Heeling);
+                    break;
+
+                case HandlerCommand.Out:
+                    TransitionState(DogState.Running);
+                    break;
+            }
+        }
+
         private void UpdateAnimator()
         {
             if (animator == null) return;
