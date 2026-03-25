@@ -258,18 +258,6 @@ namespace AgilityDogs.Runtime
             {
                 courseRunner.LoadCourse(competitionCourse);
             }
-            
-            // Setup obstacles if directly assigned
-            if (competitionObstacles != null && competitionObstacles.Length > 0)
-            {
-                for (int i = 0; i < competitionObstacles.Length; i++)
-                {
-                    if (competitionObstacles[i] != null)
-                    {
-                        competitionObstacles[i].sequenceOrder = i;
-                    }
-                }
-            }
         }
         
         private void SetupCamera()

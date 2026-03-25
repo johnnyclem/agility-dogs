@@ -129,6 +129,9 @@ namespace AgilityDogs.UI
             gameManager = FindObjectOfType<GameManager>();
             gameModeManager = FindObjectOfType<GameModeManager>();
 
+            // Auto-wire if references are missing (common when UI not manually wired)
+            AutoWireReferences();
+
             // Find opening sequence if not assigned
             if (openingSequence == null)
             {
@@ -164,6 +167,126 @@ namespace AgilityDogs.UI
 
             // Subscribe to events
             GameEvents.OnGameStateChanged += HandleGameStateChanged;
+        }
+
+        private void AutoWireReferences()
+        {
+            // If mainMenuPanel is null, try to find it by name
+            if (mainMenuPanel == null)
+            {
+                var canvas = FindObjectOfType<Canvas>();
+                if (canvas != null)
+                {
+                    Transform mainMenu = canvas.transform.Find("MainMenuPanel");
+                    if (mainMenu != null)
+                    {
+                        mainMenuPanel = mainMenu.gameObject;
+                    }
+                }
+            }
+
+            // Auto-create panels if they don't exist
+            CreateMissingPanels();
+
+            // Auto-wire buttons if not assigned
+            if (mainMenuPanel != null && quickPlayButton == null)
+            {
+                quickPlayButton = mainMenuPanel.transform.Find("QuickPlayButton")?.GetComponent<Button>();
+            }
+            if (mainMenuPanel != null && trainingButton == null)
+            {
+                trainingButton = mainMenuPanel.transform.Find("TrainingButton")?.GetComponent<Button>();
+            }
+            if (mainMenuPanel != null && careerButton == null)
+            {
+                careerButton = mainMenuPanel.transform.Find("CareerButton")?.GetComponent<Button>();
+            }
+            if (mainMenuPanel != null && settingsButton == null)
+            {
+                settingsButton = mainMenuPanel.transform.Find("SettingsButton")?.GetComponent<Button>();
+            }
+            if (mainMenuPanel != null && quitButton == null)
+            {
+                quitButton = mainMenuPanel.transform.Find("QuitButton")?.GetComponent<Button>();
+            }
+
+            // Load data from Resources if not assigned
+            if (availableHandlers == null || availableHandlers.Length == 0)
+            {
+                availableHandlers = Resources.LoadAll<HandlerData>("Data/Handlers");
+            }
+            if (availableDogs == null || availableDogs.Length == 0)
+            {
+                availableDogs = Resources.LoadAll<BreedData>("Data/Breeds");
+            }
+            if (availableCourses == null || availableCourses.Length == 0)
+            {
+                availableCourses = Resources.LoadAll<CourseDefinition>("Data/Courses");
+            }
+        }
+
+        private void CreateMissingPanels()
+        {
+            Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas == null) return;
+
+            if (mainMenuPanel == null)
+            {
+                var go = new GameObject("MainMenuPanel");
+                go.transform.SetParent(canvas.transform, false);
+                var rect = go.AddComponent<RectTransform>();
+                rect.anchorMin = Vector2.zero;
+                rect.anchorMax = Vector2.one;
+                rect.sizeDelta = Vector2.zero;
+                mainMenuPanel = go;
+
+                // Create basic button
+                CreateMenuButton(go.transform, "QuickPlayButton", "Quick Play", () => StartQuickPlay());
+                CreateMenuButton(go.transform, "TrainingButton", "Training", () => ShowTrainingMode());
+                CreateMenuButton(go.transform, "CareerButton", "Career", () => StartCareerMode());
+                CreateMenuButton(go.transform, "SettingsButton", "Settings", () => ShowSettings());
+                CreateMenuButton(go.transform, "QuitButton", "Quit", () => QuitGame());
+            }
+
+            if (settingsPanel == null)
+            {
+                var go = new GameObject("SettingsPanel");
+                go.transform.SetParent(canvas.transform, false);
+                var rect = go.AddComponent<RectTransform>();
+                rect.anchorMin = Vector2.zero;
+                rect.anchorMax = Vector2.one;
+                rect.sizeDelta = Vector2.zero;
+                settingsPanel = go;
+                settingsPanel.SetActive(false);
+            }
+        }
+
+        private void CreateMenuButton(Transform parent, string name, string label, UnityEngine.Events.UnityAction onClick)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            var rect = go.AddComponent<RectTransform>();
+            rect.anchorMin = new Vector2(0.5f, 0.5f);
+            rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = Vector2.zero;
+            rect.sizeDelta = new Vector2(200, 50);
+
+            var button = go.AddComponent<Button>();
+            var image = go.AddComponent<Image>();
+            image.color = new Color(0.2f, 0.2f, 0.2f);
+
+            var textObj = new GameObject("Text");
+            textObj.transform.SetParent(go.transform, false);
+            var textRect = textObj.AddComponent<RectTransform>();
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.sizeDelta = Vector2.zero;
+            var text = textObj.AddComponent<TextMeshProUGUI>();
+            text.text = label;
+            text.alignment = TextAlignmentOptions.Center;
+            text.color = Color.white;
+
+            button.onClick.AddListener(onClick);
         }
 
         private void OnDestroy()

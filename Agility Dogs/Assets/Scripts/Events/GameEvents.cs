@@ -25,6 +25,7 @@ namespace AgilityDogs.Events
         public static event Action<string, float> OnPersonalBestRecorded;
         public static event Action<HandlerCommand, float, string> OnVoiceCommandDetected;
         public static event Action<string, float> OnVoiceCommandMisunderstood;
+        public static event Action OnNearMiss;
 
         public static void RaiseGameStateChanged(GameState from, GameState to)
             => OnGameStateChanged?.Invoke(from, to);
@@ -79,5 +80,8 @@ namespace AgilityDogs.Events
 
         public static void RaiseVoiceCommandMisunderstood(string recognizedText, float confidence)
             => OnVoiceCommandMisunderstood?.Invoke(recognizedText, confidence);
+
+        public static void RaiseNearMiss()
+            => OnNearMiss?.Invoke();
     }
 }

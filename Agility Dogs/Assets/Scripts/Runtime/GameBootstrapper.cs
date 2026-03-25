@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using AgilityDogs.Core;
 using AgilityDogs.Data;
 using AgilityDogs.Services;
+using AgilityDogs.UI;
 
 namespace AgilityDogs.Runtime
 {

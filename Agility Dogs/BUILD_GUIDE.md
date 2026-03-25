@@ -1,240 +1,283 @@
 # Agility Dogs - Build Guide
 
-## What's Been Completed
+## Quick Start - Unity Editor Setup
 
-### 1. Data Setup
-- **BreedData Assets** - Updated all 5 breeds with Red_Deer prefab references:
-  - `BorderCollie.asset` → `BorderCollie_anim_IP.prefab`
-  - `Corgi.asset` → `Corgi_anim_IP.prefab`
-  - `GoldenRetriever.asset` → `Retriever_anim_IP.prefab`
-  - `JackRussellTerrier.asset` → `JRTerrier_anim_IP.prefab`
-  - `ShibaInu.asset` → `Spitz_anim_IP.prefab` (ShibaInu uses Spitz model)
+### Step 1: Generate All Data Assets
+1. Open Unity Editor
+2. Go to **Window → General → AssetDatabase** (refresh if needed)
+3. Go to **Agility Dogs → Generate All Data**
+4. This will create:
+   - 19 BreedData assets in `Assets/Data/Breeds/`
+   - 8 CourseDefinition assets in `Assets/Data/Courses/`
+   - 5 HandlerData assets in `Assets/Data/Handlers/`
 
-### 2. Core Scripts Enhanced
-- **MenuManager.cs** - Auto-loads data from Resources if not assigned
-- **GameModeManager.cs** - Auto-loads defaults, routes to correct scenes:
-  - QuickPlay → `SampleScene`
-  - Training → `TrainingScene`
-  - Career → `CareerScene`
+### Step 2: Setup StartMenu Scene
+1. Open `Assets/Scenes/StartMenu.unity`
+2. Go to **Agility Dogs → Setup → Complete Scene Setup**
+3. This will:
+   - Create all menu panels (MainMenu, QuickPlay, Training, TeamSelect, Settings, Results, ModeSelect, Pause)
+   - Wire up MenuManager with all button and panel references
+   - Auto-populate available data references
 
-### 3. New Runtime Scripts Created
-- **GameBootstrapper.cs** - Ensures required managers exist in any scene
-- **CompetitionSceneConfigurator.cs** - Configures gameplay scenes with:
-  - Handler spawning
-  - Dog spawning (from selected breed)
-  - Course setup
-  - Camera setup
-  - Reference wiring
-
-### 4. Scenes Created
-- `CompetitionScene.unity` (copy of SampleScene)
-- `TrainingScene.unity` (copy of SampleScene)
-- `CareerScene.unity` (copy of SampleScene)
-
-### 5. EditorBuildSettings Updated
-All scenes now registered:
-- StartMenu
-- SampleScene
-- Demo
-- CompetitionScene
-- TrainingScene
-- CareerScene
+### Step 3: Build & Run
+1. Open `Assets/Scenes/SampleScene.unity`
+2. Go to **Agility Dogs → Setup → Setup SampleScene**
+3. Build and run
 
 ---
 
-## Remaining Setup Steps (Requires Unity Editor)
+## Architecture Overview
 
-### 1. StartMenu.unity Wiring
-The MenuManager needs UI references assigned:
-
+### Game Flow
 ```
-MenuManager Component:
-├── mainMenuPanel: [Assign MainMenu Panel GameObject]
-├── modeSelectPanel: [Assign ModeSelect Panel GameObject] 
-├── quickPlayPanel: [Assign QuickPlay Panel GameObject]
-├── trainingPanel: [Assign Training Panel GameObject]
-├── teamSelectPanel: [Assign TeamSelect Panel GameObject]
-├── settingsPanel: [Assign Settings Panel GameObject]
-├── resultsPanel: [Assign Results Panel GameObject]
-├── pausePanel: [Assign Pause Panel GameObject]
-│
-├── [Main Menu Buttons]
-├── quickPlayButton: [Assign Button]
-├── trainingButton: [Assign Button]
-├── careerButton: [Assign Button]
-├── settingsButton: [Assign Button]
-├── quitButton: [Assign Button]
-│
-├── [Mode Select Buttons]
-├── startQuickPlayButton: [Assign Button]
-├── startTrainingButton: [Assign Button]
-│
-├── [Team Select]
-├── handlerListContainer: [Assign Container Transform]
-├── dogListContainer: [Assign Container Transform]
-├── handlerEntryPrefab: [Assign Handler Entry Prefab]
-├── dogEntryPrefab: [Assign Dog Entry Prefab]
-│
-└── [Data References]
-    ├── availableHandlers: [Assign HandlerData assets]
-    └── availableDogs: [Assign BreedData assets]
+StartMenu
+    ├── Quick Play → SampleScene → Results → Replay/Menu
+    ├── Training → TrainingScene → Results → Menu
+    └── Career → CareerScene → Breeding/Training/Shows → Westminster
 ```
 
-### 2. Create UI Prefabs
+### Core Managers
+- **GameModeManager** - Routes between Quick Play, Training, Career modes
+- **MenuManager** - Handles all menu interactions and transitions
+- **GameManager** - Core gameplay state management
+- **CareerProgressionService** - Career mode persistence and progression
 
-**HandlerEntryPrefab** - Should contain:
-- Portrait Image
-- Name Text (TMP)
-- Selection highlight
-
-**DogEntryPrefab** - Should contain:
-- Portrait Image  
-- Name Text (TMP)
-- Breed text (TMP)
-- Stats display
-
-### 3. Gameplay Scenes Setup
-
-For **CompetitionScene**, **TrainingScene**, **CareerScene**:
-
-1. Add `CompetitionSceneConfigurator` component to a GameObject
-
-2. Assign references:
-```
-CompetitionSceneConfigurator:
-├── handlerSpawnPoint: [Create empty at start position]
-├── dogSpawnPoint: [Create empty at dog start position]
-├── handlerPrefab: [Create or assign handler prefab]
-├── dogPrefabs: [Assign Red_Deer dog prefabs]
-├── competitionCourse: [Assign CourseDefinition]
-└── hudPrefab: [Create HUD prefab if needed]
-```
-
-### 4. Handler Prefab Requirements
-
-The handler prefab needs:
-- `HandlerController` component
-- Rigidbody or CharacterController
-- Input references
-- Visual representation (can be simple capsule)
-
-### 5. Dog Setup
-
-The dog prefabs (Red_Deer) need:
-- `DogAgentController` component
-- BreedData reference
-- Animation setup
-
-### 6. Obstacle Course Creation
-
-**For Competition/Championship Mode:**
-Create obstacle course with these obstacle types:
-- Bar Jumps (5-6)
-- Tunnel (1-2)
-- Weave Poles (1 set of 6-12)
-- A-Frame (1)
-- Dog Walk (1)
-- Pause Table (1)
-
-**For Training Mode:**
-Practice course with fewer obstacles focused on specific skills.
+### Data Assets
+- **BreedData** - Dog breed configuration (speed, acceleration, handling tolerance, prefab)
+- **HandlerData** - Handler stats and unlock status
+- **CourseDefinition** - Course layout, timing, difficulty
 
 ---
 
-## Dog Breeds Available
+## Scene Setup Details
 
-| Breed | Prefab | Speed | Agility | Focus | Best For |
-|-------|--------|-------|---------|-------|----------|
-| Border Collie | BorderCollie_anim_IP | 9 | High | 85% | Advanced |
-| Jack Russell Terrier | JRTerrier_anim_IP | 8 | High | 90% | Weave Poles |
-| Corgi | Corgi_anim_IP | 6.5 | High | 80% | Contacts |
-| Golden Retriever | Retriever_anim_IP | 7 | Medium | 70% | Beginners |
-| Shiba Inu | Spitz_anim_IP | 7.5 | Medium | 65% | Experienced |
+### StartMenu Scene
+The MenuManager requires these UI elements:
+
+| Panel | Purpose |
+|-------|---------|
+| MainMenuPanel | Primary menu with Quick Play, Training, Career, Settings, Quit |
+| ModeSelectPanel | Legacy mode selection (optional) |
+| QuickPlayPanel | Quick play description and start button |
+| TrainingPanel | Course list and training start |
+| TeamSelectPanel | Handler and dog selection |
+| SettingsPanel | Volume, graphics, accessibility settings |
+| ResultsPanel | Post-run results display |
+| PausePanel | In-game pause menu |
+
+### Button References Required
+```
+MainMenuPanel/
+├── ButtonsContainer/
+│   ├── QuickPlayButton
+│   ├── TrainingButton  
+│   ├── CareerButton
+│   ├── SettingsButton
+│   └── QuitButton
+└── VersionText
+
+QuickPlayPanel/
+├── Description
+└── Buttons/
+    ├── StartButton
+    └── BackButton
+
+TrainingPanel/
+├── Description
+├── CourseListContainer
+└── Buttons/
+    ├── StartButton
+    └── BackButton
+
+TeamSelectPanel/
+├── Title
+├── HandlerSection/
+│   └── HandlerListContainer
+├── DogSection/
+│   └── DogListContainer
+└── Buttons/
+    ├── StartRunButton
+    └── BackButton
+
+SettingsPanel/
+├── Title
+├── SettingsContainer/
+│   ├── MusicVolume (Slider)
+│   ├── SFXVolume (Slider)
+│   ├── VoiceVolume (Slider)
+│   └── CrowdVolume (Slider)
+└── Buttons/
+    ├── ApplyButton
+    └── CloseButton
+
+ResultsPanel/
+├── ResultTitle
+├── TimeText
+├── FaultsText
+├── ScoreText
+├── PositionText
+├── PersonalBest
+└── Buttons/
+    ├── ReplayButton
+    ├── RetryButton
+    ├── NextButton
+    └── MenuButton
+
+PausePanel/
+├── Title
+└── Buttons/
+    ├── ResumeButton
+    ├── RestartButton
+    ├── SettingsButton
+    └── QuitButton
+```
 
 ---
 
-## Game Flow
+## Available Dog Breeds
 
-### Main Menu Flow
+| Breed | Speed | Acceleration | Responsiveness | Jump Power |
+|-------|-------|--------------|----------------|------------|
+| Border Collie | 9.0 | 8.0 | 0.85 | 1.1 |
+| Jack Russell Terrier | 8.0 | 8.5 | 0.90 | 1.0 |
+| Shiba Inu | 7.5 | 7.0 | 0.65 | 0.95 |
+| Golden Retriever | 7.0 | 6.5 | 0.70 | 1.0 |
+| Corgi | 6.5 | 7.0 | 0.80 | 0.9 |
+| Beagle | 6.0 | 6.0 | 0.70 | 0.85 |
+| Boxer | 7.0 | 6.0 | 0.75 | 1.05 |
+| Husky | 7.5 | 7.0 | 0.70 | 1.0 |
+| Labrador | 6.5 | 6.0 | 0.70 | 1.0 |
+| Rottweiler | 6.0 | 5.5 | 0.65 | 1.1 |
+| Pitbull | 7.0 | 6.5 | 0.70 | 1.05 |
+| Dalmatian | 7.5 | 7.0 | 0.75 | 1.0 |
+| Doberman | 8.0 | 7.5 | 0.75 | 1.05 |
+| French Bulldog | 5.5 | 5.0 | 0.70 | 0.8 |
+| Pug | 5.0 | 4.5 | 0.65 | 0.75 |
+| Shepherd | 7.5 | 7.0 | 0.80 | 1.0 |
+| Bull Terrier | 6.5 | 6.0 | 0.70 | 1.05 |
+| Toy Terrier | 6.0 | 6.5 | 0.85 | 0.8 |
+| Spitz | 7.0 | 6.5 | 0.70 | 0.9 |
+
+---
+
+## Career Mode Flow
+
 ```
-StartMenu.unity
-    │
-    ├── [Quick Play] → SampleScene → Competition
-    │
-    ├── [Training] → TrainingScene → Practice
-    │
-    ├── [Career] → CareerScene → Breeding/Training/Shows
-    │
-    └── [Settings] → Settings Panel
+[Breeding Phase]
+    └── Select puppy traits/breed from available dogs
+        ↓
+[Training Phase]
+    └── Practice courses, build skills via SkillTree
+        ↓
+[Local Shows]
+    └── Compete at Local Park venue (easy courses)
+        ↓ (advance with 1st place)
+[Regional Shows]
+    └── County Fair & Regional Championship venues
+        ↓ (advance with 1st place)
+[National Shows]
+    └── State & National Championship venues
+        ↓ (advance with 1st place)
+[Westminster]
+    └── Final: Westminster Agility Kings championship
 ```
 
-### Career Mode Flow
-```
-CareerScene (Breeding Phase)
-    └── Select puppy traits/breed
-        ↓
-    Training Phase
-    └── Practice courses, skill building
-        ↓
-    Local Shows
-    └── Entry-level competitions
-        ↓
-    Regional Shows
-        ↓
-    National Shows
-        ↓
-    Westminster Agility Kings (Final)
-```
+---
+
+## Editor Utilities
+
+### Available via Window Menu
+
+1. **Agility Dogs/Generate All Data**
+   - Creates all BreedData, CourseDefinition, HandlerData assets
+
+2. **Agility Dogs/Setup/Complete Scene Setup**
+   - Sets up StartMenu scene with all UI panels
+   - Wires MenuManager references
+   - Creates UI prefabs
+
+3. **Agility Dogs/Setup/Setup SampleScene**
+   - Adds GameManager and CourseRunner to SampleScene
+
+### Editor Windows
+
+1. **SceneSetupUtility** (`Assets/Scripts/Editor/SceneSetupUtility.cs`)
+   - Full scene setup for StartMenu and gameplay scenes
+
+2. **DataGenerator** (`Assets/Scripts/Editor/DataGenerator.cs`)
+   - Generates breed, course, and handler data assets
+
+---
+
+## Common Issues
+
+### Missing References (999+ errors)
+**Cause:** Scene references not wired in Unity Editor
+
+**Solution:**
+1. Run **Agility Dogs → Setup → Complete Scene Setup** in StartMenu scene
+2. If errors persist, manually assign references in Inspector
+
+### BreedData Assets Not Found
+**Cause:** BreedData assets don't exist or prefab references are null
+
+**Solution:**
+1. Run **Agility Dogs → Generate All Data**
+2. Verify `Assets/Data/Breeds/` contains .asset files
+
+### Scene Won't Load
+**Cause:** GameModeManager references missing scene names
+
+**Solution:**
+1. Select GameModeManager in scene
+2. Verify scene names: `StartMenu`, `SampleScene`, `TrainingScene`, `CareerScene`
+3. Ensure scenes are added to Build Settings (File → Build Settings)
 
 ---
 
 ## Testing Checklist
 
-1. [ ] StartMenu loads without errors
-2. [ ] Main menu buttons are visible and clickable
-3. [ ] Quick Play starts competition scene
-4. [ ] Training mode shows training scene
-5. [ ] Career mode shows career scene
-6. [ ] Dog selection shows available breeds
-7. [ ] Handler spawns at correct position
-8. [ ] Dog spawns at correct position
-9. [ ] Camera follows handler
-10. [ ] Handler movement works (WASD/arrows)
-11. [ ] Dog follows handler commands
-12. [ ] Obstacles can be navigated
-13. [ ] Scoring tracks faults
-14. [ ] Timer functions correctly
-15. [ ] Results screen shows after run
-16. [ ] Return to menu works
+After setup, verify:
+
+- [ ] StartMenu loads without console errors
+- [ ] Opening sequence plays (or skip works)
+- [ ] Main menu buttons are visible and clickable
+- [ ] Quick Play starts SampleScene
+- [ ] Training mode shows TrainingScene  
+- [ ] Career mode shows CareerScene
+- [ ] Settings panel opens and sliders work
+- [ ] Results screen displays after run completion
+- [ ] Pause menu accessible during gameplay
+- [ ] Return to menu works from all states
 
 ---
 
-## Command Keys (When Implemented)
+## Command Keys
 
-| Key | Command | Description |
-|-----|---------|-------------|
-| W/↑ | Move Forward | Handler moves forward |
-| S/↓ | Move Back | Handler moves backward |
-| A/← | Move Left | Handler moves left |
-| D/→ | Move Right | Handler moves right |
-| Space | Sprint | Handler runs |
-| 1 | Come Bye | Dog turns right |
-| 2 | Away | Dog turns left |
-| 3 | Jump | Dog jumps next obstacle |
-| 4 | Tunnel | Dog enters tunnel |
-| 5 | Weave | Dog does weave poles |
-| 6 | Table | Dog goes to pause table |
-| ESC | Pause | Opens pause menu |
+| Key | Action |
+|-----|--------|
+| W/↑ | Move forward |
+| S/↓ | Move backward |
+| A/← | Move left |
+| D/→ | Move right |
+| Space | Sprint |
+| 1 | Come Bye (turn right) |
+| 2 | Away (turn left) |
+| 3 | Jump |
+| 4 | Tunnel |
+| 5 | Weave poles |
+| 6 | Pause table |
+| ESC | Pause game |
 
 ---
 
-## Next Steps for Full Implementation
+## Next Implementation Steps
 
-1. **Obstacle Course Layout** - Design actual course geometry using primitives or imported assets
-2. **Handler Controller** - Complete the handler movement system with input
-3. **Dog AI** - Complete the command interpretation system
-4. **Stadium Environment** - Create or import stadium/arena assets
-5. **HUD Design** - Create the in-game UI for timer, faults, etc.
-6. **Commentary System** - Wire up the CommentaryManager
-7. **Crowd System** - Add CrowdManager to gameplay scenes
-8. **Sound Design** - Add audio for footsteps, bar knocks, whistle, etc.
+1. **Obstacle Course Layout** - Create actual course geometry in scenes
+2. **Handler Controller** - Complete handler movement with input system
+3. **Dog AI** - Finish command interpretation and pathfinding
+4. **Stadium Environment** - Add arena/crowd visuals
+5. **HUD** - Timer, faults, score display during gameplay
+6. **Commentary** - Wire CommentaryManager for play-by-play
+7. **Crowd** - Add CrowdManager with reactions
+8. **Sound** - Footsteps, bar knocks, whistle, ambient audio

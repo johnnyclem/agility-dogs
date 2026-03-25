@@ -716,7 +716,74 @@ namespace AgilityDogs.Gameplay.Replay
         {
             return isPaused;
         }
-        
+
+        #region ReplayDirector Support
+
+        public void BeginReplaySegment(float durationBefore = 2f, float durationAfter = 1f)
+        {
+            if (currentReplayData == null)
+            {
+                Debug.LogWarning("Cannot begin replay segment: no replay data");
+                return;
+            }
+
+            isReviewMode = true;
+            isPaused = true;
+
+            float targetTime = playbackTime;
+            float startTime = Mathf.Max(0, targetTime - durationBefore);
+            float endTime = Mathf.Min(currentReplayData.GetDuration(), targetTime + durationAfter);
+
+            SeekToTime(startTime);
+
+            Debug.Log($"Replay segment: {startTime:F2}s to {endTime:F2}s");
+        }
+
+        public void EndReplaySegment()
+        {
+            isReviewMode = false;
+            isPaused = false;
+        }
+
+        public void ScrubToTime(float time)
+        {
+            SeekToTime(time);
+        }
+
+        public List<RecordedSegment> GetRecordedSegments()
+        {
+            var segments = new List<RecordedSegment>();
+
+            if (currentReplayData == null || currentReplayData.events == null)
+                return segments;
+
+            foreach (var evt in currentReplayData.events)
+            {
+                var segment = new RecordedSegment
+                {
+                    timestamp = evt.timestamp,
+                    duration = 0.5f,
+                    isFault = evt.eventType == ReplayEventType.FaultCommitted,
+                    isPersonalBest = evt.eventType == ReplayEventType.SplitTimeRecorded,
+                    description = $"{evt.eventType} at {evt.timestamp:F2}s"
+                };
+                segments.Add(segment);
+            }
+
+            return segments;
+        }
+
+        public class RecordedSegment
+        {
+            public float timestamp;
+            public float duration;
+            public bool isFault;
+            public bool isPersonalBest;
+            public string description;
+        }
+
+        #endregion
+
         #endregion
         
         private void OnDestroy()
