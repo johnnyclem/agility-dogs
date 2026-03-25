@@ -90,6 +90,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4}
   m_Enabled: 1
   m_EditorClassIdentifier: 
+  m_Script: {fileID: 11500000, guid: 813c4615894084319ad63bd86d3660f1, type: 3}
+  dogPrefab: {fileID: 0}
 --- !u!1 &7
 GameObject:
   m_ObjectHideFlags: 0

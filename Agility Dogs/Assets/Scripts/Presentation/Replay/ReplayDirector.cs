@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AgilityDogs.Core;
 using AgilityDogs.Events;
+using AgilityDogs.Gameplay.Replay;
 
 namespace AgilityDogs.Presentation.Replay
 {
@@ -25,7 +26,7 @@ namespace AgilityDogs.Presentation.Replay
         [SerializeField] private float personalBestThreshold = 0.5f;
 
         private ReplayManager replayManager;
-        private Camera mainCamera;
+        private UnityEngine.Camera mainCamera;
         private bool isReplaying;
         private int currentCameraIndex;
         private List<HighlightClip> highlights = new List<HighlightClip>();
