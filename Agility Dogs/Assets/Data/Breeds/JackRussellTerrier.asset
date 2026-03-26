@@ -8,23 +8,26 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorClassIdentifier: 
-  breedName: Jack Russell Terrier
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: JackRussellTerrier
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: JackRussellTerrier
   displayName: Jack Russell Terrier
-  modelScale: 0.6
+  modelScale: 1
   maxSpeed: 8
-  acceleration: 9
-  deceleration: 11
-  turnRate: 400
-  turningRadius: 0.3
+  acceleration: 8.5
+  deceleration: 8
+  turnRate: 180
+  turningRadius: 0.6
   responsiveness: 0.9
-  momentumFactor: 0.35
+  momentumFactor: 0.6
   handlingTolerance: 0.65
-  weaveSpeed: 1.3
-  contactSpeed: 1.05
-  jumpPower: 1.15
+  weaveSpeed: 1
+  contactSpeed: 0.85
+  jumpPower: 1
   animatorController: {fileID: 0}
-  prefab: {fileID: 11400000, guid: 4f3313465c812da4dbcf7908d936b14f, type: 3}
+  prefab: {fileID: 6169621635550852733, guid: 4f3313465c812da4dbcf7908d936b14f, type: 3}
   portrait: {fileID: 0}
-  description: "Pure energy in a small package! Jack Russells are incredibly quick and agile. Their explosive speed makes them weave pole specialists."
-  defaultDivision: 1
+  description: A Jack Russell Terrier with excellent agility potential.
+  defaultDivision: 2

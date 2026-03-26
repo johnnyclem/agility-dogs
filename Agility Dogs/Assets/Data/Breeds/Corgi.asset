@@ -8,23 +8,26 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorClassIdentifier: 
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Corgi
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
   breedName: Corgi
-  displayName: Pembroke Welsh Corgi
-  modelScale: 0.7
+  displayName: Corgi
+  modelScale: 1
   maxSpeed: 6.5
   acceleration: 7
-  deceleration: 9
-  turnRate: 350
-  turningRadius: 0.35
+  deceleration: 8
+  turnRate: 180
+  turningRadius: 0.6
   responsiveness: 0.8
-  momentumFactor: 0.4
-  handlingTolerance: 0.8
-  weaveSpeed: 1.1
-  contactSpeed: 1.0
+  momentumFactor: 0.6
+  handlingTolerance: 0.65
+  weaveSpeed: 1
+  contactSpeed: 0.85
   jumpPower: 0.9
   animatorController: {fileID: 0}
-  prefab: {fileID: 11400000, guid: fb1614a65cef7644d8a61c978d13a6cb, type: 3}
+  prefab: {fileID: 4611250107808203171, guid: fb1614a65cef7644d8a61c978d13a6cb, type: 3}
   portrait: {fileID: 0}
-  description: "Small but mighty! Corgis are surprisingly fast and can turn on a dime. Their low center of gravity helps with contacts."
-  defaultDivision: 1
+  description: A Corgi with excellent agility potential.
+  defaultDivision: 2

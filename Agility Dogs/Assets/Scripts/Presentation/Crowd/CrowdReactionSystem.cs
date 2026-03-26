@@ -92,7 +92,7 @@ namespace AgilityDogs.Presentation.Crowd
             isChampionshipMode = false;
             reactionCooldowns.Clear();
 
-            crowdManager?.SetCrowdState(CrowdState.Anticipation);
+            crowdManager?.SetCrowdState(CrowdState.Anticipation, 0.4f);
         }
 
         private void HandleRunCompleted(RunResult result, float time, int faults)
@@ -330,7 +330,7 @@ namespace AgilityDogs.Presentation.Crowd
         public void TriggerCustomReaction(float intensity, CrowdState state)
         {
             targetExcitement = Mathf.Max(targetExcitement, intensity);
-            crowdManager?.SetCrowdState(state);
+            crowdManager?.SetCrowdState(state, intensity);
         }
 
         private enum CrowdSoundType

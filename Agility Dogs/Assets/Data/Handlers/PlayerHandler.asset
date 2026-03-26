@@ -8,10 +8,13 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorClassIdentifier: 
-  handlerName: Player
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93188c060036449f7be484fe0dba0107, type: 3}
+  m_Name: PlayerHandler
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.HandlerData
+  handlerName: PlayerHandler
   displayName: Alex
-  backstory: "A passionate dog agility enthusiast ready to take on the competition circuit. With dedication and training, Alex aims to reach Westminster."
+  backstory: A dedicated handler who has been competing in agility shows for years.
   speedStat: 5
   commandPrecisionStat: 5
   courseReadingStat: 5

@@ -8,23 +8,26 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorClassIdentifier: 
-  breedName: Border Collie
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: BorderCollie
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: BorderCollie
   displayName: Border Collie
   modelScale: 1
   maxSpeed: 9
   acceleration: 8
-  deceleration: 10
-  turnRate: 300
-  turningRadius: 0.5
+  deceleration: 8
+  turnRate: 180
+  turningRadius: 0.6
   responsiveness: 0.85
-  momentumFactor: 0.5
-  handlingTolerance: 0.7
-  weaveSpeed: 1.2
-  contactSpeed: 0.9
+  momentumFactor: 0.6
+  handlingTolerance: 0.65
+  weaveSpeed: 1
+  contactSpeed: 0.85
   jumpPower: 1.1
   animatorController: {fileID: 0}
-  prefab: {fileID: 11400000, guid: 04156ceb0c584dd4ca7d9a7c52a3d2d4, type: 3}
+  prefab: {fileID: 41411074053231077, guid: 04156ceb0c584dd4ca7d9a7c52a3d2d4, type: 3}
   portrait: {fileID: 0}
-  description: "The ultimate agility dog. Border Collies are incredibly fast, responsive, and excel at tight turns. Their high intelligence makes them quick learners."
-  defaultDivision: 4
+  description: A Border Collie with excellent agility potential.
+  defaultDivision: 2

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Spitz
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Spitz
+  displayName: Spitz
+  modelScale: 1
+  maxSpeed: 7
+  acceleration: 6.5
+  deceleration: 8
+  turnRate: 180
+  turningRadius: 0.6
+  responsiveness: 0.7
+  momentumFactor: 0.6
+  handlingTolerance: 0.65
+  weaveSpeed: 1
+  contactSpeed: 0.85
+  jumpPower: 0.9
+  animatorController: {fileID: 0}
+  prefab: {fileID: 4263493738199469657, guid: e7d0e3e507b648c48adcfa1a5842fb63, type: 3}
+  portrait: {fileID: 0}
+  description: A Spitz with excellent agility potential.
+  defaultDivision: 2

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93188c060036449f7be484fe0dba0107, type: 3}
+  m_Name: HandlerJames
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.HandlerData
+  handlerName: HandlerJames
+  displayName: James Wilson
+  backstory: A dedicated handler who has been competing in agility shows for years.
+  speedStat: 8
+  commandPrecisionStat: 6
+  courseReadingStat: 8
+  pressureHandlingStat: 4
+  handlerSpeed: 5
+  handlerSprintSpeed: 8
+  isUnlockedByDefault: 1
+  unlockCost: 0
+  prefab: {fileID: 0}
+  portrait: {fileID: 0}

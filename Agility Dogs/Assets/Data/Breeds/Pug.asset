@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Pug
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Pug
+  displayName: Pug
+  modelScale: 1
+  maxSpeed: 5
+  acceleration: 4.5
+  deceleration: 8
+  turnRate: 180
+  turningRadius: 0.6
+  responsiveness: 0.65
+  momentumFactor: 0.6
+  handlingTolerance: 0.65
+  weaveSpeed: 1
+  contactSpeed: 0.85
+  jumpPower: 0.75
+  animatorController: {fileID: 0}
+  prefab: {fileID: 2914074782390785306, guid: 312e4ef680af6724fa0fad734bb224b0, type: 3}
+  portrait: {fileID: 0}
+  description: A Pug with excellent agility potential.
+  defaultDivision: 2

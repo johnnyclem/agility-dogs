@@ -31,8 +31,17 @@ public class SimpleTest : MonoBehaviour
             GameObject lightObj = new GameObject("Directional Light");
             Light light = lightObj.AddComponent<Light>();
             light.type = LightType.Directional;
-            light.intensity = 1f;
+            light.intensity = 1.5f;
             lightObj.transform.rotation = Quaternion.Euler(50f, -30f, 0f);
+        }
+        
+        // Position camera to see the dog
+        Camera mainCam = Camera.main;
+        if (mainCam != null)
+        {
+            mainCam.transform.position = new Vector3(0f, 2f, -5f);
+            mainCam.transform.rotation = Quaternion.Euler(10f, 0f, 0f);
+            mainCam.backgroundColor = new Color(0.4f, 0.6f, 0.9f); // Sky blue
         }
         
         // Try to spawn dog if prefab is assigned
@@ -40,7 +49,22 @@ public class SimpleTest : MonoBehaviour
         {
             GameObject dog = Instantiate(dogPrefab, new Vector3(0f, 0f, 3f), Quaternion.identity);
             dog.name = "Demo Dog";
-            Debug.Log("Dog spawned successfully!");
+            
+            // Fix materials for URP
+            Renderer[] dogRenderers = dog.GetComponentsInChildren<Renderer>();
+            Shader urpLitShader = Shader.Find("Universal Render Pipeline/Lit");
+            foreach (Renderer r in dogRenderers)
+            {
+                if (r.material != null && urpLitShader != null)
+                {
+                    // Keep original color but switch to URP shader
+                    Color originalColor = r.material.color;
+                    r.material = new Material(urpLitShader);
+                    r.material.color = originalColor;
+                }
+            }
+            
+            Debug.Log($"Dog spawned successfully! Found {dogRenderers.Length} renderers.");
         }
         else
         {

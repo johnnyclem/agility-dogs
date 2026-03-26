@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cccd7d1a4611c411181e6731d7b667a7, type: 3}
+  m_Name: CountyFair
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.CourseDefinition
+  courseName: County Fair Course
+  courseType: 0
+  venueName: CountyFair
+  coursePrefab: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  startDirection: {x: 0, y: 0, z: 1}
+  standardTime: 50
+  maximumTime: 65
+  obstacleSequence: []
+  supportsAllDivisions: 1
+  supportedDivisions: 
+  difficultyRating: 5
+  bestTime: 3.4028235e+38
+  bestHandlerName: 

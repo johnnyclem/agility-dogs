@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: Pitbull
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: Pitbull
+  displayName: Pitbull
+  modelScale: 1
+  maxSpeed: 7
+  acceleration: 6.5
+  deceleration: 8
+  turnRate: 180
+  turningRadius: 0.6
+  responsiveness: 0.7
+  momentumFactor: 0.6
+  handlingTolerance: 0.65
+  weaveSpeed: 1
+  contactSpeed: 0.85
+  jumpPower: 1.05
+  animatorController: {fileID: 0}
+  prefab: {fileID: 8878533889540535227, guid: bda67eaac9543af499bb9411dafa6bad, type: 3}
+  portrait: {fileID: 0}
+  description: A Pitbull with excellent agility potential.
+  defaultDivision: 2

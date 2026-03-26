@@ -231,7 +231,7 @@ namespace AgilityDogs.Presentation.Crowd
             }
         }
 
-        private void SetCrowdState(CrowdState state, float intensity)
+        public void SetCrowdState(CrowdState state, float intensity)
         {
             currentState = state;
             targetIntensity = Mathf.Clamp01(intensity);
@@ -345,6 +345,45 @@ namespace AgilityDogs.Presentation.Crowd
                 }
             }
         }
+
+        #region CrowdReactionSystem API
+
+        public void SetIntensity(float intensity)
+        {
+            targetIntensity = Mathf.Clamp01(intensity);
+        }
+
+        public void TriggerCheer(float intensity)
+        {
+            SetCrowdState(CrowdState.Cheering, intensity);
+            crowdSatisfaction += intensity * 0.1f;
+        }
+
+        public void TriggerApplause()
+        {
+            SetCrowdState(CrowdState.Applause, 0.7f);
+            crowdSatisfaction += 0.15f;
+        }
+
+        public void TriggerOvation()
+        {
+            SetCrowdState(CrowdState.Ovation, 1f);
+            crowdSatisfaction += 0.2f;
+            TriggerConfetti();
+        }
+
+        public void TriggerDisappointed(float intensity = 0.5f)
+        {
+            SetCrowdState(CrowdState.Disappointed, intensity);
+            crowdSatisfaction -= intensity * 0.1f;
+        }
+
+        public void SetChampionshipReactionMultiplier(float multiplier)
+        {
+            championshipReactionMultiplier = multiplier;
+        }
+
+        #endregion
 
         #endregion
 

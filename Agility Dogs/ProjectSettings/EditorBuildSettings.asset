@@ -19,9 +19,9 @@ EditorBuildSettings:
     guid: a1b2c3d4e5f678901234567890abcdef
   - enabled: 1
     path: Assets/Scenes/TrainingScene.unity
-    guid: b2c3d4e5f678901234567890abcdef0
+    guid: 33e2bb88e650a4f8db973c1fd8a99d7e
   - enabled: 1
     path: Assets/Scenes/CareerScene.unity
-    guid: c3d4e5f678901234567890abcdef01
+    guid: adab1e908f96340319fd249dd0f70e82
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

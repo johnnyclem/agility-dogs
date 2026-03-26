@@ -1,12 +1,15 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using AgilityDogs.UI;
 using AgilityDogs.Gameplay;
+using AgilityDogs.Gameplay.Scoring;
 using AgilityDogs.Data;
+using AgilityDogs.Services;
 using System.Collections.Generic;
 
 namespace AgilityDogs.Editor
@@ -496,8 +499,7 @@ namespace AgilityDogs.Editor
             {
                 if (value is UnityEngine.Object obj)
                     prop.objectReferenceValue = obj;
-                else if (value is UnityEngine.Object[] arr)
-                    prop.arrayReferenceValue = arr;
+                // Note: arrayReferenceValue doesn't exist in Unity API - arrays need different handling
             }
         }
 
@@ -524,7 +526,7 @@ namespace AgilityDogs.Editor
             rect.sizeDelta = size;
             var btn = go.AddComponent<Button>();
             var colors = btn.colors;
-            colors.highlightColor = new Color(0.8f, 0.8f, 0.8f);
+            colors.highlightedColor = new Color(0.8f, 0.8f, 0.8f);
             btn.colors = colors;
 
             var textGo = new GameObject("Text");

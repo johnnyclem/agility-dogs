@@ -8,23 +8,26 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_EditorClassIdentifier: 
-  breedName: Golden Retriever
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b73e0407f744c598deaa4f372c0738, type: 3}
+  m_Name: GoldenRetriever
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.BreedData
+  breedName: GoldenRetriever
   displayName: Golden Retriever
-  modelScale: 1.2
+  modelScale: 1
   maxSpeed: 7
-  acceleration: 5
-  deceleration: 7
+  acceleration: 6.5
+  deceleration: 8
   turnRate: 180
-  turningRadius: 0.7
+  turningRadius: 0.6
   responsiveness: 0.7
-  momentumFactor: 0.7
-  handlingTolerance: 0.75
-  weaveSpeed: 0.9
-  contactSpeed: 0.95
-  jumpPower: 1.0
+  momentumFactor: 0.6
+  handlingTolerance: 0.65
+  weaveSpeed: 1
+  contactSpeed: 0.85
+  jumpPower: 1
   animatorController: {fileID: 0}
-  prefab: {fileID: 11400000, guid: 2163347dd67f9984a80c2e639e2fce3e, type: 3}
+  prefab: {fileID: 7078396222354393351, guid: 2163347dd67f9984a80c2e639e2fce3e, type: 3}
   portrait: {fileID: 0}
-  description: "A friendly and reliable competitor. Golden Retrievers have great endurance and steady performance. Perfect for beginners."
-  defaultDivision: 4
+  description: A Golden Retriever with excellent agility potential.
+  defaultDivision: 2

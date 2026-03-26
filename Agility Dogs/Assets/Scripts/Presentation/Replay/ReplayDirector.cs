@@ -46,7 +46,7 @@ namespace AgilityDogs.Presentation.Replay
         private void Start()
         {
             replayManager = FindObjectOfType<ReplayManager>();
-            mainCamera = Camera.main;
+            mainCamera = UnityEngine.Camera.main;
 
             GameEvents.OnFaultCommitted += HandleFaultCommitted;
             GameEvents.OnRunCompleted += HandleRunCompleted;
@@ -229,7 +229,14 @@ namespace AgilityDogs.Presentation.Replay
             {
                 if (segment.isFault || segment.isPersonalBest)
                 {
-                    highlights.Add(segment);
+                    highlights.Add(new HighlightClip
+                    {
+                        timestamp = segment.timestamp,
+                        duration = segment.duration,
+                        isFault = segment.isFault,
+                        isPersonalBest = segment.isPersonalBest,
+                        description = segment.description
+                    });
                     if (highlights.Count >= maxHighlights) break;
                 }
             }
