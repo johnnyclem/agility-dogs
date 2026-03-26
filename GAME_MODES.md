@@ -2,11 +2,12 @@
 
 ## Overview
 
-The game features three distinct game modes, each offering a different experience:
+The game features four distinct game modes, each offering a different experience:
 
 1. **Quick Play** - Jump straight into competition action
 2. **Training** - Practice courses at your own pace
 3. **Career** - Full career progression from puppy breeding to Westminster
+4. **Campaign** - Narrative-driven story mode with chapters and cutscenes
 
 ---
 
@@ -203,29 +204,133 @@ To enter the Westminster Agility Kings:
 
 ---
 
+## Campaign Mode
+
+### Description
+Campaign Mode provides a narrative-driven experience following the player's journey from novice handler to Westminster Agility Kings champion. Story chapters unlock at key career milestones, featuring character interactions, rivalries, and emotional moments.
+
+### Flow
+```
+Main Menu → Campaign → Intro Cutscene → Breeding → Training → Shows
+     ↓
+  Chapter 2+ unlocks (milestone-based)
+     ↓
+  Story cutscenes at each chapter transition
+     ↓
+  Westminster → Finale Cutscene → Champion!
+```
+
+### Story Chapters
+
+| Chapter | Title | Unlock Condition | Synopsis |
+|---------|-------|------------------|----------|
+| 1 | A New Beginning | Game Start | Meet Coach Sarah, select your first puppy |
+| 2 | Local Legends | 1 show completed | Meet Marcus Chen, enter first competition |
+| 3 | Rising Stars | 3 shows completed | Face Emily Rodriguez at County Fair |
+| 4 | The Regionals | 2 County wins | Meet Victoria Price, former champion |
+| 5 | State of Mind | 2 Regional wins | Elite competition begins |
+| 6 | National Dreams | 2 State wins | Flashback reveals Coach Sarah's past |
+| 7 | Westminster Calling | 2 National wins | Rivals become allies, journey to NYC |
+| 8 | Agility Kings | Westminster Qualified | Final championship |
+
+### Characters
+
+| Character | Role | Personality |
+|-----------|------|-------------|
+| Coach Sarah Chen | Mentor | Former champion, retired due to injury, guides the player |
+| Marcus Chen | Friendly Rival | Enthusiastic, competitive, grows throughout journey |
+| Emily Rodriguez | Elite Handler | Skilled, respectful, represents top-tier competition |
+| Victoria Price | Former Champion | Authoritative, wise, won Westminster 15 years ago |
+| Narrator | Storyteller | Sets scenes, builds atmosphere |
+| Announcer | Voice of Competition | Introduces competitors at major events |
+
+### Cutscene Features
+
+- **Typewriter text effect** for dialogue (30 chars/sec)
+- **Character portraits** (when available)
+- **Emotion indicators** for dialogue delivery
+- **Auto-advance** with manual skip
+- **Input handling** (click/space/enter)
+
+### Story Events
+
+Story events trigger during gameplay based on milestones:
+
+| Event ID | Trigger | Cutscene |
+|----------|---------|----------|
+| `first_victory` | Win first show | Celebration with Coach Sarah and Marcus |
+| `first_defeat` | DNF after 1+ shows | Encouragement from Coach Sarah and Emily |
+| `marcus_rivalry` | Beat Marcus 3+ times | Marcus admits defeat, offers friendship |
+| `emily_rivalry` | Place top 3 in State+ | Emily expresses respect |
+| `tier_complete` | Win at each tier | Coach Sarah emotional, Victoria warns not to rest |
+| `westminster_qualify` | Qualify for finals | Official announcement, celebration |
+| `agility_kings_victory` | Win Westminster | Full celebration with all characters |
+
+### Character Relationships
+
+Relationships improve through interactions:
+- **Marcus Chen** - Starts as rival, becomes friend through repeated victories
+- **Emily Rodriguez** - Respects skilled handlers who show heart
+- **Victoria Price** - Only impressed by those who show discipline
+- **Coach Sarah** - Your biggest supporter, emotionally invested in your success
+
+### Campaign Integration
+
+- Chapters unlock based on career milestones (shows completed, wins at tier)
+- Story events trigger on achievements and gameplay moments
+- Character relationships improve through interactions
+- Campaign mode shares progression with Career mode
+
+### CampaignService API
+
+| Method | Description |
+|--------|-------------|
+| `StartCampaign()` | Begin campaign from start |
+| `ResumeCampaign()` | Continue from last checkpoint |
+| `PlayCutscene(id)` | Play a specific cutscene |
+| `CheckChapterUnlocks()` | Evaluate unlock conditions |
+| `GetCharacter(id)` | Get character data for portrait lookup |
+| `TriggerStoryEvent(id)` | Trigger a one-time story event |
+| `PlayMarcusRivalry()` | Play Marcus rivalry interaction |
+| `PlayEmilyRivalry()` | Play Emily rivalry interaction |
+| `GetRelationshipLevel(id)` | Get character relationship value |
+
+### CutsceneUI
+
+- Handles dialogue display with typewriter effect
+- Shows/hides character portraits
+- Manages input for dialogue advancement
+- Fade in/out transitions
+
+---
+
 ## File Structure
 
-### New Service Files
+### Service Files
 ```
 Assets/Scripts/Services/
 ├── GameModeManager.cs          # Central mode routing
 ├── DogBreedingService.cs       # Puppy creation & traits
 ├── ShowManager.cs              # Competition management
+├── CareerProgressionService.cs # XP, leveling, achievements
+├── CampaignService.cs          # Story/chapter progression
 └── GameManager.cs              # Updated with mode integration
 ```
 
-### New UI Files
+### UI Files
 ```
 Assets/Scripts/UI/
-└── CareerUIManager.cs          # Career mode UI screens
+├── CareerUIManager.cs          # Career mode UI screens
+├── CutsceneUI.cs              # Cutscene playback
+└── MenuManager.cs             # Menu navigation (updated)
 ```
 
 ### Updated Files
 ```
 Assets/Scripts/
-├── Core/AgilityEnums.cs        # Added GameMode, CareerPhase, ShowTier, etc.
-├── UI/MenuManager.cs           # Updated for three-mode system
-└── Services/GameManager.cs     # Integrated with GameModeManager
+├── Core/AgilityEnums.cs        # Added Campaign GameMode
+├── UI/MenuManager.cs           # Updated for four-mode system
+└── Services/GameModeManager.cs # Added Campaign mode support
 ```
 
 ---

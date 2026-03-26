@@ -90,7 +90,8 @@ namespace AgilityDogs.Core
         QuickPlay,
         Training,
         Exhibition,
-        Career
+        Career,
+        Campaign
     }
 
     public enum CareerPhase

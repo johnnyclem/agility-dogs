@@ -139,7 +139,7 @@ namespace AgilityDogs.UI
 
             // Show results buttons
             if (nextShowButton != null)
-                nextShowButton.onClick.AddListener(() => ShowShowSelection());
+                nextShowButton.onClick.AddListener(() => GameModeManager.Instance?.ConfirmCareerResultsAndAdvance());
             if (returnToHubButton != null)
                 returnToHubButton.onClick.AddListener(() => ShowCareerHub());
 
@@ -416,14 +416,20 @@ namespace AgilityDogs.UI
                 DogBreedingService.Instance?.SetPuppyName(selectedPuppyForBreeding, puppyNameInput.text);
             }
 
-            // Select the puppy
+            // Select the puppy (this sets it but doesn't fire career advancement events yet)
             DogBreedingService.Instance?.SelectPuppy(selectedPuppyForBreeding);
 
-            // Advance to training
+            // Advance to training phase - this will trigger HandleCareerPhaseChanged -> ShowTrainingCamp
             var gameModeManager = GameModeManager.Instance;
-            gameModeManager?.AdvanceCareerPhase();
-
-            ShowTrainingCamp();
+            if (gameModeManager != null)
+            {
+                gameModeManager.AdvanceCareerPhase();
+            }
+            else
+            {
+                // Fallback if GameModeManager not available
+                ShowTrainingCamp();
+            }
         }
 
         #endregion
@@ -766,8 +772,12 @@ namespace AgilityDogs.UI
 
         private void HandlePuppySelected(PuppyData puppy)
         {
-            // Puppy was selected, update UI
-            ShowCareerHub();
+            // Only show career hub if we're not in breeding phase transitioning to training
+            // The breeding confirmation handles phase advancement separately
+            if (currentPhase != CareerPhase.Breeding)
+            {
+                ShowCareerHub();
+            }
         }
 
         #endregion

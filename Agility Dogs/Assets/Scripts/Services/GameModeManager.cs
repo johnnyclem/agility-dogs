@@ -60,6 +60,7 @@ namespace AgilityDogs.Services
         public BreedData SelectedDog => selectedDog;
         public bool IsTrainingMode => isTrainingMode;
         public bool IsCareerMode => isCareerMode;
+        public bool IsCampaignMode => currentMode == GameMode.Campaign;
 
         private void Awake()
         {
@@ -203,6 +204,37 @@ namespace AgilityDogs.Services
             RouteCareerPhase(startPhase);
         }
 
+        /// <summary>
+        /// Start Campaign/Story mode - narrative-driven career with story beats and cutscenes
+        /// </summary>
+        public void StartCampaign()
+        {
+            Debug.Log("[GameModeManager] Starting Campaign mode");
+            
+            currentMode = GameMode.Campaign;
+            isTrainingMode = false;
+            isCareerMode = true;
+
+            // Start the campaign service
+            var campaignService = CampaignService.Instance;
+            if (campaignService != null)
+            {
+                if (!campaignService.IsCampaignActive)
+                {
+                    campaignService.StartCampaign();
+                }
+            }
+
+            // Also initialize career data
+            LoadCareerProgress();
+
+            // Raise event
+            GameEvents.RaiseGameStateChanged(GameState.MainMenu, GameState.Career);
+
+            // Show career hub with campaign chapter info
+            CareerUIManager.Instance?.ShowCareerHub();
+        }
+
         #endregion
 
         #region Career Phase Management
@@ -220,33 +252,21 @@ namespace AgilityDogs.Services
             switch (phase)
             {
                 case CareerPhase.Breeding:
-                    // Show breeding/puppy selection screen
                     ShowBreedingScreen();
                     break;
 
                 case CareerPhase.Training:
-                    // Go to training camp
                     ShowTrainingCamp();
                     break;
 
                 case CareerPhase.LocalShows:
-                    // Enter local competitions
-                    EnterShowTier(ShowTier.Local);
-                    break;
-
                 case CareerPhase.RegionalShows:
-                    // Enter regional competitions
-                    EnterShowTier(ShowTier.Regional);
-                    break;
-
                 case CareerPhase.NationalShows:
-                    // Enter national competitions
-                    EnterShowTier(ShowTier.National);
+                    ShowCareerShowSelection();
                     break;
 
                 case CareerPhase.Westminster:
-                    // The big show - Agility Kings
-                    EnterWestminster();
+                    CareerUIManager.Instance?.ShowWestminster();
                     break;
             }
         }
@@ -321,9 +341,7 @@ namespace AgilityDogs.Services
         private void ShowBreedingScreen()
         {
             Debug.Log("[GameModeManager] Showing breeding screen");
-            // This would transition to a breeding UI scene or show a panel
-            // For now, we'll stay in menu and let the UI handle it
-            // In a full implementation, this might load a BreedingScene
+            CareerUIManager.Instance?.ShowBreeding();
         }
 
         /// <summary>
@@ -332,8 +350,25 @@ namespace AgilityDogs.Services
         private void ShowTrainingCamp()
         {
             Debug.Log("[GameModeManager] Showing training camp");
-            // Show training options, drills, skill progression
-            // Then can transition to training runs
+            CareerUIManager.Instance?.ShowTrainingCamp();
+        }
+
+        /// <summary>
+        /// Show the career hub (main career screen)
+        /// </summary>
+        public void ShowCareerHub()
+        {
+            Debug.Log("[GameModeManager] Showing career hub");
+            CareerUIManager.Instance?.ShowCareerHub();
+        }
+
+        /// <summary>
+        /// Show the show selection screen
+        /// </summary>
+        public void ShowCareerShowSelection()
+        {
+            Debug.Log("[GameModeManager] Showing show selection");
+            CareerUIManager.Instance?.ShowShowSelection();
         }
 
         /// <summary>
@@ -346,11 +381,35 @@ namespace AgilityDogs.Services
             // Award career progression based on result
             AwardCareerProgress(result);
 
-            // Check if should advance career phase
-            if (ShouldAdvancePhase(result))
+            // Check if player qualifies to advance to next phase
+            bool canAdvance = ShouldAdvancePhase(result);
+
+            // Determine current tier for display
+            ShowTier currentTier = currentShowTier;
+
+            // Show results screen via CareerUIManager
+            CareerUIManager.Instance?.ShowShowResults(result, 0, GetXPReward(result), canAdvance);
+        }
+
+        /// <summary>
+        /// Advance to next career phase after viewing results
+        /// Called when player clicks "Continue" or "Next" on results screen
+        /// </summary>
+        public void ConfirmCareerResultsAndAdvance()
+        {
+            if (ShouldAdvancePhase(GetLastShowResult()))
             {
                 AdvanceCareerPhase();
             }
+            else
+            {
+                ShowCareerShowSelection();
+            }
+        }
+
+        private ShowResult GetLastShowResult()
+        {
+            return ShowManager.Instance?.ShowHistory.LastOrDefault() ?? ShowResult.DidNotPlace;
         }
 
         #endregion
@@ -656,10 +715,38 @@ namespace AgilityDogs.Services
             }
         }
 
+        public int GetXPReward(ShowResult result)
+        {
+            return result switch
+            {
+                ShowResult.BestInShow => 500,
+                ShowResult.FirstPlace => 300,
+                ShowResult.SecondPlace => 200,
+                ShowResult.ThirdPlace => 150,
+                ShowResult.HonorableMention => 100,
+                ShowResult.DidNotPlace => 50,
+                _ => 0
+            };
+        }
+
         private bool ShouldAdvancePhase(ShowResult result)
         {
-            // Advance if got first place or better at current tier
-            return result == ShowResult.FirstPlace || result == ShowResult.BestInShow;
+            if (result != ShowResult.FirstPlace && result != ShowResult.BestInShow)
+                return false;
+
+            var showManager = ShowManager.Instance;
+            if (showManager == null)
+                return false;
+
+            return showManager.TotalWins switch
+            {
+                >= 12 => currentShowTier != ShowTier.Westminster,
+                >= 8 => currentShowTier == ShowTier.National,
+                >= 6 => currentShowTier == ShowTier.State,
+                >= 4 => currentShowTier == ShowTier.Regional,
+                >= 2 => currentShowTier == ShowTier.County,
+                _ => currentShowTier == ShowTier.Local
+            };
         }
 
         #endregion

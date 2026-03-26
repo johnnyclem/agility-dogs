@@ -21,6 +21,7 @@ namespace AgilityDogs.UI
         [SerializeField] private GameObject modeSelectPanel;
         [SerializeField] private GameObject quickPlayPanel;
         [SerializeField] private GameObject trainingPanel;
+        [SerializeField] private GameObject campaignPanel;
         [SerializeField] private GameObject teamSelectPanel;
         [SerializeField] private GameObject settingsPanel;
         [SerializeField] private GameObject resultsPanel;
@@ -61,6 +62,12 @@ namespace AgilityDogs.UI
         [SerializeField] private GameObject courseEntryPrefab;
         [SerializeField] private Button startTrainingButton;
         [SerializeField] private Button backFromTrainingButton;
+
+        [Header("Campaign")]
+        [SerializeField] private Button campaignButton;
+        [SerializeField] private TextMeshProUGUI campaignDescriptionText;
+        [SerializeField] private Button startCampaignButton;
+        [SerializeField] private Button backFromCampaignButton;
 
         [Header("Team Select")]
         [SerializeField] private Transform handlerListContainer;
@@ -200,6 +207,10 @@ namespace AgilityDogs.UI
             if (mainMenuPanel != null && careerButton == null)
             {
                 careerButton = mainMenuPanel.transform.Find("CareerButton")?.GetComponent<Button>();
+            }
+            if (mainMenuPanel != null && campaignButton == null)
+            {
+                campaignButton = mainMenuPanel.transform.Find("CampaignButton")?.GetComponent<Button>();
             }
             if (mainMenuPanel != null && settingsButton == null)
             {
@@ -362,6 +373,14 @@ namespace AgilityDogs.UI
                     StartCareerMode();
                 });
             }
+            if (campaignButton != null)
+            {
+                campaignButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowCampaignMode();
+                });
+            }
             if (settingsButton != null)
             {
                 settingsButton.onClick.AddListener(() =>
@@ -443,6 +462,24 @@ namespace AgilityDogs.UI
             if (backFromTrainingButton != null)
             {
                 backFromTrainingButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    ShowMainMenu();
+                });
+            }
+
+            // Campaign
+            if (startCampaignButton != null)
+            {
+                startCampaignButton.onClick.AddListener(() =>
+                {
+                    PlayButtonClickSound();
+                    StartCampaignMode();
+                });
+            }
+            if (backFromCampaignButton != null)
+            {
+                backFromCampaignButton.onClick.AddListener(() =>
                 {
                     PlayButtonClickSound();
                     ShowMainMenu();
@@ -834,6 +871,92 @@ namespace AgilityDogs.UI
             Debug.Log("[MenuManager] Showing Training mode selection");
             selectedMode = GameMode.Training;
             ShowTrainingPanel();
+        }
+
+        /// <summary>
+        /// Show Campaign/Story mode
+        /// </summary>
+        private void ShowCampaignMode()
+        {
+            Debug.Log("[MenuManager] Showing Campaign mode");
+            selectedMode = GameMode.Campaign;
+            
+            if (campaignDescriptionText != null)
+            {
+                var campaignService = CampaignService.Instance;
+                int currentChapter = campaignService?.CurrentChapter ?? 1;
+                int unlockedChapters = campaignService?.UnlockedChapters.Count ?? 1;
+                
+                campaignDescriptionText.text = $"Chapter {currentChapter}\n" +
+                    $"{unlockedChapters}/8 Chapters Unlocked\n\n" +
+                    "Experience the story of your journey from novice handler to Agility Kings champion!";
+            }
+            
+            ShowCampaignPanel();
+        }
+
+        /// <summary>
+        /// Start Campaign/Story mode
+        /// </summary>
+        private void StartCampaignMode()
+        {
+            Debug.Log("[MenuManager] Starting Campaign mode");
+            
+            if (gameModeManager != null)
+            {
+                gameModeManager.StartCampaign();
+            }
+            else
+            {
+                Debug.LogWarning("[MenuManager] GameModeManager not found, cannot start Campaign mode");
+            }
+        }
+
+        private void ConfirmCampaign()
+        {
+            StartCampaignMode();
+        }
+
+        private void ShowCampaignPanel()
+        {
+            HideAllPanels();
+            if (campaignPanel != null)
+            {
+                campaignPanel.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("[MenuManager] Campaign panel not found - creating default");
+                CreateDefaultCampaignPanel();
+            }
+        }
+
+        private void CreateDefaultCampaignPanel()
+        {
+            Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas == null) return;
+
+            campaignPanel = new GameObject("CampaignPanel");
+            campaignPanel.transform.SetParent(canvas.transform, false);
+            var rect = campaignPanel.AddComponent<RectTransform>();
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.sizeDelta = Vector2.zero;
+
+            var panel = campaignPanel.AddComponent<Image>();
+            panel.color = new Color(0.1f, 0.1f, 0.15f, 0.95f);
+
+            campaignDescriptionText = CreateText("DescriptionText", campaignPanel.transform, 
+                "Experience the story of your journey from novice handler to Agility Kings champion!", 
+                new Vector2(0, 50), new Vector2(800, 100));
+
+            startCampaignButton = CreateButton("StartCampaignButton", campaignPanel.transform,
+                "Start Campaign", new Vector2(0, -50), new Vector2(300, 60),
+                () => { PlayButtonClickSound(); StartCampaignMode(); });
+
+            backFromCampaignButton = CreateButton("BackButton", campaignPanel.transform,
+                "Back", new Vector2(0, -130), new Vector2(150, 50),
+                () => { PlayButtonClickSound(); ShowMainMenu(); });
         }
 
         private void ConfirmTraining()
