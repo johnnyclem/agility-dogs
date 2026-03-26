@@ -1243,7 +1243,7 @@ namespace AgilityDogs.Services
             }
         }
 
-        private void HandleAchievementUnlocked(Achievement achievement)
+        private void HandleAchievementUnlocked(string achievementId)
         {
             if (!campaignActive) return;
             CheckChapterUnlocks();
