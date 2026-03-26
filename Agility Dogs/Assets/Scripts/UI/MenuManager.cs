@@ -946,17 +946,67 @@ namespace AgilityDogs.UI
             var panel = campaignPanel.AddComponent<Image>();
             panel.color = new Color(0.1f, 0.1f, 0.15f, 0.95f);
 
-            campaignDescriptionText = CreateText("DescriptionText", campaignPanel.transform, 
-                "Experience the story of your journey from novice handler to Agility Kings champion!", 
-                new Vector2(0, 50), new Vector2(800, 100));
+            // Create description text
+            GameObject descObj = new GameObject("DescriptionText");
+            descObj.transform.SetParent(campaignPanel.transform, false);
+            var descRect = descObj.AddComponent<RectTransform>();
+            descRect.anchorMin = new Vector2(0.5f, 0.5f);
+            descRect.anchorMax = new Vector2(0.5f, 0.5f);
+            descRect.pivot = new Vector2(0.5f, 0.5f);
+            descRect.anchoredPosition = new Vector2(0, 50);
+            descRect.sizeDelta = new Vector2(800, 100);
+            campaignDescriptionText = descObj.AddComponent<TextMeshProUGUI>();
+            campaignDescriptionText.text = "Experience the story of your journey from novice handler to Agility Kings champion!";
+            campaignDescriptionText.alignment = TextAlignmentOptions.Center;
+            campaignDescriptionText.fontSize = 24;
 
-            startCampaignButton = CreateButton("StartCampaignButton", campaignPanel.transform,
-                "Start Campaign", new Vector2(0, -50), new Vector2(300, 60),
-                () => { PlayButtonClickSound(); StartCampaignMode(); });
+            // Create start button
+            GameObject startBtn = new GameObject("StartCampaignButton");
+            startBtn.transform.SetParent(campaignPanel.transform, false);
+            var startRect = startBtn.AddComponent<RectTransform>();
+            startRect.anchorMin = new Vector2(0.5f, 0.5f);
+            startRect.anchorMax = new Vector2(0.5f, 0.5f);
+            startRect.pivot = new Vector2(0.5f, 0.5f);
+            startRect.anchoredPosition = new Vector2(0, -50);
+            startRect.sizeDelta = new Vector2(300, 60);
+            var startImg = startBtn.AddComponent<Image>();
+            startImg.color = new Color(0.2f, 0.6f, 0.2f);
+            startCampaignButton = startBtn.AddComponent<Button>();
+            var startTextObj = new GameObject("Text");
+            startTextObj.transform.SetParent(startBtn.transform, false);
+            var startTextRect = startTextObj.AddComponent<RectTransform>();
+            startTextRect.anchorMin = Vector2.zero;
+            startTextRect.anchorMax = Vector2.one;
+            startTextRect.sizeDelta = Vector2.zero;
+            var startText = startTextObj.AddComponent<TextMeshProUGUI>();
+            startText.text = "Start Campaign";
+            startText.alignment = TextAlignmentOptions.Center;
+            startText.fontSize = 20;
+            startCampaignButton.onClick.AddListener(() => { PlayButtonClickSound(); StartCampaignMode(); });
 
-            backFromCampaignButton = CreateButton("BackButton", campaignPanel.transform,
-                "Back", new Vector2(0, -130), new Vector2(150, 50),
-                () => { PlayButtonClickSound(); ShowMainMenu(); });
+            // Create back button
+            GameObject backBtn = new GameObject("BackButton");
+            backBtn.transform.SetParent(campaignPanel.transform, false);
+            var backRect = backBtn.AddComponent<RectTransform>();
+            backRect.anchorMin = new Vector2(0.5f, 0.5f);
+            backRect.anchorMax = new Vector2(0.5f, 0.5f);
+            backRect.pivot = new Vector2(0.5f, 0.5f);
+            backRect.anchoredPosition = new Vector2(0, -130);
+            backRect.sizeDelta = new Vector2(150, 50);
+            var backImg = backBtn.AddComponent<Image>();
+            backImg.color = new Color(0.4f, 0.4f, 0.4f);
+            backFromCampaignButton = backBtn.AddComponent<Button>();
+            var backTextObj = new GameObject("Text");
+            backTextObj.transform.SetParent(backBtn.transform, false);
+            var backTextRect = backTextObj.AddComponent<RectTransform>();
+            backTextRect.anchorMin = Vector2.zero;
+            backTextRect.anchorMax = Vector2.one;
+            backTextRect.sizeDelta = Vector2.zero;
+            var backText = backTextObj.AddComponent<TextMeshProUGUI>();
+            backText.text = "Back";
+            backText.alignment = TextAlignmentOptions.Center;
+            backText.fontSize = 18;
+            backFromCampaignButton.onClick.AddListener(() => { PlayButtonClickSound(); ShowMainMenu(); });
         }
 
         private void ConfirmTraining()

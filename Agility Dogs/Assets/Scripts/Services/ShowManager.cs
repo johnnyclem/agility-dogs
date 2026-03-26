@@ -579,6 +579,7 @@ namespace AgilityDogs.Services
         public float skill; // 0-1 skill level
         public ShowTier tier;
         public bool isPlayer;
+        public bool isBye;
     }
 
     #endregion

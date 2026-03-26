@@ -26,6 +26,7 @@ namespace AgilityDogs.Events
         public static event Action<HandlerCommand, float, string> OnVoiceCommandDetected;
         public static event Action<string, float> OnVoiceCommandMisunderstood;
         public static event Action OnNearMiss;
+        public static event Action<string> OnAchievementUnlocked;
 
         public static void RaiseGameStateChanged(GameState from, GameState to)
             => OnGameStateChanged?.Invoke(from, to);
@@ -83,5 +84,8 @@ namespace AgilityDogs.Events
 
         public static void RaiseNearMiss()
             => OnNearMiss?.Invoke();
+
+        public static void RaiseAchievementUnlocked(string achievementId)
+            => OnAchievementUnlocked?.Invoke(achievementId);
     }
 }

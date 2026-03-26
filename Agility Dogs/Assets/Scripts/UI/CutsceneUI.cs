@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,7 +66,7 @@ namespace AgilityDogs.UI
             {
                 campaignService.OnCutsceneStarted += HandleCutsceneStarted;
                 campaignService.OnCutsceneEnded += HandleCutsceneEnded;
-                campaignService.OnDialogueLine += HandleDialogueLine;
+                campaignService.OnCampaignDialogueLine += HandleDialogueLine;
             }
         }
 
@@ -76,7 +77,7 @@ namespace AgilityDogs.UI
             {
                 campaignService.OnCutsceneStarted -= HandleCutsceneStarted;
                 campaignService.OnCutsceneEnded -= HandleCutsceneEnded;
-                campaignService.OnDialogueLine -= HandleDialogueLine;
+                campaignService.OnCampaignDialogueLine -= HandleDialogueLine;
             }
         }
 
@@ -169,7 +170,7 @@ namespace AgilityDogs.UI
             OnCutsceneComplete?.Invoke();
         }
 
-        private void HandleDialogueLine(DialogueLine line)
+        private void HandleDialogueLine(CampaignDialogueLine line)
         {
             DisplayDialogue(line);
         }
@@ -178,7 +179,7 @@ namespace AgilityDogs.UI
 
         #region Dialogue Display
 
-        private void DisplayDialogue(DialogueLine line)
+        private void DisplayDialogue(CampaignDialogueLine line)
         {
             // Clear previous
             if (typingCoroutine != null)
@@ -230,37 +231,6 @@ namespace AgilityDogs.UI
         {
             // Could implement emotion-based visual effects here
             // For now, we'll leave it as a placeholder for future enhancement
-        }
-
-            // Update speaker name
-            if (speakerNameText != null)
-            {
-                speakerNameText.text = line.speakerName ?? "";
-            }
-
-            // Update portrait
-            if (portraitImage != null)
-            {
-                var character = CampaignService.Instance?.GetCharacter(line.speakerName);
-                if (character?.portrait != null && line.showPortrait)
-                {
-                    portraitImage.sprite = character.portrait;
-                    portraitImage.gameObject.SetActive(true);
-                }
-                else
-                {
-                    portraitImage.gameObject.SetActive(false);
-                }
-            }
-
-            // Hide continue icon during typing
-            if (continueIcon != null)
-            {
-                continueIcon.gameObject.SetActive(false);
-            }
-
-            // Start typewriter effect
-            typingCoroutine = StartCoroutine(TypeText(line.dialogueText));
         }
 
         private IEnumerator TypeText(string text)

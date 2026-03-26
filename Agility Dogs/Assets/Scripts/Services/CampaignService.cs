@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using AgilityDogs.Core;
 using AgilityDogs.Data;
+using AgilityDogs.Events;
 
 namespace AgilityDogs.Services
 {
@@ -39,7 +40,7 @@ namespace AgilityDogs.Services
         public event Action<CutsceneData> OnCutsceneStarted;
         public event Action OnCutsceneEnded;
         public event Action<int> OnCampaignCompleted;
-        public event Action<DialogueLine> OnDialogueLine;
+        public event Action<CampaignDialogueLine> OnCampaignDialogueLine;
 
         // Properties
         public int CurrentChapter => currentChapter;
@@ -381,7 +382,7 @@ namespace AgilityDogs.Services
             // Play each dialogue line
             foreach (var line in cutscene.dialogueLines)
             {
-                OnDialogueLine?.Invoke(line);
+                OnCampaignDialogueLine?.Invoke(line);
                 
                 // Wait for dialogue to complete (advance on input or timeout)
                 float elapsed = 0f;
@@ -411,30 +412,30 @@ namespace AgilityDogs.Services
             switch (cutsceneId)
             {
                 case "intro":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "Every great champion has a beginning. Today, you take your first steps toward becoming an Agility King.",
                             duration = 4f,
                             emotion = "neutral"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "Welcome to the world of dog agility! I'm Coach Sarah Chen, and I'll be guiding you on this journey.",
                             duration = 4f,
                             emotion = "warm"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "I remember when I first started... that was twenty years ago now. Time flies when you're having fun!",
                             duration = 4f,
                             emotion = "nostalgic"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "First things first - let's find you a partner. Every handler needs the right dog. What kind of puppy are you looking for?",
@@ -446,30 +447,30 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "chapter2_intro":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "You've got a natural talent! Your dog responds to you beautifully. I think it's time you tested your skills in a real competition.",
                             duration = 5f,
                             emotion = "proud"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "The local agility scene awaits. But you'll soon learn you're not the only one with dreams of glory...",
                             duration = 4f,
                             emotion = "mysterious"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Marcus Chen",
                             dialogueText = "Hey there, rookie! I'm Marcus. Welcome to the circuit! Hope you're ready for some real competition!",
                             duration = 4f,
                             emotion = "competitive"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "Marcus is... enthusiastic. He's been competing for three years. Watch and learn from everyone out there.",
@@ -481,30 +482,30 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "chapter3_intro":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "Word has spread about a promising newcomer. At the County Fair Championships, you'll face tougher competition than ever before.",
                             duration = 5f,
                             emotion = "tense"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Emily Rodriguez",
                             dialogueText = "So you're the one everyone's talking about. I'm Emily. I've been training for five years. Let's see what you've got.",
                             duration = 5f,
                             emotion = "respectful"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "Emily's one of the best in the county. But don't let that intimidate you - use it as motivation. She's beatable if you stay focused.",
                             duration = 5f,
                             emotion = "encouraging"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Emily Rodriguez",
                             dialogueText = "Good run out there. You've got potential. But the real test is coming - the Regionals aren't for the faint of heart.",
@@ -516,37 +517,37 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "chapter4_intro":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "The Regional Championships. Where champions are made and dreams are tested. The competition here is on another level.",
                             duration = 5f,
                             emotion = "dramatic"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Marcus Chen",
                             dialogueText = "Regionals! I've been training all year for this. My Border Collie, Storm, is faster than ever!",
                             duration = 4f,
                             emotion = "excited"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "Marcus qualified last year but didn't place. He's hungry this year. And there's someone else you should know...",
                             duration = 5f,
                             emotion = "serious"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "That's Victoria Price. Three-time regional champion. She won Westminster once, fifteen years ago. Now she coaches.",
                             duration = 5f,
                             emotion = "respectful"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Victoria Price",
                             dialogueText = "Coach Sarah speaks highly of you. Let's see if her instincts are still sharp. Give it your all, young one.",
@@ -558,30 +559,30 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "chapter5_intro":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "State Championships. Only the elite reach this level. The courses are longer, the obstacles more challenging.",
                             duration = 5f,
                             emotion = "intense"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "This is where training really pays off. Your dog's stamina, your handling skills - everything matters now.",
                             duration = 5f,
                             emotion = "focused"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Emily Rodriguez",
                             dialogueText = "We made it! Both of us. This is what we've been working toward. May the best team win!",
                             duration = 4f,
                             emotion = "friendly"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Victoria Price",
                             dialogueText = "I've been watching your progress. You have something special. But so does she. Remember: focus beats talent when talent doesn't focus.",
@@ -593,37 +594,37 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "chapter6_intro":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Announcer",
                             dialogueText = "Welcome to the National Agility Championships! The top handlers from across the country have gathered!",
                             duration = 4f,
                             emotion = "excited"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "The atmosphere is electric. Cameras flash, crowds roar. This is the big time.",
                             duration = 4f,
                             emotion = "thrilling"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Marcus Chen",
                             dialogueText = "I never thought I'd make it this far. Three years ago I was running practice courses in my backyard. Now look at us!",
                             duration = 5f,
                             emotion = "grateful"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "Marcus has grown so much. You've all grown so much. I'm proud of every single one of you.",
                             duration = 5f,
                             emotion = "emotional"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Emily Rodriguez",
                             dialogueText = "Coach Sarah... she never tells anyone, but she was a champion too, once. Before injuries forced her to retire from competition.",
@@ -635,37 +636,37 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "chapter7_intro":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "A letter arrives. The envelope bears the unmistakable crest of the Westminster Kennel Club.",
                             duration = 4f,
                             emotion = "suspenseful"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "You did it. You've qualified for the Westminster Agility Kings. This is... this is the championship I never got to win.",
                             duration = 5f,
                             emotion = "overwhelmed"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Victoria Price",
                             dialogueText = "The world will be watching. Your friends, your family, everyone who believed in you. Don't let the pressure break you - let it forge you.",
                             duration = 6f,
                             emotion = "fierce"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Marcus Chen",
                             dialogueText = "We've come so far together. Even if we're competing against each other now... we're still family.",
                             duration = 5f,
                             emotion = "brotherly"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Emily Rodriguez",
                             dialogueText = "See you at Westminster. May the best handler win. But honestly? I hope you do. You deserve this.",
@@ -677,51 +678,51 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "finale":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Announcer",
                             dialogueText = "Ladies and gentlemen, welcome to the WESTMINSTER AGILITY KINGS CHAMPIONSHIP!",
                             duration = 3f,
                             emotion = "excitement"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Announcer",
                             dialogueText = "In lane one... representing the Western Region... EMILY RODRIGUEZ with her Golden Retriever, Sunshine!",
                             duration = 4f,
                             emotion = "excited"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Announcer",
                             dialogueText = "In lane two... the crowd favorite... MARCUS CHEN with Border Collie, Storm!",
                             duration = 4f,
                             emotion = "excited"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Announcer",
                             dialogueText = "And in lane three... the newcomer who rose through every tier... with their partner!",
                             duration = 4f,
                             emotion = "excited"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "This is it. Everything we've worked for. Every early morning, every late night, every time we didn't give up.",
                             duration = 5f,
                             emotion = "emotional"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Coach Sarah",
                             dialogueText = "No matter what happens... you've already made me proud. Now go out there and show the world what you're made of!",
                             duration = 5f,
                             emotion = "tears"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerName = "Narrator",
                             dialogueText = "The crowd falls silent as handler and dog take their position at the starting line. This is the moment everything has led to...",
@@ -733,9 +734,9 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "first_victory":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "narrator",
                             speakerName = "Narrator",
@@ -743,7 +744,7 @@ namespace AgilityDogs.Services
                             duration = 4f,
                             emotion = "triumphant"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
@@ -751,7 +752,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "proud"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "marcus",
                             speakerName = "Marcus Chen",
@@ -764,9 +765,9 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "first_defeat":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "narrator",
                             speakerName = "Narrator",
@@ -774,7 +775,7 @@ namespace AgilityDogs.Services
                             duration = 4f,
                             emotion = "melancholy"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
@@ -782,7 +783,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "encouraging"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "emily",
                             speakerName = "Emily Rodriguez",
@@ -795,9 +796,9 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "marcus_rivalry":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "marcus",
                             speakerName = "Marcus Chen",
@@ -805,7 +806,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "gracious"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
@@ -813,7 +814,7 @@ namespace AgilityDogs.Services
                             duration = 4f,
                             emotion = "approving"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "marcus",
                             speakerName = "Marcus Chen",
@@ -826,9 +827,9 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "emily_rivalry":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "emily",
                             speakerName = "Emily Rodriguez",
@@ -836,7 +837,7 @@ namespace AgilityDogs.Services
                             duration = 4f,
                             emotion = "reflective"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "emily",
                             speakerName = "Emily Rodriguez",
@@ -844,7 +845,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "sincere"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
@@ -857,9 +858,9 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "tier_complete":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "narrator",
                             speakerName = "Narrator",
@@ -867,7 +868,7 @@ namespace AgilityDogs.Services
                             duration = 4f,
                             emotion = "determined"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
@@ -875,7 +876,7 @@ namespace AgilityDogs.Services
                             duration = 4f,
                             emotion = "emotional"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "victoria",
                             speakerName = "Victoria Price",
@@ -888,9 +889,9 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "westminster_qualify":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "narrator",
                             speakerName = "Narrator",
@@ -898,7 +899,7 @@ namespace AgilityDogs.Services
                             duration = 3f,
                             emotion = "awe"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "announcer",
                             speakerName = "Announcer",
@@ -906,7 +907,7 @@ namespace AgilityDogs.Services
                             duration = 4f,
                             emotion = "excited"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
@@ -914,7 +915,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "overwhelmed"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "victoria",
                             speakerName = "Victoria Price",
@@ -927,9 +928,9 @@ namespace AgilityDogs.Services
                     return cutscene;
 
                 case "agility_kings_victory":
-                    cutscene.dialogueLines = new List<DialogueLine>
+                    cutscene.dialogueLines = new List<CampaignDialogueLine>
                     {
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "announcer",
                             speakerName = "Announcer",
@@ -937,7 +938,7 @@ namespace AgilityDogs.Services
                             duration = 3f,
                             emotion = "excited"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "announcer",
                             speakerName = "Announcer",
@@ -945,7 +946,7 @@ namespace AgilityDogs.Services
                             duration = 3f,
                             emotion = "triumphant"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
@@ -953,7 +954,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "tears"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "marcus",
                             speakerName = "Marcus Chen",
@@ -961,7 +962,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "ecstatic"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "emily",
                             speakerName = "Emily Rodriguez",
@@ -969,7 +970,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "gracious"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "victoria",
                             speakerName = "Victoria Price",
@@ -977,7 +978,7 @@ namespace AgilityDogs.Services
                             duration = 5f,
                             emotion = "approving"
                         },
-                        new DialogueLine
+                        new CampaignDialogueLine
                         {
                             speakerId = "narrator",
                             speakerName = "Narrator",
@@ -1228,7 +1229,7 @@ namespace AgilityDogs.Services
             if (!campaignActive) return;
 
             // Trigger tutorial events for specific obstacles
-            if (!HasCompletedStoryEvent("first_jump") && type == ObstacleType.Jump)
+            if (!HasCompletedStoryEvent("first_jump") && type == ObstacleType.BarJump)
             {
                 TriggerStoryEvent("first_jump");
             }
@@ -1324,11 +1325,11 @@ namespace AgilityDogs.Services
     {
         public string cutsceneId;
         public string title;
-        public List<DialogueLine> dialogueLines;
+        public List<CampaignDialogueLine> dialogueLines;
     }
 
     [Serializable]
-    public class DialogueLine
+    public class CampaignDialogueLine
     {
         public string speakerId;
         public string speakerName;
