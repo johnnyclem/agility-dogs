@@ -235,6 +235,94 @@ namespace AgilityDogs.Services
             CareerUIManager.Instance?.ShowCareerHub();
         }
 
+        /// <summary>
+        /// Start Tournament mode - compete in brackets and tournaments
+        /// </summary>
+        public void StartTournament(TournamentFormat format = TournamentFormat.Auto)
+        {
+            Debug.Log($"[GameModeManager] Starting Tournament mode with format: {format}");
+            
+            currentMode = GameMode.Tournament;
+            isTrainingMode = false;
+            isCareerMode = false;
+
+            // Generate tournament competitors
+            var tournamentService = TournamentService.Instance;
+            if (tournamentService != null)
+            {
+                var competitors = GenerateTournamentCompetitors();
+                tournamentService.StartTournament(competitors, format);
+            }
+
+            // Raise event
+            GameEvents.RaiseGameStateChanged(GameState.MainMenu, GameState.CourseLoad);
+
+            // Show tournament bracket UI
+            ShowTournamentBracket();
+        }
+
+        private List<CompetitorData> GenerateTournamentCompetitors()
+        {
+            var competitors = new List<CompetitorData>();
+            
+            // Add player as first competitor
+            var breedingService = DogBreedingService.Instance;
+            PuppyData puppy = breedingService?.GetSelectedPuppy();
+            
+            CompetitorData playerCompetitor = new CompetitorData
+            {
+                competitorId = "PLAYER",
+                competitorName = "You",
+                dogName = puppy?.puppyName ?? "Your Dog",
+                skill = puppy?.baseStats?.GetOverallRating() ?? 0.5f,
+                tier = currentShowTier,
+                isPlayer = true
+            };
+            competitors.Add(playerCompetitor);
+
+            // Add AI competitors
+            var showManager = ShowManager.Instance;
+            float baseSkill = showManager?.GetTierBaseSkill(currentShowTier) ?? 0.4f;
+            
+            for (int i = 0; i < 7; i++)
+            {
+                competitors.Add(new CompetitorData
+                {
+                    competitorId = $"AI_{i}",
+                    competitorName = GenerateCompetitorName(i),
+                    dogName = GenerateDogName(i),
+                    skill = baseSkill + UnityEngine.Random.Range(-0.1f, 0.1f),
+                    tier = currentShowTier,
+                    isPlayer = false
+                });
+            }
+
+            return competitors;
+        }
+
+        private string GenerateCompetitorName(int seed)
+        {
+            string[] firstNames = { "Alex", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Quinn", "Avery" };
+            string[] lastNames = { "Smith", "Johnson", "Brown", "Davis", "Wilson", "Martinez", "Garcia", "Lee" };
+            return $"{firstNames[seed % firstNames.Length]} {lastNames[seed % lastNames.Length]}";
+        }
+
+        private string GenerateDogName(int seed)
+        {
+            string[] names = { "Max", "Bella", "Luna", "Charlie", "Lucy", "Cooper", "Daisy", "Rocky" };
+            return names[seed % names.Length];
+        }
+
+        /// <summary>
+        /// Show the tournament bracket UI
+        /// </summary>
+        private void ShowTournamentBracket()
+        {
+            Debug.Log("[GameModeManager] Showing tournament bracket");
+            // This would show the TournamentUI panel
+            // For now, the TournamentService handles the flow
+        }
+
         #endregion
 
         #region Career Phase Management

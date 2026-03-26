@@ -2,12 +2,13 @@
 
 ## Overview
 
-The game features four distinct game modes, each offering a different experience:
+The game features five distinct game modes, each offering a different experience:
 
 1. **Quick Play** - Jump straight into competition action
 2. **Training** - Practice courses at your own pace
 3. **Career** - Full career progression from puppy breeding to Westminster
 4. **Campaign** - Narrative-driven story mode with chapters and cutscenes
+5. **Tournament** - Compete in brackets, knockout, and round-robin formats
 
 ---
 
@@ -304,6 +305,60 @@ Relationships improve through interactions:
 
 ---
 
+## Tournament Mode
+
+### Description
+Tournament Mode lets players compete in structured tournament brackets with knockout, round-robin, or hybrid formats. Test your skills against multiple AI competitors in a series of matches.
+
+### Tournament Formats
+
+| Format | Description | Bracket Type |
+|--------|-------------|--------------|
+| **Knockout** | Single-elimination bracket | SingleElimination |
+| **Round Robin** | Everyone plays everyone | RoundRobin |
+| **Hybrid** | Pool play → Knockout | Hybrid |
+
+### Flow
+```
+Main Menu → Tournament → Bracket Generated → Match 1 → Match 2 → ... → Champion!
+     ↓
+  View Bracket
+     ↓
+  Play Each Match (runs the agility course)
+     ↓
+  Winner Advances
+     ↓
+  Champion Crowned!
+```
+
+### Tournament Service API
+
+| Method | Description |
+|--------|-------------|
+| `StartTournament(competitors, format)` | Start tournament with competitor list |
+| `GetCurrentMatches()` | Get current round matches |
+| `GetTournamentBracket()` | Get full bracket data |
+| `CompleteMatch(id, winner, time, faults)` | Record match result |
+| `GetPoolStandings(poolId)` | Get round-robin pool standings |
+| `IsCompetitorActive(competitor)` | Check if competitor still in |
+
+### TournamentUI
+
+- Displays tournament bracket with rounds and matches
+- Shows current match details
+- Pool standings display for round-robin formats
+- Celebration effects for champion
+
+### Match Simulation
+
+When Tournament mode runs a match:
+1. Player competes in the agility course
+2. Result (time, faults) is recorded
+3. AI competitors are simulated based on skill ratings
+4. Winner advances to next round
+
+---
+
 ## File Structure
 
 ### Service Files
@@ -314,6 +369,7 @@ Assets/Scripts/Services/
 ├── ShowManager.cs              # Competition management
 ├── CareerProgressionService.cs # XP, leveling, achievements
 ├── CampaignService.cs          # Story/chapter progression
+├── TournamentService.cs        # Tournament bracket management
 └── GameManager.cs              # Updated with mode integration
 ```
 
@@ -322,15 +378,16 @@ Assets/Scripts/Services/
 Assets/Scripts/UI/
 ├── CareerUIManager.cs          # Career mode UI screens
 ├── CutsceneUI.cs              # Cutscene playback
+├── TournamentUI.cs           # Tournament bracket display
 └── MenuManager.cs             # Menu navigation (updated)
 ```
 
 ### Updated Files
 ```
 Assets/Scripts/
-├── Core/AgilityEnums.cs        # Added Campaign GameMode
-├── UI/MenuManager.cs           # Updated for four-mode system
-└── Services/GameModeManager.cs # Added Campaign mode support
+├── Core/AgilityEnums.cs        # Added Campaign, Tournament GameModes
+├── UI/MenuManager.cs           # Updated for five-mode system
+└── Services/GameModeManager.cs # Added Campaign, Tournament mode support
 ```
 
 ---

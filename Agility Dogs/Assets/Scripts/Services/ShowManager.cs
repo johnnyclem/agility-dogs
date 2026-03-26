@@ -478,7 +478,7 @@ namespace AgilityDogs.Services
             };
         }
 
-        private float GetTierBaseSkill(ShowTier tier)
+        public float GetTierBaseSkill(ShowTier tier)
         {
             return tier switch
             {

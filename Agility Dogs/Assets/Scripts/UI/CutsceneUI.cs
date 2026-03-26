@@ -189,20 +189,28 @@ namespace AgilityDogs.UI
             // Get speaker ID for character lookup (fall back to speakerName if speakerId not set)
             string speakerId = !string.IsNullOrEmpty(line.speakerId) ? line.speakerId : line.speakerName;
 
+            // Get character data
+            var character = CampaignService.Instance?.GetCharacter(speakerId);
+
             // Update speaker name
             if (speakerNameText != null)
             {
-                var character = CampaignService.Instance?.GetCharacter(speakerId);
                 speakerNameText.text = character?.characterName ?? line.speakerName ?? "Unknown";
             }
 
-            // Update portrait
+            // Update portrait with emotion-aware selection
             if (portraitImage != null)
             {
-                var character = CampaignService.Instance?.GetCharacter(speakerId);
-                if (character?.portrait != null && line.showPortrait)
+                Sprite portrait = null;
+                if (character != null && line.showPortrait)
                 {
-                    portraitImage.sprite = character.portrait;
+                    // Use emotion-aware portrait if available
+                    portrait = character.GetPortraitForEmotion(line.emotion);
+                }
+
+                if (portrait != null)
+                {
+                    portraitImage.sprite = portrait;
                     portraitImage.gameObject.SetActive(true);
                 }
                 else

@@ -1345,8 +1345,21 @@ namespace AgilityDogs.Services
         public string characterName;
         public string title;
         public Sprite portrait;
+        public CharacterPortraitData portraitData;
         public string defaultDialogue;
         public List<string> appearsInChapters;
+
+        /// <summary>
+        /// Get portrait for a specific emotion, using portrait data if available
+        /// </summary>
+        public Sprite GetPortraitForEmotion(string emotion)
+        {
+            if (portraitData != null)
+            {
+                return portraitData.GetPortraitForEmotion(emotion);
+            }
+            return portrait;
+        }
     }
 
     #endregion

@@ -91,7 +91,8 @@ namespace AgilityDogs.Core
         Training,
         Exhibition,
         Career,
-        Campaign
+        Campaign,
+        Tournament
     }
 
     public enum CareerPhase
