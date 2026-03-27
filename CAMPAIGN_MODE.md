@@ -231,3 +231,170 @@ Assets/Data/Characters/Portraits/
 - [ ] Add camera animation presets for cutscenes
 - [ ] Implement character-specific dialogue variations
 - [ ] Add achievement for watching all cutscenes
+
+---
+
+# Narrative/Dialogue System
+
+## Overview
+
+The Narrative System is a comprehensive dialogue and narration framework that handles all story, commentary, tutorial, and dynamic dialogue in the game.
+
+## Architecture
+
+```
+NarrativeService (Central Hub)
+    ├── StoryNarrator        # Story dialogue & chapter beats
+    ├── CompetitionCommentator # Arthur & Buck commentary
+    ├── TutorialNarrator     # Tutorial hints & guidance
+    └── DynamicNarrator      # State-based narration
+```
+
+## NarrativeService
+
+**File:** `Services/NarrativeService.cs` (460 lines)
+
+Central service that manages all dialogue events with priority queuing:
+
+```csharp
+// Queue a story event
+NarrativeService.Instance.TriggerStoryDialogue("chapter_2_intro");
+
+// Queue competition commentary
+NarrativeService.Instance.TriggerCompetitionCommentary(CommentaryState.Jumps);
+
+// Queue tutorial hint
+NarrativeService.Instance.TriggerTutorialHint("first_weave");
+
+// Queue dynamic narration
+NarrativeService.Instance.TriggerDynamicNarration(new NarrativeTrigger
+{
+    type = TriggerType.PerfectRun,
+    value = 35.5f
+});
+```
+
+## StoryNarrator
+
+**File:** `Services/StoryNarrator.cs` (380 lines)
+
+Manages all 8 chapters with complete dialogue:
+
+### Chapter Dialogue (30+ story beats)
+
+| Chapter | Story Beats |
+|---------|-------------|
+| 1: A New Beginning | intro, puppy_selected, first_run |
+| 2: Local Legends | intro, marcus_rivalry, victory, defeat |
+| 3: Rising Stars | intro, emily_rivalry, emily_respect, coach_backstory |
+| 4: The Regionals | intro, victoria_introduction, marcus_alliance |
+| 5: State of Mind | intro, bonding, emily_friendly |
+| 6: National Dreams | intro, marcus_growth, coach_secret, realization |
+| 7: Westminster Calling | qualification, reveal, rivals_allies, farewell, emily_wish |
+| 8: Agility Kings | finale_intro, coach_moment, victory, celebration, credits |
+
+### Key Characters & Dialogue
+
+**Coach Sarah** (Mentor)
+- Encouragement, backstory, wisdom
+- Emotional moments at milestones
+- Reveals her Westminster history
+
+**Marcus Chen** (Friendly Rival)
+- Competitive banter
+- Evolution from rival to ally
+- Training partnership offer
+
+**Emily Rodriguez** (Elite Handler)
+- Respect through competition
+- Reveals Coach Sarah's past
+- Graceful rivalry
+
+**Victoria Price** (Former Champion)
+- Authoritative mentor
+- Westminster wisdom
+- Technical guidance
+
+## CompetitionCommentator
+
+**File:** `Services/CompetitionCommentator.cs` (290 lines)
+
+Dual commentator system with Arthur (Main) and Buck (Color):
+
+### Commentator Profiles
+
+| Commentator | Role | Personality |
+|-------------|------|-------------|
+| Arthur Mitchell | Main | Veteran sportscaster, enthusiastic |
+| Buck Dawson | Color | Former champion, technical analysis |
+| Event Announcer | PA | Formal introductions |
+
+### Commentary Types
+
+- **Match Intro** - Set the scene
+- **Obstacle Commentary** - Jumps, tunnels, weaves, contacts
+- **Fault Commentary** - Misses, refusals, wrong courses
+- **Finish Line** - Results and celebration
+- **Banter** - Arthur & Buck back-and-forth
+
+## TutorialNarrator
+
+**File:** `Services/TutorialNarrator.cs` (250 lines)
+
+Context-sensitive tutorial hints:
+
+| Tutorial ID | Trigger | Content |
+|-------------|---------|---------|
+| `controls_basics` | Game Start | WASD/arrow keys, space for commands |
+| `first_jump` | First Bar Jump | Timing, clean jumps |
+| `first_tunnel` | First Tunnel | Command timing, speed |
+| `first_weave` | First Weave Poles | Entry side, technique |
+| `first_aframe` | First A-Frame | Contact zones, faults |
+| `first_fault` | First Fault | Recovery, stay calm |
+| `first_competition` | First Competition | Focus on fun, not winning |
+| `first_win` | First Victory | Celebration, encouragement |
+| `training_basics` | Training Start | Practice without pressure |
+| `breeding_basics` | Breeding Start | Breed strengths, matching |
+
+## DynamicNarrator
+
+**File:** `Services/DynamicNarrator.cs` (220 lines)
+
+State-based narration for contextual commentary:
+
+| Trigger | Narration |
+|---------|-----------|
+| Perfect Run | Time praise, championship potential |
+| Fault | Recovery encouragement |
+| Near Miss | Excitement, close calls |
+| Personal Best | Progress celebration |
+| Show Start | Match excitement |
+| Show End | Result commentary |
+| Milestone | Achievement celebration |
+| Level Up | Progress encouragement |
+
+## Integration Points
+
+### Automatic Triggers
+- `GameEvents.OnRunStarted` → Match Intro commentary
+- `GameEvents.OnRunCompleted` → Finish line commentary
+- `GameEvents.OnObstacleCompleted` → Obstacle-specific commentary + tutorial
+- `GameEvents.OnFaultCommitted` → Fault commentary + tutorial
+- `CampaignService.OnChapterUnlocked` → Story beat
+
+### Character Relationships
+- Relationships improve through interactions
+- Dialogue varies based on relationship level
+- Unlock special banter at higher levels
+
+## File Structure
+
+```
+Assets/Scripts/Services/
+├── NarrativeService.cs      # Central hub (460 lines)
+├── StoryNarrator.cs         # Story dialogue (380 lines)
+├── CompetitionCommentator.cs # Commentary (290 lines)
+├── TutorialNarrator.cs      # Tutorials (250 lines)
+├── DynamicNarrator.cs       # Dynamic narration (220 lines)
+└── CampaignService.cs       # Updated to integrate
+```
