@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace AgilityDogs.Services
     /// <summary>
     /// CampaignService - Manages story/campaign mode progression
     /// Handles chapter unlocks, cutscene triggers, and story events
+    /// Integrates with NarrativeService for all dialogue and narration
     /// </summary>
     public class CampaignService : MonoBehaviour
     {
@@ -1064,6 +1066,9 @@ namespace AgilityDogs.Services
             
             var chapter = GetChapter(chapterNumber);
             Debug.Log($"[CampaignService] Chapter {chapterNumber} unlocked: {chapter?.title}");
+
+            // Trigger narrative event through NarrativeService
+            NarrativeService.Instance?.TriggerStoryDialogue($"chapter_{chapterNumber}_intro");
 
             // Auto-play intro cutscene for new chapter
             if (chapter?.associatedCutscenes != null && chapter.associatedCutscenes.Count > 0)
