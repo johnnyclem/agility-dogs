@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AgilityDogs.Core
 {
     public static class AgilityConstants
@@ -35,5 +37,34 @@ namespace AgilityDogs.Core
         public const string ANIM_IS_RUNNING = "IsRunning";
         public const string ANIM_IS_ON_OBSTACLE = "IsOnObstacle";
         public const string ANIM_WEAVE_INDEX = "WeaveIndex";
+
+        public static string GetOrdinalSuffix(int number)
+        {
+            if (number <= 0) return number.ToString();
+
+            switch (number % 100)
+            {
+                case 11:
+                case 12:
+                case 13:
+                    return number + "th";
+            }
+
+            switch (number % 10)
+            {
+                case 1: return number + "st";
+                case 2: return number + "nd";
+                case 3: return number + "rd";
+                default: return number + "th";
+            }
+        }
+
+        public static string FormatTime(float time)
+        {
+            int minutes = Mathf.FloorToInt(time / 60f);
+            int seconds = Mathf.FloorToInt(time % 60f);
+            int decimals = Mathf.FloorToInt((time % 1f) * 100f);
+            return $"{minutes:00}:{seconds:00}.{decimals:00}";
+        }
     }
 }

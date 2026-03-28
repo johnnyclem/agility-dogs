@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6adba50901b4a00ba3777ce4990b5c, type: 3}
+  m_Name: Hotlanta - Hot Dogs All-Around_VenueData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.VenueData
+  venueId: hotlanta_-_hot_dogs_all-around
+  venueName: Hotlanta - Hot Dogs All-Around
+  displayName: Hotlanta - Hot Dogs All-Around
+  description: A championship-level agility venue in Atlanta, State.
+  city: Atlanta
+  state: State
+  country: USA
+  venuePrefab: {fileID: 0}
+  thumbnail: {fileID: 0}
+  skyboxMaterial: {fileID: 0}
+  ambientColor: {r: 1, g: 1, b: 1, a: 1}
+  ambientSound: {fileID: 0}
+  defaultWeather: 4
+  courseCapacity: 20
+  supportsStandard: 1
+  supportsJumpersWithWeaves: 1
+  supportsChampionship: 0
+  difficultyRating: 8
+  prestigeLevel: 7
+  requiredLevelToUnlock: 1
+  isChampionshipVenue: 1
+  isUnlockedByDefault: 1
+  unlockCost: 1000
+  hostedEvents:
+  - Local Agility Trial
+  hasIndoorArena: 0
+  hasAgilityEquipment: 1
+  hasWarmUpArea: 1
+  hasSpectatorSeating: 1
+  venueHistory: 
+  specialFeatures: []

@@ -314,6 +314,11 @@ namespace AgilityDogs.Demo
 
         #endregion
 
+        private void OnDestroy()
+        {
+            if (this == Instance) Instance = null;
+        }
+
         #region Private
 
         Color GetSpeakerColor(string name)

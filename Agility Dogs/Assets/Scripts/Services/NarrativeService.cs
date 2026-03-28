@@ -35,6 +35,7 @@ namespace AgilityDogs.Services
         private bool isProcessingEvent = false;
         private NarrativeEvent currentEvent;
         private NarrativeContext currentContext;
+        private float previousTimeScale = 1f;
 
         // Events
         public event Action<NarrativeEvent> OnEventStarted;
@@ -187,16 +188,14 @@ namespace AgilityDogs.Services
         /// </summary>
         public void Pause()
         {
+            previousTimeScale = Time.timeScale;
             Time.timeScale = 0;
             OnNarrativePaused?.Invoke();
         }
 
-        /// <summary>
-        /// Resume narrative
-        /// </summary>
         public void Resume()
         {
-            Time.timeScale = 1;
+            Time.timeScale = previousTimeScale;
             OnNarrativeResumed?.Invoke();
         }
 
@@ -340,7 +339,7 @@ namespace AgilityDogs.Services
 
         private IEnumerator AutoCompleteEvent(NarrativeEvent evt, float delay)
         {
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSecondsRealtime(delay);
             NotifyEventComplete(evt);
         }
 
@@ -349,8 +348,7 @@ namespace AgilityDogs.Services
             isProcessingEvent = true;
             OnDialogueStarted?.Invoke(dialogue);
 
-            // Wait for dialogue to complete
-            yield return new WaitForSeconds(dialogue.lines.Count * dialogue.averageLineDuration);
+            yield return new WaitForSecondsRealtime(dialogue.lines.Count * dialogue.averageLineDuration);
 
             OnDialogueCompleted?.Invoke(dialogue);
             isProcessingEvent = false;

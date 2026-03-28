@@ -202,7 +202,7 @@ namespace AgilityDogs.UI
             HideAllPanels();
             if (careerHubPanel != null) careerHubPanel.SetActive(true);
 
-            currentPhase = CareerPhase.Training; // Default after breeding
+            currentPhase = GameModeManager.Instance?.CurrentCareerPhase ?? CareerPhase.Training;
             UpdateCareerHub();
         }
 
@@ -856,25 +856,14 @@ namespace AgilityDogs.UI
 
         private string GetOrdinalSuffix(int number)
         {
-            if (number <= 0) return number.ToString();
-
-            switch (number % 100)
-            {
-                case 11:
-                case 12:
-                case 13:
-                    return number + "th";
-            }
-
-            switch (number % 10)
-            {
-                case 1: return number + "st";
-                case 2: return number + "nd";
-                case 3: return number + "rd";
-                default: return number + "th";
-            }
+            return AgilityConstants.GetOrdinalSuffix(number);
         }
 
         #endregion
+
+        private void OnDestroy()
+        {
+            if (this == Instance) Instance = null;
+        }
     }
 }

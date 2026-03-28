@@ -378,5 +378,10 @@ namespace AgilityDogs.UI
         }
 
         #endregion
+
+        private void OnDestroy()
+        {
+            if (this == Instance) Instance = null;
+        }
     }
 }

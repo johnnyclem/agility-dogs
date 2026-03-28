@@ -242,7 +242,7 @@ namespace AgilityDogs.UI
             foreach (char letter in text)
             {
                 dialogueText.text += letter;
-                yield return new WaitForSeconds(1f / typeWriterSpeed);
+                yield return new WaitForSecondsRealtime(1f / typeWriterSpeed);
             }
 
             isTyping = false;
@@ -257,7 +257,11 @@ namespace AgilityDogs.UI
             }
             
             isTyping = false;
-            dialogueText.text = currentCutscene?.dialogueLines[currentLineIndex].dialogueText ?? "";
+            if (currentCutscene != null && currentCutscene.dialogueLines != null &&
+                currentLineIndex >= 0 && currentLineIndex < currentCutscene.dialogueLines.Count)
+            {
+                dialogueText.text = currentCutscene.dialogueLines[currentLineIndex].dialogueText;
+            }
             OnTypingComplete();
         }
 
@@ -275,7 +279,7 @@ namespace AgilityDogs.UI
 
         private IEnumerator AutoAdvance()
         {
-            yield return new WaitForSeconds(autoAdvanceDelay);
+            yield return new WaitForSecondsRealtime(autoAdvanceDelay);
 
             if (!isTyping && continueIcon != null && continueIcon.gameObject.activeSelf)
             {

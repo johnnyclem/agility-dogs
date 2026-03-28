@@ -79,6 +79,7 @@ namespace AgilityDogs.Services
         private void OnDestroy()
         {
             GameEvents.OnRunCompleted -= HandleRunCompleted;
+            SaveShowProgress();
         }
 
         #region Show Management
@@ -419,7 +420,7 @@ namespace AgilityDogs.Services
                 _ => 0
             };
 
-            return totalWins >= requiredWins;
+            return GetWinsAtTier(tier) >= requiredWins;
         }
 
         /// <summary>
@@ -521,7 +522,7 @@ namespace AgilityDogs.Services
         private string GenerateDogName()
         {
             string[] names = { "Max", "Bella", "Charlie", "Lucy", "Cooper", "Daisy", "Rocky", "Luna", "Bear", "Sadie",
-                              "Duke", "Molly", "Tucker", "Sadie", "Bear", "Zoey", "Oliver", "Penny", "Jack", "Ruby" };
+                               "Duke", "Molly", "Tucker", "Zoey", "Oliver", "Penny", "Jack", "Ruby", "Buddy", "Stella" };
 
             return names[UnityEngine.Random.Range(0, names.Length)];
         }

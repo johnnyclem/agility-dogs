@@ -87,5 +87,29 @@ namespace AgilityDogs.Events
 
         public static void RaiseAchievementUnlocked(string achievementId)
             => OnAchievementUnlocked?.Invoke(achievementId);
+
+        public static void ClearAll()
+        {
+            OnGameStateChanged = null;
+            OnCommandIssued = null;
+            OnHandlerGesture = null;
+            OnContextualCommand = null;
+            OnFaultCommitted = null;
+            OnObstacleCompleted = null;
+            OnObstacleCompletedWithReference = null;
+            OnSplitTimeRecorded = null;
+            OnRunStarted = null;
+            OnRunCompleted = null;
+            OnCountdownTick = null;
+            OnCourseLoaded = null;
+            OnHandlerLeanChanged = null;
+            OnHandlerPathInfluence = null;
+            OnDogRecovery = null;
+            OnPersonalBestRecorded = null;
+            OnVoiceCommandDetected = null;
+            OnVoiceCommandMisunderstood = null;
+            OnNearMiss = null;
+            OnAchievementUnlocked = null;
+        }
     }
 }

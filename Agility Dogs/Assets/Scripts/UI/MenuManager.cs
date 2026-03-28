@@ -943,6 +943,20 @@ namespace AgilityDogs.UI
             StartCampaignMode();
         }
 
+        private void StartTournamentMode()
+        {
+            Debug.Log("[MenuManager] Starting Tournament mode");
+
+            if (gameModeManager != null)
+            {
+                gameModeManager.StartTournament();
+            }
+            else
+            {
+                Debug.LogWarning("[MenuManager] GameModeManager not found, cannot start Tournament mode");
+            }
+        }
+
         private void ShowCampaignPanel()
         {
             HideAllPanels();
@@ -1095,6 +1109,12 @@ namespace AgilityDogs.UI
                     break;
                 case GameMode.Career:
                     StartCareerMode();
+                    break;
+                case GameMode.Campaign:
+                    StartCampaignMode();
+                    break;
+                case GameMode.Tournament:
+                    StartTournamentMode();
                     break;
             }
         }
@@ -1480,10 +1500,7 @@ namespace AgilityDogs.UI
 
         private string FormatTime(float time)
         {
-            int minutes = Mathf.FloorToInt(time / 60f);
-            int seconds = Mathf.FloorToInt(time % 60f);
-            int decimals = Mathf.FloorToInt((time % 1f) * 100f);
-            return $"{minutes:00}:{seconds:00}.{decimals:00}";
+            return AgilityConstants.FormatTime(time);
         }
 
         private string GetResultTitle(RunResult result)
@@ -1512,23 +1529,7 @@ namespace AgilityDogs.UI
 
         private string GetOrdinalSuffix(int number)
         {
-            if (number <= 0) return number.ToString();
-
-            switch (number % 100)
-            {
-                case 11:
-                case 12:
-                case 13:
-                    return number + "th";
-            }
-
-            switch (number % 10)
-            {
-                case 1: return number + "st";
-                case 2: return number + "nd";
-                case 3: return number + "rd";
-                default: return number + "th";
-            }
+            return AgilityConstants.GetOrdinalSuffix(number);
         }
 
         private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float startAlpha, float endAlpha, float duration)

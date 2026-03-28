@@ -29,6 +29,7 @@ namespace AgilityDogs.Demo
         private bool isDemoPlaying;
         private Coroutine demoCoroutine;
         private List<DemoSegment> segments;
+        private int fadeToken;
 
         public bool IsDemoActive => isDemoActive;
         public bool IsDemoPlaying => isDemoPlaying;
@@ -109,12 +110,17 @@ namespace AgilityDogs.Demo
             isDemoPlaying = false;
             isDemoActive = false;
 
+            int token = ++fadeToken;
+
             if (demoUI != null)
             {
                 demoUI.CompleteTyping();
                 demoUI.FadeOut(fadeDuration, () =>
                 {
-                    lastInputTime = Time.unscaledTime;
+                    if (fadeToken == token)
+                    {
+                        lastInputTime = Time.unscaledTime;
+                    }
                 });
             }
             else
@@ -228,5 +234,10 @@ namespace AgilityDogs.Demo
         }
 
         #endregion
+
+        private void OnDestroy()
+        {
+            if (this == Instance) Instance = null;
+        }
     }
 }

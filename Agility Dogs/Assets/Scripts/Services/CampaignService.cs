@@ -35,6 +35,7 @@ namespace AgilityDogs.Services
         private Dictionary<string, int> characterRelationship = new Dictionary<string, int>();
         private bool campaignActive = false;
         private bool inCutscene = false;
+        private Coroutine cutsceneCoroutine;
 
         // Events
         public event Action<int> OnChapterUnlocked;
@@ -62,8 +63,8 @@ namespace AgilityDogs.Services
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            LoadCampaignProgress();
             InitializeChapters();
+            LoadCampaignProgress();
         }
 
         private void Start()
@@ -366,7 +367,7 @@ namespace AgilityDogs.Services
 
             if (cutscene != null)
             {
-                StartCoroutine(PlayCutsceneCoroutine(cutscene));
+                cutsceneCoroutine = StartCoroutine(PlayCutsceneCoroutine(cutscene));
             }
             else
             {
@@ -384,8 +385,9 @@ namespace AgilityDogs.Services
 
             if (cutscene.dialogueLines == null)
             {
-                inCutscene = false;
-                OnCutsceneEnded?.Invoke();
+            inCutscene = false;
+            cutsceneCoroutine = null;
+            OnCutsceneEnded?.Invoke();
                 yield break;
             }
 
@@ -410,7 +412,11 @@ namespace AgilityDogs.Services
         public void StopCutscene()
         {
             if (!inCutscene) return;
-            StopAllCoroutines();
+            if (cutsceneCoroutine != null)
+            {
+                StopCoroutine(cutsceneCoroutine);
+                cutsceneCoroutine = null;
+            }
             inCutscene = false;
             OnCutsceneEnded?.Invoke();
             Debug.Log("[CampaignService] Cutscene stopped");
@@ -1107,10 +1113,6 @@ namespace AgilityDogs.Services
             var chapter = GetChapter(chapterNumber);
             Debug.Log($"[CampaignService] Chapter {chapterNumber} unlocked: {chapter?.title}");
 
-            // Trigger narrative event through NarrativeService
-            NarrativeService.Instance?.TriggerStoryDialogue($"chapter_{chapterNumber}_intro");
-
-            // Auto-play intro cutscene for new chapter
             if (chapter?.associatedCutscenes != null && chapter.associatedCutscenes.Count > 0)
             {
                 PlayCutscene(chapter.associatedCutscenes[0]);
@@ -1214,13 +1216,25 @@ namespace AgilityDogs.Services
             string eventsStr = PlayerPrefs.GetString("Campaign_CompletedEvents", "");
             if (!string.IsNullOrEmpty(eventsStr))
             {
-                completedStoryEvents = new HashSet<string>(eventsStr.Split(','));
+                completedStoryEvents = new HashSet<string>(
+                    eventsStr.Split(',').Where(s => !string.IsNullOrEmpty(s))
+                );
             }
 
             // Load chapter completion
             foreach (var chapter in chapters)
             {
                 chapter.isCompleted = PlayerPrefs.GetInt($"Campaign_ChapterComplete_{chapter.chapterNumber}", 0) == 1;
+            }
+
+            // Load character relationships
+            foreach (var character in characters)
+            {
+                int relLevel = PlayerPrefs.GetInt($"Campaign_Rel_{character.characterId}", -1);
+                if (relLevel >= 0)
+                {
+                    characterRelationship[character.characterId] = relLevel;
+                }
             }
         }
 

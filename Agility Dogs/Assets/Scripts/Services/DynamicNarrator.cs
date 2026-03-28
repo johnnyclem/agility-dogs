@@ -88,6 +88,7 @@ namespace AgilityDogs.Services
         /// </summary>
         public void CompleteCurrentLine()
         {
+            lastNarrationTime = 0f;
         }
 
         #endregion

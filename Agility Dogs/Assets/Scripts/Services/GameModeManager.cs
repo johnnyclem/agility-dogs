@@ -395,16 +395,12 @@ namespace AgilityDogs.Services
             // Load appropriate course based on tier
             selectedCourse = GetCourseForShowTier(tier);
 
-            // Use career dog and handler
             LoadCareerTeam();
 
-            // Start the show
+            forcedSceneName = gameplayScene;
             StartCoroutine(LoadGameplayScene());
         }
 
-        /// <summary>
-        /// Enter the Westminster Agility Kings competition
-        /// </summary>
         public void EnterWestminster()
         {
             Debug.Log("[GameModeManager] Entering Westminster Agility Kings!");
@@ -413,11 +409,10 @@ namespace AgilityDogs.Services
             OnShowTierChanged?.Invoke(ShowTier.Westminster);
             OnWestminsterReached?.Invoke();
 
-            // Load Westminster course (final championship course)
             selectedCourse = GetWestminsterCourse();
             LoadCareerTeam();
 
-            // Start the championship
+            forcedSceneName = gameplayScene;
             StartCoroutine(LoadGameplayScene());
         }
 
@@ -632,6 +627,8 @@ namespace AgilityDogs.Services
         /// <summary>
         /// Load the gameplay scene with current configuration
         /// </summary>
+        private string forcedSceneName;
+
         private IEnumerator LoadGameplayScene()
         {
             Debug.Log($"[GameModeManager] Loading gameplay scene for mode: {currentMode}");
@@ -644,8 +641,13 @@ namespace AgilityDogs.Services
             }
 
             // Determine which scene to load based on mode
-            string sceneToLoad = gameplayScene; // Default
-            if (isTrainingMode)
+            string sceneToLoad = gameplayScene;
+            if (!string.IsNullOrEmpty(forcedSceneName))
+            {
+                sceneToLoad = forcedSceneName;
+                forcedSceneName = null;
+            }
+            else if (isTrainingMode)
             {
                 sceneToLoad = trainingScene;
             }
@@ -753,21 +755,8 @@ namespace AgilityDogs.Services
         {
             Debug.Log($"[GameModeManager] Run completed: {result}, Time: {time}, Faults: {faults}");
 
-            if (currentMode == GameMode.Career)
+            if (currentMode == GameMode.Training)
             {
-                // Convert run result to show result
-                ShowResult showResult = ConvertToShowResult(result);
-                bool qualified = result == RunResult.Qualified;
-
-                // Award career progression
-                AwardCareerProgress(showResult);
-
-                // Show career results
-                ShowCareerResults(showResult, qualified);
-            }
-            else if (currentMode == GameMode.Training)
-            {
-                // Training mode - no progression, just practice
                 Debug.Log("[GameModeManager] Training run complete - no career progression");
             }
         }

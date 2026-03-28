@@ -40,7 +40,7 @@ namespace AgilityDogs.Services
                 trigger = TutorialTrigger.GameStart,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_controls",
+                    id = "controls_basics",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -62,7 +62,7 @@ namespace AgilityDogs.Services
                 obstacleType = ObstacleType.BarJump,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_jump",
+                    id = "first_jump",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -83,7 +83,7 @@ namespace AgilityDogs.Services
                 obstacleType = ObstacleType.Tunnel,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_tunnel",
+                    id = "first_tunnel",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -104,7 +104,7 @@ namespace AgilityDogs.Services
                 obstacleType = ObstacleType.WeavePoles,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_weave",
+                    id = "first_weave",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -125,7 +125,7 @@ namespace AgilityDogs.Services
                 obstacleType = ObstacleType.AFrame,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_contact",
+                    id = "first_aframe",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -145,7 +145,7 @@ namespace AgilityDogs.Services
                 trigger = TutorialTrigger.Fault,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_fault",
+                    id = "first_fault",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -165,7 +165,7 @@ namespace AgilityDogs.Services
                 trigger = TutorialTrigger.CompetitionStart,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_competition",
+                    id = "first_competition",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -186,7 +186,7 @@ namespace AgilityDogs.Services
                 trigger = TutorialTrigger.FirstWin,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_win",
+                    id = "first_win",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -206,7 +206,7 @@ namespace AgilityDogs.Services
                 trigger = TutorialTrigger.TrainingStart,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_training",
+                    id = "training_basics",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
@@ -226,7 +226,7 @@ namespace AgilityDogs.Services
                 trigger = TutorialTrigger.BreedingStart,
                 dialogue = new DialogueData
                 {
-                    id = "tutorial_breeding",
+                    id = "breeding_basics",
                     speakerName = "Coach Sarah",
                     lines = new List<DialogueLineData>
                     {
