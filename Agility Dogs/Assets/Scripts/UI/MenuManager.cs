@@ -7,6 +7,7 @@ using AgilityDogs.Core;
 using AgilityDogs.Data;
 using AgilityDogs.Events;
 using AgilityDogs.Services;
+using AgilityDogs.Demo;
 
 namespace AgilityDogs.UI
 {
@@ -121,6 +122,10 @@ namespace AgilityDogs.UI
         [SerializeField] private BreedData[] availableDogs;
         [SerializeField] private CourseDefinition[] availableCourses;
 
+        [Header("Demo Mode")]
+        [SerializeField] private DemoModeController demoModeController;
+        [SerializeField] private float demoIdleThreshold = 5f;
+
         // Selection state
         private GameMode selectedMode = GameMode.QuickPlay;
         private int selectedHandlerIndex = 0;
@@ -130,6 +135,12 @@ namespace AgilityDogs.UI
         // References
         private GameManager gameManager;
         private GameModeManager gameModeManager;
+
+        // Demo Mode
+        private DemoModeController demoModeController;
+        private float menuIdleTime;
+        private const float DemoIdleThreshold = 5f;
+        private bool menuVisible;
 
         private void Start()
         {
@@ -174,6 +185,13 @@ namespace AgilityDogs.UI
 
             // Subscribe to events
             GameEvents.OnGameStateChanged += HandleGameStateChanged;
+
+            InitializeDemoMode();
+        }
+
+        private void Update()
+        {
+            UpdateDemoMode();
         }
 
         private void AutoWireReferences()
@@ -651,6 +669,7 @@ namespace AgilityDogs.UI
 
         private void HideAllPanels()
         {
+            menuVisible = false;
             if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
             if (modeSelectPanel != null) modeSelectPanel.SetActive(false);
             if (quickPlayPanel != null) quickPlayPanel.SetActive(false);
@@ -659,12 +678,22 @@ namespace AgilityDogs.UI
             if (settingsPanel != null) settingsPanel.SetActive(false);
             if (resultsPanel != null) resultsPanel.SetActive(false);
             if (pausePanel != null) pausePanel.SetActive(false);
+            if (campaignPanel != null) campaignPanel.SetActive(false);
+
+            var controller = DemoModeController.Instance;
+            if (controller != null && controller.IsDemoActive)
+                controller.StopDemo();
         }
 
         private void ShowMainMenu()
         {
             HideAllPanels();
             if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
+            menuVisible = true;
+
+            var controller = DemoModeController.Instance;
+            if (controller != null)
+                controller.NotifyActivity();
         }
 
         private void ShowModeSelect()
@@ -1529,6 +1558,64 @@ namespace AgilityDogs.UI
             {
                 TransitionManager.Instance.PlayClickSound();
             }
+        }
+
+        #endregion
+
+        #region Demo Mode Integration
+
+        private void InitializeDemoMode()
+        {
+            var demoGO = new GameObject("DemoMode");
+            demoGO.transform.SetParent(transform, false);
+            var controller = demoGO.AddComponent<DemoModeController>();
+            var demoUI = demoGO.AddComponent<DemoUI>();
+
+            controller.enabled = true;
+            demoUI.enabled = true;
+        }
+
+        private void UpdateDemoMode()
+        {
+            var controller = DemoModeController.Instance;
+            if (controller == null) return;
+
+            if (menuVisible && !controller.IsDemoActive)
+            {
+                if (AnyUserInput())
+                {
+                    controller.NotifyActivity();
+                }
+
+                if (controller.IsDemoActive)
+                {
+                    if (menuCanvasGroup != null)
+                    {
+                        menuCanvasGroup.alpha = 0f;
+                    }
+                }
+            }
+            else if (controller.IsDemoActive)
+            {
+                if (AnyUserInput())
+                {
+                    controller.StopDemo();
+                    if (menuCanvasGroup != null)
+                    {
+                        menuCanvasGroup.alpha = 1f;
+                    }
+                }
+            }
+        }
+
+        private bool AnyUserInput()
+        {
+            if (Input.anyKeyDown) return true;
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+                return true;
+            if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+                return true;
+            return false;
         }
 
         #endregion
