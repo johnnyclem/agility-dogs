@@ -341,7 +341,7 @@ namespace AgilityDogs.Services
 
         private CommentatorData CreateArthurData()
         {
-            var data = ScriptableObject.CreateInstance<CommentatorData>();
+            var data = new CommentatorData();
             data.commentatorName = "Arthur";
             data.displayName = "Arthur Mitchell";
             data.description = "Main commentator, veteran sportscaster with 25 years experience";
@@ -373,7 +373,7 @@ namespace AgilityDogs.Services
 
         private CommentatorData CreateBuckData()
         {
-            var data = ScriptableObject.CreateInstance<CommentatorData>();
+            var data = new CommentatorData();
             data.commentatorName = "Buck";
             data.displayName = "Buck Dawson";
             data.description = "Color commentator, former champion handler";

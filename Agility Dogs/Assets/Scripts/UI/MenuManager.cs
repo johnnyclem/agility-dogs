@@ -137,8 +137,6 @@ namespace AgilityDogs.UI
         private GameModeManager gameModeManager;
 
         // Demo Mode
-        private float menuIdleTime;
-        private const float DemoIdleThreshold = 5f;
         private bool menuVisible;
 
         private void Start()
