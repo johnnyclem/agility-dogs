@@ -405,7 +405,7 @@ namespace AgilityDogs.Services
 
         private CommentatorData CreatePAAnnouncerData()
         {
-            var data = ScriptableObject.CreateInstance<CommentatorData>();
+            var data = new CommentatorData();
             data.commentatorName = "PA";
             data.displayName = "Event Announcer";
             data.description = "Public address announcer";
@@ -434,7 +434,7 @@ namespace AgilityDogs.Services
     }
 
     [Serializable]
-    public class CommentatorData : ScriptableObject
+    public class CommentatorData
     {
         [Header("Identity")]
         public string commentatorName;

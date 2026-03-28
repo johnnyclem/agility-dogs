@@ -164,7 +164,7 @@ namespace AgilityDogs.Services
 
         private StoryData CreateDefaultStoryData()
         {
-            var data = ScriptableObject.CreateInstance<StoryData>();
+            var data = new StoryData();
             data.chapters = new List<StoryChapter>();
 
             // Chapter 1: A New Beginning
@@ -489,7 +489,7 @@ namespace AgilityDogs.Services
     #region Story Data Structures
 
     [Serializable]
-    public class StoryData : ScriptableObject
+    public class StoryData
     {
         public List<StoryChapter> chapters = new List<StoryChapter>();
     }
