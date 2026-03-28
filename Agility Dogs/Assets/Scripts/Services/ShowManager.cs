@@ -446,6 +446,11 @@ namespace AgilityDogs.Services
             return true;
         }
 
+        public int GetWinsAtTier(ShowTier tier)
+        {
+            return winsByTier.TryGetValue(tier, out int wins) ? wins : 0;
+        }
+
         #endregion
 
         #region Stats & Tracking

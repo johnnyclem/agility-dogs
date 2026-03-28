@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using AgilityDogs.Core;
 using AgilityDogs.Data;
 
 namespace AgilityDogs.Services
@@ -236,6 +237,16 @@ namespace AgilityDogs.Services
                 },
                 priority = 100
             });
+        }
+
+        public void PlayTutorial(DialogueData dialogue)
+        {
+            if (dialogue == null) return;
+            Debug.Log($"[TutorialNarrator] Playing tutorial: {dialogue.title ?? dialogue.id}");
+            if (tutorials.TryGetValue(dialogue.id, out TutorialData tutorial))
+            {
+                OnTutorialStarted?.Invoke(tutorial);
+            }
         }
 
         #region Public Methods

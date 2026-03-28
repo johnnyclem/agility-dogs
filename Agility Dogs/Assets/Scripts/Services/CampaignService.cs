@@ -271,6 +271,7 @@ namespace AgilityDogs.Services
                 currentChapter = unlockedChapters.Max();
             }
             campaignActive = true;
+            CheckChapterUnlocks();
         }
 
         /// <summary>
@@ -374,30 +375,29 @@ namespace AgilityDogs.Services
             }
         }
 
-        private IEnumerator<float> PlayCutsceneCoroutine(CutsceneData cutscene)
+        private IEnumerator PlayCutsceneCoroutine(CutsceneData cutscene)
         {
             inCutscene = true;
             OnCutsceneStarted?.Invoke(cutscene);
 
             Debug.Log($"[CampaignService] Playing cutscene: {cutscene.cutsceneId}");
 
-            // Play each dialogue line
+            if (cutscene.dialogueLines == null)
+            {
+                inCutscene = false;
+                OnCutsceneEnded?.Invoke();
+                yield break;
+            }
+
             foreach (var line in cutscene.dialogueLines)
             {
                 OnCampaignDialogueLine?.Invoke(line);
                 
-                // Wait for dialogue to complete (advance on input or timeout)
                 float elapsed = 0f;
-                while (elapsed < line.duration && !Input.anyKeyDown)
+                while (elapsed < line.duration)
                 {
                     elapsed += Time.deltaTime;
-                    yield return Time.deltaTime;
-                }
-
-                // Clear on any key
-                if (Input.anyKeyDown)
-                {
-                    Input.ResetInputAxes();
+                    yield return null;
                 }
             }
 
@@ -405,6 +405,15 @@ namespace AgilityDogs.Services
             OnCutsceneEnded?.Invoke();
 
             Debug.Log($"[CampaignService] Cutscene complete: {cutscene.cutsceneId}");
+        }
+
+        public void StopCutscene()
+        {
+            if (!inCutscene) return;
+            StopAllCoroutines();
+            inCutscene = false;
+            OnCutsceneEnded?.Invoke();
+            Debug.Log("[CampaignService] Cutscene stopped");
         }
 
         private CutsceneData CreateDefaultCutscene(string cutsceneId)
@@ -418,6 +427,7 @@ namespace AgilityDogs.Services
                     {
                         new CampaignDialogueLine
                         {
+                            speakerId = "narrator",
                             speakerName = "Narrator",
                             dialogueText = "Every great champion has a beginning. Today, you take your first steps toward becoming an Agility King.",
                             duration = 4f,
@@ -425,6 +435,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "Welcome to the world of dog agility! I'm Coach Sarah Chen, and I'll be guiding you on this journey.",
                             duration = 4f,
@@ -432,6 +443,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "I remember when I first started... that was twenty years ago now. Time flies when you're having fun!",
                             duration = 4f,
@@ -439,6 +451,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "First things first - let's find you a partner. Every handler needs the right dog. What kind of puppy are you looking for?",
                             duration = 5f,
@@ -453,6 +466,7 @@ namespace AgilityDogs.Services
                     {
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "You've got a natural talent! Your dog responds to you beautifully. I think it's time you tested your skills in a real competition.",
                             duration = 5f,
@@ -460,6 +474,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "narrator",
                             speakerName = "Narrator",
                             dialogueText = "The local agility scene awaits. But you'll soon learn you're not the only one with dreams of glory...",
                             duration = 4f,
@@ -467,6 +482,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "marcus",
                             speakerName = "Marcus Chen",
                             dialogueText = "Hey there, rookie! I'm Marcus. Welcome to the circuit! Hope you're ready for some real competition!",
                             duration = 4f,
@@ -474,6 +490,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "Marcus is... enthusiastic. He's been competing for three years. Watch and learn from everyone out there.",
                             duration = 4f,
@@ -488,6 +505,7 @@ namespace AgilityDogs.Services
                     {
                         new CampaignDialogueLine
                         {
+                            speakerId = "narrator",
                             speakerName = "Narrator",
                             dialogueText = "Word has spread about a promising newcomer. At the County Fair Championships, you'll face tougher competition than ever before.",
                             duration = 5f,
@@ -495,6 +513,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "emily",
                             speakerName = "Emily Rodriguez",
                             dialogueText = "So you're the one everyone's talking about. I'm Emily. I've been training for five years. Let's see what you've got.",
                             duration = 5f,
@@ -502,6 +521,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "Emily's one of the best in the county. But don't let that intimidate you - use it as motivation. She's beatable if you stay focused.",
                             duration = 5f,
@@ -509,6 +529,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "emily",
                             speakerName = "Emily Rodriguez",
                             dialogueText = "Good run out there. You've got potential. But the real test is coming - the Regionals aren't for the faint of heart.",
                             duration = 4f,
@@ -523,6 +544,7 @@ namespace AgilityDogs.Services
                     {
                         new CampaignDialogueLine
                         {
+                            speakerId = "narrator",
                             speakerName = "Narrator",
                             dialogueText = "The Regional Championships. Where champions are made and dreams are tested. The competition here is on another level.",
                             duration = 5f,
@@ -530,6 +552,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "marcus",
                             speakerName = "Marcus Chen",
                             dialogueText = "Regionals! I've been training all year for this. My Border Collie, Storm, is faster than ever!",
                             duration = 4f,
@@ -537,6 +560,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "Marcus qualified last year but didn't place. He's hungry this year. And there's someone else you should know...",
                             duration = 5f,
@@ -544,6 +568,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "That's Victoria Price. Three-time regional champion. She won Westminster once, fifteen years ago. Now she coaches.",
                             duration = 5f,
@@ -551,6 +576,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "victoria",
                             speakerName = "Victoria Price",
                             dialogueText = "Coach Sarah speaks highly of you. Let's see if her instincts are still sharp. Give it your all, young one.",
                             duration = 5f,
@@ -565,6 +591,7 @@ namespace AgilityDogs.Services
                     {
                         new CampaignDialogueLine
                         {
+                            speakerId = "narrator",
                             speakerName = "Narrator",
                             dialogueText = "State Championships. Only the elite reach this level. The courses are longer, the obstacles more challenging.",
                             duration = 5f,
@@ -572,6 +599,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "This is where training really pays off. Your dog's stamina, your handling skills - everything matters now.",
                             duration = 5f,
@@ -579,6 +607,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "emily",
                             speakerName = "Emily Rodriguez",
                             dialogueText = "We made it! Both of us. This is what we've been working toward. May the best team win!",
                             duration = 4f,
@@ -586,6 +615,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "victoria",
                             speakerName = "Victoria Price",
                             dialogueText = "I've been watching your progress. You have something special. But so does she. Remember: focus beats talent when talent doesn't focus.",
                             duration = 6f,
@@ -600,6 +630,7 @@ namespace AgilityDogs.Services
                     {
                         new CampaignDialogueLine
                         {
+                            speakerId = "announcer",
                             speakerName = "Announcer",
                             dialogueText = "Welcome to the National Agility Championships! The top handlers from across the country have gathered!",
                             duration = 4f,
@@ -607,6 +638,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "narrator",
                             speakerName = "Narrator",
                             dialogueText = "The atmosphere is electric. Cameras flash, crowds roar. This is the big time.",
                             duration = 4f,
@@ -614,6 +646,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "marcus",
                             speakerName = "Marcus Chen",
                             dialogueText = "I never thought I'd make it this far. Three years ago I was running practice courses in my backyard. Now look at us!",
                             duration = 5f,
@@ -621,6 +654,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "Marcus has grown so much. You've all grown so much. I'm proud of every single one of you.",
                             duration = 5f,
@@ -628,6 +662,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "emily",
                             speakerName = "Emily Rodriguez",
                             dialogueText = "Coach Sarah... she never tells anyone, but she was a champion too, once. Before injuries forced her to retire from competition.",
                             duration = 5f,
@@ -642,6 +677,7 @@ namespace AgilityDogs.Services
                     {
                         new CampaignDialogueLine
                         {
+                            speakerId = "narrator",
                             speakerName = "Narrator",
                             dialogueText = "A letter arrives. The envelope bears the unmistakable crest of the Westminster Kennel Club.",
                             duration = 4f,
@@ -649,6 +685,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "coach_sarah",
                             speakerName = "Coach Sarah",
                             dialogueText = "You did it. You've qualified for the Westminster Agility Kings. This is... this is the championship I never got to win.",
                             duration = 5f,
@@ -656,6 +693,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "victoria",
                             speakerName = "Victoria Price",
                             dialogueText = "The world will be watching. Your friends, your family, everyone who believed in you. Don't let the pressure break you - let it forge you.",
                             duration = 6f,
@@ -663,6 +701,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "marcus",
                             speakerName = "Marcus Chen",
                             dialogueText = "We've come so far together. Even if we're competing against each other now... we're still family.",
                             duration = 5f,
@@ -670,6 +709,7 @@ namespace AgilityDogs.Services
                         },
                         new CampaignDialogueLine
                         {
+                            speakerId = "emily",
                             speakerName = "Emily Rodriguez",
                             dialogueText = "See you at Westminster. May the best handler win. But honestly? I hope you do. You deserve this.",
                             duration = 5f,
@@ -1038,7 +1078,7 @@ namespace AgilityDogs.Services
                     return showManager != null && showManager.TotalWins >= condition.value;
 
                 case UnlockConditionType.WinsAtTier:
-                    return showManager != null && showManager.TotalWins >= condition.value;
+                    return showManager != null && showManager.GetWinsAtTier(condition.tier) >= condition.value;
 
                 case UnlockConditionType.WestminsterQualified:
                     return showManager != null && showManager.CanEnterWestminster();
@@ -1086,6 +1126,23 @@ namespace AgilityDogs.Services
         /// <summary>
         /// Improve relationship with a character
         /// </summary>
+        public void CompleteChapter(int chapterNumber)
+        {
+            var chapter = GetChapter(chapterNumber);
+            if (chapter != null)
+            {
+                chapter.isCompleted = true;
+                Debug.Log($"[CampaignService] Chapter {chapterNumber} completed: {chapter.title}");
+                SaveCampaignProgress();
+
+                if (chapterNumber >= totalChapters)
+                {
+                    OnCampaignCompleted?.Invoke(chapterNumber);
+                    Debug.Log("[CampaignService] Campaign completed!");
+                }
+            }
+        }
+
         public void ImproveRelationship(string characterId, int amount = 1)
         {
             if (!characterRelationship.ContainsKey(characterId))
@@ -1123,6 +1180,22 @@ namespace AgilityDogs.Services
             PlayerPrefs.SetInt("Campaign_CurrentChapter", currentChapter);
             PlayerPrefs.SetString("Campaign_UnlockedChapters", string.Join(",", unlockedChapters));
             PlayerPrefs.SetString("Campaign_CompletedEvents", string.Join(",", completedStoryEvents));
+
+            // Save character relationships
+            foreach (var kvp in characterRelationship)
+            {
+                PlayerPrefs.SetInt($"Campaign_Rel_{kvp.Key}", kvp.Value);
+            }
+
+            // Save chapter completion
+            foreach (var chapter in chapters)
+            {
+                if (chapter.isCompleted)
+                {
+                    PlayerPrefs.SetInt($"Campaign_ChapterComplete_{chapter.chapterNumber}", 1);
+                }
+            }
+
             PlayerPrefs.Save();
         }
 
@@ -1134,7 +1207,7 @@ namespace AgilityDogs.Services
             if (!string.IsNullOrEmpty(unlockedStr))
             {
                 unlockedChapters = new HashSet<int>(
-                    unlockedStr.Split(',').Select(int.Parse)
+                    unlockedStr.Split(',').Where(s => int.TryParse(s, out _)).Select(int.Parse)
                 );
             }
 
@@ -1142,6 +1215,12 @@ namespace AgilityDogs.Services
             if (!string.IsNullOrEmpty(eventsStr))
             {
                 completedStoryEvents = new HashSet<string>(eventsStr.Split(','));
+            }
+
+            // Load chapter completion
+            foreach (var chapter in chapters)
+            {
+                chapter.isCompleted = PlayerPrefs.GetInt($"Campaign_ChapterComplete_{chapter.chapterNumber}", 0) == 1;
             }
         }
 
@@ -1185,6 +1264,16 @@ namespace AgilityDogs.Services
 
             // Check chapter unlocks
             CheckChapterUnlocks();
+
+            // Check for campaign completion (chapter 8 completed = win at Westminster)
+            if (result == RunResult.Qualified && currentChapter >= totalChapters)
+            {
+                var showMgr = ShowManager.Instance;
+                if (showMgr != null && showMgr.CurrentTier == ShowTier.Westminster)
+                {
+                    CompleteChapter(totalChapters);
+                }
+            }
         }
 
         private void CheckForTierCompletion()

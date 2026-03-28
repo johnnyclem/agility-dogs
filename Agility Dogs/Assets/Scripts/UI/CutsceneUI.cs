@@ -140,12 +140,13 @@ namespace AgilityDogs.UI
         /// </summary>
         public void SkipCutscene()
         {
-            if (currentCutscene != null)
-            {
-                HideCutscene();
-                CampaignService.Instance?.EndCampaign();
-                OnCutsceneComplete?.Invoke();
-            }
+            if (currentCutscene == null) return;
+            StopAllCoroutines();
+            CampaignService.Instance?.StopCutscene();
+            currentCutscene = null;
+            isPlaying = false;
+            HideCutscene();
+            OnCutsceneComplete?.Invoke();
         }
 
         #endregion

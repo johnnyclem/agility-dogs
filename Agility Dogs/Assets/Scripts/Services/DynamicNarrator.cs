@@ -74,12 +74,18 @@ namespace AgilityDogs.Services
             };
         }
 
+        public void PlayNarration(DialogueData dialogue)
+        {
+            if (dialogue == null) return;
+            Debug.Log($"[DynamicNarrator] Playing narration: {dialogue.id}");
+            OnNarrationPlayed?.Invoke(dialogue.id);
+        }
+
         /// <summary>
         /// Complete current line (for skipping)
         /// </summary>
         public void CompleteCurrentLine()
         {
-            // Handled by DialogueUI directly
         }
 
         #endregion

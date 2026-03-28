@@ -329,6 +329,18 @@ namespace AgilityDogs.Services
                     dynamicNarrator?.PlayNarration(currentEvent.dialogue);
                     break;
             }
+
+            if (currentEvent.dialogue != null)
+            {
+                float duration = currentEvent.dialogue.lines.Count * currentEvent.dialogue.averageLineDuration;
+                StartCoroutine(AutoCompleteEvent(currentEvent, duration));
+            }
+        }
+
+        private IEnumerator AutoCompleteEvent(NarrativeEvent evt, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            NotifyEventComplete(evt);
         }
 
         private IEnumerator PlayDialogueImmediate(DialogueData dialogue)
@@ -435,7 +447,7 @@ namespace AgilityDogs.Services
             currentMode = NarrativeMode.Idle;
         }
 
-        private void HandleShowStarted()
+        private void HandleShowStarted(ShowTier tier)
         {
             TriggerDynamicNarration(new NarrativeTrigger
             {
