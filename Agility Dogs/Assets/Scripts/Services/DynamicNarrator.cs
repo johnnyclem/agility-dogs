@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using AgilityDogs.Core;
 using AgilityDogs.Data;
+using AgilityDogs.Services;
 
 namespace AgilityDogs.Services
 {

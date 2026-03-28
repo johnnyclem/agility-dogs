@@ -434,7 +434,7 @@ namespace AgilityDogs.Services
     }
 
     [Serializable]
-    public class CommentatorData
+    public class CommentatorData : ScriptableObject
     {
         [Header("Identity")]
         public string commentatorName;

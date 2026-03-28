@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using AgilityDogs.Services;
 
 namespace AgilityDogs.Demo
 {

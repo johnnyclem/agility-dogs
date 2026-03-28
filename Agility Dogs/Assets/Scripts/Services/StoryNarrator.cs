@@ -489,7 +489,7 @@ namespace AgilityDogs.Services
     #region Story Data Structures
 
     [Serializable]
-    public class StoryData
+    public class StoryData : ScriptableObject
     {
         public List<StoryChapter> chapters = new List<StoryChapter>();
     }
