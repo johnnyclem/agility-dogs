@@ -106,6 +106,9 @@ namespace AgilityDogs.Gameplay.Dog
         {
             navAgent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
+
+            if (commandBuffer == null)
+                commandBuffer = GetComponent<CommandBuffer>();
         }
 
         private void Start()

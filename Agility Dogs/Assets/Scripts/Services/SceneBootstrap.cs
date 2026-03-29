@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.AI;
+using AgilityDogs.Data;
 using AgilityDogs.Gameplay;
 using AgilityDogs.Gameplay.Handler;
 using AgilityDogs.Gameplay.Dog;
@@ -8,10 +10,6 @@ using AgilityDogs.Presentation.Camera;
 
 namespace AgilityDogs.Services
 {
-    /// <summary>
-    /// Bootstraps the gameplay scene. Attach to a root GameObject in the gameplay scene.
-    /// Wires up handler, dog, scoring, and camera references at runtime.
-    /// </summary>
     public class SceneBootstrap : MonoBehaviour
     {
         [Header("Scene References")]
@@ -24,6 +22,11 @@ namespace AgilityDogs.Services
         [Header("Auto-Find")]
         [SerializeField] private bool autoFindReferences = true;
 
+        [Header("Auto-Start")]
+        [SerializeField] private bool autoStartRun = true;
+        [SerializeField] private bool autoBakeNavMesh = true;
+        [SerializeField] private CourseDefinition fallbackCourse;
+
         private void Awake()
         {
             if (autoFindReferences)
@@ -32,6 +35,47 @@ namespace AgilityDogs.Services
             }
 
             WireReferences();
+        }
+
+        private void Start()
+        {
+            if (autoBakeNavMesh)
+            {
+                var surfaces = FindObjectsOfType<NavMeshSurface>();
+                foreach (var surface in surfaces)
+                {
+                    if (surface.navMeshData == null)
+                    {
+                        Debug.Log($"[SceneBootstrap] Baking NavMesh on {surface.gameObject.name}...");
+                        surface.BuildNavMesh();
+                        Debug.Log($"[SceneBootstrap] NavMesh baked.");
+                    }
+                }
+            }
+
+            if (autoStartRun && courseRunner != null)
+            {
+                CourseDefinition course = courseRunner.CurrentCourse ?? fallbackCourse;
+
+                if (course == null)
+                {
+                    var courses = Resources.LoadAll<CourseDefinition>("Data/Courses");
+                    if (courses != null && courses.Length > 0)
+                    {
+                        course = courses[0];
+                    }
+                }
+
+                if (course != null)
+                {
+                    courseRunner.LoadCourse(course);
+                    courseRunner.StartCountdown();
+                }
+                else
+                {
+                    Debug.LogWarning("[SceneBootstrap] No course found. Run not started.");
+                }
+            }
         }
 
         private void FindReferences()
@@ -67,6 +111,11 @@ namespace AgilityDogs.Services
             if (scoringService != null && dog != null)
             {
                 scoringService.SetDog(dog);
+            }
+
+            if (courseRunner != null && scoringService != null)
+            {
+                courseRunner.SetScoringService(scoringService);
             }
         }
 

@@ -20,7 +20,7 @@ namespace AgilityDogs.Services
         [SerializeField] private GameState currentState = GameState.MainMenu;
 
         [Header("Scene References")]
-        [SerializeField] private string mainMenuScene = "StartMenu";
+        [SerializeField] private string mainMenuScene = "MainMenu";
         [SerializeField] private string gameplayScene = "SampleScene";
 
         // Mode configuration

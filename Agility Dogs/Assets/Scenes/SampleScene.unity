@@ -448,6 +448,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1979220615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!115 &395869475
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 7
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_Type: 0
+  m_ExecutionOrder: 0
+  m_ClassName: WeavePolesObstacle
+  m_Namespace: AgilityDogs.Gameplay.Obstacles
+  m_AssemblyName: Assembly-CSharp
 --- !u!1 &401427088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,8 +1528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1119514985}
-  - component: {fileID: 1119514984}
-  - component: {fileID: 1119514986}
+  - component: {fileID: 1119514987}
   m_Layer: 0
   m_Name: WeavePoles
   m_TagString: Untagged
@@ -1522,32 +1536,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1119514984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119514983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2079560162}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Gameplay.Obstacles.WeavePolesObstacle
-  obstacleData: {fileID: 0}
-  obstacleType: 0
-  isActive: 1
-  entryPoint: {fileID: 0}
-  commitPoint: {fileID: 0}
-  exitPoint: {fileID: 0}
-  centerPoint: {fileID: 0}
-  contactZoneStart: {fileID: 0}
-  contactZoneEnd: {fileID: 0}
-  activationVisuals: []
-  completionParticles: {fileID: 0}
-  polePositions: []
-  weaveEntryTolerance: 1
-  requiredWeaves: 12
 --- !u!4 &1119514985
 Transform:
   m_ObjectHideFlags: 0
@@ -1557,7 +1545,7 @@ Transform:
   m_GameObject: {fileID: 1119514983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 16}
+  m_LocalPosition: {x: -3, y: 0, z: 15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1572,7 +1560,7 @@ Transform:
   - {fileID: 1382456769}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1119514986
+--- !u!114 &1119514987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1581,7 +1569,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1119514983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1580104022}
+  m_Script: {fileID: 395869475}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Gameplay.Obstacles.WeavePolesObstacle
   obstacleData: {fileID: 11400000, guid: d8b9cb2b0465f417abffbfc16e46e73b, type: 2}
@@ -1766,7 +1754,7 @@ Transform:
   m_GameObject: {fileID: 1218652148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 24}
+  m_LocalPosition: {x: 3, y: 0, z: 20}
   m_LocalScale: {x: 1.2, y: 1.8, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2308,21 +2296,6 @@ MonoScript:
   m_ClassName: TunnelObstacle
   m_Namespace: AgilityDogs.Gameplay.Obstacles
   m_AssemblyName: Assembly-CSharp
---- !u!115 &1580104022
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: WeavePolesObstacle
-  m_Namespace: AgilityDogs.Gameplay.Obstacles
-  m_AssemblyName: Assembly-CSharp
 --- !u!1 &1582156607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,7 +2428,7 @@ Transform:
   m_GameObject: {fileID: 1582156607}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: 32}
+  m_LocalPosition: {x: 0, y: 0.3, z: 25}
   m_LocalScale: {x: 1.2, y: 0.3, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2875,7 +2848,7 @@ Transform:
   m_GameObject: {fileID: 1933011361}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 5}
   m_LocalScale: {x: 1.2, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3025,7 +2998,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalScale: {x: 50, y: 1, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3164,7 +3137,7 @@ Transform:
   m_GameObject: {fileID: 1979220610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: 8}
+  m_LocalPosition: {x: 5, y: 0.5, z: 10}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3289,6 +3262,8 @@ MonoBehaviour:
   courseRunner: {fileID: 0}
   scoringService: {fileID: 0}
   autoFindReferences: 1
+  autoStartRun: 1
+  fallbackCourse: {fileID: 0}
 --- !u!4 &2073357499
 Transform:
   m_ObjectHideFlags: 0
@@ -3304,21 +3279,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!115 &2079560162
-MonoScript:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
-  m_DefaultReferences: {}
-  m_Icon: {fileID: 0}
-  m_Type: 0
-  m_ExecutionOrder: 0
-  m_ClassName: WeavePolesObstacle
-  m_Namespace: AgilityDogs.Gameplay.Obstacles
-  m_AssemblyName: Assembly-CSharp
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

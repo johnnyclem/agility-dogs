@@ -85,6 +85,9 @@ namespace AgilityDogs.Gameplay.Handler
         {
             characterController = GetComponent<CharacterController>();
 
+            if (playerInput == null)
+                playerInput = GetComponent<PlayerInput>();
+
             if (cameraTransform == null)
                 cameraTransform = Camera.main?.transform;
         }

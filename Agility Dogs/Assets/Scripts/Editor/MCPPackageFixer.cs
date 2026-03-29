@@ -8,7 +8,7 @@ namespace AgilityDogs.Editor
     /// Automatically removes test-related files from the MCP for Unity package
     /// to prevent compilation errors when TestFramework is not properly loaded.
     /// </summary>
-    [InitializeOnLoad]
+    //[InitializeOnLoad]
     public class MCPPackageFixer
     {
         private const string MCP_PACKAGE_NAME = "com.coplaydev.unity-mcp";

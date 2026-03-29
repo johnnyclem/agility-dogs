@@ -198,6 +198,11 @@ namespace AgilityDogs.Gameplay
             }
         }
 
+        public void SetScoringService(AgilityScoringService service)
+        {
+            scoringService = service;
+        }
+
         public ObstacleBase GetCurrentObstacle()
         {
             if (courseObstacles == null || currentObstacleOrder <= 0 ||
