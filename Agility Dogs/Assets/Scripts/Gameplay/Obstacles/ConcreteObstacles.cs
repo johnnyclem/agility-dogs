@@ -109,6 +109,30 @@ namespace AgilityDogs.Gameplay.Obstacles
         {
             base.Awake();
             obstacleType = ObstacleType.WeavePoles;
+            AutoFindPolePositions();
+        }
+
+        private void AutoFindPolePositions()
+        {
+            if (polePositions != null && polePositions.Length > 0) return;
+            var poles = new System.Collections.Generic.List<Transform>();
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                if (child.name.StartsWith("Pole"))
+                    poles.Add(child);
+            }
+            if (poles.Count > 0)
+            {
+                poles.Sort((a, b) =>
+                {
+                    int aNum, bNum;
+                    int.TryParse(a.name.Substring(4), out aNum);
+                    int.TryParse(b.name.Substring(4), out bNum);
+                    return aNum.CompareTo(bNum);
+                });
+                polePositions = poles.ToArray();
+            }
         }
 
         public override Vector3 GetEntryPoint()

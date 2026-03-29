@@ -107,6 +107,7 @@ namespace AgilityDogs.UI
         private void OnDestroy()
         {
             UnsubscribeFromEvents();
+            if (this == Instance) Instance = null;
         }
 
         #region Setup
@@ -860,10 +861,5 @@ namespace AgilityDogs.UI
         }
 
         #endregion
-
-        private void OnDestroy()
-        {
-            if (this == Instance) Instance = null;
-        }
     }
 }

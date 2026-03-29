@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
-using UnityEngine.AI;
 
 namespace AgilityDogs.Editor
 {
@@ -38,27 +37,6 @@ namespace AgilityDogs.Editor
             }
 
             Debug.Log($"Cleanup complete. Deleted {deleted} duplicate panels. Remaining: {canvas.transform.childCount}");
-        }
-
-        [MenuItem("Tools/Bake NavMesh Surfaces")]
-        public static void BakeNavMeshSurfaces()
-        {
-            var surfaces = Object.FindObjectsOfType<NavMeshSurface>();
-            if (surfaces == null || surfaces.Length == 0)
-            {
-                Debug.LogWarning("No NavMeshSurface found in scene.");
-                return;
-            }
-
-            int baked = 0;
-            foreach (var surface in surfaces)
-            {
-                surface.BuildNavMesh();
-                baked++;
-                Debug.Log($"Baked NavMeshSurface on {surface.gameObject.name}");
-            }
-
-            Debug.Log($"NavMesh bake complete. Baked {baked} surfaces.");
         }
 
         [MenuItem("Tools/Wire Scene References")]
