@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 namespace AgilityDogs.Editor
 {
@@ -37,6 +38,94 @@ namespace AgilityDogs.Editor
             }
 
             Debug.Log($"Cleanup complete. Deleted {deleted} duplicate panels. Remaining: {canvas.transform.childCount}");
+        }
+
+        [MenuItem("Tools/Bake NavMesh Surfaces")]
+        public static void BakeNavMeshSurfaces()
+        {
+            var surfaces = Object.FindObjectsOfType<NavMeshSurface>();
+            if (surfaces == null || surfaces.Length == 0)
+            {
+                Debug.LogWarning("No NavMeshSurface found in scene.");
+                return;
+            }
+
+            int baked = 0;
+            foreach (var surface in surfaces)
+            {
+                surface.BuildNavMesh();
+                baked++;
+                Debug.Log($"Baked NavMeshSurface on {surface.gameObject.name}");
+            }
+
+            Debug.Log($"NavMesh bake complete. Baked {baked} surfaces.");
+        }
+
+        [MenuItem("Tools/Wire Scene References")]
+        public static void WireSceneReferences()
+        {
+            WireObstacleNavigationPoints();
+            WireWeavePolePositions();
+        }
+
+        private static void WireObstacleNavigationPoints()
+        {
+            var obstacles = Object.FindObjectsOfType<AgilityDogs.Gameplay.Obstacles.ObstacleBase>();
+            int wired = 0;
+            foreach (var obs in obstacles)
+            {
+                var entry = obs.transform.Find("EntryPoint");
+                var commit = obs.transform.Find("CommitPoint");
+                var exit = obs.transform.Find("ExitPoint");
+
+                var serializedObj = new SerializedObject(obs);
+                if (entry != null)
+                {
+                    serializedObj.FindProperty("entryPoint").objectReferenceValue = entry;
+                    wired++;
+                }
+                if (commit != null)
+                {
+                    serializedObj.FindProperty("commitPoint").objectReferenceValue = commit;
+                    wired++;
+                }
+                if (exit != null)
+                {
+                    serializedObj.FindProperty("exitPoint").objectReferenceValue = exit;
+                    wired++;
+                }
+                serializedObj.ApplyModifiedProperties();
+            }
+            Debug.Log($"Wired {wired} navigation point references across {obstacles.Length} obstacles.");
+        }
+
+        private static void WireWeavePolePositions()
+        {
+            var weaves = Object.FindObjectsOfType<AgilityDogs.Gameplay.Obstacles.WeavePolesObstacle>();
+            foreach (var weave in weaves)
+            {
+                var poles = new System.Collections.Generic.List<Transform>();
+                for (int i = 0; i < weave.transform.childCount; i++)
+                {
+                    var child = weave.transform.GetChild(i);
+                    if (child.name.StartsWith("Pole"))
+                    {
+                        poles.Add(child);
+                    }
+                }
+                if (poles.Count > 0)
+                {
+                    var serializedObj = new SerializedObject(weave);
+                    var prop = serializedObj.FindProperty("polePositions");
+                    prop.arraySize = poles.Count;
+                    for (int i = 0; i < poles.Count; i++)
+                    {
+                        prop.GetArrayElementAtIndex(i).objectReferenceValue = poles[i];
+                    }
+                    serializedObj.ApplyModifiedProperties();
+                    Debug.Log($"Wired {poles.Count} poles on {weave.gameObject.name}");
+                }
+            }
         }
     }
 }

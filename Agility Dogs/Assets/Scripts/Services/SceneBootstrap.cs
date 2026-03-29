@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using AgilityDogs.Gameplay;
 using AgilityDogs.Gameplay.Handler;
 using AgilityDogs.Gameplay.Dog;
@@ -32,6 +33,20 @@ namespace AgilityDogs.Services
             }
 
             WireReferences();
+            BakeNavMesh();
+        }
+
+        private void BakeNavMesh()
+        {
+            var surfaces = FindObjectsOfType<NavMeshSurface>();
+            if (surfaces != null && surfaces.Length > 0)
+            {
+                foreach (var surface in surfaces)
+                {
+                    surface.BuildNavMesh();
+                }
+                Debug.Log($"[SceneBootstrap] Baked {surfaces.Length} NavMeshSurface(s)");
+            }
         }
 
         private void FindReferences()

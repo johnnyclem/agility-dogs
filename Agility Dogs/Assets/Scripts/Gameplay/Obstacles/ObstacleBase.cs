@@ -42,9 +42,29 @@ namespace AgilityDogs.Gameplay.Obstacles
 
         protected virtual void Awake()
         {
-            if (commitPoint == null) commitPoint = transform;
-            if (entryPoint == null) entryPoint = transform;
-            if (exitPoint == null) exitPoint = transform;
+            AutoFindNavigationPoints();
+        }
+
+        protected void AutoFindNavigationPoints()
+        {
+            if (entryPoint == null)
+            {
+                var child = transform.Find("EntryPoint");
+                if (child != null) entryPoint = child;
+                else entryPoint = transform;
+            }
+            if (commitPoint == null)
+            {
+                var child = transform.Find("CommitPoint");
+                if (child != null) commitPoint = child;
+                else commitPoint = transform;
+            }
+            if (exitPoint == null)
+            {
+                var child = transform.Find("ExitPoint");
+                if (child != null) exitPoint = child;
+                else exitPoint = transform;
+            }
             if (centerPoint == null) centerPoint = transform;
         }
 

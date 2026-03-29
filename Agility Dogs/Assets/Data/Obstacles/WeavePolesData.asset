@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa5f760dc9da49269faea3d35c168a7, type: 3}
+  m_Name: WeavePolesData
+  m_EditorClassIdentifier: Assembly-CSharp::AgilityDogs.Data.ObstacleData
+  obstacleName: Weave Poles
+  obstacleType: 6
+  validCourseTypes: 0000000001000000
+  sequenceOrder: 3
+  length: 3
+  width: 0.6
+  height: 1
+  hasContactZones: 0
+  contactZoneLength: 0.3
+  requiresCompletion: 1
+  countsForTime: 1
+  prefab: {fileID: 0}
+  entryOffset: {x: 0, y: 0, z: 0}
+  exitOffset: {x: 0, y: 0, z: 0}
+  entryAngleTolerance: 60
