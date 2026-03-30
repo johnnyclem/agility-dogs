@@ -2,6 +2,87 @@ using UnityEngine;
 
 namespace AgilityDogs.Demo
 {
+    // Helper class to track jump state
+    public class JumpData : MonoBehaviour
+    {
+        public float barHeight = 0.9f;
+        public Renderer barRenderer;
+        public Color originalColor = Color.red;
+        public bool dogInZone = false;
+        public float dogMaxHeight = 0f;
+        
+        private float flashTimer = 0f;
+        private Color flashColor = Color.white;
+        private ParticleSystem particles;
+        
+        public void TriggerSuccess()
+        {
+            flashColor = Color.green;
+            flashTimer = 0.5f;
+            SpawnParticles(Color.green, Color.yellow);
+        }
+        
+        public void TriggerFail()
+        {
+            flashColor = Color.red;
+            flashTimer = 0.5f;
+            SpawnParticles(Color.red, new Color(1f, 0.3f, 0f));
+        }
+        
+        void SpawnParticles(Color col1, Color col2)
+        {
+            if (barRenderer == null) return;
+            
+            GameObject particleObj = new GameObject("JumpParticles");
+            particleObj.transform.position = barRenderer.transform.position + Vector3.up * 0.5f;
+            
+            particles = particleObj.AddComponent<ParticleSystem>();
+            var main = particles.main;
+            main.startColor = col1;
+            main.startSize = 0.15f;
+            main.startSpeed = 3f;
+            main.startLifetime = 0.8f;
+            main.maxParticles = 30;
+            main.duration = 0.3f;
+            main.loop = false;
+            
+            var emission = particles.emission;
+            emission.rateOverTime = 0;
+            emission.SetBursts(new ParticleSystem.Burst[] { new ParticleSystem.Burst(0f, 20) });
+            
+            var shape = particles.shape;
+            shape.shapeType = ParticleSystemShapeType.Sphere;
+            shape.radius = 0.5f;
+            
+            var colorOverLifetime = particles.colorOverLifetime;
+            colorOverLifetime.enabled = true;
+            Gradient grad = new Gradient();
+            grad.SetKeys(
+                new GradientColorKey[] { new GradientColorKey(col1, 0f), new GradientColorKey(col2, 1f) },
+                new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0f, 1f) }
+            );
+            colorOverLifetime.color = grad;
+            
+            // Add a light for glow effect
+            Light pointLight = particleObj.AddComponent<Light>();
+            pointLight.type = LightType.Point;
+            pointLight.color = col1;
+            pointLight.intensity = 2f;
+            pointLight.range = 3f;
+            
+            Destroy(particleObj, 1.5f);
+        }
+        
+        void Update()
+        {
+            if (flashTimer > 0 && barRenderer != null)
+            {
+                flashTimer -= Time.deltaTime;
+                barRenderer.material.color = Color.Lerp(flashColor, originalColor, 1f - (flashTimer / 0.5f));
+            }
+        }
+    }
+    
     public class TrainingDemoScene : MonoBehaviour
     {
         [Header("Dog")]
@@ -49,12 +130,13 @@ namespace AgilityDogs.Demo
         }
 
         // Camera control state
-        private float cameraDistance = 3f; // Much closer to dog
-        private float cameraAngleX = 35f; // Better viewing angle
+        private float cameraDistance = 4f; // Behind dog
+        private float cameraAngleX = 25f; // Slightly elevated
         private float cameraAngleY = 0f;
         private Vector3 cameraTarget = Vector3.zero;
         private bool isDragging = false;
         private Vector3 lastMousePosition;
+        private bool cameraFollowsDog = true; // Follow dog by default
 
         void Update()
         {
@@ -89,31 +171,43 @@ namespace AgilityDogs.Demo
             // Scroll wheel to zoom
             float scroll = Input.GetAxis("Mouse ScrollWheel");
             cameraDistance -= scroll * 2f;
-            cameraDistance = Mathf.Clamp(cameraDistance, 1.5f, 10f); // Close zoom range
+            cameraDistance = Mathf.Clamp(cameraDistance, 1.5f, 10f);
+
+            // Follow dog by default
+            if (cameraFollowsDog && dog != null)
+            {
+                cameraTarget = Vector3.Lerp(cameraTarget, dog.transform.position, Time.deltaTime * 10f);
+            }
 
             // Update camera position and rotation
             UpdateCamera();
 
-            // Q/E to pan camera target left/right
-            if (Input.GetKey(KeyCode.Q))
-                cameraTarget.x -= 3f * Time.deltaTime;
-            if (Input.GetKey(KeyCode.E))
-                cameraTarget.x += 3f * Time.deltaTime;
+            // Q/E to pan camera target left/right (when not following)
+            if (!cameraFollowsDog)
+            {
+                if (Input.GetKey(KeyCode.Q))
+                    cameraTarget.x -= 3f * Time.deltaTime;
+                if (Input.GetKey(KeyCode.E))
+                    cameraTarget.x += 3f * Time.deltaTime;
+            }
 
             // R to reset camera
             if (Input.GetKeyDown(KeyCode.R))
             {
-                cameraTarget = Vector3.zero;
-                cameraAngleX = 35f;
+                cameraAngleX = 25f;
                 cameraAngleY = 0f;
-                cameraDistance = 3f;
+                cameraDistance = 4f;
             }
 
             // Tab to toggle follow dog
-            if (Input.GetKeyDown(KeyCode.Tab) && dog != null)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                cameraTarget = dog.transform.position;
-                cameraDistance = 2.5f; // Zoom in when following
+                cameraFollowsDog = !cameraFollowsDog;
+                if (cameraFollowsDog && dog != null)
+                {
+                    cameraTarget = dog.transform.position;
+                    cameraDistance = 4f;
+                }
             }
         }
 
@@ -267,6 +361,7 @@ namespace AgilityDogs.Demo
             
             // Print our dogBones array
             Debug.Log($"Our dogBones array:");
+            string[] boneNames = {"Spine", "Head", "Tail", "ThighFL", "LegFL", "FootFL", "ThighFR", "LegFR", "ThighBL", "LegBL", "ThighBR", "LegBR"};
             for (int i = 0; i < dogBones?.Length; i++)
             {
                 Debug.Log($"  [{i}] = {dogBones[i]?.name ?? "null"}");
@@ -276,6 +371,20 @@ namespace AgilityDogs.Demo
         }
 
         private string currentDogBreed = "Dog";
+        private bool isSprinting = false;
+        private int jumpsCleared = 0;
+        private int jumpsMissed = 0;
+        
+        // Jump timing mechanic
+        private float jumpKeyHoldTime = 0f;
+        private bool jumpKeyHeld = false;
+        private const float optimalJumpHoldMin = 0.125f;
+        private const float optimalJumpHoldMax = 0.5f; // Corgi optimal window
+        private const float maxJumpHoldTime = 0.75f;
+        
+        // Speed ramp
+        private float targetSpeed = 0f;
+        private float currentMoveSpeed = 0f;
 
         GameObject LoadDefaultDogPrefab()
         {
@@ -308,6 +417,8 @@ namespace AgilityDogs.Demo
         // Procedural animation state
         private float walkCycle = 0f;
         private float currentSpeed = 0f;
+        // [0]Spine, [1]Head, [2]Tail, [3]ThighFL, [4]LegFL, [5]FootFL, [6]ThighFR, [7]LegFR,
+        // [8]ThighBL, [9]LegBL, [10]ThighBR, [11]LegBR
         private Transform[] dogBones;
 
         void AddDogPhysics()
@@ -317,9 +428,9 @@ namespace AgilityDogs.Demo
             if (rb == null)
                 rb = dog.AddComponent<Rigidbody>();
             rb.mass = 10f;
-            rb.drag = 5f;
+            rb.drag = 2f;
             rb.angularDrag = 2f;
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             
             // Add Capsule Collider
             CapsuleCollider collider = dog.GetComponent<CapsuleCollider>();
@@ -396,8 +507,8 @@ namespace AgilityDogs.Demo
         void FindDogBones()
         {
             // Try to find bones for procedural animation
-            // Array: [spine, head, tail, thighFL, legFL, footFL, thighFR, legFR]
-            dogBones = new Transform[8];
+            // Array: [spine, head, tail, thighFL, legFL, footFL, thighFR, legFR, thighBL, legBL, thighBR, legBR]
+            dogBones = new Transform[12];
             
             Debug.Log("Searching for dog bones...");
             
@@ -412,7 +523,7 @@ namespace AgilityDogs.Demo
                     if (bone == null) continue;
                     string name = bone.name;
                     
-                    // Match exact names from SkinnedMeshRenderer bone list
+                    // Front legs
                     if (name == "Spine_base" && dogBones[0] == null)
                         dogBones[0] = bone;
                     else if (name == "head" && dogBones[1] == null)
@@ -429,6 +540,15 @@ namespace AgilityDogs.Demo
                         dogBones[6] = bone;
                     else if (name == "leg_f.R" && dogBones[7] == null)
                         dogBones[7] = bone;
+                    // Back legs
+                    else if (name == "thigh_b.L" && dogBones[8] == null)
+                        dogBones[8] = bone;
+                    else if (name == "leg_b.L" && dogBones[9] == null)
+                        dogBones[9] = bone;
+                    else if (name == "thigh_b.R" && dogBones[10] == null)
+                        dogBones[10] = bone;
+                    else if (name == "leg_b.R" && dogBones[11] == null)
+                        dogBones[11] = bone;
                 }
                 
                 int found = 0;
@@ -438,7 +558,7 @@ namespace AgilityDogs.Demo
             
             // Log results
             Debug.Log($"Final bone assignments:");
-            string[] boneNames = {"Spine", "Head", "Tail", "ThighFL", "LegFL", "FootFL", "ThighFR", "LegFR"};
+            string[] boneNames = {"Spine", "Head", "Tail", "ThighFL", "LegFL", "FootFL", "ThighFR", "LegFR", "ThighBL", "LegBL", "ThighBR", "LegBR"};
             for (int i = 0; i < dogBones.Length; i++)
             {
                 Debug.Log($"  [{i}] {boneNames[i]}: {dogBones[i]?.name ?? "NULL"}");
@@ -538,6 +658,7 @@ namespace AgilityDogs.Demo
 
             // Cross bar - solid so dog must jump over it
             GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            bar.name = "CrossBar";
             bar.transform.SetParent(jump.transform);
             bar.transform.localPosition = new Vector3(0f, 0.9f, 0f);
             bar.transform.localScale = new Vector3(1.4f, 0.08f, 0.08f);
@@ -548,6 +669,18 @@ namespace AgilityDogs.Demo
 
             // Side post colliders
             // The Cylinder primitives already have CapsuleColliders from CreatePrimitive
+
+            // Add trigger zone for detecting if dog clears the hurdle
+            BoxCollider triggerZone = jump.AddComponent<BoxCollider>();
+            triggerZone.isTrigger = true;
+            triggerZone.size = new Vector3(2f, 3f, 1.5f); // Spans full jump area
+            triggerZone.center = new Vector3(0f, 1f, 0f);
+
+            // Store jump data for tracking
+            JumpData jumpData = jump.AddComponent<JumpData>();
+            jumpData.barHeight = 0.9f;
+            jumpData.barRenderer = bar.GetComponent<Renderer>();
+            jumpData.originalColor = mat.color;
 
             jump.transform.position = position;
             return jump;
@@ -669,15 +802,16 @@ namespace AgilityDogs.Demo
             GUILayout.Label("<b><size=16>TRAINING MODE</size></b>", new GUIStyle(GUI.skin.label) { richText = true });
             GUILayout.Space(5);
             GUILayout.Label("DOG CONTROLS:", GUI.skin.label);
-            GUILayout.Label("  WASD / Arrow Keys - Move dog");
-            GUILayout.Label("  Space - Jump (placeholder)");
+            GUILayout.Label("  WASD / Arrow Keys - Move");
+            GUILayout.Label("  Hold Shift - Sprint");
+            GUILayout.Label("  Hold & Release Space - Jump");
+            GUILayout.Label("    (0.1-0.5s = max height)");
             GUILayout.Space(5);
-            GUILayout.Label("CAMERA CONTROLS:", GUI.skin.label);
-            GUILayout.Label("  Right Mouse Drag - Orbit camera");
-            GUILayout.Label("  Scroll Wheel - Zoom (1.5x-10x)");
-            GUILayout.Label("  Q / E - Pan camera left/right");
+            GUILayout.Label("CAMERA:", GUI.skin.label);
+            GUILayout.Label("  Right Mouse Drag - Orbit");
+            GUILayout.Label("  Scroll - Zoom");
             GUILayout.Label("  R - Reset camera");
-            GUILayout.Label("  Tab - Follow dog");
+            GUILayout.Label("  Tab - Toggle follow dog");
             GUILayout.Space(5);
             
             // Debug button to re-setup animations
@@ -698,8 +832,12 @@ namespace AgilityDogs.Demo
                 GUILayout.Label($"<b>{currentDogBreed.ToUpper()}</b>", new GUIStyle(GUI.skin.label) { richText = true });
                 GUILayout.Label($"X: {dog.transform.position.x:F1}  Z: {dog.transform.position.z:F1}");
                 GUILayout.Label($"Speed: {currentSpeed:F2}");
-                GUILayout.Label($"State: {(!isGrounded ? "Jumping" : currentSpeed > 0.1f ? "Running" : "Idle")}");
+                GUILayout.Label($"State: {(!isGrounded ? "Jumping" : isSprinting && currentSpeed > 0.1f ? "Running" : currentSpeed > 0.1f ? "Walking" : "Idle")}");
                 GUILayout.Label($"Animations: {(hasBakedAnimations ? "Baked" : "Procedural")}");
+                GUILayout.Space(5);
+                GUILayout.Label($"<b>SCORE</b>", new GUIStyle(GUI.skin.label) { richText = true });
+                GUILayout.Label($"Cleared: <color=green>{jumpsCleared}</color>", new GUIStyle(GUI.skin.label) { richText = true });
+                GUILayout.Label($"Missed: <color=red>{jumpsMissed}</color>", new GUIStyle(GUI.skin.label) { richText = true });
                 
                 // Show animator info if available
                 Animator animator = dog.GetComponent<Animator>();
@@ -708,6 +846,36 @@ namespace AgilityDogs.Demo
                     GUILayout.Label($"Controller: {animator.runtimeAnimatorController.name}");
                 }
                 GUILayout.EndArea();
+            }
+            
+            // Jump timing indicator (shown when holding space)
+            if (jumpKeyHeld)
+            {
+                float barWidth = 200f;
+                float barHeight = 30f;
+                float barX = (Screen.width - barWidth) / 2f;
+                float barY = Screen.height - 100f;
+                
+                // Background
+                GUI.Box(new Rect(barX, barY, barWidth, barHeight), "");
+                
+                // Optimal zone (green)
+                float optimalStart = optimalJumpHoldMin / maxJumpHoldTime;
+                float optimalEnd = optimalJumpHoldMax / maxJumpHoldTime;
+                GUI.Box(new Rect(barX + barWidth * optimalStart, barY, barWidth * (optimalEnd - optimalStart), barHeight), "");
+                
+                // Current position
+                float fillPercent = Mathf.Clamp01(jumpKeyHoldTime / maxJumpHoldTime);
+                Color fillColor = (jumpKeyHoldTime >= optimalJumpHoldMin && jumpKeyHoldTime <= optimalJumpHoldMax) ? Color.green : 
+                                  (jumpKeyHoldTime < optimalJumpHoldMin) ? Color.yellow : Color.red;
+                
+                GUIStyle fillStyle = new GUIStyle(GUI.skin.box);
+                fillStyle.normal.background = MakeTex(1, 1, fillColor);
+                GUI.Box(new Rect(barX + 2, barY + 2, (barWidth - 4) * fillPercent, barHeight - 4), "", fillStyle);
+                
+                // Label
+                GUIStyle labelStyle = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter };
+                GUI.Label(new Rect(barX, barY - 20, barWidth, 20), "Hold Space - Release in GREEN zone!", labelStyle);
             }
         }
 
@@ -759,10 +927,26 @@ namespace AgilityDogs.Demo
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
                 moveX = 1f;
 
-            // Jump - only when on ground
+            // Jump timing mechanic - track hold duration
             if (Input.GetKeyDown(KeyCode.Space) && rb != null && isGrounded)
             {
-                rb.AddForce(Vector3.up * 12f, ForceMode.Impulse);
+                jumpKeyHeld = true;
+                jumpKeyHoldTime = 0f;
+            }
+            
+            if (jumpKeyHeld)
+            {
+                jumpKeyHoldTime += Time.deltaTime;
+            }
+            
+            // Release jump on key up
+            if (Input.GetKeyUp(KeyCode.Space) && jumpKeyHeld && isGrounded)
+            {
+                jumpKeyHeld = false;
+                
+                // Calculate jump power based on hold time
+                float jumpPower = CalculateJumpPower(jumpKeyHoldTime);
+                rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
                 isGrounded = false;
                 
                 // Trigger jump animation
@@ -771,7 +955,7 @@ namespace AgilityDogs.Demo
                     animator.SetBool("Jump", true);
                 }
                 
-                Debug.Log("Dog jumped!");
+                Debug.Log($"Jump! Hold time: {jumpKeyHoldTime:F3}s, Power: {jumpPower:F1}");
             }
             
             // Reset jump animation when landing
@@ -784,18 +968,30 @@ namespace AgilityDogs.Demo
             Vector3 moveDirection = new Vector3(moveX, 0f, moveZ).normalized;
             float speed = moveDirection.magnitude;
             
+            // Check for sprint (hold Shift)
+            isSprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+            
             // Smooth speed transitions
             currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime * 8f);
             
-            // Apply physics movement
+            // Apply physics movement with acceleration ramp
             if (rb != null && speed > 0f)
             {
-                float moveSpeed = 2.5f; // Slower, more natural dog speed
-                rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.deltaTime);
+                float maxSpeed = isSprinting ? 12f : 3f; // Run vs walk speed
+                float accelRate = isSprinting ? 6f : 4f; // Faster acceleration when sprinting
+                
+                // Ramp up speed
+                currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, maxSpeed, accelRate * Time.deltaTime);
+                rb.MovePosition(rb.position + moveDirection * currentMoveSpeed * Time.deltaTime);
                 
                 // Rotate dog smoothly to face movement direction
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
                 dog.transform.rotation = Quaternion.Slerp(dog.transform.rotation, targetRotation, 5f * Time.deltaTime);
+            }
+            else
+            {
+                // Decelerate when not moving
+                currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, 0f, 8f * Time.deltaTime);
             }
             
             // Update animator - use Speed parameter for blending
@@ -803,6 +999,29 @@ namespace AgilityDogs.Demo
             {
                 animator.SetFloat("Speed", currentSpeed * 2f); // Scale for smoother transitions
                 animator.SetBool("IsMoving", currentSpeed > 0.1f);
+            }
+        }
+        
+        float CalculateJumpPower(float holdTime)
+        {
+            // Optimal range: 0.125s - 0.5s gives max power
+            // Too quick (<0.125s) or too long (>0.75s) = weaker jump
+            
+            if (holdTime >= optimalJumpHoldMin && holdTime <= optimalJumpHoldMax)
+            {
+                // Optimal timing - max power (70 for ~3x current height)
+                return 70f;
+            }
+            else if (holdTime < optimalJumpHoldMin)
+            {
+                // Too quick - scale from 30 to 70 based on hold time
+                return Mathf.Lerp(30f, 70f, holdTime / optimalJumpHoldMin);
+            }
+            else
+            {
+                // Too long - decay power after optimal window
+                float decay = Mathf.InverseLerp(optimalJumpHoldMax, maxJumpHoldTime, holdTime);
+                return Mathf.Lerp(70f, 35f, decay);
             }
         }
 
@@ -832,6 +1051,7 @@ namespace AgilityDogs.Demo
 
         private bool isGrounded = true;
         private float groundY = 0.1f;
+        private float groundCheckRadius = 0.15f;
 
         void FixedUpdate()
         {
@@ -840,11 +1060,23 @@ namespace AgilityDogs.Demo
                 Rigidbody rb = dog.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    // Check if on ground (with tolerance)
-                    isGrounded = dog.transform.position.y <= 0.1f && rb.linearVelocity.y <= 0.01f;
+                    // Raycast ground check for reliability
+                    isGrounded = Physics.Raycast(dog.transform.position + Vector3.up * 0.1f, Vector3.down, 0.3f, ~0);
                     
-                    // Ground clamping - only clamp when grounded or falling below ground
-                    if (isGrounded && dog.transform.position.y <= 0f)
+                    // Track max height in jump zones
+                    foreach (GameObject obs in obstacles)
+                    {
+                        if (obs == null) continue;
+                        JumpData jd = obs.GetComponent<JumpData>();
+                        if (jd != null && jd.dogInZone)
+                        {
+                            if (dog.transform.position.y > jd.dogMaxHeight)
+                                jd.dogMaxHeight = dog.transform.position.y;
+                        }
+                    }
+                    
+                    // Clamp ground position
+                    if (dog.transform.position.y <= 0f)
                     {
                         Vector3 pos = rb.position;
                         pos.y = 0f;
@@ -857,8 +1089,51 @@ namespace AgilityDogs.Demo
                             vel.y = 0f;
                             rb.linearVelocity = vel;
                         }
+                        
+                        isGrounded = true;
                     }
                 }
+            }
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (dog == null) return;
+            
+            // Check if dog entered a jump trigger zone
+            JumpData jumpData = other.GetComponent<JumpData>();
+            if (jumpData != null)
+            {
+                jumpData.dogInZone = true;
+                jumpData.dogMaxHeight = dog.transform.position.y;
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (dog == null) return;
+            
+            // Check if dog exited a jump trigger zone
+            JumpData jumpData = other.GetComponent<JumpData>();
+            if (jumpData != null && jumpData.dogInZone)
+            {
+                jumpData.dogInZone = false;
+                
+                // Check if dog cleared the bar (max height in zone > bar height)
+                if (jumpData.dogMaxHeight >= jumpData.barHeight)
+                {
+                    jumpData.TriggerSuccess();
+                    jumpsCleared++;
+                    Debug.Log($"Jump cleared! Max height: {jumpData.dogMaxHeight:F2}");
+                }
+                else
+                {
+                    jumpData.TriggerFail();
+                    jumpsMissed++;
+                    Debug.Log($"Jump missed! Max height: {jumpData.dogMaxHeight:F2}, Bar height: {jumpData.barHeight}");
+                }
+                
+                jumpData.dogMaxHeight = 0f;
             }
         }
 
@@ -889,16 +1164,41 @@ namespace AgilityDogs.Demo
                 Debug.Log("Stored original bone rotations");
             }
 
-            float walkSpeed = currentSpeed * 12f;
+            float walkSpeed = isSprinting ? currentSpeed * 20f : currentSpeed * 12f;
             if (currentSpeed > 0.01f)
                 walkCycle += Time.deltaTime * walkSpeed;
             else
                 walkCycle += Time.deltaTime * 2f;
 
+            // When grounded and not moving, reset bones to idle pose smoothly
+            if (isGrounded && currentSpeed < 0.1f)
+            {
+                for (int i = 0; i < dogBones.Length; i++)
+                {
+                    if (dogBones[i] != null && originalBoneRotations[i] != Quaternion.identity)
+                    {
+                        dogBones[i].localRotation = Quaternion.Slerp(dogBones[i].localRotation, originalBoneRotations[i], Time.deltaTime * 5f);
+                    }
+                }
+                
+                // Still animate spine slightly for idle breathing and tail wag
+                if (dogBones[0] != null && originalBoneRotations[0] != Quaternion.identity)
+                {
+                    float spineBob = Mathf.Sin(walkCycle * 0.5f) * 1f;
+                    dogBones[0].localRotation = originalBoneRotations[0] * Quaternion.Euler(spineBob, 0f, 0f);
+                }
+                if (dogBones[2] != null && originalBoneRotations[2] != Quaternion.identity)
+                {
+                    float tailWag = Mathf.Sin(walkCycle * 2f) * 15f;
+                    dogBones[2].localRotation = originalBoneRotations[2] * Quaternion.Euler(0f, tailWag, 0f);
+                }
+                return;
+            }
+
             // Animate spine (body bob when running)
             if (dogBones[0] != null && originalBoneRotations[0] != Quaternion.identity)
             {
-                float spineBob = currentSpeed > 0.1f ? Mathf.Sin(walkCycle * 2f) * 4f : Mathf.Sin(walkCycle * 0.5f) * 1f;
+                float spineBob = !isGrounded ? -15f : currentSpeed > 0.1f ? Mathf.Sin(walkCycle * 2f) * 6f : Mathf.Sin(walkCycle * 0.5f) * 1f;
                 dogBones[0].localRotation = originalBoneRotations[0] * Quaternion.Euler(spineBob, 0f, 0f);
             }
 
@@ -906,14 +1206,14 @@ namespace AgilityDogs.Demo
             if (dogBones[1] != null && originalBoneRotations[1] != Quaternion.identity)
             {
                 float headNod = currentSpeed > 0.1f ? Mathf.Sin(walkCycle) * 10f : Mathf.Sin(walkCycle * 0.5f) * 3f;
-                if (!isGrounded) headNod = 20f; // Look up when jumping
+                if (!isGrounded) headNod = 25f; // Look up when jumping
                 dogBones[1].localRotation = originalBoneRotations[1] * Quaternion.Euler(headNod, 0f, 0f);
             }
 
             // Animate tail (wagging)
             if (dogBones[2] != null && originalBoneRotations[2] != Quaternion.identity)
             {
-                float tailWag = currentSpeed > 0.1f ? Mathf.Sin(walkCycle * 4f) * 40f : Mathf.Sin(walkCycle * 2f) * 20f;
+                float tailWag = !isGrounded ? 0f : currentSpeed > 0.1f ? Mathf.Sin(walkCycle * 4f) * 40f : Mathf.Sin(walkCycle * 2f) * 20f;
                 dogBones[2].localRotation = originalBoneRotations[2] * Quaternion.Euler(0f, tailWag, 0f);
             }
 
@@ -922,7 +1222,7 @@ namespace AgilityDogs.Demo
             {
                 float angle = 0f;
                 if (!isGrounded)
-                    angle = 30f; // Forward when jumping
+                    angle = 35f; // Forward when jumping
                 else if (currentSpeed > 0.1f)
                     angle = Mathf.Sin(walkCycle) * 35f; // Running swing
                 dogBones[3].localRotation = originalBoneRotations[3] * Quaternion.Euler(angle, 0f, 0f);
@@ -933,7 +1233,7 @@ namespace AgilityDogs.Demo
             {
                 float angle = 0f;
                 if (!isGrounded)
-                    angle = -40f; // Tucked when jumping
+                    angle = -50f; // Tucked when jumping
                 else if (currentSpeed > 0.1f)
                     angle = Mathf.Abs(Mathf.Sin(walkCycle)) * -30f; // Bend during swing phase
                 dogBones[4].localRotation = originalBoneRotations[4] * Quaternion.Euler(angle, 0f, 0f);
@@ -944,7 +1244,7 @@ namespace AgilityDogs.Demo
             {
                 float angle = 0f;
                 if (!isGrounded)
-                    angle = 15f; // Pointed when jumping
+                    angle = 20f; // Pointed when jumping
                 else if (currentSpeed > 0.1f)
                     angle = Mathf.Sin(walkCycle) * 15f; // Toe movement
                 dogBones[5].localRotation = originalBoneRotations[5] * Quaternion.Euler(angle, 0f, 0f);
@@ -955,7 +1255,7 @@ namespace AgilityDogs.Demo
             {
                 float angle = 0f;
                 if (!isGrounded)
-                    angle = 30f;
+                    angle = 35f;
                 else if (currentSpeed > 0.1f)
                     angle = Mathf.Sin(walkCycle + Mathf.PI) * 35f; // Opposite phase
                 dogBones[6].localRotation = originalBoneRotations[6] * Quaternion.Euler(angle, 0f, 0f);
@@ -966,10 +1266,54 @@ namespace AgilityDogs.Demo
             {
                 float angle = 0f;
                 if (!isGrounded)
-                    angle = -40f;
+                    angle = -50f;
                 else if (currentSpeed > 0.1f)
                     angle = Mathf.Abs(Mathf.Sin(walkCycle + Mathf.PI)) * -30f; // Opposite phase
                 dogBones[7].localRotation = originalBoneRotations[7] * Quaternion.Euler(angle, 0f, 0f);
+            }
+
+            // Animate back left leg - thigh (opposite to front)
+            if (dogBones[8] != null && originalBoneRotations[8] != Quaternion.identity)
+            {
+                float angle = 0f;
+                if (!isGrounded)
+                    angle = -40f; // Backward when jumping
+                else if (currentSpeed > 0.1f)
+                    angle = Mathf.Sin(walkCycle + Mathf.PI) * 30f; // Opposite to front left
+                dogBones[8].localRotation = originalBoneRotations[8] * Quaternion.Euler(angle, 0f, 0f);
+            }
+
+            // Animate back left leg - shin (knee bend)
+            if (dogBones[9] != null && originalBoneRotations[9] != Quaternion.identity)
+            {
+                float angle = 0f;
+                if (!isGrounded)
+                    angle = 50f; // Extended when jumping
+                else if (currentSpeed > 0.1f)
+                    angle = Mathf.Abs(Mathf.Sin(walkCycle + Mathf.PI)) * -25f;
+                dogBones[9].localRotation = originalBoneRotations[9] * Quaternion.Euler(angle, 0f, 0f);
+            }
+
+            // Animate back right leg - thigh (opposite to front, opposite phase to back left)
+            if (dogBones[10] != null && originalBoneRotations[10] != Quaternion.identity)
+            {
+                float angle = 0f;
+                if (!isGrounded)
+                    angle = -40f;
+                else if (currentSpeed > 0.1f)
+                    angle = Mathf.Sin(walkCycle) * 30f; // Same as front left
+                dogBones[10].localRotation = originalBoneRotations[10] * Quaternion.Euler(angle, 0f, 0f);
+            }
+
+            // Animate back right leg - shin (knee bend)
+            if (dogBones[11] != null && originalBoneRotations[11] != Quaternion.identity)
+            {
+                float angle = 0f;
+                if (!isGrounded)
+                    angle = 50f;
+                else if (currentSpeed > 0.1f)
+                    angle = Mathf.Abs(Mathf.Sin(walkCycle)) * -25f;
+                dogBones[11].localRotation = originalBoneRotations[11] * Quaternion.Euler(angle, 0f, 0f);
             }
         }
         
