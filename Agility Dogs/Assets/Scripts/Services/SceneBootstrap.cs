@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 using AgilityDogs.Data;
 using AgilityDogs.Gameplay;
 using AgilityDogs.Gameplay.Handler;
@@ -24,7 +23,6 @@ namespace AgilityDogs.Services
 
         [Header("Auto-Start")]
         [SerializeField] private bool autoStartRun = true;
-        [SerializeField] private bool autoBakeNavMesh = true;
         [SerializeField] private CourseDefinition fallbackCourse;
 
         private void Awake()
@@ -39,20 +37,6 @@ namespace AgilityDogs.Services
 
         private void Start()
         {
-            if (autoBakeNavMesh)
-            {
-                var surfaces = FindObjectsOfType<NavMeshSurface>();
-                foreach (var surface in surfaces)
-                {
-                    if (surface.navMeshData == null)
-                    {
-                        Debug.Log($"[SceneBootstrap] Baking NavMesh on {surface.gameObject.name}...");
-                        surface.BuildNavMesh();
-                        Debug.Log($"[SceneBootstrap] NavMesh baked.");
-                    }
-                }
-            }
-
             if (autoStartRun && courseRunner != null)
             {
                 CourseDefinition course = courseRunner.CurrentCourse ?? fallbackCourse;

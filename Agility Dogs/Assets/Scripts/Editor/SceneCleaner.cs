@@ -1,28 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
-using UnityEngine.AI;
 
 namespace AgilityDogs.Editor
 {
     public static class SceneCleaner
     {
-        [MenuItem("Tools/Bake NavMesh")]
-        public static void BakeNavMesh()
-        {
-            var surfaces = Object.FindObjectsOfType<NavMeshSurface>();
-            if (surfaces.Length == 0)
-            {
-                Debug.LogWarning("No NavMeshSurface found in scene.");
-                return;
-            }
-            foreach (var surface in surfaces)
-            {
-                Debug.Log($"Baking NavMesh on {surface.gameObject.name}...");
-                surface.BuildNavMesh();
-                Debug.Log($"NavMesh baked on {surface.gameObject.name}.");
-            }
-        }
         [MenuItem("Tools/Cleanup Duplicate Panels")]
         public static void CleanupDuplicatePanels()
         {

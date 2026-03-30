@@ -203,8 +203,8 @@ namespace AgilityDogs.Demo
                 dog.name = "Training Dog";
                 FixMaterialsForURP(dog);
                 
-                // Scale the dog appropriately - larger for better view
-                dog.transform.localScale = Vector3.one * 0.8f;
+                // Scale the dog appropriately
+                dog.transform.localScale = Vector3.one * 1.5f;
                 
                 Debug.Log($"Loaded dog prefab: {dogPrefab.name}");
                 currentDogBreed = dogPrefab.name.Split('_')[0]; // Get breed name
@@ -536,20 +536,18 @@ namespace AgilityDogs.Demo
             pole2.transform.localScale = new Vector3(0.1f, 0.5f, 0.1f);
             pole2.GetComponent<Renderer>().material = poleMat;
 
-            // Cross bar
+            // Cross bar - solid so dog must jump over it
             GameObject bar = GameObject.CreatePrimitive(PrimitiveType.Cube);
             bar.transform.SetParent(jump.transform);
             bar.transform.localPosition = new Vector3(0f, 0.9f, 0f);
             bar.transform.localScale = new Vector3(1.4f, 0.08f, 0.08f);
             bar.GetComponent<Renderer>().material = mat;
-            // Make cross bar a trigger so we can detect when dog jumps over
+            // Shrink the collider to match the visual bar
             BoxCollider barCollider = bar.GetComponent<BoxCollider>();
-            barCollider.isTrigger = true;
+            barCollider.size = new Vector3(1f, 1f, 1f);
 
-            // Add a collider to the jump base
-            BoxCollider baseCollider = jump.AddComponent<BoxCollider>();
-            baseCollider.size = new Vector3(1.4f, 1.2f, 0.3f);
-            baseCollider.center = new Vector3(0f, 0.6f, 0f);
+            // Side post colliders
+            // The Cylinder primitives already have CapsuleColliders from CreatePrimitive
 
             jump.transform.position = position;
             return jump;
@@ -573,10 +571,11 @@ namespace AgilityDogs.Demo
             CapsuleCollider tunnelCollider = body.GetComponent<CapsuleCollider>();
             tunnelCollider.isTrigger = true;
 
-            // Add entrance colliders
+            // Add entrance trigger for scoring
             BoxCollider entrance = tunnel.AddComponent<BoxCollider>();
             entrance.size = new Vector3(1.5f, 1.5f, 0.5f);
             entrance.center = new Vector3(0f, 0.75f, 1.8f);
+            entrance.isTrigger = true;
 
             tunnel.transform.position = position;
             return tunnel;
@@ -615,14 +614,15 @@ namespace AgilityDogs.Demo
             Material tableMat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
             tableMat.color = new Color(0.5f, 0.3f, 0.15f);
 
-            // Table top
+            // Table top (no collider - handled by parent trigger)
             GameObject top = GameObject.CreatePrimitive(PrimitiveType.Cube);
             top.transform.SetParent(table.transform);
             top.transform.localPosition = new Vector3(0f, 0.4f, 0f);
             top.transform.localScale = new Vector3(1.2f, 0.1f, 1.2f);
             top.GetComponent<Renderer>().material = tableMat;
+            Object.Destroy(top.GetComponent<BoxCollider>());
 
-            // Legs
+            // Legs (no collider - handled by parent trigger)
             Vector3[] legPos = {
                 new Vector3(-0.5f, 0.2f, -0.5f),
                 new Vector3(0.5f, 0.2f, -0.5f),
@@ -636,6 +636,7 @@ namespace AgilityDogs.Demo
                 leg.transform.localPosition = pos;
                 leg.transform.localScale = new Vector3(0.08f, 0.4f, 0.08f);
                 leg.GetComponent<Renderer>().material = tableMat;
+                Object.Destroy(leg.GetComponent<BoxCollider>());
             }
 
             // Add a box collider for the table
@@ -761,7 +762,7 @@ namespace AgilityDogs.Demo
             // Jump - only when on ground
             if (Input.GetKeyDown(KeyCode.Space) && rb != null && isGrounded)
             {
-                rb.AddForce(Vector3.up * 8f, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * 12f, ForceMode.Impulse);
                 isGrounded = false;
                 
                 // Trigger jump animation
@@ -839,20 +840,22 @@ namespace AgilityDogs.Demo
                 Rigidbody rb = dog.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
-                    // Check if on ground
-                    isGrounded = dog.transform.position.y <= groundY + 0.1f;
+                    // Check if on ground (with tolerance)
+                    isGrounded = dog.transform.position.y <= 0.1f && rb.linearVelocity.y <= 0.01f;
                     
-                    // Only constrain to ground if not jumping and on/in ground
-                    if (!isGrounded || dog.transform.position.y < groundY)
+                    // Ground clamping - only clamp when grounded or falling below ground
+                    if (isGrounded && dog.transform.position.y <= 0f)
                     {
                         Vector3 pos = rb.position;
-                        pos.y = Mathf.Max(pos.y, groundY);
+                        pos.y = 0f;
                         rb.MovePosition(pos);
                         
                         // Stop vertical velocity when hitting ground
-                        if (dog.transform.position.y <= groundY && rb.linearVelocity.y < 0)
+                        if (rb.linearVelocity.y < 0)
                         {
-                            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+                            Vector3 vel = rb.linearVelocity;
+                            vel.y = 0f;
+                            rb.linearVelocity = vel;
                         }
                     }
                 }
