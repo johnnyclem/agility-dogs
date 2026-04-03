@@ -606,6 +606,8 @@ namespace AgilityDogs.Demo
         private bool weaveCamActive = false;
         private Vector3 weaveCamTargetPos = Vector3.zero;
         private Vector3 weaveCamTargetLookAt = Vector3.zero;
+        private float weaveOriginalTimeScale = 1f;
+        private const float WeaveSlowMotionScale = 0.25f;
         
         // Announcer dialogue system
         private string announcerText = "";
@@ -1783,6 +1785,10 @@ namespace AgilityDogs.Demo
             currentMoveSpeed = 0f;
             currentSpeed = 0f;
             
+            weaveOriginalTimeScale = Time.timeScale;
+            Time.timeScale = WeaveSlowMotionScale;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            
             Debug.Log("Weave mini-game started!");
             ShowAnnouncer(weaveStartComments[Random.Range(0, weaveStartComments.Length)], Color.magenta);
         }
@@ -1858,7 +1864,10 @@ namespace AgilityDogs.Demo
             isWeaving = false;
             weaveCamActive = false;
             activeWeaveData = null;
-            
+
+            Time.timeScale = weaveOriginalTimeScale;
+            Time.fixedDeltaTime = 0.02f;
+
             cameraFollowsDog = true;
             cameraAngleX = 25f;
             cameraDistance = 4f;
