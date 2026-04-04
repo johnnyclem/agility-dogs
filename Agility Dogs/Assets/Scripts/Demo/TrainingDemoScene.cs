@@ -90,8 +90,8 @@ namespace AgilityDogs.Demo
         public int poleCount = 12;
         public float poleSpacing = 1.0f;
         public float weaveSpeed = 12f;
-        public float rhythmInterval = 0.35f;
-        public float stunDuration = 0.25f;
+        public float rhythmInterval = 0.5f;
+        public float stunDuration = 0.3f;
         
         [Header("Runtime State")]
         public Transform[] poles;
@@ -104,6 +104,7 @@ namespace AgilityDogs.Demo
         public int expectedDirection = 0; // 0 = left (A), 1 = right (D)
         public int weavesCleared = 0;
         public int weavesMissed = 0;
+        public bool justFinished = false;
         
         // Original colors for reset
         private Color[] originalColors;
@@ -129,8 +130,9 @@ namespace AgilityDogs.Demo
         public void StartWeave()
         {
             isActive = true;
+            justFinished = false;
             currentPoleIndex = 0;
-            expectedDirection = 0; // Start with left
+            expectedDirection = 0;
             rhythmTimer = 0f;
             isStunned = false;
             weavesCleared = 0;
@@ -142,6 +144,7 @@ namespace AgilityDogs.Demo
         public void StopWeave()
         {
             isActive = false;
+            justFinished = true;
             ResetAllPoles();
         }
         
@@ -257,24 +260,21 @@ namespace AgilityDogs.Demo
         
         public Vector3 GetWeaveCamPosition()
         {
-            // Camera at end of weave line, low angle, looking back
             if (poles == null || poles.Length == 0) return Vector3.zero;
-            
-            Transform lastPole = poles[poles.Length - 1];
+
             Transform firstPole = poles[0];
-            
-            // Position behind last pole, centered on X
-            Vector3 camPos = lastPole.position;
-            camPos.z += 3f; // Behind the last pole
-            camPos.y = 0.4f; // Low angle
+
+            Vector3 camPos = firstPole.position;
+            camPos.z -= 4f;
+            camPos.y = 1.0f;
+            camPos.x -= 1.5f;
             return camPos;
         }
-        
+
         public Vector3 GetWeaveCamLookAt()
         {
-            // Look toward the first pole / dog approach
             if (poles == null || poles.Length == 0) return Vector3.zero;
-            return poles[0].position;
+            return poles[poles.Length - 1].position;
         }
     }
     
@@ -299,6 +299,7 @@ namespace AgilityDogs.Demo
             SetupDog();
             SetupObstacles();
             SetupCamera();
+            InitAnnouncerAudio();
 
             Debug.Log("Training Demo Scene loaded - use arrow keys to move the dog!");
         }
@@ -337,6 +338,7 @@ namespace AgilityDogs.Demo
         {
             HandleCameraControls();
             UpdateAnnouncer(Time.deltaTime);
+            HandleHotKeys();
             
             if (dog != null)
             {
@@ -381,13 +383,14 @@ namespace AgilityDogs.Demo
             cameraDistance = Mathf.Clamp(cameraDistance, 1.5f, 10f);
 
             // Follow dog by default
-            if (cameraFollowsDog && dog != null)
+            if (cameraFollowsDog && dog != null && !isWeaving)
             {
                 cameraTarget = Vector3.Lerp(cameraTarget, dog.transform.position, Time.deltaTime * 10f);
             }
 
             // Update camera position and rotation
-            UpdateCamera();
+            if (!isWeaving)
+                UpdateCamera();
 
             // Q/E to pan camera target left/right (when not following)
             if (!cameraFollowsDog)
@@ -601,18 +604,24 @@ namespace AgilityDogs.Demo
         private bool weaveInputExpected = false;
         private float weaveInputTimer = 0f;
         private GameObject weavePrompt = null;
+        private int weaveTargetPoleIndex = 0;
+        private float weaveLerpT = 0f;
+        private float weavePrevZ = 0f;
         
         // Weave-cam state
         private bool weaveCamActive = false;
         private Vector3 weaveCamTargetPos = Vector3.zero;
         private Vector3 weaveCamTargetLookAt = Vector3.zero;
         private float weaveOriginalTimeScale = 1f;
-        private const float WeaveSlowMotionScale = 0.25f;
+        private const float WeaveSlowMotionScale = 0.10f;
         
+        private AudioSource announcerAudioSource;
+
         // Announcer dialogue system
         private string announcerText = "";
         private float announcerTimer = 0f;
         private Color announcerColor = Color.white;
+        private string[][] allAnnouncerPools;
         
         private string[] jumpSuccessComments = {
             "What a LEAP!",
@@ -1150,7 +1159,7 @@ namespace AgilityDogs.Demo
             GUIStyle boxStyle = new GUIStyle(GUI.skin.box);
             boxStyle.normal.background = MakeTex(2, 2, new Color(0f, 0f, 0f, 0.7f));
 
-            GUILayout.BeginArea(new Rect(10, 10, 280, 230), boxStyle);
+            GUILayout.BeginArea(new Rect(10, 10, 280, 290), boxStyle);
             GUILayout.Label("<b><size=16>TRAINING MODE</size></b>", new GUIStyle(GUI.skin.label) { richText = true });
             GUILayout.Space(5);
             GUILayout.Label("DOG CONTROLS:", GUI.skin.label);
@@ -1169,6 +1178,11 @@ namespace AgilityDogs.Demo
             GUILayout.Label("  Scroll - Zoom");
             GUILayout.Label("  R - Reset camera");
             GUILayout.Label("  Tab - Toggle follow dog");
+            GUILayout.Space(5);
+            GUILayout.Label("HOTKEYS:", GUI.skin.label);
+            GUILayout.Label("  W - Start weave session");
+            GUILayout.Label("  X - Reset all obstacles");
+            GUILayout.Label("  C - Random commentary");
             GUILayout.Space(5);
             
             // Debug button to re-setup animations
@@ -1532,14 +1546,14 @@ namespace AgilityDogs.Demo
 
         void UpdateProceduralAnimation()
         {
+            float animDt = isWeaving ? Time.unscaledDeltaTime : Time.deltaTime;
             if (currentSpeed > 0.01f)
             {
-                walkCycle += Time.deltaTime * currentSpeed * 12f;
+                walkCycle += animDt * currentSpeed * 12f;
             }
             else
             {
-                // Idle breathing animation
-                walkCycle += Time.deltaTime * 2f;
+                walkCycle += animDt * 2f;
             }
 
             // Animate spine (slight bob)
@@ -1603,10 +1617,13 @@ namespace AgilityDogs.Demo
 
         void LateUpdate()
         {
-            // Only use procedural animation if no baked animations exist
             if (dog != null && dogBones != null && !hasBakedAnimations)
             {
+                float savedSpeed = currentSpeed;
+                if (isWeaving && activeWeaveData != null && !activeWeaveData.isStunned)
+                    currentSpeed = 1.0f;
                 ApplyProceduralAnimation();
+                currentSpeed = savedSpeed;
             }
         }
 
@@ -1653,11 +1670,12 @@ namespace AgilityDogs.Demo
                 return;
             }
 
+            float animDt = isWeaving ? Time.unscaledDeltaTime : Time.deltaTime;
             float walkSpeed = isSprinting ? currentSpeed * 20f : currentSpeed * 12f;
             if (currentSpeed > 0.01f)
-                walkCycle += Time.deltaTime * walkSpeed;
+                walkCycle += animDt * walkSpeed;
             else
-                walkCycle += Time.deltaTime * 2f;
+                walkCycle += animDt * 2f;
 
             // Animate spine (body bob when running)
             if (dogBones[0] != null && originalBoneRotations[0] != Quaternion.identity)
@@ -1751,7 +1769,7 @@ namespace AgilityDogs.Demo
             
             // Check if dog entered weave poles zone
             WeaveData weaveData = other.GetComponent<WeaveData>();
-            if (weaveData != null && !isWeaving && weaveData.isActive == false)
+            if (weaveData != null && !isWeaving && weaveData.isActive == false && !weaveData.justFinished)
             {
                 StartWeaveMiniGame(weaveData);
             }
@@ -1765,25 +1783,27 @@ namespace AgilityDogs.Demo
             activeWeaveData = weaveData;
             weaveData.StartWeave();
             
-            // Position dog at start of weave
             Transform firstPole = weaveData.poles[0];
             weaveDogZ = firstPole.position.z - 2f;
+            weavePrevZ = weaveDogZ;
+            weaveTargetPoleIndex = 0;
+            weaveLerpT = 1f;
             dog.transform.position = new Vector3(firstPole.position.x, dog.transform.position.y, weaveDogZ);
             
-            // Set up weave-cam
             weaveCamActive = true;
             weaveCamTargetPos = weaveData.GetWeaveCamPosition();
             weaveCamTargetLookAt = weaveData.GetWeaveCamLookAt();
             
-            // Reset camera angles for weave view
             cameraAngleX = 8f;
             cameraAngleY = 0f;
             cameraDistance = 0f;
             cameraFollowsDog = false;
             
-            // Disable normal movement during weave
             currentMoveSpeed = 0f;
             currentSpeed = 0f;
+            
+            Rigidbody rb = dog.GetComponent<Rigidbody>();
+            if (rb != null) rb.isKinematic = true;
             
             weaveOriginalTimeScale = Time.timeScale;
             Time.timeScale = WeaveSlowMotionScale;
@@ -1803,23 +1823,27 @@ namespace AgilityDogs.Demo
                 }
                 return;
             }
-            
+
             activeWeaveData.UpdateTimer(deltaTime);
-            
-            if (activeWeaveData.isStunned)
+
+            if (activeWeaveData.isStunned) return;
+
+            float unscaledDt = Time.unscaledDeltaTime;
+
+            if (weaveLerpT < 1f && weaveTargetPoleIndex < activeWeaveData.poles.Length)
             {
-                return;
+                float lerpSpeed = 2.5f;
+                weaveLerpT = Mathf.MoveTowards(weaveLerpT, 1f, unscaledDt * lerpSpeed);
+
+                float targetZ = activeWeaveData.poles[weaveTargetPoleIndex].position.z;
+                weaveDogZ = Mathf.Lerp(weavePrevZ, targetZ, weaveLerpT);
             }
-            
-            // Auto-run the dog forward
-            weaveDogZ += activeWeaveData.weaveSpeed * deltaTime;
-            
-            // Calculate weave offset (zigzag pattern)
+
             float poleSpacing = activeWeaveData.poleSpacing;
             float startZ = activeWeaveData.poles[0].position.z;
             int currentPole = activeWeaveData.currentPoleIndex;
             float weaveOffset = 0f;
-            
+
             if (currentPole < activeWeaveData.poles.Length)
             {
                 float dir = (activeWeaveData.expectedDirection == 0) ? 1f : -1f;
@@ -1827,26 +1851,36 @@ namespace AgilityDogs.Demo
                 float poleProgress = progress - Mathf.Floor(progress);
                 weaveOffset = Mathf.Sin(poleProgress * Mathf.PI) * 0.6f * dir;
             }
-            
+
             dog.transform.position = new Vector3(
                 activeWeaveData.poles[0].position.x + weaveOffset,
                 dog.transform.position.y,
                 weaveDogZ
             );
-            
-            dog.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            
+
+            dog.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+            Animator animator = dog.GetComponent<Animator>();
+            if (animator != null && hasBakedAnimations)
+            {
+                animator.SetFloat("Speed", 1.5f);
+                animator.SetBool("IsMoving", true);
+                animator.SetBool("Jump", false);
+            }
+
             if (weaveCamActive)
             {
                 Camera cam = Camera.main;
                 if (cam != null)
                 {
-                    cam.transform.position = weaveCamTargetPos;
+                    Vector3 camFollow = weaveCamTargetPos;
+                    camFollow.z = dog.transform.position.z - 4f;
+                    cam.transform.position = camFollow;
                     cam.transform.LookAt(new Vector3(dog.transform.position.x, 0.5f, dog.transform.position.z));
                 }
             }
-            
-            if (weaveDogZ >= activeWeaveData.poles[activeWeaveData.poles.Length - 1].position.z + 2f)
+
+            if (activeWeaveData.currentPoleIndex >= activeWeaveData.poleCount)
             {
                 EndWeaveMiniGame();
             }
@@ -1854,6 +1888,8 @@ namespace AgilityDogs.Demo
 
         void EndWeaveMiniGame()
         {
+            WeaveData finishedWeave = activeWeaveData;
+
             if (activeWeaveData != null)
             {
                 activeWeaveData.StopWeave();
@@ -1868,9 +1904,34 @@ namespace AgilityDogs.Demo
             Time.timeScale = weaveOriginalTimeScale;
             Time.fixedDeltaTime = 0.02f;
 
+            if (dog != null)
+            {
+                Animator animator = dog.GetComponent<Animator>();
+                if (animator != null && hasBakedAnimations)
+                {
+                    animator.SetFloat("Speed", 0f);
+                    animator.SetBool("IsMoving", false);
+                }
+
+                Rigidbody rb = dog.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.isKinematic = false;
+                    rb.linearVelocity = Vector3.zero;
+                }
+
+                StartCoroutine(ClearWeaveFinishedFlag(finishedWeave));
+            }
+
             cameraFollowsDog = true;
             cameraAngleX = 25f;
             cameraDistance = 4f;
+        }
+
+        System.Collections.IEnumerator ClearWeaveFinishedFlag(WeaveData weaveData)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            if (weaveData != null) weaveData.justFinished = false;
         }
 
         void HandleWeaveInput()
@@ -1885,7 +1946,11 @@ namespace AgilityDogs.Demo
                 bool success = activeWeaveData.ProcessInput(pressedLeft);
                 if (success)
                 {
-                    ShowAnnouncer(weaveHitComments[Random.Range(0, weaveHitComments.Length)], Color.cyan);
+                    ShowAnnouncer(weaveClearComments[Random.Range(0, weaveClearComments.Length)], Color.cyan);
+
+                    weavePrevZ = weaveDogZ;
+                    weaveTargetPoleIndex = activeWeaveData.currentPoleIndex;
+                    weaveLerpT = 0f;
                 }
                 else
                 {
@@ -1907,6 +1972,143 @@ namespace AgilityDogs.Demo
             {
                 announcerTimer -= deltaTime;
             }
+        }
+
+        void InitAnnouncerAudio()
+        {
+            allAnnouncerPools = new string[][]
+            {
+                jumpSuccessComments, jumpFailComments,
+                weaveStartComments, weaveHitComments,
+                weaveClearComments, weaveCompleteComments
+            };
+
+            announcerAudioSource = gameObject.AddComponent<AudioSource>();
+            announcerAudioSource.playOnAwake = false;
+            announcerAudioSource.spatialBlend = 0f;
+        }
+
+        void HandleHotKeys()
+        {
+            if (Input.GetKeyDown(KeyCode.W) && !isWeaving)
+                HotKeyStartWeave();
+
+            if (Input.GetKeyDown(KeyCode.X))
+                HotKeyResetObstacles();
+
+            if (Input.GetKeyDown(KeyCode.C))
+                HotKeyRandomCommentary();
+        }
+
+        void HotKeyStartWeave()
+        {
+            if (obstacles == null) return;
+
+            WeaveData weaveData = null;
+            foreach (GameObject obs in obstacles)
+            {
+                if (obs == null) continue;
+                WeaveData wd = obs.GetComponent<WeaveData>();
+                if (wd != null && wd.poles != null && wd.poles.Length > 0)
+                {
+                    weaveData = wd;
+                    break;
+                }
+            }
+
+            if (weaveData == null)
+            {
+                Debug.Log("No weave poles found in scene!");
+                return;
+            }
+
+            if (dog == null) return;
+
+            Transform firstPole = weaveData.poles[0];
+            dog.transform.position = new Vector3(
+                firstPole.position.x,
+                dog.transform.position.y,
+                firstPole.position.z - 2f
+            );
+
+            if (weaveData.isActive)
+                weaveData.StopWeave();
+
+            StartWeaveMiniGame(weaveData);
+        }
+
+        void HotKeyResetObstacles()
+        {
+            if (obstacles == null) return;
+
+            foreach (GameObject obs in obstacles)
+            {
+                if (obs == null) continue;
+
+                WeaveData weaveData = obs.GetComponent<WeaveData>();
+                if (weaveData != null)
+                {
+                    if (weaveData.isActive)
+                    {
+                        weaveData.StopWeave();
+                        if (isWeaving && activeWeaveData == weaveData)
+                            EndWeaveMiniGame();
+                    }
+                    weaveData.ResetAllPoles();
+                    weaveData.justFinished = false;
+                }
+
+                JumpData jumpData = obs.GetComponent<JumpData>();
+                if (jumpData != null && jumpData.barRenderer != null)
+                {
+                    jumpData.barRenderer.material.color = jumpData.originalColor;
+                    jumpData.dogInZone = false;
+                    jumpData.dogMaxHeight = 0f;
+                }
+            }
+
+            jumpsCleared = 0;
+            jumpsMissed = 0;
+            ShowAnnouncer("Obstacles reset!", Color.yellow);
+            Debug.Log("All obstacles reset!");
+        }
+
+        void HotKeyRandomCommentary()
+        {
+            if (allAnnouncerPools == null || allAnnouncerPools.Length == 0) return;
+
+            int poolIndex = Random.Range(0, allAnnouncerPools.Length);
+            string[] pool = allAnnouncerPools[poolIndex];
+            if (pool == null || pool.Length == 0) return;
+
+            string line = pool[Random.Range(0, pool.Length)];
+
+            Color[] colors = { Color.green, Color.red, Color.magenta, Color.cyan, Color.yellow, Color.green };
+            ShowAnnouncer(line, colors[poolIndex]);
+
+            if (announcerAudioSource != null)
+            {
+                float pitch = Random.Range(0.85f, 1.2f);
+                int note = Random.Range(0, 8);
+                float baseFreq = 261.63f * Mathf.Pow(2f, note / 12f);
+                float duration = 0.25f;
+                int sampleRate = 44100;
+                int samples = (int)(sampleRate * duration);
+                float[] data = new float[samples];
+                for (int i = 0; i < samples; i++)
+                {
+                    float t = (float)i / sampleRate;
+                    float envelope = 1f - (t / duration);
+                    data[i] = Mathf.Sin(2f * Mathf.PI * baseFreq * t) * 0.3f * envelope;
+                    data[i] += Mathf.Sin(2f * Mathf.PI * baseFreq * 1.5f * t) * 0.1f * envelope;
+                }
+                AudioClip clip = AudioClip.Create("CommentaryBlip", samples, 1, sampleRate, false);
+                clip.SetData(data, 0);
+                announcerAudioSource.pitch = pitch;
+                announcerAudioSource.PlayOneShot(clip);
+            }
+
+            Debug.Log($"[Commentary] {line}");
         }
 
         void OnTriggerExit(Collider other)
