@@ -1874,7 +1874,7 @@ namespace AgilityDogs.Demo
                 if (cam != null)
                 {
                     Vector3 camFollow = weaveCamTargetPos;
-                    camFollow.z = dog.transform.position.z - 4f;
+                    camFollow.z = dog.transform.position.z + 4f;
                     cam.transform.position = camFollow;
                     cam.transform.LookAt(new Vector3(dog.transform.position.x, 0.5f, dog.transform.position.z));
                 }
