@@ -374,18 +374,10 @@ namespace AgilityDogs.Services
         {
             Debug.Log($"[GameManager] Run completed event received: {result}");
 
-            // Transition to results
+            // Transition to results. Career processing is handled by ShowManager,
+            // which subscribes to OnRunCompleted itself — calling it here as well
+            // double-counted wins and XP.
             ShowResults();
-
-            // In career mode, delegate to ShowManager
-            if (isCareerMode)
-            {
-                var showManager = ShowManager.Instance;
-                if (showManager != null)
-                {
-                    showManager.ProcessShowResult(result, time, faults);
-                }
-            }
         }
 
         #endregion

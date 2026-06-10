@@ -21,7 +21,7 @@ namespace AgilityDogs.Services
         public static GameModeManager Instance { get; private set; }
 
         [Header("Scene Names")]
-        [SerializeField] private string mainMenuScene = "StartMenu";
+        [SerializeField] private string mainMenuScene = "MainMenu";
         [SerializeField] private string gameplayScene = "SampleScene";
         [SerializeField] private string trainingScene = "TrainingScene";
         [SerializeField] private string careerHubScene = "CareerScene";
@@ -276,7 +276,7 @@ namespace AgilityDogs.Services
                 competitorId = "PLAYER",
                 competitorName = "You",
                 dogName = puppy?.puppyName ?? "Your Dog",
-                skill = puppy?.baseStats?.GetOverallRating() ?? 0.5f,
+                skill = puppy?.GetEffectiveSkill() ?? 0.5f,
                 tier = currentShowTier,
                 isPlayer = true
             };
@@ -712,6 +712,11 @@ namespace AgilityDogs.Services
             // Set up the course if available
             if (selectedCourse != null)
             {
+                // Keep GameManager in sync so systems that read
+                // GameManager.CurrentCourse (scoring par, results) see the
+                // course actually being played.
+                GameManager.Instance?.SetCourse(selectedCourse);
+
                 var courseRunner = FindObjectOfType<CourseRunner>();
                 if (courseRunner != null)
                 {

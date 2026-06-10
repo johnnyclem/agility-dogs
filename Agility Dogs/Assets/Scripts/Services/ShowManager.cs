@@ -28,7 +28,7 @@ namespace AgilityDogs.Services
         [SerializeField] private int winsForWestminster = 12;
 
         [Header("Westminster Requirements")]
-        [SerializeField] private float westminsterMinSkill = 0.8f;
+        [SerializeField] private float westminsterMinSkill = 0.65f;
         [SerializeField] private int westminsterMinCompetitions = 20;
 
         // Current show state
@@ -124,24 +124,25 @@ namespace AgilityDogs.Services
 
             int level = careerService.CurrentLevel;
 
-            // Progressive unlocks based on level and wins
+            // Progressive unlocks based on level and cumulative career wins
+            // (2 / 4 / 6 / 8 / 12 total wins for County through Westminster).
             if (level >= 25 && CanEnterWestminster())
             {
                 return ShowTier.Westminster;
             }
-            if (level >= 20 && tierWins >= winsForNational)
+            if (level >= 20 && totalWins >= winsForNational)
             {
                 return ShowTier.National;
             }
-            if (level >= 15 && tierWins >= winsForState)
+            if (level >= 15 && totalWins >= winsForState)
             {
                 return ShowTier.State;
             }
-            if (level >= 10 && tierWins >= winsForRegional)
+            if (level >= 10 && totalWins >= winsForRegional)
             {
                 return ShowTier.Regional;
             }
-            if (level >= 5 && tierWins >= winsForCounty)
+            if (level >= 5 && totalWins >= winsForCounty)
             {
                 return ShowTier.County;
             }
@@ -199,16 +200,7 @@ namespace AgilityDogs.Services
             var careerService = CareerProgressionService.Instance;
 
             PuppyData puppy = breedingService?.GetSelectedPuppy();
-            float playerSkill = 0.5f; // Default
-
-            if (puppy != null)
-            {
-                playerSkill = puppy.baseStats.GetOverallRating();
-                // Add training bonus
-                playerSkill += puppy.TrainingProgressPercent * 0.3f;
-            }
-
-            playerSkill = Mathf.Clamp01(playerSkill);
+            float playerSkill = puppy != null ? puppy.GetEffectiveSkill() : 0.5f;
 
             playerCompetitor = new CompetitorData
             {
@@ -323,8 +315,11 @@ namespace AgilityDogs.Services
             // Penalty for faults
             score -= faults * 10f;
 
-            // Time bonus (lower is better)
-            float timeBonus = Mathf.Max(0, 1f - (time / 60f)) * 50f;
+            // Time bonus (lower is better), relative to the course being run.
+            // A fixed 60s par made high-tier courses (65-70s standard time)
+            // statistically unwinnable.
+            float parTime = GetCurrentCoursePar();
+            float timeBonus = Mathf.Max(0, 1f - (time / parTime)) * 50f;
             score += timeBonus;
 
             return Mathf.Max(0, score);
@@ -350,8 +345,17 @@ namespace AgilityDogs.Services
         private float EvaluateTimePerformance(float time)
         {
             // Lower time = better performance
-            float parTime = 45f; // Standard course time
+            float parTime = GetCurrentCoursePar();
             return Mathf.Clamp01(1f - (time / parTime));
+        }
+
+        /// <summary>
+        /// Standard course time of the course currently being run.
+        /// </summary>
+        private float GetCurrentCoursePar()
+        {
+            var course = GameManager.Instance != null ? GameManager.Instance.CurrentCourse : null;
+            return course != null && course.standardTime > 0f ? course.standardTime : 60f;
         }
 
         #endregion
@@ -420,7 +424,7 @@ namespace AgilityDogs.Services
                 _ => 0
             };
 
-            return GetWinsAtTier(tier) >= requiredWins;
+            return totalWins >= requiredWins;
         }
 
         /// <summary>
@@ -437,9 +441,9 @@ namespace AgilityDogs.Services
             // Check career level
             if (careerService != null && careerService.CurrentLevel < 25) return false;
 
-            // Check dog skill level
+            // Check dog skill level (base stats + training bonus)
             PuppyData puppy = breedingService?.GetSelectedPuppy();
-            if (puppy != null && puppy.baseStats.GetOverallRating() < westminsterMinSkill) return false;
+            if (puppy != null && puppy.GetEffectiveSkill() < westminsterMinSkill) return false;
 
             // Check competition count
             if (totalCompetitions < westminsterMinCompetitions) return false;

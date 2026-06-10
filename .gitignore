@@ -82,3 +82,11 @@ crashlytics-build.properties
 
 # Asset Store tools
 /[Aa]ssets/AssetStoreTools*
+
+# Test harness artifacts
+tests/node_modules/
+tests/test-results/
+tests/e2e/screenshots/
+tests/data/gamedata.json
+tests/compile-check/bin/
+tests/compile-check/obj/

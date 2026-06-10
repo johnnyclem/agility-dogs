@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agility Dogs — Course Simulator</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #1b2a1b; color: #eee; margin: 0; padding: 16px; }
+    h1 { font-size: 18px; margin: 0 0 8px; }
+    #controls { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+    select, button { font-size: 14px; padding: 4px 10px; }
+    #hud { display: flex; gap: 24px; font-size: 15px; margin: 8px 0; }
+    #banner {
+      font-size: 20px; font-weight: bold; padding: 8px 14px; border-radius: 6px;
+      display: inline-block; min-width: 280px;
+    }
+    #banner.qualified { background: #1e7d32; }
+    #banner.timefault { background: #b26a00; }
+    #banner.nq { background: #b71c1c; }
+    #banner.running { background: #333; }
+    canvas { background: #2e7d32; border: 2px solid #145a18; border-radius: 8px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Agility Dogs — Westminster Agility Masters: Course Simulator</h1>
+  <div id="controls">
+    <label>Level <select id="course" data-testid="course-select"></select></label>
+    <label>Breed <select id="breed" data-testid="breed-select"></select></label>
+    <button id="run" data-testid="run-button">Run Level</button>
+    <label>Speed <select id="speed">
+      <option value="1">1x</option><option value="5">5x</option>
+      <option value="10" selected>10x</option><option value="50">50x</option>
+    </select></label>
+  </div>
+  <div id="hud">
+    <span>Time: <b id="timer" data-testid="timer">0.0</b>s</span>
+    <span>SCT: <b id="sct" data-testid="sct">-</b>s</span>
+    <span>Max: <b id="max" data-testid="max">-</b>s</span>
+    <span>Obstacles: <b id="progress" data-testid="progress">0/0</b></span>
+  </div>
+  <div id="banner" class="running" data-testid="result" data-state="idle">Select a level and run</div>
+  <br />
+  <canvas id="arena" width="900" height="640"></canvas>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

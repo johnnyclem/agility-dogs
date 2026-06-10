@@ -199,6 +199,8 @@ namespace AgilityDogs.Gameplay.Obstacles
         private float pauseTimer;
         private bool dogIsOnTable;
 
+        public float RequiredPauseDuration => requiredPauseDuration;
+
         protected override void Awake()
         {
             base.Awake();

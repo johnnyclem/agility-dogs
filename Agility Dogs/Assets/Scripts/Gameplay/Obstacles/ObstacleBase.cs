@@ -179,6 +179,14 @@ namespace AgilityDogs.Gameplay.Obstacles
             gameObject.SetActive(active);
         }
 
+        /// <summary>
+        /// Assign the obstacle's data definition (used by runtime course building).
+        /// </summary>
+        public void AssignObstacleData(ObstacleData data)
+        {
+            obstacleData = data;
+        }
+
         protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
