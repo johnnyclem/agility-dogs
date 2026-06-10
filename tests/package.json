@@ -1,0 +1,18 @@
+{
+  "name": "agility-dogs-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test unit/*.test.mjs",
+    "e2e": "playwright test",
+    "export": "node tools/export-data.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

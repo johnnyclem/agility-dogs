@@ -60,9 +60,10 @@ namespace AgilityDogs.Gameplay.Scoring
             {
                 runTimer += Time.deltaTime;
 
+                // Exceeding maximum course time ends the run as a non-qualifying result.
                 if (currentCourse != null && runTimer >= currentCourse.maximumTime)
                 {
-                    CompleteRun(RunResult.TimeFaultOnly);
+                    CompleteRun(RunResult.NonQualified);
                 }
             }
         }
@@ -82,7 +83,7 @@ namespace AgilityDogs.Gameplay.Scoring
         {
             if (!isTimerRunning) return;
 
-            if (currentObstacleIndex < splitTimes.Length)
+            if (splitTimes != null && currentObstacleIndex < splitTimes.Length)
             {
                 splitTimes[currentObstacleIndex] = runTimer;
                 GameEvents.RaiseSplitTime(runTimer);
@@ -90,10 +91,8 @@ namespace AgilityDogs.Gameplay.Scoring
 
             currentObstacleIndex++;
 
-            if (currentCourse != null && currentObstacleIndex >= currentCourse.obstacleSequence.Length)
-            {
-                CompleteRun(RunResult.Qualified);
-            }
+            // Run completion is owned by CourseRunner, which tracks the actual
+            // course sequence. Scoring only records splits and faults.
         }
 
         private void HandleFaultCommitted(FaultType fault, string obstacleName)
@@ -115,21 +114,31 @@ namespace AgilityDogs.Gameplay.Scoring
 
             int totalFaults = faultCount;
 
-            if (result == RunResult.Qualified && totalFaults > 0)
+            // Time faults accrue only for time spent over the standard course time.
+            float standardTime = currentCourse != null ? currentCourse.standardTime : 45f;
+            float overTime = Mathf.Max(0f, runTimer - standardTime);
+            if (overTime > 0f)
             {
-                float faultTime = totalFaults * faultPenaltySeconds;
-                if (currentCourse != null && runTimer + faultTime > currentCourse.maximumTime)
-                {
-                    result = RunResult.TimeFaultOnly;
-                }
+                totalFaults += Mathf.CeilToInt(overTime / faultPenaltySeconds);
             }
 
-            if (result == RunResult.TimeFaultOnly)
+            // Record course personal best on qualifying runs.
+            if (result == RunResult.Qualified && currentCourse != null &&
+                GetFinalScore() < currentCourse.bestTime)
             {
-                totalFaults += Mathf.CeilToInt((runTimer - (currentCourse?.standardTime ?? 45f)) / faultPenaltySeconds);
+                currentCourse.bestTime = GetFinalScore();
             }
 
-            GameEvents.RaiseRunCompleted(result, runTimer, totalFaults);
+            // GameManager is the single place that raises OnRunCompleted, so the
+            // event cannot fire twice for one run (scoring + course runner paths).
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.CompleteRun(result, runTimer, totalFaults);
+            }
+            else
+            {
+                GameEvents.RaiseRunCompleted(result, runTimer, totalFaults);
+            }
         }
 
         public void Eliminate()
@@ -152,10 +161,15 @@ namespace AgilityDogs.Gameplay.Scoring
 
         public float GetSplitDelta(int obstacleIndex)
         {
-            if (currentCourse == null || splitTimes == null) return 0f;
+            if (currentCourse == null || splitTimes == null || splitTimes.Length == 0) return 0f;
+            if (obstacleIndex < 0 || obstacleIndex >= splitTimes.Length) return 0f;
+
             float best = currentCourse.bestTime;
+            // No comparison available until a personal best has been recorded.
+            if (best <= 0f || best == float.MaxValue) return 0f;
+
             float current = obstacleIndex > 0 ? splitTimes[obstacleIndex] - splitTimes[obstacleIndex - 1] : splitTimes[obstacleIndex];
-            return best > 0 ? current - (best / splitTimes.Length) : 0f;
+            return current - (best / splitTimes.Length);
         }
 
         public bool IsPersonalBest()
@@ -166,10 +180,15 @@ namespace AgilityDogs.Gameplay.Scoring
 
         public RunResult EvaluateRunResult()
         {
-            if (faultCount == 0 && IsPersonalBest()) return RunResult.Qualified;
-            if (faultCount > 0 && GetFinalScore() < currentCourse?.maximumTime) return RunResult.Qualified;
-            if (GetFinalScore() > currentCourse?.maximumTime) return RunResult.TimeFaultOnly;
-            return RunResult.Qualified;
+            float standardTime = currentCourse != null ? currentCourse.standardTime : 45f;
+            float maximumTime = currentCourse != null ? currentCourse.maximumTime : 60f;
+
+            if (runTimer >= maximumTime) return RunResult.NonQualified;
+            if (GetFinalScore() > maximumTime) return RunResult.NonQualified;
+            if (faultCount == 0 && runTimer <= standardTime) return RunResult.Qualified;
+
+            // Finished under maximum time but with faults and/or over standard time.
+            return RunResult.TimeFaultOnly;
         }
 
         public void SetCourse(CourseDefinition course)

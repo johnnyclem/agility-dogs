@@ -128,11 +128,15 @@ namespace AgilityDogs.Services
 
         public float GetLevelProgress()
         {
+            if (currentLevel >= maxLevel) return 1f;
+
             int xpForCurrentLevel = GetXPForLevel(currentLevel);
             int xpForNextLevel = GetXPForLevel(currentLevel + 1);
             int xpNeededForLevel = xpForNextLevel - xpForCurrentLevel;
+            if (xpNeededForLevel <= 0) return 1f;
+
             int xpIntoLevel = currentXP - xpForCurrentLevel;
-            return (float)xpIntoLevel / xpNeededForLevel;
+            return Mathf.Clamp01((float)xpIntoLevel / xpNeededForLevel);
         }
 
         public void AddXP(int amount, string source = "")

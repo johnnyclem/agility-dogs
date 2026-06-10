@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorClassIdentifier: 
+  courseName: Agility Masters Championship
+  courseType: 2
+  venueName: Demo Arena
+  coursePrefab: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  startDirection: {x: 0, y: 0, z: 1}
+  standardTime: 55
+  maximumTime: 70
+  obstacleSequence:
+  - {fileID: 11400000, guid: 5d4cb2b2417148ec873ef6d1513d8fec, type: 2}
+  - {fileID: 11400000, guid: 631f9bb14f5d4579a5669fd7ed481cda, type: 2}
+  - {fileID: 11400000, guid: fa95d4f0c88d4a1ba3bce3df7dc3a5b1, type: 2}
+  - {fileID: 11400000, guid: b60f53e9f7d74e749dd691106ff12355, type: 2}
+  - {fileID: 11400000, guid: cd85c16a326b41d6adbae73e728860f2, type: 2}
+  - {fileID: 11400000, guid: 2710ee4c25614c97b04154830990e148, type: 2}
+  - {fileID: 11400000, guid: 7d859f4b5cb24862afeb40585df77e86, type: 2}
+  - {fileID: 11400000, guid: a430eb48c3ef4ea68d25239f9735d110, type: 2}
+  - {fileID: 11400000, guid: ddc1c5b2037746bd97ccb28b83d4fd86, type: 2}
+  - {fileID: 11400000, guid: 085c09199e2f4d5496e6a18b0794ff6e, type: 2}
+  - {fileID: 11400000, guid: 93dea32303354b72ae07db0a814b3b6a, type: 2}
+  - {fileID: 11400000, guid: 34a633eccd914b97903ed20bafe8a222, type: 2}
+  supportsAllDivisions: 1
+  supportedDivisions: []
+  difficultyRating: 5
+  bestTime: 3.4028235e+38
+  bestHandlerName: 

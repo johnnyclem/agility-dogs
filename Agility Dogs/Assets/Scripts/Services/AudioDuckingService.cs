@@ -56,17 +56,6 @@ namespace AgilityDogs.Services
             InitializeDuckingTargets();
         }
         
-        private void Start()
-        {
-            // Subscribe to commentary events if available
-            var commentaryManager = FindObjectOfType<CommentaryManager>();
-            if (commentaryManager != null)
-            {
-                // We'll need to add events to CommentaryManager for this to work
-                // For now, we'll use a polling approach
-            }
-        }
-        
         private void Update()
         {
             if (!enableDucking) return;

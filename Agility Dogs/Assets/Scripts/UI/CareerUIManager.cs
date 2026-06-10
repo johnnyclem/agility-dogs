@@ -305,8 +305,8 @@ namespace AgilityDogs.UI
             if (puppy?.baseStats == null) return "No stats";
 
             PuppyStats stats = puppy.baseStats;
-            return $"Speed: {stats.speed:F1} | Agility: {stats.agility:F1}\n" +
-                   $"Jump: {stats.jumpPower:F1} | Focus: {stats.focus:F1}\n" +
+            return $"Speed: {stats.speed * 100f:F0} | Agility: {stats.agility * 100f:F0}\n" +
+                   $"Jump: {stats.jumpPower * 100f:F0} | Focus: {stats.focus * 100f:F0}\n" +
                    $"Training: {puppy.TrainingProgressPercent:P0}";
         }
 
@@ -372,7 +372,7 @@ namespace AgilityDogs.UI
             var statsText = card.transform.Find("StatsText")?.GetComponent<TextMeshProUGUI>();
             if (statsText != null && puppy.baseStats != null)
             {
-                statsText.text = $"Overall: {puppy.baseStats.GetOverallRating():F1}";
+                statsText.text = $"Overall: {puppy.baseStats.GetOverallRating() * 100f:F0}/100";
             }
 
             // Set select button

@@ -48,6 +48,10 @@ namespace AgilityDogs.Gameplay
 
         public void LoadCourse(CourseDefinition course)
         {
+            // A redundant reload of the course mid-run would reset sequence
+            // tracking and corrupt the active run.
+            if (isRunActive && course == currentCourse) return;
+
             // Validate course obstacle types
             if (course != null && course.obstacleSequence != null)
             {
@@ -76,8 +80,18 @@ namespace AgilityDogs.Gameplay
             scoringService.SetCourse(course);
             currentObstacleOrder = 0;
 
-            courseObstacles = FindObjectsOfType<ObstacleBase>();
-            OrderObstaclesBySequence();
+            if (course != null && course.obstacleSequence != null && course.obstacleSequence.Length > 0)
+            {
+                // Build the course layout from data; returns obstacles already
+                // in sequence order.
+                courseObstacles = CourseLayoutBuilder.BuildCourse(course);
+            }
+            else
+            {
+                Debug.LogWarning($"[CourseRunner] Course '{course?.courseName}' has no obstacle sequence; falling back to scene obstacles.");
+                courseObstacles = FindObjectsOfType<ObstacleBase>();
+                OrderObstaclesBySequence();
+            }
 
             GameEvents.RaiseCourseLoaded();
         }
@@ -116,6 +130,10 @@ namespace AgilityDogs.Gameplay
                     obs.ResetObstacle();
                 }
             }
+
+            // Send the dog to the first obstacle. Without this the dog has no
+            // target until it stumbles onto an obstacle by accident.
+            AdvanceToNextObstacle();
         }
 
         public void CompleteRun()
@@ -124,11 +142,9 @@ namespace AgilityDogs.Gameplay
             isRunActive = false;
             handler.SetEnabled(false);
 
-            RunResult result = scoringService.EvaluateRunResult();
-            float time = scoringService.CurrentTime;
-            int faults = scoringService.FaultCount;
-
-            GameManager.Instance.CompleteRun(result, time, faults);
+            // Scoring service finalizes the result and notifies GameManager,
+            // which raises the single OnRunCompleted event.
+            scoringService.CompleteRun(scoringService.EvaluateRunResult());
         }
 
         private void HandleRunCompleted(RunResult result, float time, int faults)
@@ -140,16 +156,20 @@ namespace AgilityDogs.Gameplay
         private void HandleObstacleCompletedWithReference(ObstacleBase obstacle, bool clean)
         {
             if (!isRunActive || obstacle == null) return;
-            
-            // Check if obstacle matches expected obstacle
+
             if (expectedObstacle != null && obstacle != expectedObstacle)
             {
-                // Wrong course: dog took a different obstacle
+                // Wrong course: dog took a different obstacle. Record the fault
+                // but keep expecting the correct obstacle instead of skipping it.
                 GameEvents.RaiseFaultCommitted(FaultType.WrongCourse, obstacle.ObstacleType.ToString());
+
+                if (dog != null)
+                {
+                    dog.SetTargetObstacle(expectedObstacle);
+                }
+                return;
             }
-            
-            // Advance to next obstacle (if the completed obstacle was the expected one)
-            // Note: expectedObstacle should be cleared after check
+
             expectedObstacle = null;
             AdvanceToNextObstacle();
         }

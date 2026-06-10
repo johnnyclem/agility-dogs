@@ -34,6 +34,7 @@ namespace AgilityDogs.Gameplay.Dog
         [SerializeField] private float decisionInterval = 0.1f;
         [SerializeField] private float commandResponseDelay = 0.15f;
         [SerializeField] private float recoveryTime = 1.5f;
+        [SerializeField] private float weaveTimeoutSeconds = 15f;
 
         [Header("Commitment Logic")]
         [SerializeField] private float earlyCommitDistance = 3f;
@@ -109,6 +110,28 @@ namespace AgilityDogs.Gameplay.Dog
 
             if (commandBuffer == null)
                 commandBuffer = GetComponent<CommandBuffer>();
+
+            // Fallback when no breed is wired in the scene: use the breed
+            // selected by the game mode, or the first available breed asset.
+            if (breedData == null)
+            {
+                if (Services.GameModeManager.Instance != null)
+                {
+                    breedData = Services.GameModeManager.Instance.SelectedDog;
+                }
+                if (breedData == null)
+                {
+                    var breeds = Resources.LoadAll<BreedData>("Data/Breeds");
+                    if (breeds != null && breeds.Length > 0)
+                    {
+                        breedData = breeds[0];
+                    }
+                }
+                if (breedData != null)
+                {
+                    ApplyBreedTuning();
+                }
+            }
         }
 
         private void Start()
@@ -728,7 +751,23 @@ namespace AgilityDogs.Gameplay.Dog
             {
                 currentObstacle = targetObstacle;
                 currentObstacle.OnDogEntered(this);
-                TransitionState(DogState.OnObstacle);
+
+                // Route to the state that knows how to perform this obstacle.
+                if (currentObstacle is WeavePolesObstacle)
+                {
+                    float baseSpeed = breedData != null ? breedData.maxSpeed : 6f;
+                    float weaveMultiplier = breedData != null ? breedData.weaveSpeed : 1f;
+                    navAgent.speed = baseSpeed * weaveMultiplier * 0.45f;
+                    TransitionState(DogState.Weaving);
+                }
+                else if (currentObstacle is PauseTableObstacle)
+                {
+                    TransitionState(DogState.WaitingAtTable);
+                }
+                else
+                {
+                    TransitionState(DogState.OnObstacle);
+                }
             }
         }
 
@@ -740,7 +779,13 @@ namespace AgilityDogs.Gameplay.Dog
                 return;
             }
 
-            navAgent.speed = currentObstacle.GetSpeedMultiplier() * (breedData != null ? breedData.contactSpeed : 1f);
+            // GetSpeedMultiplier is a fraction of full speed, not an absolute
+            // speed: scale it by the breed's max speed.
+            float maxSpeed = breedData != null ? breedData.maxSpeed : 6f;
+            float contactFactor = currentObstacle is ContactObstacleBase && breedData != null
+                ? breedData.contactSpeed
+                : 1f;
+            navAgent.speed = maxSpeed * currentObstacle.GetSpeedMultiplier() * contactFactor;
             NavigateTo(currentObstacle.GetExitPoint());
 
             float dist = Vector3.Distance(transform.position, currentObstacle.GetExitPoint());
@@ -755,28 +800,59 @@ namespace AgilityDogs.Gameplay.Dog
         {
             if (currentObstacle != null)
             {
-                GameEvents.RaiseObstacleCompleted(currentObstacle.ObstacleType, true);
-                GameEvents.RaiseObstacleCompletedWithReference(currentObstacle, true);
+                ObstacleBase completed = currentObstacle;
+                currentObstacle = null;
+
+                GameEvents.RaiseObstacleCompleted(completed.ObstacleType, true);
+                GameEvents.RaiseObstacleCompletedWithReference(completed, true);
+
+                // CourseRunner may have assigned the next target while handling
+                // the events above; only clear the target if it still points at
+                // the obstacle we just finished (e.g. at the end of the course).
+                if (targetObstacle == completed)
+                {
+                    targetObstacle = null;
+                }
             }
 
-            currentObstacle = null;
             navAgent.speed = breedData != null ? breedData.maxSpeed : 6f;
-            TransitionState(DogState.Running);
+            TransitionState(targetObstacle != null ? DogState.Running : DogState.Heeling);
         }
 
         private void UpdateWeaving()
         {
             stateTimer += Time.deltaTime;
 
-            if (navAgent.remainingDistance < 0.5f && targetObstacle != null)
+            var weave = currentObstacle as WeavePolesObstacle;
+            if (weave == null)
             {
-                var weave = targetObstacle as WeavePolesObstacle;
-                if (weave != null && weave.IsWeaveComplete(this))
-                {
-                    currentObstacle = targetObstacle;
-                    currentObstacle.OnDogExited(this);
-                    TransitionState(DogState.CompletingObstacle);
-                }
+                TransitionState(DogState.Recovering);
+                return;
+            }
+
+            if (weave.IsWeaveComplete(this))
+            {
+                weave.OnDogExited(this);
+                TransitionState(DogState.CompletingObstacle);
+                return;
+            }
+
+            // Navigate pole to pole, advancing as each pole is reached.
+            Vector3 poleTarget = weave.GetCurrentPoleTarget();
+            NavigateTo(poleTarget);
+
+            Vector3 flatDelta = poleTarget - transform.position;
+            flatDelta.y = 0f;
+            if (flatDelta.magnitude < 0.6f)
+            {
+                weave.AdvanceWeave();
+            }
+
+            // Failsafe: a stuck weave ends as a refusal instead of hanging the run.
+            if (stateTimer >= weaveTimeoutSeconds)
+            {
+                weave.OnDogExited(this);
+                TransitionState(DogState.CompletingObstacle);
             }
         }
 
@@ -785,12 +861,21 @@ namespace AgilityDogs.Gameplay.Dog
             stateTimer += Time.deltaTime;
             if (navAgent.hasPath) navAgent.ResetPath();
 
-            if (stateTimer >= 5f)
+            // Wait slightly longer than the table requires so the table's own
+            // pause timer (which starts a frame later) has definitely elapsed.
+            var table = currentObstacle as PauseTableObstacle;
+            float requiredPause = table != null ? table.RequiredPauseDuration + 0.5f : 5.5f;
+
+            if (stateTimer >= requiredPause)
             {
                 if (currentObstacle != null)
                 {
                     currentObstacle.OnDogExited(this);
                     TransitionState(DogState.CompletingObstacle);
+                }
+                else
+                {
+                    TransitionState(DogState.Recovering);
                 }
             }
         }
@@ -886,7 +971,9 @@ namespace AgilityDogs.Gameplay.Dog
                 case HandlerCommand.Weave:
                     if (FindNearestObstacle(ObstacleType.WeavePoles, out targetObstacle))
                     {
-                        TransitionState(DogState.Weaving);
+                        // Seek the weave entry first; the commit flow transitions
+                        // to Weaving once the dog actually enters the obstacle.
+                        TransitionState(DogState.SeekingObstacle);
                     }
                     break;
 
@@ -1136,7 +1223,9 @@ namespace AgilityDogs.Gameplay.Dog
                 case HandlerCommand.Weave:
                     if (FindNearestObstacle(ObstacleType.WeavePoles, out targetObstacle))
                     {
-                        TransitionState(DogState.Weaving);
+                        // Seek the weave entry first; the commit flow transitions
+                        // to Weaving once the dog actually enters the obstacle.
+                        TransitionState(DogState.SeekingObstacle);
                     }
                     break;
 

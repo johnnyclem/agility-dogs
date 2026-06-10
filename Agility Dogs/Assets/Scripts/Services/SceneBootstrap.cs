@@ -33,13 +33,27 @@ namespace AgilityDogs.Services
             }
 
             WireReferences();
+
+            // Commentary is event-driven; it only needs an instance to exist.
+            if (FindObjectOfType<BestInShowDialogueManager>() == null)
+            {
+                new GameObject("BestInShowDialogueManager").AddComponent<BestInShowDialogueManager>();
+            }
         }
 
         private void Start()
         {
             if (autoStartRun && courseRunner != null)
             {
-                CourseDefinition course = courseRunner.CurrentCourse ?? fallbackCourse;
+                // Prefer the course chosen by the active game mode, then the
+                // one already loaded, then the inspector fallback.
+                CourseDefinition course = GameModeManager.Instance != null
+                    ? GameModeManager.Instance.SelectedCourse
+                    : null;
+                if (course == null && GameManager.Instance != null)
+                    course = GameManager.Instance.CurrentCourse;
+                if (course == null)
+                    course = courseRunner.CurrentCourse ?? fallbackCourse;
 
                 if (course == null)
                 {

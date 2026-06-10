@@ -319,13 +319,16 @@ namespace AgilityDogs.Services
         /// </summary>
         private PuppyStats GenerateBaseStats(BreedData breed, List<PuppyTrait> traits)
         {
+            // All stats are normalized to 0-1 so GetOverallRating is meaningful.
+            // Breed fields use physical units (m/s etc.), so divide by the
+            // attribute ranges defined in BreedData before applying the puppy
+            // potential factor (puppies start at 60% of adult potential).
             PuppyStats stats = new PuppyStats
             {
-                // Start with breed base stats (slightly reduced for puppy)
-                speed = breed.maxSpeed * 0.6f,
-                acceleration = breed.acceleration * 0.6f,
-                agility = breed.turnRate / 540f, // Normalize to 0-1
-                jumpPower = breed.jumpPower * 0.6f,
+                speed = (breed.maxSpeed / 12f) * 0.6f,
+                acceleration = (breed.acceleration / 15f) * 0.6f,
+                agility = breed.turnRate / 540f,
+                jumpPower = (breed.jumpPower / 1.5f) * 0.6f,
                 stamina = 0.5f,
                 intelligence = 0.5f,
                 focus = 0.5f,
@@ -337,6 +340,8 @@ namespace AgilityDogs.Services
             {
                 ApplyTraitModifier(ref stats, trait);
             }
+
+            stats.ClampTo01();
 
             return stats;
         }
@@ -542,6 +547,15 @@ namespace AgilityDogs.Services
         // Calculated stats (base + training)
         public float TotalTrainingLevel => trainingProgress?.Values.Sum() ?? 0;
         public float TrainingProgressPercent => TotalTrainingLevel / (trainingProgress?.Count * 100f ?? 1f);
+
+        /// <summary>
+        /// Competition skill (0-1): base stats plus up to +0.3 from training.
+        /// </summary>
+        public float GetEffectiveSkill()
+        {
+            float baseRating = baseStats != null ? baseStats.GetOverallRating() : 0.5f;
+            return Mathf.Clamp01(baseRating + TrainingProgressPercent * 0.3f);
+        }
     }
 
     /// <summary>
@@ -565,6 +579,21 @@ namespace AgilityDogs.Services
         public float GetOverallRating()
         {
             return (speed + acceleration + agility + jumpPower + stamina + intelligence + focus + confidence) / 8f;
+        }
+
+        /// <summary>
+        /// Clamp all stats to the 0-1 range (trait modifiers can overshoot).
+        /// </summary>
+        public void ClampTo01()
+        {
+            speed = Mathf.Clamp01(speed);
+            acceleration = Mathf.Clamp01(acceleration);
+            agility = Mathf.Clamp01(agility);
+            jumpPower = Mathf.Clamp01(jumpPower);
+            stamina = Mathf.Clamp01(stamina);
+            intelligence = Mathf.Clamp01(intelligence);
+            focus = Mathf.Clamp01(focus);
+            confidence = Mathf.Clamp01(confidence);
         }
     }
 

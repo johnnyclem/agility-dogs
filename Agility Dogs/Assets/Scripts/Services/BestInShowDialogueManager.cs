@@ -63,6 +63,12 @@ namespace AgilityDogs.Services
         
         private void Awake()
         {
+            // Fall back to the bundled dialogue asset when not wired in a scene.
+            if (dialogueData == null)
+            {
+                dialogueData = Resources.Load<BestInShowDialogue>("Data/BestInShowDialogue");
+            }
+
             // Initialize dialogue data
             if (dialogueData != null)
             {
